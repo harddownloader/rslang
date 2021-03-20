@@ -23,6 +23,16 @@ module.exports = {
 	rules: {
 		'import/no-unresolved': 'off',
 		'unicorn/prevent-abbreviations': 1,
+		'unicorn/filename-case': [
+			'error',
+			{
+				cases: {
+					camelCase: true,
+					pascalCase: true,
+				},
+			},
+		],
+		'import/extensions': ['error', 'never', { ignorePackages: true }],
 		quotes: ['error', 'single'],
 		'react/jsx-uses-react': 'error',
 		'react/jsx-uses-vars': 'error',
