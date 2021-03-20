@@ -1,7 +1,9 @@
 @import "normalize.css";
-h1 {
-	display: grid;
-	grid-template-columns: 1fr 1fr;
-	grid-template-rows: auto auto;
-	grid-gap: 20px;
+
+html,
+body {
+	font-size: 10px;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
 }
