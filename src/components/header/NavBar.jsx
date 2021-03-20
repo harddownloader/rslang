@@ -22,6 +22,11 @@ const useStyles = makeStyles(theme => ({
 		},
 	},
 	linksBox: {
+		height: '100%',
+		color: '#fff',
+		fontWeight: 400,
+		lineHeight: 1.2,
+		fontFamily: '"Vollkorn", serif',
 		width: '100%',
 		overflowX: 'hidden',
 		display: 'flex',

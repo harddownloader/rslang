@@ -1,11 +1,12 @@
 @import "normalize.css";
-
+@import url("https://fonts.googleapis.com/css2?family=Vollkorn:ital,wght@0,479;1,479&display=swap");
 html,
 body {
 	font-size: 10px;
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
+	font-family: "Vollkorn", serif;
 }
 body,
 h1,

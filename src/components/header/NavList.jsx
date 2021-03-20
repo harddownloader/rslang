@@ -6,6 +6,8 @@ import PropTypes from 'prop-types'
 
 const useStyles = makeStyles(() => ({
 	root: {
+		width: '100%',
+		height: '100%',
 		zIndex: linkStyle => 10 - linkStyle.delay,
 		transition: 'all .75s cubic-bezier(.34,1,.34,1) ',
 		fontSize: '4rem',
@@ -29,7 +31,7 @@ const NavList = ({ isActive, setIsActive, style }) => {
 	const classes = useStyles(linkStyle)
 	return (
 		<>
-			<li className={classes.root}>dldlldlddlldlddldl llflflflfl</li>
+			<li className={classes.root}>title</li>
 		</>
 	)
 }
