@@ -9,16 +9,16 @@ import NavList from './NavList'
 
 const useStyles = makeStyles(theme => ({
 	root: {
-		zIndex: 10,
+		zIndex: styleProperties => (styleProperties.isActive ? 10 : '-10'),
+		overflowY: 'auto',
 		position: 'fixed',
 		height: '100%',
-		top: 0,
+		top: '6rem',
 		left: 0,
 		width: '100%',
-		marginTop: '6rem',
 		[theme.breakpoints.up('md')]: {
-			marginTop: 0,
-			marginLeft: '6rem',
+			top: 0,
+			left: '6rem',
 		},
 	},
 	linksBox: {
@@ -30,14 +30,19 @@ const useStyles = makeStyles(theme => ({
 		width: '100%',
 		overflowX: 'hidden',
 		display: 'flex',
+		flexWrap: 'wrap',
 		flexDirection: 'column',
 		[theme.breakpoints.up('md')]: {
 			flexDirection: 'row',
+			width: 'calc(100% - 6rem)',
 		},
 	},
 }))
-const NavBar = ({ isActive, setIsActive }) => {
-	const classes = useStyles()
+const NavBar = ({ isActive }) => {
+	const styleProperties = {
+		isActive,
+	}
+	const classes = useStyles(styleProperties)
 	return (
 		<nav className={classes.root}>
 			<ul className={classes.linksBox}>
@@ -57,6 +62,5 @@ const NavBar = ({ isActive, setIsActive }) => {
 }
 NavBar.propTypes = {
 	isActive: PropTypes.bool.isRequired,
-	setIsActive: PropTypes.func,
 }
 export default NavBar

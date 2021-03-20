@@ -14,4 +14,9 @@ export default [
 		bg: '#28282a',
 		title: '',
 	},
+	{
+		path: '',
+		bg: '#24282a',
+		title: '',
+	},
 ]

@@ -8,6 +8,7 @@ const useStyles = makeStyles(() => ({
 	root: {
 		minHeight: '100vh',
 		position: 'relative',
+		width: '100vw',
 	},
 }))
 
