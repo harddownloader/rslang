@@ -2,10 +2,11 @@ import React, { useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import colors from '@/utils/colors'
 import HeaderBurger from './HeaderBurger'
+import NavBar from './NavBar'
 
 const useStyles = makeStyles(theme => ({
 	root: {
-		outline: 'none',
+		zIndex: 100,
 		background: colors.header,
 		position: 'fixed',
 		height: '6rem',
@@ -38,6 +39,7 @@ const Header = () => {
 			<div className={classes.headerBar}>
 				<div>loogo</div>
 				<HeaderBurger isActive={isActive} setIsActive={setIsActive} />
+				<NavBar isActive={isActive} setIsActive={setIsActive} />
 			</div>
 		</header>
 	)
