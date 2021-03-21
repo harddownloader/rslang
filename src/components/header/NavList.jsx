@@ -1,4 +1,12 @@
 import React from 'react'
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  useRouteMatch,
+  useParams
+} from "react-router-dom";
 
 import { makeStyles } from '@material-ui/core/styles'
 
@@ -89,7 +97,9 @@ const NavList = ({ isActive, style, title, subtitle, image }) => {
 		background: style.bg,
 		isActive,
 	}
+
 	const classes = useStyles(linkStyle)
+	
 	return (
 		<>
 			<li className={classes.root}>
@@ -104,6 +114,7 @@ const NavList = ({ isActive, style, title, subtitle, image }) => {
 		</>
 	)
 }
+
 NavList.propTypes = {
 	isActive: PropTypes.bool.isRequired,
 	style: PropTypes.object,
@@ -112,4 +123,5 @@ NavList.propTypes = {
 	subtitle: PropTypes.string,
 	image: PropTypes.string,
 }
+
 export default NavList

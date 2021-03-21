@@ -41,6 +41,7 @@ const useStyles = makeStyles(theme => ({
 		},
 	},
 }))
+
 const NavBar = ({ isActive }) => {
 	const styleProperties = {
 		isActive,

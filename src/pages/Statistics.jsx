@@ -4,13 +4,13 @@ import Container from '@material-ui/core/Container'
 import { makeStyles } from '@material-ui/core/styles'
 import Header from '@/components/header'
 
-const Home = () => {
+const Statistics = () => {
 	const classes = useStyles()
 	return (
 		<>
-			<p>Home</p>
+      <p>Statistics</p>
 		</>
 	)
 }
 
-export default Home
+export default Statistics
