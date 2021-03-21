@@ -1,8 +1,13 @@
 import React, { useState } from 'react'
+
 import { makeStyles } from '@material-ui/core/styles'
+
 import colors from '@/utils/colors'
+
 import HeaderBurger from './HeaderBurger'
 import NavBar from './NavBar'
+import Title from './Title'
+import Logo from './Logo'
 
 const useStyles = makeStyles(theme => ({
 	root: {
@@ -19,14 +24,23 @@ const useStyles = makeStyles(theme => ({
 		},
 	},
 	headerBar: {
+		color: '#fff',
 		height: '100%',
-		cursor: 'pointer',
+
 		display: 'flex',
 		alignItems: 'center',
 		justifyContent: 'space-between',
 		[theme.breakpoints.up('md')]: {
 			flexDirection: 'column',
 			alignItems: 'space-between',
+		},
+	},
+	title: {
+		'&:hover': {
+			color: colors.borderColor,
+		},
+		[theme.breakpoints.up('md')]: {
+			transform: 'rotate(-90deg)',
 		},
 	},
 }))
@@ -37,7 +51,8 @@ const Header = () => {
 	return (
 		<header className={classes.root}>
 			<div className={classes.headerBar}>
-				<div>loogo</div>
+				<Logo />
+				<Title />
 				<HeaderBurger isActive={isActive} setIsActive={setIsActive} />
 				<NavBar isActive={isActive} setIsActive={setIsActive} />
 			</div>
