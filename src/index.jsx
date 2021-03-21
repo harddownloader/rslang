@@ -1,6 +1,6 @@
 import React from 'react'
 import { render } from 'react-dom'
-import Index from '@/pages/Main'
+import Home from '@/pages/Home'
 import './index.css'
 
-render(<Index />, document.querySelector('#root'))
+render(<Home />, document.getElementById('root'))

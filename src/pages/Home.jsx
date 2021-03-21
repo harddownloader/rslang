@@ -12,7 +12,7 @@ const useStyles = makeStyles(() => ({
 	},
 }))
 
-const Main = () => {
+const Home = () => {
 	const classes = useStyles()
 	return (
 		<>
@@ -23,4 +23,4 @@ const Main = () => {
 		</>
 	)
 }
-export default Main
+export default Home
