@@ -9,20 +9,21 @@ import NavList from './NavList'
 
 const useStyles = makeStyles(theme => ({
 	root: {
-		zIndex: styleProperties => (styleProperties.isActive ? 10 : '-10'),
 		overflowY: 'auto',
 		position: 'fixed',
 		height: '100%',
 		top: '6rem',
 		left: 0,
-		width: '100%',
+		transitionDelay: styleProperties =>
+			styleProperties.isActive ? '0s' : '0.5s',
+		width: styleProperties => (styleProperties.isActive ? '100%' : '0'),
 		[theme.breakpoints.up('md')]: {
 			top: 0,
 			left: '6rem',
 		},
 	},
+
 	linksBox: {
-		height: '100%',
 		color: '#fff',
 		fontWeight: 400,
 		lineHeight: 1.2,
@@ -32,9 +33,11 @@ const useStyles = makeStyles(theme => ({
 		display: 'flex',
 		flexWrap: 'wrap',
 		flexDirection: 'column',
+		height: 'calc(100% - 5rem)',
 		[theme.breakpoints.up('md')]: {
 			flexDirection: 'row',
 			width: 'calc(100% - 6rem)',
+			height: '100%',
 		},
 	},
 }))
@@ -43,6 +46,7 @@ const NavBar = ({ isActive }) => {
 		isActive,
 	}
 	const classes = useStyles(styleProperties)
+
 	return (
 		<nav className={classes.root}>
 			<ul className={classes.linksBox}>
@@ -52,6 +56,10 @@ const NavBar = ({ isActive }) => {
 							<NavList
 								isActive={isActive}
 								style={{ bg: element.bg, delay: index }}
+								title={element.title}
+								subtitle={element.subtitle}
+								path={element.path}
+								image={element.img}
 							/>
 						</React.Fragment>
 					)
