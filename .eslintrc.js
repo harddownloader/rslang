@@ -32,7 +32,15 @@ module.exports = {
 				},
 			},
 		],
-		'import/extensions': ['error', 'never', { ignorePackages: true }],
+		'import/extensions': [
+			'error',
+			'never',
+			{
+				svg: 'always',
+				png: 'always',
+				jpg: 'always',
+			},
+		],
 		quotes: ['error', 'single'],
 		'react/jsx-uses-react': 'error',
 		'react/jsx-uses-vars': 'error',
