@@ -21,6 +21,7 @@ module.exports = {
 	},
 
 	rules: {
+		'unicorn/prefer-query-selector': 'off',
 		'import/no-unresolved': 'off',
 		'unicorn/prevent-abbreviations': 1,
 		'unicorn/filename-case': [
