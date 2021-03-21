@@ -1,5 +1,11 @@
 import React from 'react'
+import Stats from '../Stats/Stats'
 
 export default function Source() {
-	return <h1>hello word</h1>
+	return (
+		<div>
+			<h1>HelloWorld</h1>
+			<Stats />
+		</div>
+	)
 }
