@@ -39,9 +39,12 @@ const useStyles = makeStyles(theme => ({
 		transitionDelay: linkStyle => `0.${linkStyle.delay}s`,
 
 		'&:hover': {
-			transform: 'scaleX(0.98)',
+			//	transform: linkStyle => linkStyle.isActive && 'scaleX(0.98)',
 			'& h4': { color: colors.borderColor },
 			'& h5': { color: '#fff' },
+			'& img': {
+				transform: linkStyle => linkStyle.isActive && 'scale(1.15)',
+			},
 		},
 	},
 	titleWrapper: {
