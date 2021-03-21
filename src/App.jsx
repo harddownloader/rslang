@@ -1,14 +1,9 @@
 import React from 'react'
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
-} from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import Container from '@material-ui/core/Container'
 import { makeStyles } from '@material-ui/core/styles'
-import Header from '@/components/header'
+import Home from '@/pages/Home'
 
 const useStyles = makeStyles(() => ({
 	root: {
@@ -24,7 +19,7 @@ const App = () => {
 		<>
 			<CssBaseline />
 			<Container maxWidth='lg' className={classes.root}>
-				<Header />
+				<Home />
 			</Container>
 		</>
 	)
