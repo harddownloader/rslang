@@ -7,3 +7,43 @@ body {
 	box-sizing: border-box;
 	font-family: "Vollkorn", serif;
 }
+
+/* Указываем box sizing */
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+/* Убираем внутренние отступы */
+ul,
+ol {
+	padding: 0;
+	margin: 0;
+}
+/* Убираем внешние отступы */
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+ul,
+ol,
+li,
+figure,
+figcaption,
+blockquote,
+dl,
+dd {
+	padding: 0;
+	margin: 0;
+}
+
+/* Выставляем основные настройки по-умолчанию для body */
+body {
+	min-height: 100vh;
+	scroll-behavior: smooth;
+	text-rendering: optimizeSpeed;
+	line-height: 1.5;
+}
