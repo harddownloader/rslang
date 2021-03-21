@@ -5,6 +5,7 @@ import PropTypes from 'prop-types'
 
 const useStyles = makeStyles({
 	headerBurger: {
+		cursor: 'pointer',
 		position: 'relative',
 		width: '6rem',
 		height: '6rem',
