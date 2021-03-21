@@ -1,12 +1,5 @@
 import React from 'react'
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  useRouteMatch,
-  useParams
-} from "react-router-dom";
+import { Link } from 'react-router-dom'
 
 import { makeStyles } from '@material-ui/core/styles'
 
@@ -15,11 +8,20 @@ import PropTypes from 'prop-types'
 import colors from '@/utils/colors'
 
 const useStyles = makeStyles(theme => ({
+	router: {
+		height: '25%',
+		width: '100%',
+		[theme.breakpoints.up('md')]: {
+			height: '50%',
+			width: '50%',
+			fontSize: '4rem',
+		},
+	},
 	root: {
 		display: 'flex',
 		justifyContent: 'space-between',
 		alignItems: 'center',
-		height: '25%',
+		height: '100%',
 		cursor: 'pointer',
 		width: '100%',
 		margin: '-1px',
@@ -35,11 +37,7 @@ const useStyles = makeStyles(theme => ({
 				? 'translateX(0)'
 				: `translateX(-${linkStyle.delay + 1}00%)`,
 		transitionDelay: linkStyle => `0.${linkStyle.delay}s`,
-		[theme.breakpoints.up('md')]: {
-			height: '50%',
-			width: '50%',
-			fontSize: '4rem',
-		},
+
 		'&:hover': {
 			transform: 'scaleX(0.98)',
 			'& h4': { color: colors.borderColor },
@@ -54,6 +52,7 @@ const useStyles = makeStyles(theme => ({
 		justifyContent: 'cener',
 	},
 	title: {
+		color: colors.textLigth,
 		position: 'relative',
 		'&:before': {
 			content: '""',
@@ -91,7 +90,7 @@ const useStyles = makeStyles(theme => ({
 	},
 }))
 
-const NavList = ({ isActive, style, title, subtitle, image }) => {
+const NavList = ({ isActive, style, title, subtitle, image, path }) => {
 	const linkStyle = {
 		delay: style.delay,
 		background: style.bg,
@@ -99,9 +98,12 @@ const NavList = ({ isActive, style, title, subtitle, image }) => {
 	}
 
 	const classes = useStyles(linkStyle)
-	
+
 	return (
-		<>
+		<Link
+			to={path}
+			className={classes.router}
+			style={{ textDecoration: 'none' }}>
 			<li className={classes.root}>
 				<div className={classes.titleWrapper}>
 					<h4 className={classes.title}>{title}</h4>
@@ -111,14 +113,14 @@ const NavList = ({ isActive, style, title, subtitle, image }) => {
 					<img src={image} alt='ico' />
 				</div>
 			</li>
-		</>
+		</Link>
 	)
 }
 
 NavList.propTypes = {
 	isActive: PropTypes.bool.isRequired,
 	style: PropTypes.object,
-	patch: PropTypes.string,
+	path: PropTypes.string,
 	title: PropTypes.string,
 	subtitle: PropTypes.string,
 	image: PropTypes.string,
