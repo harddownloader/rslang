@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/core/styles'
 
 import PropTypes from 'prop-types'
 
-import LinksItem from '@/utils/LinksItem'
+import LinksItem from './LinksItem'
 import NavList from './NavList'
 
 const useStyles = makeStyles(theme => ({

@@ -1,15 +1,22 @@
 import React from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import CssBaseline from '@material-ui/core/CssBaseline'
-import Container from '@material-ui/core/Container'
+// import Container from '@material-ui/core/Container'
 import { makeStyles } from '@material-ui/core/styles'
-import Home from '@/pages/Home'
 
-const useStyles = makeStyles(() => ({
+import Home from '@/pages/Home'
+import Statistics from '@/pages/Statistics'
+
+const useStyles = makeStyles(theme => ({
 	root: {
 		minHeight: '100vh',
 		position: 'relative',
-		width: '100vw',
+		width: '100%',
+		paddingTop: '6rem',
+		[theme.breakpoints.up('md')]: {
+			paddingTop: '0',
+			paddingLeft: '6rem',
+		},
 	},
 }))
 
@@ -18,7 +25,7 @@ const App = () => {
 	return (
 		<Router>
 			<CssBaseline />
-			<Container maxWidth='lg' className={classes.root}>
+			<div className={classes.root}>
 				<Switch>
 					{/* main */}
 					<Route exact path='/'>
@@ -30,7 +37,7 @@ const App = () => {
 					</Route>
 					{/* stat */}
 					<Route path='/statistics'>
-						<Home />
+						<Statistics />
 					</Route>
 					{/* book */}
 					<Route path='/vocabulary'>
@@ -41,7 +48,7 @@ const App = () => {
 						<Home />
 					</Route>
 				</Switch>
-			</Container>
+			</div>
 		</Router>
 	)
 }
