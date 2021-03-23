@@ -3,6 +3,7 @@ import React from 'react'
 import Home from '@/pages/Home'
 import Games from '@/pages/Games'
 import Statistics from '@/pages/Statistics'
+import Sprint from '@/components/Sprint/MainPage'
 
 export default [
 	{
@@ -20,6 +21,10 @@ export default [
 	{
 		path: '/vocabulary',
 		component: <div></div>,
+	},
+	{
+		path: '/sprint',
+		component: <Sprint />,
 	},
 	{
 		path: '*',
