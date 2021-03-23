@@ -42,7 +42,7 @@ const useStyles = makeStyles(theme => ({
 	},
 }))
 
-const NavBar = ({ isActive }) => {
+const NavBar = ({ isActive, setIsActive }) => {
 	const styleProperties = {
 		isActive,
 	}
@@ -55,6 +55,7 @@ const NavBar = ({ isActive }) => {
 					return (
 						<React.Fragment key={element.bg}>
 							<NavList
+								setIsActive={setIsActive}
 								isActive={isActive}
 								style={{ bg: element.bg, delay: index }}
 								title={element.title}
@@ -71,5 +72,6 @@ const NavBar = ({ isActive }) => {
 }
 NavBar.propTypes = {
 	isActive: PropTypes.bool.isRequired,
+	setIsActive: PropTypes.func.isRequired,
 }
 export default NavBar
