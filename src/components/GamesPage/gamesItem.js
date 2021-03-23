@@ -8,7 +8,7 @@ import testGame from '@/assets/images/gamesPage/testGame.jpg'
 
 export default [
 	{
-		path: '/savanna',
+		path: 'savanna',
 		bg: colors.boxA,
 		title: 'Savanna',
 		subtitle: 'Саванна',
@@ -29,7 +29,7 @@ export default [
 		),
 	},
 	{
-		path: '/sprint',
+		path: 'sprint',
 		bg: colors.boxB,
 		title: 'Sprint',
 		subtitle: 'Спринт',
@@ -37,7 +37,7 @@ export default [
 		component: <div>3</div>,
 	},
 	{
-		path: '/speaker',
+		path: 'speaker',
 		bg: colors.boxC,
 		title: 'Speaker',
 		subtitle: 'Аудиовызов',
@@ -45,7 +45,7 @@ export default [
 		component: <div>2</div>,
 	},
 	{
-		path: '/myGame',
+		path: 'myGame',
 		bg: colors.boxD,
 		title: 'My little game',
 		subtitle: 'моя маленькая игра',
