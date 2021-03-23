@@ -2,7 +2,7 @@ import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import PropTypes from 'prop-types'
 import colors from '@/utils/colors'
-import { Link, useRouteMatch, Route } from 'react-router-dom'
+import { Link, useRouteMatch } from 'react-router-dom'
 import { setBorder } from './eyeAnimation'
 
 const useStyles = makeStyles(theme => ({
@@ -96,13 +96,13 @@ const Game = ({ setHoverGame, index, game }) => {
 	return (
 		<>
 			<Link
-				to={`${url}${game.path}`}
+				style={{ textDecoration: 'none' }}
+				to={`${url}/${game.path}`}
 				className={classes.root}
 				onMouseEnter={HandlerMouse}>
 				<h4 className={classes.title}>{game.title}</h4>
 				<img src={game.img} alt='img' />
 			</Link>
-			<Route path={'games/:name'}>{game.component}</Route>
 		</>
 	)
 }
