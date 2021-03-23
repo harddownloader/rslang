@@ -33,7 +33,7 @@ const useStyles = makeStyles(theme => ({
 		display: 'flex',
 		flexWrap: 'wrap',
 		flexDirection: 'column',
-		height: 'calc(100% - 5rem)',
+		height: 'calc(100% - 6rem)',
 		[theme.breakpoints.up('md')]: {
 			flexDirection: 'row',
 			width: 'calc(100% - 6rem)',
