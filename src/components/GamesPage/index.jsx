@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
-import { Route, useLocation, useRouteMatch } from 'react-router-dom'
+import { Route, useRouteMatch, Switch } from 'react-router-dom'
+import StartGame from './StartGame'
 import gamesItem from './gamesItem'
 import Game from './Game'
 import Eye from './Eye'
@@ -20,28 +21,28 @@ const useStyles = makeStyles(theme => ({
 
 const Games = () => {
 	const classes = useStyles()
-	const { url } = useRouteMatch()
+	const { path } = useRouteMatch()
 	const [hoverGame, setHoverGame] = useState(0)
-	const location = useLocation()
-	console.log(location)
 	return (
 		<>
-			<div className={classes.root}>
-				<Eye setHoverGame={setHoverGame} hoverGame={hoverGame} />
-				{gamesItem.map((game, index) => (
-					<Game
-						game={game}
-						setHoverGame={setHoverGame}
-						index={index}
-						key={game.title}
-					/>
-				))}
-			</div>
-			{gamesItem.map(game => (
-				<Route key={game.title} exact path={`${url}/${game.path}`}>
-					<div> sdhoojjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj</div>
+			<Switch>
+				<Route exact path={path}>
+					<div className={classes.root}>
+						<Eye setHoverGame={setHoverGame} hoverGame={hoverGame} />
+						{gamesItem.map((game, index) => (
+							<Game
+								game={game}
+								setHoverGame={setHoverGame}
+								index={index}
+								key={game.title}
+							/>
+						))}
+					</div>
 				</Route>
-			))}
+				<Route path={`${path}/:id`}>
+					<StartGame />
+				</Route>
+			</Switch>
 		</>
 	)
 }
