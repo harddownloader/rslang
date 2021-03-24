@@ -1,7 +1,7 @@
 import React from 'react'
 
 import Home from '@/pages/Home'
-import Games from '@/pages/Games'
+import GamesPage from '@/pages/GamesPage'
 import Statistics from '@/pages/Statistics'
 
 export default [
@@ -11,7 +11,7 @@ export default [
 	},
 	{
 		path: '/games',
-		component: <Games />,
+		component: <GamesPage />,
 	},
 	{
 		path: '/statistics',
@@ -23,6 +23,6 @@ export default [
 	},
 	{
 		path: '*',
-		component: <div></div>,
+		component: <div>error</div>,
 	},
 ]

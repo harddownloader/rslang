@@ -1,13 +1,15 @@
 import React from 'react'
 
 import Header from '@/components/header'
+import Games from '@/components/GamesPage'
 
-const Games = () => {
+const GamesPage = () => {
 	return (
 		<>
 			<Header />
+			<Games />
 		</>
 	)
 }
 
-export default Games
+export default GamesPage

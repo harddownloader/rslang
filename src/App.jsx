@@ -27,7 +27,7 @@ const App = () => {
 			<div className={classes.root}>
 				<Switch>
 					{RouterList.map((rout, index) => (
-						<Route exact path={rout.path} key={index}>
+						<Route exact={rout.path === '/'} path={rout.path} key={index}>
 							{rout.component}
 						</Route>
 					))}
