@@ -23,7 +23,7 @@ function StartGame({ name }) {
 }
 
 StartGame.propTypes = {
-	name: PropTypes.sring,
+	name: PropTypes.oneOfType([PropTypes.string, PropTypes.any]),
 }
 
 export default StartGame
