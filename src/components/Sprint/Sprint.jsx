@@ -1,6 +1,7 @@
 import React from 'react'
 
 import Header from '@/components/header'
+import MainGame from '@/components/Sprint/MainGame'
 
 import words from '@/components/Sprint/words'
 
@@ -24,12 +25,12 @@ const useStyles = makeStyles({
 
 const Sprint = () => {
 	const classes = useStyles()
-	const array = words().map(item => item)
-	console.log(array)
 	return (
-		<div>
-			<Header />
-			<div className={classes.root}>Hello Sprint</div>
+		<div className={classes.root}>
+	
+		
+				<MainGame/>
+
 		</div>
 	)
 }

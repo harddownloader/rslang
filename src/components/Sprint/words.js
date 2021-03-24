@@ -10,4 +10,4 @@ const getAllUserWords = async () => {
 	/* returns array of words */
 }
 
-export default getAllUserWords
+export default getAllUserWords()
