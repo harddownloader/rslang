@@ -1,42 +1,40 @@
 import React from 'react'
-import { Switch, Route, useLocation } from 'react-router-dom'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import CssBaseline from '@material-ui/core/CssBaseline'
+// import Container from '@material-ui/core/Container'
 import { makeStyles } from '@material-ui/core/styles'
-import { TransitionGroup, CSSTransition } from 'react-transition-group'
+
 import RouterList from './RouterList'
 
 const useStyles = makeStyles(theme => ({
 	root: {
-		overflow: 'hidden',
-		height: '100vh',
+		minHeight: '100vh',
 		position: 'relative',
 		width: '100%',
 		paddingTop: '6rem',
 		[theme.breakpoints.up('md')]: {
 			paddingTop: '0',
 			paddingLeft: '6rem',
+			minHeight: '100vh',
 		},
 	},
 }))
 
 const App = () => {
 	const classes = useStyles()
-	const location = useLocation()
 	return (
-		<TransitionGroup className={classes.root}>
-			<CSSTransition
-				key={location.key}
-				classNames='fade'
-				mountOnEnter
-				timeout={500}>
-				<Switch location={location}>
+		<Router>
+			<CssBaseline />
+			<div className={classes.root}>
+				<Switch>
 					{RouterList.map((rout, index) => (
 						<Route exact={rout.path === '/'} path={rout.path} key={index}>
 							{rout.component}
 						</Route>
 					))}
 				</Switch>
-			</CSSTransition>
-		</TransitionGroup>
+			</div>
+		</Router>
 	)
 }
 

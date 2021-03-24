@@ -43,7 +43,7 @@ const Games = () => {
 			<CSSTransition
 				key={location.key}
 				classNames='fade'
-				mountOnEnter
+				//	mountOnEnter
 				timeout={500}>
 				<Switch location={location}>
 					<Route exact path={path}>
