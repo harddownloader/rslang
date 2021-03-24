@@ -21,7 +21,12 @@ const useStyles = makeStyles(theme => ({
 	},
 }))
 
+function useQuery() {
+	return new URLSearchParams(useLocation().search)
+}
+
 const Games = () => {
+	const query = useQuery()
 	const location = useLocation()
 	const classes = useStyles()
 	const { path } = useRouteMatch()
@@ -50,7 +55,7 @@ const Games = () => {
 						</div>
 					</Route>
 					<Route path={`${path}/:id`}>
-						<StartGame />
+						<StartGame name={query.get('name')} />
 					</Route>
 				</Switch>
 			</CSSTransition>
