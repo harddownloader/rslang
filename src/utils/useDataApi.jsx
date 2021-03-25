@@ -1,4 +1,4 @@
-import { useEffect, useReducer } from 'react'
+import { useEffect, useReducer, useState } from 'react'
 import axios from 'axios'
 import dataFetchReducer from './dataFetchReducer'
 
@@ -23,7 +23,7 @@ const useDataApi = (initialUrl, initialData) => {
 				if (!didCancel) {
 					dispatch({ type: 'FETCH_SUCCESS', payload: result.data })
 				}
-			} catch (error) {
+			} catch {
 				if (!didCancel) {
 					dispatch({ type: 'FETCH_FAILURE' })
 				}
