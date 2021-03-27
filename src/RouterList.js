@@ -3,6 +3,9 @@ import React from 'react'
 import Home from '@/pages/Home'
 import GamesPage from '@/pages/GamesPage'
 import Statistics from '@/pages/Statistics'
+import SettingsPage from '@/pages/SettingsPage'
+import RegistrationPage from '@/pages/RegistrationPage'
+import LoginPage from '@/pages/LoginPage'
 
 export default [
 	{
@@ -20,6 +23,18 @@ export default [
 	{
 		path: '/vocabulary',
 		component: <div></div>,
+	},
+	{
+		path: '/settings',
+		component: <SettingsPage />,
+	},
+	{
+		path: '/login',
+		component: <LoginPage />,
+	},
+	{
+		path: '/registration',
+		component: <RegistrationPage />,
 	},
 	{
 		path: '*',

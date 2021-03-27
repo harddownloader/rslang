@@ -7,7 +7,9 @@
 		"@material-ui/core": "^4.11.3",
 		"@material-ui/icons": "^4.11.2",
 		"axios": "^0.21.1",
+		"classnames": "^2.2.6",
 		"clsx": "^1.1.1",
+		"history": "^5.0.0",
 		"node-sass": "^5.0.0",
 		"normalize.css": "^8.0.1",
 		"postcss-import": "^14.0.0",
@@ -83,7 +85,8 @@
 		"start": "webpack serve --config webpack.dev.js",
 		"test": "jest",
 		"lint": "eslint --ext .jsx,.js src/",
-		"lint-fix": "eslint --fix --ext .jsx src/"
+		"lint:fix": "eslint --fix --ext .jsx src/",
+		"format": "prettier --write \"**/*.+(js|json|yml|yaml|css)\""
 	},
 	"browsersList": ">0.25%, not dead",
 	"author": "Serhii Shevchenko",
