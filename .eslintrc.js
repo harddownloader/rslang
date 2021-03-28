@@ -21,6 +21,7 @@ module.exports = {
 	},
 
 	rules: {
+		'unicorn/prefer-query-selector': 'off',
 		'import/no-unresolved': 'off',
 		'unicorn/prevent-abbreviations': 1,
 		'unicorn/filename-case': [
@@ -32,7 +33,15 @@ module.exports = {
 				},
 			},
 		],
-		'import/extensions': ['error', 'never', { ignorePackages: true }],
+		'import/extensions': [
+			'error',
+			'never',
+			{
+				svg: 'always',
+				png: 'always',
+				jpg: 'always',
+			},
+		],
 		quotes: ['error', 'single'],
 		'react/jsx-uses-react': 'error',
 		'react/jsx-uses-vars': 'error',
