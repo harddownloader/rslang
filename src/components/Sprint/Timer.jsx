@@ -2,38 +2,27 @@ import React, { useState, useEffect } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 
 const useStyles = makeStyles({
-	time: {
+	cls: {
 		color: 'red',
 		fontSize: '5.5rem',
 		textAlign: 'center',
 	},
 })
 
-const Timer = () => {
-	let timeLeft = 30
-	const [second, setSecond] = useState(30)
+export default function Timer(properties) {
 	const classes = useStyles()
+	const [time, setTime] = useState(properties.sec)
 	useEffect(() => {
-		// let timer = setTimeout(() => {
-		// 	if (timeLeft > 0) {
-		// 		setSecond(second - 1)
-		// 	}
-		// }, 1000)
-		// return clearInterval(timer)
-		const timer = setInterval(() => {
-			if (timeLeft > 0) {
-				setSecond(second - 1)
-				timeLeft -= 1
-				console.log(second)
-			}
+		function counter(time) {
+			if (time == 0) return undefined
+			setTime(time - 1)
+		}
+		let timer = setInterval(() => {
+			counter(time)
 		}, 1000)
-		return () => clearInterval(timer)
-	}, [])
-	return (
-		<div>
-			<div className={classes.time}>{second}</div>
-		</div>
-	)
+		return () => {
+			clearInterval(timer)
+		}
+	}, [time])
+	return <div className={classes.cls}>{time}</div>
 }
-
-export default Timer

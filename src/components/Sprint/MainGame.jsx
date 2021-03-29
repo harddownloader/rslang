@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { CountdownCircleTimer } from 'react-countdown-circle-timer'
+//import { CountdownCircleTimer } from 'react-countdown-circle-timer'
 
 import { randomArray } from '@/components/Sprint/words'
 import { makeStyles } from '@material-ui/core/styles'
@@ -61,9 +61,17 @@ const translateCheck = (wordCheck, badTranslate) => {
 	const result = badTranslate.filter(e => e !== wordCheck)
 	return result
 }
+const makeFirstWords = async url => {
+	let arrWodrs = await fetch(url)
+		.then(response => response.json())
+		.then(data => data)
+	console.log(arrWodrs)
+	return arrWodrs
+}
 
 const MainGame = () => {
 	const classes = useStyles()
+	const url = 'https://rs-lang-app.herokuapp.com/words?page=2&group=0'
 	let gameWords = []
 	const falseArray = []
 
@@ -75,15 +83,6 @@ const MainGame = () => {
 	const [falseWords, setFalseWords] = useState(0)
 	const [count, setCount] = useState(0)
 	const [textDescription, setTextDescription] = useState(null)
-
-	const makeFirstWords = async () => {
-		let arrWodrs = await fetch(
-			'https://rs-lang-app.herokuapp.com/words?page=2&group=0',
-		)
-			.then(response => response.json())
-			.then(data => data)
-		return arrWodrs
-	}
 
 	const makeWordField = () => {
 		const rand = Math.floor(Math.random() * 2)
@@ -126,18 +125,21 @@ const MainGame = () => {
 	}
 
 	useEffect(() => {
-		fetch('https://rs-lang-app.herokuapp.com/words?page=2&group=0')
-			.then(response => response.json())
-			.then(data => {
-				data.forEach(element => {
-					falseArray.push(element.wordTranslate)
-				})
-				console.log(falseArray)
-				setFalseWords(randomArray(falseArray))
-				setWords(randomArray(data))
-				setWord(currentWords[value].word)
-				setTraslate(currentWords[value].wordTranslate)
-			})
+		// fetch('https://rs-lang-app.herokuapp.com/words?page=2&group=0')
+		// 	.then(response => response.json())
+		// 	.then(data => {
+		// 		data.forEach(element => {
+		// 			falseArray.push(element.wordTranslate)
+		// 		})
+		// 		console.log(falseArray)
+		// 		setFalseWords(randomArray(falseArray))
+		// 		setWords(randomArray(data))
+		// 		setWord(currentWords[value].word)
+		// 		setTraslate(currentWords[value].wordTranslate)
+		// 	})
+		setWords(randomArray(makeFirstWords(url)))
+		console.log(currentWords)
+
 		// gameWords = makeFirstWords()
 		// console.log(gameWords)
 		// // gameWords.forEach(element => {
@@ -177,7 +179,8 @@ const MainGame = () => {
 					<div>False</div>
 				</div>
 			</div>
-			<CountdownCircleTimer
+			<Timer sec={30} />
+			{/* <CountdownCircleTimer
 				isPlaying
 				duration={30}
 				colors={[
@@ -186,7 +189,7 @@ const MainGame = () => {
 					['#A30000', 0.33],
 				]}>
 				{({ remainingTime }) => remainingTime}
-			</CountdownCircleTimer>
+			</CountdownCircleTimer> */}
 		</div>
 	)
 }

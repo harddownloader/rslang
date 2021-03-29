@@ -3,7 +3,7 @@ import React from 'react'
 import Home from '@/pages/Home'
 import Games from '@/pages/Games'
 import Statistics from '@/pages/Statistics'
-import Sprint from '@/components/Sprint/MainPage'
+import Sprint from '@/components/Sprint/Sprint'
 
 export default [
 	{

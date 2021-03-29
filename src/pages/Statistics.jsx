@@ -8,6 +8,7 @@ const Statistics = () => {
 	const classes = useStyles()
 	return (
 		<>
+		<Header/>
       <p>Statistics</p>
 		</>
 	)
