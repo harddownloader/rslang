@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 //import { CountdownCircleTimer } from 'react-countdown-circle-timer'
+import DoneOutlineIcon from '@material-ui/icons/DoneOutline'
 
 import { randomArray } from '@/components/Sprint/words'
 import { makeStyles } from '@material-ui/core/styles'
@@ -74,14 +75,14 @@ const MainGame = () => {
 	const url = 'https://rs-lang-app.herokuapp.com/words?page=2&group=0'
 	let gameWords = []
 	const falseArray = []
-
+	const [answerCount, setAnswerCount] = useState(0)
 	const [isCorrect, setFlag] = useState(true)
 	const [word, setWord] = useState(null)
 	const [translate, setTraslate] = useState(null)
 	const [value, setValue] = useState(0)
-	const [currentWords, setWords] = useState(0)
+	const [currentWords, setData] = useState(null)
 	const [falseWords, setFalseWords] = useState(0)
-	const [count, setCount] = useState(0)
+	const [score, setScore] = useState(0)
 	const [textDescription, setTextDescription] = useState(null)
 
 	const makeWordField = () => {
@@ -101,59 +102,60 @@ const MainGame = () => {
 
 	const checkBtnTrue = () => {
 		if (isCorrect) {
+			setAnswerCount(answerCount + 1)
 			setValue(value + 1)
 			setTextDescription('Верно')
 			makeWordField()
-			setCount(count + 10)
+			setScore(score + 10)
 		} else {
-			setValue(value + 1)
 			setTextDescription('Ошибка')
+			setValue(value + 1)
 			makeWordField()
 		}
 	}
 
 	const checkBtnFalse = () => {
 		if (!isCorrect) {
-			setValue(value + 1)
+			setAnswerCount(answerCount + 1)
+			setScore(score + 10)
 			setTextDescription('Верно')
 			makeWordField()
-			setCount(count + 10)
+			setValue(value + 1)
 		} else {
+			setTextDescription('Ошибка')
 			setValue(value + 1)
 			makeWordField()
 		}
 	}
 
 	useEffect(() => {
-		// fetch('https://rs-lang-app.herokuapp.com/words?page=2&group=0')
-		// 	.then(response => response.json())
-		// 	.then(data => {
-		// 		data.forEach(element => {
-		// 			falseArray.push(element.wordTranslate)
-		// 		})
-		// 		console.log(falseArray)
-		// 		setFalseWords(randomArray(falseArray))
-		// 		setWords(randomArray(data))
-		// 		setWord(currentWords[value].word)
-		// 		setTraslate(currentWords[value].wordTranslate)
-		// 	})
-		setWords(randomArray(makeFirstWords(url)))
-		console.log(currentWords)
+		fetch('https://rs-lang-app.herokuapp.com/words?page=2&group=0')
+			.then(response => response.json())
+			.then(data => {
+				data.forEach(item => {
+					falseArray.push(item.wordTranslate)
+				})
+				setFalseWords(falseArray)
+				setData(randomArray(data))
+				setWord(data[value].word)
+				setTraslate(data[value].wordTranslate)
+				setValue(value + 1)
+			})
 
-		// gameWords = makeFirstWords()
-		// console.log(gameWords)
-		// // gameWords.forEach(element => {
-		// // 	falseArray.push(element.wordTranslate)
-		// // })
-		// setFalseWords(randomArray(falseArray))
-		// setWords(randomArray(gameWords))
-		// setWord(currentWords[value].word)
-		// setTraslate(currentWords[value].wordTranslate)
+		console.log(document.getElementsByClassName('trueCheck'))
 	}, [])
+
+	// useEffect(() => {
+	// 	console.log(currentWords)
+	// 	currentWords.forEach(item => {
+	// 		falseWords.push(item.wordTranslate)
+	// 	})
+	// 	console.log(falseWords)
+	// })
 
 	return (
 		<div className={classes.SprintRoot}>
-			<Score score={count} />
+			<Score score={score} />
 			<div className={classes.wordContainer}>
 				<div className={classes.currentWord}>
 					<span>{word}</span>
@@ -161,7 +163,12 @@ const MainGame = () => {
 				<div className={classes.currentTranslate}>
 					<span>{translate}</span>
 				</div>
+				<div>
+					<DoneOutlineIcon />
+				</div>
 			</div>
+
+			<div id='icons' className={classes.trueCheck}>2</div>
 			<div className={classes.buttonBlock}>
 				<div
 					className={classes.buttonTrue}
