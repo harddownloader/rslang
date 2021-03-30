@@ -1,7 +1,13 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
+import Button from '@material-ui/core/Button'
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
+    root: {
+        '& > *': {
+          margin: theme.spacing(1),
+        },
+      },
     savannah__rules: {
         width: '90%',
         height: '100%',
@@ -26,6 +32,7 @@ const useStyles = makeStyles({
     rules__square: {
         width: '5rem',
         height: '5rem',
+        borderRadius: '5px',
         display: 'block',
         border: 'solid .2rem #f8ee3a',
         marginRight: '1rem',
@@ -33,7 +40,17 @@ const useStyles = makeStyles({
         textAlign: 'center',
         lineHeight: '5rem',
     },
-})
+    rulesList:{
+        display: 'flex',
+        flexDirection: 'column',
+    },
+    button_start: {
+        alignSelf: 'center',
+        justifySelf: 'center',
+        marginTop: '5rem',
+        fontSize: '2rem',
+    },
+}))
 
 export default function Rules(properties) {
     const classes = useStyles()
@@ -44,7 +61,7 @@ export default function Rules(properties) {
         'If all attempts have been spent, all words may appear again in future games.',
     ]
     return (
-        <div>
+        <div className={classes.rulesList}>
             <ol className={classes.savannah__rules}>
                 {rules.map(function ruleIt(rule, index) {
                     return (
@@ -55,9 +72,9 @@ export default function Rules(properties) {
                     )
                 })}
             </ol>
-            <button type='button' onClick={() => properties.start(true)}>
-                Start
-			</button>
+            <Button variant='outlined' color='secondary' className={classes.button_start} onClick={() => properties.start(true)} >
+                START THE GAME
+            </Button>
         </div>
     )
 }

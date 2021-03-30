@@ -14,9 +14,10 @@ export default function Timer(properties) {
             clearInterval(timer)
         }
     }, [time])
+    time == 0 ? properties.lose('lose') : undefined
     return (
-        <div className={properties.cls}>
+        <h3 className={properties.cls}>
             {time}
-        </div>
+        </h3>
     )
 }
