@@ -1,6 +1,7 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import Button from '@material-ui/core/Button'
+import Difficulty from '@/components/savannah/Difficulty'
 
 const useStyles = makeStyles(theme => ({
 	root: {
@@ -43,6 +44,7 @@ const useStyles = makeStyles(theme => ({
 	rulesList: {
 		display: 'flex',
 		flexDirection: 'column',
+		alignItems: 'center',
 	},
 	button_start: {
 		alignSelf: 'center',
@@ -72,6 +74,7 @@ export default function Rules(properties) {
 					)
 				})}
 			</ol>
+			<Difficulty change={properties.setDifficulty} grade={properties.difficulty}/>
 			<Button
 				variant='outlined'
 				color='secondary'

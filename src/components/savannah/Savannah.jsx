@@ -25,7 +25,7 @@ export default function Savannah() {
 			{isGame ? (
 				<Game difficulty={difficulty} setGame={setGame} />
 			) : (
-				<Rules start={setGame} setDifficulty={setDifficulty} />
+				<Rules start={setGame} setDifficulty={setDifficulty} difficulty={difficulty}/>
 			)}
 		</div>
 	)
