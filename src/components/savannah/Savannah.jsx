@@ -22,7 +22,11 @@ export default function Savannah() {
 	const [difficulty, setDifficulty] = useState(0)
 	return (
 		<div className={classes.savannah}>
-			{isGame ? <Game difficulty={difficulty} setGame={setGame}/> : <Rules start={setGame} setDifficulty={setDifficulty} />}
+			{isGame ? (
+				<Game difficulty={difficulty} setGame={setGame} />
+			) : (
+				<Rules start={setGame} setDifficulty={setDifficulty} />
+			)}
 		</div>
 	)
 }
