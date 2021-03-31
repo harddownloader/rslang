@@ -26,13 +26,14 @@ function getOptions(correct, words) {
 export default function GameBoard(properties) {
 	const classes = useStyles()
 	const [level, setLevel] = useState(0)
+	const word = properties.words[level]
+	const options = getOptions(word.wordTranslate, properties.words)
 	const [gameStat, setGameStat] = useState(initialStat)
 	const [attempts, setAttempts] = useState(5)
 	const [isGame, setIsGame] = useState(true)
 	const [isLose, setIsLose] = useState(false)
 	const [isEndGame, setEndGame] = useState(false)
-	const word = properties.words[level]
-	const options = getOptions(word.wordTranslate, properties.words)
+
 	useEffect(() => {
 		setIsLose(false)
 		setIsGame(true)

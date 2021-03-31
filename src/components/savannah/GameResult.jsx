@@ -50,8 +50,8 @@ export default function GameResult(properties) {
 		return (
 			<>
 				<p>
-					Pay attention to this word{properties.stat.incorrect.length > 1 ? 's' : ''}
-					:
+					Pay attention to this word
+					{properties.stat.incorrect.length > 1 ? 's' : ''}:
 				</p>
 				{properties.stat.incorrect.map(function result(item, index) {
 					return <p key={index}>{item.word.toUpperCase()}</p>

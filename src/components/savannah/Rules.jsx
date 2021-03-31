@@ -74,7 +74,10 @@ export default function Rules(properties) {
 					)
 				})}
 			</ol>
-			<Difficulty change={properties.setDifficulty} grade={properties.difficulty}/>
+			<Difficulty
+				change={properties.setDifficulty}
+				grade={properties.difficulty}
+			/>
 			<Button
 				variant='outlined'
 				color='secondary'
