@@ -100,16 +100,51 @@ const MainGame = () => {
 		}
 	}
 
+	const addChekedBonus = count => {
+		switch (count) {
+			case 1:
+				return <DoneOutlineIcon />
+				break
+
+			case 2:
+				return (
+					<div>
+						<DoneOutlineIcon /> <DoneOutlineIcon />
+					</div>
+				)
+				break
+			case 3:
+				return (
+					<div>
+						<DoneOutlineIcon /> <DoneOutlineIcon /> <DoneOutlineIcon />
+					</div>
+				)
+				break
+			default:
+				break
+		}
+	}
+
+	const checkCount = count => {
+		if (count == 3) {
+			setAnswerCount(0)
+			checkCount(answerCount)
+		}
+	}
+
 	const checkBtnTrue = () => {
 		if (isCorrect) {
 			setAnswerCount(answerCount + 1)
 			setValue(value + 1)
 			setTextDescription('Верно')
+			console.log(answerCount)
 			makeWordField()
 			setScore(score + 10)
 		} else {
 			setTextDescription('Ошибка')
 			setValue(value + 1)
+			setAnswerCount(0)
+			console.log(answerCount)
 			makeWordField()
 		}
 	}
@@ -117,13 +152,17 @@ const MainGame = () => {
 	const checkBtnFalse = () => {
 		if (!isCorrect) {
 			setAnswerCount(answerCount + 1)
+
 			setScore(score + 10)
 			setTextDescription('Верно')
-			makeWordField()
+			console.log(answerCount)
 			setValue(value + 1)
+			makeWordField()
 		} else {
 			setTextDescription('Ошибка')
 			setValue(value + 1)
+			setAnswerCount(0)
+			console.log(answerCount)
 			makeWordField()
 		}
 	}
@@ -145,13 +184,9 @@ const MainGame = () => {
 		console.log(document.getElementsByClassName('trueCheck'))
 	}, [])
 
-	// useEffect(() => {
-	// 	console.log(currentWords)
-	// 	currentWords.forEach(item => {
-	// 		falseWords.push(item.wordTranslate)
-	// 	})
-	// 	console.log(falseWords)
-	// })
+	useEffect(() => {
+		console.log('This is ', answerCount)
+	}, [answerCount])
 
 	return (
 		<div className={classes.SprintRoot}>
@@ -163,12 +198,12 @@ const MainGame = () => {
 				<div className={classes.currentTranslate}>
 					<span>{translate}</span>
 				</div>
-				<div>
-					<DoneOutlineIcon />
-				</div>
+				<div>{addChekedBonus(answerCount)}</div>
 			</div>
 
-			<div id='icons' className={classes.trueCheck}>2</div>
+			<div id='icons' className={classes.trueCheck}>
+				2
+			</div>
 			<div className={classes.buttonBlock}>
 				<div
 					className={classes.buttonTrue}
