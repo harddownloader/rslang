@@ -16,8 +16,8 @@ export default function Timer(properties) {
     }, [time])
     time == 0 ? properties.lose('lose') : undefined
     return (
-        <h3 className={properties.cls}>
+        <span className={properties.cls}>
             {time}
-        </h3>
+        </span>
     )
 }

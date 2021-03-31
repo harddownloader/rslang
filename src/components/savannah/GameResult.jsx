@@ -45,6 +45,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function GameResult(properties){
     const classes = useStyles()
+    const restartGame = properties.newGame
     function ShouldLearn(properties){
         return (
             <>
@@ -62,7 +63,7 @@ export default function GameResult(properties){
         <p>Correctly answer{(properties.stat.correct.length > 1) ? 's' : ''}: {properties.stat.correct.length}</p>
         {(properties.stat.incorrect.length > 0) ? <ShouldLearn incorrect={properties.stat.incorrect} /> : undefined}
         <div className={classes.result__btns}>
-        <Button variant='contained' color='secondary' className={classes.result__btn}>New game</Button>
+        <Button variant='contained' color='secondary' className={classes.result__btn} onClick={() => restartGame(true)}>New game</Button>
         <Button variant='contained' color='secondary' className={classes.result__btn}>
             <Link to='/'>Back to main page</Link>
         </Button>

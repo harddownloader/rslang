@@ -26,7 +26,8 @@ const useStyles = makeStyles((theme) => ({
         margin: '2rem',
     },
     timer: {
-        marginLeft: '5%',
+        marginLeft: '6%',
+        fontSize: '2.5rem',
     },
     attempts: {
         margin: '3rem',
@@ -34,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
         fontSize: '4rem',
     },
     variableOptions: {
-        width: '50%',
+        width: '70%',
         display: 'flex',
         flexWrap: 'wrap',
         flexDirection: 'row',
@@ -44,20 +45,39 @@ const useStyles = makeStyles((theme) => ({
     },
     option: {
         width: 'available',
-        margin: '1rem 1rem',
-        fontSize: '3rem',
+        margin: '1rem auto 3rem auto',
+        fontSize: '2.5rem',
     },
+    error: {
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center'
+    }
 }))
 
+function ErrorMessage(properties){
+    const classes = useStyles()
+    return(<div className={classes.error}>
+        <h1>Huoston, We have a problem..</h1>
+        <p>{properties.error.message} :(</p>
+        </div>
+    )
+}
 export default function Game(properties) {
     const classes = useStyles()
     const [words, setWords] = useState()
     const [isError, setError] = useState()
     const difficulty = properties.difficulty
     const [isLoaded, setIsLoaded] = useState(false)
-
+    const [newGame, setNewGame] = useState(false)
+    const [page, setPage] = useState(0)
     useEffect(() => {
-        fetch(`https://rs-lang-app.herokuapp.com/words?group=${difficulty}&page=0`)
+        if (newGame){
+            setPage(page + 1)
+            setNewGame(false)
+            setIsLoaded(false)
+        }
+        fetch(`https://rs-lang-app.herokuapp.com/words?group=${difficulty}&page=${page}`)
             .then(response => response.json())
             .then(
                 result => {
@@ -69,11 +89,11 @@ export default function Game(properties) {
                     setIsLoaded(true)
                 },
             )
-    }, [])
+    }, [newGame])
     return (
         <div className={classes.savannahGame}>
-            {isError ? isError.message : undefined}
-            {isLoaded ? <GameBoard words={words} /> : <Loader />}
+            {(isLoaded && !isError) ? <GameBoard words={words} newGame={setNewGame} /> : <Loader />}
+            {isError ? <ErrorMessage error={isError} /> : undefined}
         </div>
     )
 }

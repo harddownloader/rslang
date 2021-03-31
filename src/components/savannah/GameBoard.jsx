@@ -17,22 +17,16 @@ const initialStat = {
 export default function GameBoard(properties) {
     const classes = useStyles()
     const [level, setLevel] = useState(0)
-    const word = properties.words[level]
-    if (level == 20) setEndGame(gameStat)
-    const [options, setOptions] = useState(getOptions(word.wordTranslate, properties.words))
     const [gameStat, setGameStat] = useState(initialStat)
     const [attempts, setAttempts] =  useState(5)
     const [isGame, setIsGame] = useState(true)
     const [isLose, setIsLose] = useState(false)
     const [isEndGame, setEndGame] = useState(false)
-    // const [gameOver, setGameOver] = useState(false)
+    const word = properties.words[level]
+    const options = getOptions(word.wordTranslate, properties.words)
     useEffect(()=> {
-        if (level > 19 )setEndGame(gameStat)
-        if (level <= 19){
-        setOptions(getOptions(word.wordTranslate, properties.words))
         setIsGame(true)
         setIsLose(false)
-        }
     }, [level])
     useEffect(()=> {
         if (attempts === 0) setEndGame(gameStat)
@@ -50,7 +44,7 @@ export default function GameBoard(properties) {
         switch (result){
             case 'win':
                 setIsGame(false)
-                setGameStat({...gameStat, correct: [word].concat(gameStat.correct), strick: gameStat.strick + 1, bestStrick : Math.max(gameStat.strick, gameStat.bestStrick)})
+                setGameStat({...gameStat, correct: [word].concat(gameStat.correct), strick: gameStat.strick + 1, bestStrick : Math.max(gameStat.strick + 1, gameStat.bestStrick)})
                 break
             case 'lose':
                 setIsGame(false)
@@ -59,14 +53,14 @@ export default function GameBoard(properties) {
                 setGameStat({...gameStat, incorrect: [word].concat(gameStat.incorrect), strick: 0})
                 break
             default:
-                return undefined
+                setGameStat({...gameStat})
                 break
         }
     }
 
     return (
         <>
-        {isEndGame ? <GameResult stat={isEndGame}/> : undefined}
+        {isEndGame ? <GameResult stat={isEndGame} newGame={properties.newGame} /> : undefined}
             <div className={classes.gameStatus}>
                 {isGame ? <Timer cls={classes.timer} sec={5} lose={round}/> : <Result result={isLose}/>}
                 <div className={classes.attempts}>
@@ -85,7 +79,7 @@ export default function GameBoard(properties) {
                     )
                 })}
             </div>
-            {isGame ? undefined : <Button variant='outlined' color='secondary' onClick={() => { level === 19 ? setEndGame(gameStat) : setLevel(level + 1)}}>
+            {isGame ? undefined : <Button variant='outlined' color='secondary' className={classes.option} onClick={() => { level === 19 ? setEndGame(gameStat) : setLevel(level + 1)}}>
                 NEXT
             </Button>}
         </>
