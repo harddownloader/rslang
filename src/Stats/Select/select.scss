@@ -37,6 +37,7 @@ select {
     padding: 0 0.5em;
     color: #fff;
     cursor: pointer;
+    font-weight: 600;
 }
 .select::after {
     content: "\25BC";

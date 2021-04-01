@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
-import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import { makeStyles } from '@material-ui/core/styles';
 import './profile.scss'
 
 const useStyles = makeStyles({
     icon: {
-        width: '120px',
-        height: '120px',
+        width: '140px',
+        height: '140px',
         color: '#58d6b3'
     },
     h3: {
@@ -39,13 +38,12 @@ const useStyles = makeStyles({
         top: '22px'
     },
     week: {
+        marginTop: '30px',
         color: '#7e919f',
         letterSpacing: '2px',
     }
 
 })
-
-
 
 const Profile = () => {
 
@@ -58,7 +56,6 @@ const Profile = () => {
     let [exp, setExp] = useState(100);
 
     const upLevel = () => {
-        debugger
         if (scale === 90) {
             setLevel(level += 1)
             setScale(scale = -10)

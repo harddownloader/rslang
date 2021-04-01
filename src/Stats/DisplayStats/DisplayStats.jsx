@@ -1,12 +1,10 @@
 import React from 'react';
-import Select from '../DisplayStats/Select/Select'
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
-import { LinearScale } from '@material-ui/icons';
 
 const useStyles = makeStyles({
     wrapper: {
-        marginTop: '40px',
+        marginTop: '60px',
     },
     number: {
         fontWeight: '700',
@@ -32,13 +30,12 @@ const useStyles = makeStyles({
     }
 })
 
-const DisplayStats = ({ setStats }) => {
+const DisplayStats = () => {
 
     const classes = useStyles();
 
     return (
         <div>
-            <Select setStats={setStats} />
             <Grid container spacing={3} className={classes.wrapper}>
                 <Grid item xs={6}>
                     <div className={classes.border}>

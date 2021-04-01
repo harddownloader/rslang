@@ -7,8 +7,10 @@ const useStyles = makeStyles({
     calendar: {
         display: 'flex',
         justifyContent: 'center',
-        alignItems: 'center'
-    }
+        alignItems: 'center',
+        marginTop: '10px'
+    },
+
 })
 
 function Calend() {
@@ -18,12 +20,14 @@ function Calend() {
     const [value, onChange] = useState(new Date());
 
     return (
-        <div className={classes.calendar}>
-            <Calendar
-                onChange={onChange}
-                value={value}
-            />
-        </div>
+        <>
+            <div className={classes.calendar}>
+                <Calendar
+                    onChange={onChange}
+                    value={value}
+                />
+            </div>
+        </>
     );
 }
 

@@ -9,6 +9,7 @@ import Button from '@material-ui/core/Button';
 import Recharts from './diagram/Recharts'
 import RechartsProgress from './diagram/RechartsProgress'
 import Calendar from './Calendar/Calendar'
+import Select from './Select/Select'
 
 const useStyles = makeStyles({
     wrapper: {
@@ -19,7 +20,7 @@ const useStyles = makeStyles({
         background: '#353344e3;',
         boxShadow: '0 0 10px rgba(0,0,0,0.5)',
         borderRadius: '30px',
-        height: '350px',
+        height: '400px',
         margin: '25px 0px',
         textAlign: 'center',
     },
@@ -29,7 +30,7 @@ const useStyles = makeStyles({
         fontFamily: 'Open Sans,Helvetica,Arial,sans-serif',
         boxShadow: '0 0 10px rgba(0,0,0,0.5)',
         borderRadius: '30px',
-        height: '350px',
+        height: '400px',
         marginTop: '25px',
         textAlign: 'center'
     },
@@ -73,23 +74,28 @@ const useStyles = makeStyles({
 
 const Stats = () => {
 
-    let [isStats, setIsStats] = useState(true)
+    const [isStats, setIsStats] = useState(true)
 
     const setStats = () => {
-        setIsStats(isStats = !isStats)
+        setIsStats(!isStats)
     }
 
     const classes = useStyles();
 
     return (
-        <>
+        <div style={{ background: "#28282a", height: '945px' }}>
             <Container maxWidth="lg" className={classes.wrapper}>
                 <Grid container spacing={2}>
                     <Grid className={classes.wrapperProfiler} item xs={12} xl={3}><Profile /></Grid>
                     <Grid xs={1}></Grid>
-                    <Grid className={classes.wrapperStats} item xs={12} xl={8}>{isStats ? <DisplayStats setStats={setStats} /> : <Calendar />}</Grid>
+                    <Grid className={classes.wrapperStats} item xs={12} xl={8}>{isStats ? <>
+                        <Select setStats={setStats} />
+                        <DisplayStats />
+                    </> : <>
+                        <Select setStats={setStats} />
+                        <Calendar />
+                    </>}</Grid>
                 </Grid>
-
                 {isStats ? <Grid container className={classes.recharts} spacing={2} >
                     <Grid container item xs={3} >
                         <Grid item lg={12} xs={12}><Button size='large' className={classes.button} >Саванна</Button></Grid>
@@ -105,7 +111,7 @@ const Stats = () => {
                         <Grid item md={6} xs={12} ><RechartsProgress /></Grid>
                     </Grid>}
             </Container>
-        </>
+        </div>
     )
 }
 
