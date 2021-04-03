@@ -1,5 +1,6 @@
 import {
 	primaryColor,
+	secondaryColor,
 	dangerColor,
 	roseColor,
 	grayColor,
@@ -46,14 +47,14 @@ const customCheckboxRadioSwitch = {
 		width: '20px',
 		height: '20px',
 		border: '1px solid rgba(0, 0, 0, .54)',
-		borderRadius: '3px',
+		// borderRadius: '3px',
 	},
 	uncheckedIcon: {
 		width: '0px',
 		height: '0px',
 		padding: '9px',
 		border: '1px solid rgba(0, 0, 0, .54)',
-		borderRadius: '3px',
+		// borderRadius: '3px',
 	},
 	disabledCheckboxAndRadio: {
 		opacity: '0.45',

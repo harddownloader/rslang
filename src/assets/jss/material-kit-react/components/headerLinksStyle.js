@@ -43,7 +43,7 @@ const headerLinksStyle = theme => ({
 		fontWeight: '400',
 		fontSize: '12px',
 		textTransform: 'uppercase',
-		borderRadius: '3px',
+		// borderRadius: '3px',
 		lineHeight: '20px',
 		textDecoration: 'none',
 		margin: '0px',

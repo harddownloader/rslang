@@ -1,6 +1,7 @@
 import {
 	grayColor,
 	primaryColor,
+	secondaryColor,
 	infoColor,
 	successColor,
 	warningColor,
@@ -12,7 +13,7 @@ const paginationStyle = {
 		display: 'inline-block',
 		paddingLeft: '0',
 		margin: '0 0 20px 0',
-		borderRadius: '4px',
+		// borderRadius: '4px',
 	},
 	paginationItem: {
 		display: 'inline',

@@ -17,12 +17,28 @@ import CardBody from '@/components/Card/CardBody'
 import CardHeader from '@/components/Card/CardHeader'
 import CardFooter from '@/components/Card/CardFooter'
 import CustomInput from '@/components/CustomInput/CustomInput'
+// router
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  useRouteMatch
+} from "react-router-dom";
+// validation
+import { ValidatorComponent } from 'react-material-ui-form-validator';
 
+// styles
 import styles from '@/assets/jss/material-kit-react/views/loginPage'
-
+// images
 import image from '@/assets/images/material-kit-img/bg7.jpg'
 
 const useStyles = makeStyles(styles)
+// const useStyles = makeStyles(theme => ({
+// 	...theme,
+// 	...styles
+// }))
+
 
 export default function LoginPage(properties) {
 	const [cardAnimaton, setCardAnimation] = React.useState('cardHidden')
@@ -30,6 +46,8 @@ export default function LoginPage(properties) {
 		setCardAnimation('')
 	}, 700)
 	const classes = useStyles()
+	console.log('classes color', classes)
+	
 	const { ...rest } = properties
 	return (
 		<div>
@@ -47,51 +65,9 @@ export default function LoginPage(properties) {
 							<Card className={classes[cardAnimaton]}>
 								<form className={classes.form}>
 									<CardHeader color='primary' className={classes.cardHeader}>
-										<h4>Login</h4>
-										<div className={classes.socialLine}>
-											<Button
-												justIcon
-												href='#pablo'
-												target='_blank'
-												color='transparent'
-												onClick={e => e.preventDefault()}>
-												<i className={'fab fa-twitter'} />
-											</Button>
-											<Button
-												justIcon
-												href='#pablo'
-												target='_blank'
-												color='transparent'
-												onClick={e => e.preventDefault()}>
-												<i className={'fab fa-facebook'} />
-											</Button>
-											<Button
-												justIcon
-												href='#pablo'
-												target='_blank'
-												color='transparent'
-												onClick={e => e.preventDefault()}>
-												<i className={'fab fa-google-plus-g'} />
-											</Button>
-										</div>
+										<h4>Личный Кабинет</h4>
 									</CardHeader>
-									<p className={classes.divider}>Or Be Classical</p>
 									<CardBody>
-										<CustomInput
-											labelText='First Name...'
-											id='first'
-											formControlProps={{
-												fullWidth: true,
-											}}
-											inputProps={{
-												type: 'text',
-												endAdornment: (
-													<InputAdornment position='end'>
-														<People className={classes.inputIconsColor} />
-													</InputAdornment>
-												),
-											}}
-										/>
 										<CustomInput
 											labelText='Email...'
 											id='email'
@@ -108,7 +84,7 @@ export default function LoginPage(properties) {
 											}}
 										/>
 										<CustomInput
-											labelText='Password'
+											labelText='Пароль'
 											id='pass'
 											formControlProps={{
 												fullWidth: true,
@@ -126,10 +102,16 @@ export default function LoginPage(properties) {
 											}}
 										/>
 									</CardBody>
-									<CardFooter className={classes.cardFooter}>
-										<Button simple color='primary' size='lg'>
-											Get started
+									<CardFooter className={classes.cardFooterLogin}>
+										<Button color='secondary' size='lg'>
+											Войти
 										</Button>
+										<p className={classes.dividerBottom}>Или</p>
+										<Link to="/registration">
+											<Button simple color='primary' size='lg'>
+												Создать аккаунт
+											</Button>
+										</Link>
 									</CardFooter>
 								</form>
 							</Card>

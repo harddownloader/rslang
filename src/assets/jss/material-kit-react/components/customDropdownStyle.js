@@ -1,6 +1,7 @@
 import {
 	defaultFont,
 	primaryColor,
+	secondaryColor,
 	primaryBoxShadow,
 	infoColor,
 	infoBoxShadow,
@@ -19,7 +20,7 @@ const customDropdownStyle = theme => ({
 		pointerEvents: 'none',
 	},
 	dropdown: {
-		borderRadius: '3px',
+		// borderRadius: '3px',
 		border: '0',
 		boxShadow: '0 2px 5px 0 rgba(0, 0, 0, 0.26)',
 		top: '100%',
@@ -55,7 +56,7 @@ const customDropdownStyle = theme => ({
 		fontSize: '13px',
 		padding: '10px 20px',
 		margin: '0 5px',
-		borderRadius: '2px',
+		// borderRadius: '2px',
 		position: 'relative',
 		transition: 'all 150ms linear',
 		display: 'block',

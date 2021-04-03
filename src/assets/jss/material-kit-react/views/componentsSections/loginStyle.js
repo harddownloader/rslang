@@ -48,7 +48,7 @@ const loginStyle = {
   cardFooter: {
     paddingTop: "0rem",
     border: "0",
-    borderRadius: "6px",
+    // borderRadius: "6px",
     justifyContent: "center !important"
   },
   socialLine: {

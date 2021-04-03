@@ -6,7 +6,7 @@ const popoverStyles = {
 		lineHeight: '1.5em',
 		background: '#fff',
 		border: 'none',
-		borderRadius: '3px',
+		// borderRadius: '3px',
 		display: 'block',
 		maxWidth: '276px',
 		fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',

@@ -1,4 +1,4 @@
-import { container, primaryColor } from '@/assets/jss/materialKitReact'
+import { container, primaryColor, secondaryColor } from '@/assets/jss/materialKitReact'
 
 const footerStyle = {
 	block: {
@@ -7,7 +7,7 @@ const footerStyle = {
 		fontWeight: '500',
 		fontSize: '12px',
 		textTransform: 'uppercase',
-		borderRadius: '3px',
+		// borderRadius: '3px',
 		textDecoration: 'none',
 		position: 'relative',
 		display: 'block',

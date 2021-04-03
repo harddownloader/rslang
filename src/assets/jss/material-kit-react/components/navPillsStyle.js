@@ -1,6 +1,7 @@
 import {
 	roseColor,
 	primaryColor,
+	secondaryColor,
 	infoColor,
 	successColor,
 	warningColor,
@@ -52,7 +53,7 @@ const navPillsStyle = theme => ({
 		margin: '0 5px',
 	},
 	pillsWithIcons: {
-		borderRadius: '4px',
+		// borderRadius: '4px',
 	},
 	tabIcon: {
 		width: '30px',

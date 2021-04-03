@@ -5,9 +5,9 @@ const signupPageStyle = {
 		...container,
 		zIndex: '2',
 		position: 'relative',
-		paddingTop: '20vh',
+		paddingTop: '4rem',
 		color: '#FFFFFF',
-		paddingBottom: '200px',
+		paddingBottom: '4rem',
 	},
 	cardHidden: {
 		opacity: '0',
@@ -72,11 +72,22 @@ const signupPageStyle = {
 		marginBottom: '0px',
 		textAlign: 'center',
 	},
-	cardFooter: {
+	dividerBottom: {
+		margin: '15px 0px',
+		textAlign: 'center',
+	},
+	cardFooterRegistration: {
 		paddingTop: '0rem',
 		border: '0',
-		borderRadius: '6px',
+		// borderRadius: '6px',
 		justifyContent: 'center !important',
+	},
+	cardFooterLogin: {
+		paddingTop: '0rem',
+		border: '0',
+		// borderRadius: '6px',
+		display: 'block',
+		textAlign: 'center',
 	},
 	socialLine: {
 		marginTop: '1rem',

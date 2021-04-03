@@ -65,7 +65,7 @@ export default function SnackbarContent(props) {
 
 SnackbarContent.propTypes = {
 	message: PropTypes.node.isRequired,
-	color: PropTypes.oneOf(['info', 'success', 'warning', 'danger', 'primary']),
+	color: PropTypes.oneOf(['info', 'success', 'warning', 'danger', 'primary', 'secondary']),
 	close: PropTypes.bool,
 	icon: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
 }

@@ -24,6 +24,7 @@ Badge.defaultProps = {
 Badge.propTypes = {
 	color: PropTypes.oneOf([
 		'primary',
+		'secondary',
 		'warning',
 		'danger',
 		'success',

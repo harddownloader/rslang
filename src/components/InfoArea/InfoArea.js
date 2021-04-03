@@ -45,6 +45,7 @@ InfoArea.propTypes = {
 	description: PropTypes.string.isRequired,
 	iconColor: PropTypes.oneOf([
 		'primary',
+		'secondary',
 		'warning',
 		'danger',
 		'success',

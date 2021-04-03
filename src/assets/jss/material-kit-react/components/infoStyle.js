@@ -1,5 +1,6 @@
 import {
 	primaryColor,
+	secondaryColor,
 	warningColor,
 	dangerColor,
 	successColor,
@@ -22,6 +23,9 @@ const infoStyle = {
 	},
 	primary: {
 		color: primaryColor,
+	},
+	secondary: {
+		color: secondaryColor,
 	},
 	warning: {
 		color: warningColor,

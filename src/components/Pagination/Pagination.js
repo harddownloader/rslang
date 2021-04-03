@@ -59,5 +59,5 @@ Pagination.propTypes = {
 			onClick: PropTypes.func,
 		}),
 	).isRequired,
-	color: PropTypes.oneOf(['primary', 'info', 'success', 'warning', 'danger']),
+	color: PropTypes.oneOf(['primary', 'secondary', 'info', 'success', 'warning', 'danger']),
 }

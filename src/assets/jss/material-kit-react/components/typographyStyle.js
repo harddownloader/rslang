@@ -1,6 +1,7 @@
 import {
 	defaultFont,
 	primaryColor,
+	secondaryColor,
 	infoColor,
 	successColor,
 	warningColor,

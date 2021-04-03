@@ -1,6 +1,6 @@
 const modalStyle = {
 	modal: {
-		borderRadius: '6px',
+		// borderRadius: '6px',
 	},
 	modalHeader: {
 		borderBottom: 'none',

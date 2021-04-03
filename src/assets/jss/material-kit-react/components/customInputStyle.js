@@ -1,5 +1,6 @@
 import {
 	primaryColor,
+	secondaryColor,
 	dangerColor,
 	successColor,
 	defaultFont,
