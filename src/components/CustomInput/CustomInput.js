@@ -24,8 +24,17 @@ export default function CustomInput(props) {
 		error,
 		white,
 		inputRootCustomClasses,
-		success,
+		onChangeEvent,
+		success
 	} = props
+
+	const propsOnChange = e => {
+		const value = e.target.value;
+		// this.setState(value);
+		// console.log('value', value)
+		// console.log('onChangeEvent', onChangeEvent(value))
+		onChangeEvent(value)
+	}
 
 	const labelClasses = classNames({
 		[' ' + classes.labelRootError]: error,
@@ -70,6 +79,7 @@ export default function CustomInput(props) {
 					disabled: classes.disabled,
 					underline: underlineClasses,
 				}}
+				onChange={propsOnChange}
 				id={id}
 				{...inputProps}
 			/>
@@ -87,4 +97,5 @@ CustomInput.propTypes = {
 	error: PropTypes.bool,
 	success: PropTypes.bool,
 	white: PropTypes.bool,
+	onChangeEvent: PropTypes.func
 }

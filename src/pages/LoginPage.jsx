@@ -1,11 +1,10 @@
-import React from 'react'
+import React, {useState} from 'react'
 // @material-ui/core components
 import { makeStyles } from '@material-ui/core/styles'
 import InputAdornment from '@material-ui/core/InputAdornment'
 import Icon from '@material-ui/core/Icon'
 // @material-ui/icons
 import Email from '@material-ui/icons/Email'
-import People from '@material-ui/icons/People'
 // core components
 import Header from '@/components/header'
 import Footer from '@/components/Footer/Footer'
@@ -17,16 +16,16 @@ import CardBody from '@/components/Card/CardBody'
 import CardHeader from '@/components/Card/CardHeader'
 import CardFooter from '@/components/Card/CardFooter'
 import CustomInput from '@/components/CustomInput/CustomInput'
+
 // router
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   Link,
-  useRouteMatch
+  useRouteMatch,
+	useLocation
 } from "react-router-dom";
-// validation
-import { ValidatorComponent } from 'react-material-ui-form-validator';
 
 // styles
 import styles from '@/assets/jss/material-kit-react/views/loginPage'
@@ -41,14 +40,63 @@ const useStyles = makeStyles(styles)
 
 
 export default function LoginPage(properties) {
-	const [cardAnimaton, setCardAnimation] = React.useState('cardHidden')
+	const [cardAnimaton, setCardAnimation] = useState('cardHidden')
+	const [login, setLogin] = useState('')
+	const [password, setPassword] = useState('')
+
+	// анимация появления окна
 	setTimeout(function () {
 		setCardAnimation('')
 	}, 700)
+
 	const classes = useStyles()
-	console.log('classes color', classes)
 	
+	// при отправке
+	const handleSubmit = () => {
+		console.log('submit event')
+		if (login.length > 4 && password.length > 4) {
+			loginUser({ "email": login, "password": password })
+		} else {
+			console.error('small login or password')
+		}
+		
+	}
+
+	// при изменении полей
+	const handleChangeLogin = (val) => {
+		console.log('been changed' + val)
+		setLogin(val)
+	}
+
+	const handleChangePassword = (val) => {
+		console.log('been changed' + val)
+		setPassword(val)
+	}
+
 	const { ...rest } = properties
+
+	const loginUser = async user => {
+		const rawResponse = await fetch('https://rs-lang-app.herokuapp.com/signin', {
+			method: 'POST',
+			headers: {
+				'Accept': 'application/json',
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify(user)
+		});
+		console.log('rawResponse', rawResponse)
+
+		if (rawResponse.status === 200) {
+			const content = await rawResponse.json()
+	
+			console.log('loginUser', content)
+			window.location.replace("/");
+		} else {
+			alert("Введите корректные данные")
+		}
+	};
+
+
 	return (
 		<div>
 			<Header />
@@ -71,6 +119,7 @@ export default function LoginPage(properties) {
 										<CustomInput
 											labelText='Email...'
 											id='email'
+											onChangeEvent={handleChangeLogin}
 											formControlProps={{
 												fullWidth: true,
 											}}
@@ -86,13 +135,14 @@ export default function LoginPage(properties) {
 										<CustomInput
 											labelText='Пароль'
 											id='pass'
+											onChangeEvent={handleChangePassword}
 											formControlProps={{
 												fullWidth: true,
 											}}
 											inputProps={{
 												type: 'password',
 												endAdornment: (
-													<InputAdornment position='end'>
+													<InputAdornment position='end' >
 														<Icon className={classes.inputIconsColor}>
 															lock_outline
 														</Icon>
@@ -103,15 +153,24 @@ export default function LoginPage(properties) {
 										/>
 									</CardBody>
 									<CardFooter className={classes.cardFooterLogin}>
-										<Button color='secondary' size='lg'>
+										<Button color='secondary' size='lg' onClick={event => handleSubmit()}>
 											Войти
 										</Button>
 										<p className={classes.dividerBottom}>Или</p>
-										<Link to="/registration">
-											<Button simple color='primary' size='lg'>
-												Создать аккаунт
-											</Button>
-										</Link>
+										{/* <Switch location={location}> */}
+											{/* <Route exact path={path}> */}
+												{/* <Link to="/registration">
+													<Button simple color='primary' size='lg'>
+														Создать аккаунт
+													</Button>
+												</Link> */}
+												<a href="/registration">
+													<Button simple color='primary' size='lg'>
+														Создать аккаунт
+													</Button>
+												</a>
+											{/* </Route> */}
+										{/* </Switch> */}
 									</CardFooter>
 								</form>
 							</Card>

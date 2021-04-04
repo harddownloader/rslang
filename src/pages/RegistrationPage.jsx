@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 // @material-ui/core components
 import { makeStyles } from '@material-ui/core/styles'
 import InputAdornment from '@material-ui/core/InputAdornment'
@@ -25,12 +25,68 @@ import image from '@/assets/images/material-kit-img/bg7.jpg'
 const useStyles = makeStyles(styles)
 
 export default function RegistrationPage(properties) {
-	const [cardAnimaton, setCardAnimation] = React.useState('cardHidden')
+
+	const createUser = async user => {
+		const rawResponse = await fetch('https://rs-lang-app.herokuapp.com/users', {
+			method: 'POST',
+			headers: {
+				'Accept': 'application/json',
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify(user)
+		});
+
+		if (rawResponse.status === 200) {
+			const content = await rawResponse.json()
+	
+			console.log('loginUser', content)
+			window.location.replace("/");
+		} else {
+			alert("Введите корректные данные")
+		}
+	};
+
+
+	const [cardAnimaton, setCardAnimation] = useState('cardHidden')
+	const [name, setName] = useState('')
+	const [login, setLogin] = useState('')
+	const [password, setPassword] = useState('')
+
 	setTimeout(function () {
 		setCardAnimation('')
 	}, 700)
+
 	const classes = useStyles()
+
+	// при отправке
+	const handleSubmit = () => {
+		console.log('submit event')
+		if (login.length > 4 && password.length > 4 && name.length > 1) {
+			createUser({ "email": login, "password": password })
+		} else {
+			console.error('small login or password')
+			alert("вы заполнили не все поля")
+		}
+	}
+
+	// при изменении полей
+	const handleChangeName = (val) => {
+		// console.log('been changed' + val)
+		setName(val)
+	}
+
+	const handleChangeLogin = (val) => {
+		// console.log('been changed' + val)
+		setLogin(val)
+	}
+
+	const handleChangePassword = (val) => {
+		// console.log('been changed' + val)
+		setPassword(val)
+	}
+
 	const { ...rest } = properties
+
 	return (
 		<div>
 			<Header />
@@ -53,6 +109,7 @@ export default function RegistrationPage(properties) {
 										<CustomInput
 											labelText='Имя...'
 											id='first'
+											onChangeEvent={handleChangeName}
 											formControlProps={{
 												fullWidth: true,
 											}}
@@ -68,6 +125,7 @@ export default function RegistrationPage(properties) {
 										<CustomInput
 											labelText='Email...'
 											id='email'
+											onChangeEvent={handleChangeLogin}
 											formControlProps={{
 												fullWidth: true,
 											}}
@@ -83,6 +141,7 @@ export default function RegistrationPage(properties) {
 										<CustomInput
 											labelText='Пароль'
 											id='pass'
+											onChangeEvent={handleChangePassword}
 											formControlProps={{
 												fullWidth: true,
 											}}
@@ -100,7 +159,7 @@ export default function RegistrationPage(properties) {
 										/>
 									</CardBody>
 									<CardFooter className={classes.cardFooterRegistration}>
-										<Button color='secondary' size='lg'>
+										<Button color='secondary' size='lg' onClick={event => handleSubmit()}>
 											Создать аккаунт
 										</Button>
 									</CardFooter>

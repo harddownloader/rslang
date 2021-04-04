@@ -6,7 +6,7 @@ import Header from '@/components/header'
 const testForGames = () => {
 
 	const loginUser = async user => {
-		const rawResponse = await fetch('http://localhost:4000/signin', {
+		const rawResponse = await fetch('https://rs-lang-app.herokuapp.com/signin', {
 			method: 'POST',
 			headers: {
 				'Accept': 'application/json',
@@ -37,7 +37,7 @@ const testForGames = () => {
 
   // setUsersWords = sync () => {
 
-// http://localhost:4000/users/605e409e5747abe9af64b684%E2%80%8B/words/5e9f5ee35eb9e72bc21afbb6
+// https://rs-lang-app.herokuapp.com/users/605e409e5747abe9af64b684%E2%80%8B/words/5e9f5ee35eb9e72bc21afbb6
   //"605e409e5747abe9af64b684"
 
   /**
@@ -49,7 +49,7 @@ const testForGames = () => {
 
 	// const getUserWords = async ({userId, token}) => {
 	// 	console.log('userId token', [userId, token])
-	// 	const rawResponse = await fetch(`http://localhost:4000/​/words`, {
+	// 	const rawResponse = await fetch(`https://rs-lang-app.herokuapp.com/​/words`, {
 	// 		method: 'GET',
 	// 		withCredentials: true,
 	// 		headers: {
@@ -64,7 +64,7 @@ const testForGames = () => {
   
   const getNewWordsForUser = async ({userId, token}) => {
     // console.log('userId token', [userId, token])
-		const rawResponse = await fetch(`http://localhost:4000/words?group=1`, {
+		const rawResponse = await fetch(`https://rs-lang-app.herokuapp.com/words?group=1`, {
 			method: 'GET',
 			withCredentials: true,
 			headers: {
@@ -77,9 +77,46 @@ const testForGames = () => {
 		console.log('getNewWordsForUser', newWords)
   }
 
+	const getStatistics = async ({userId, token}) => {
+		const rawResponseStats = await fetch(`https://rs-lang-app.herokuapp.com/users/${userId}/statistics`, {
+			method: 'GET',
+			withCredentials: true,
+			headers: {
+				'Authorization': `Bearer ${token}`,
+				'Accept': 'application/json',
+			}
+		})
+
+		const getStats = await rawResponseStatsGet.json()
+		console.log('stats', getStats)
+    return getStats;
+	}
+
+	const setStatistics = async ({userId, token}) => {
+		const rawResponseStatsSet = await fetch(`https://rs-lang-app.herokuapp.com/users/${userId}/statistics`, {
+			method: 'PUT',
+			withCredentials: true,
+			headers: {
+				'Authorization': `Bearer ${token}`,
+				'Accept': 'application/json',
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({
+				'learnedWords': 1,
+				'optional': {
+					'type': '1'
+				}
+			})
+		})
+
+		const setStats = await rawResponseStatsSet.json()
+		console.log('stats', setStats)
+    return setStats;
+	}
+
   const getAggregatedWords = async ({userId, token, lvl}) => {
     // console.log('userId token', [userId, token])
-		const rawResponseAggregate = await fetch(`http://localhost:4000/users/${userId}/AggregatedWords?wordsPerPage=60&group=${lvl}`, {
+		const rawResponseAggregate = await fetch(`https://rs-lang-app.herokuapp.com/users/${userId}/AggregatedWords?wordsPerPage=60&group=${lvl}`, {
 			method: 'GET',
 			withCredentials: true,
 			headers: {
@@ -97,7 +134,7 @@ const testForGames = () => {
 	const setUserWords = async ({userId, token, wordId}) => {
 		// console.log('userId token', [userId, token])
     console.log('params', {userId, token, wordId})
-		const rawResponseSetUserWords = await fetch(`http://localhost:4000/users/${userId}/words/${wordId}`, {
+		const rawResponseSetUserWords = await fetch(`https://rs-lang-app.herokuapp.com/users/${userId}/words/${wordId}`, {
 			method: 'POST',
 			withCredentials: true,
 			headers: {

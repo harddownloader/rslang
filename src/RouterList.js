@@ -6,7 +6,7 @@ import Statistics from '@/pages/Statistics'
 import SettingsPage from '@/pages/SettingsPage'
 import RegistrationPage from '@/pages/RegistrationPage'
 import LoginPage from '@/pages/LoginPage'
-import TestComponentForGames from '@/pages/testForGames'
+// import TestComponentForGames from '@/pages/testForGames'
 
 export default [
 	{
@@ -37,12 +37,12 @@ export default [
 		path: '/registration',
 		component: <RegistrationPage />,
 	},
-	{
-		path: '/test',
-		component: <TestComponentForGames />,
-	},
-	{
-		path: '*',
-		component: <div>error</div>,
-	},
+	// {
+	// 	path: '/test',
+	// 	component: <TestComponentForGames />,
+	// },
+	// {
+	// 	path: '*',
+	// 	component: <div>error</div>,
+	// },
 ]

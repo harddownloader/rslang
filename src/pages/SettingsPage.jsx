@@ -6,7 +6,7 @@ import Settings from '@/components/settings'
 const SettingsPage = () => {
 
 	const loginUser = async user => {
-		const rawResponse = await fetch('http://localhost:4000/signin', {
+		const rawResponse = await fetch('https://rs-lang-app.herokuapp.com/signin', {
 			method: 'POST',
 			headers: {
 				'Accept': 'application/json',
@@ -24,7 +24,7 @@ const SettingsPage = () => {
 
 	const getSettings = async ({userId, token}) => {
 		console.log('userId token', [userId, token])
-		const rawResponse = await fetch(`http://localhost:4000/users/${userId}/settings`, {
+		const rawResponse = await fetch(`https://rs-lang-app.herokuapp.com/users/${userId}/settings`, {
 			method: 'GET',
 			withCredentials: true,
 			headers: {
@@ -39,7 +39,7 @@ const SettingsPage = () => {
 
 	const setSettings = async ({userId, token}) => {
 		console.log('userId token', [userId, token])
-		const rawResponseSet = await fetch(`http://localhost:4000/users/${userId}/settings`, {
+		const rawResponseSet = await fetch(`https://rs-lang-app.herokuapp.com/users/${userId}/settings`, {
 			method: 'PUT',
 			withCredentials: true,
 			headers: {
