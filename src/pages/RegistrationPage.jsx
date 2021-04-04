@@ -17,9 +17,10 @@ import CardBody from '@/components/Card/CardBody'
 import CardHeader from '@/components/Card/CardHeader'
 import CardFooter from '@/components/Card/CardFooter'
 import CustomInput from '@/components/CustomInput/CustomInput'
-
+import Dropzone from '@/components/Dropzone'
+// styles
 import styles from '@/assets/jss/material-kit-react/views/loginPage'
-
+// images
 import image from '@/assets/images/material-kit-img/bg7.jpg'
 
 const useStyles = makeStyles(styles)
@@ -106,6 +107,7 @@ export default function RegistrationPage(properties) {
 										<h4>Зарегистрироваться</h4>
 									</CardHeader>
 									<CardBody>
+										<Dropzone />
 										<CustomInput
 											labelText='Имя...'
 											id='first'

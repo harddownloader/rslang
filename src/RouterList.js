@@ -7,6 +7,7 @@ import SettingsPage from '@/pages/SettingsPage'
 import RegistrationPage from '@/pages/RegistrationPage'
 import LoginPage from '@/pages/LoginPage'
 // import TestComponentForGames from '@/pages/testForGames'
+import Vocabulary from '@/pages/Vocabulary'
 
 export default [
 	{
@@ -23,7 +24,7 @@ export default [
 	},
 	{
 		path: '/vocabulary',
-		component: <div></div>,
+		component: <Vocabulary />,
 	},
 	{
 		path: '/settings',
