@@ -7,6 +7,8 @@ import { makeStyles } from '@material-ui/core/styles'
 import Score from '@/components/Sprint/Score'
 import Description from '@/components/Sprint/Description'
 import Timer from '@/components/Sprint/Timer'
+import TrueMarks from '@/components/Sprint/TrueMarks'
+import useTimeout from '@/components/Sprint/UseTimeOut'
 
 const useStyles = makeStyles({
 	SprintRoot: {
@@ -38,7 +40,7 @@ const useStyles = makeStyles({
 		display: 'flex',
 		alignItems: 'center',
 		justifyContent: 'center',
-		minWidth: '250px',
+		minWidth: '200px',
 		height: '60px',
 		color: '#f6ea09',
 		border: '1px solid',
@@ -49,12 +51,23 @@ const useStyles = makeStyles({
 		display: 'flex',
 		alignItems: 'center',
 		justifyContent: 'center',
-		minWidth: '250px',
+		minWidth: '200px',
 		height: '60px',
 		color: '#f6ea09',
 		border: '1px solid',
 		borderColor: '#f6ea09',
 		fontSize: '3.5rem',
+	},
+	checkAnswer: {
+		display: 'flex',
+		alignItems: 'center',
+		justifyContent: 'center',
+		minWidth: '250px',
+		height: '80px',
+		color: '#f6ea09',
+		border: '1px solid',
+		borderColor: '#f6ea09',
+		fontSize: '5.5rem',
 	},
 })
 
@@ -70,10 +83,10 @@ const makeFirstWords = async url => {
 	return arrWodrs
 }
 
-const MainGame = () => {
+const MainGame = props => {
 	const classes = useStyles()
 	const url = 'https://rs-lang-app.herokuapp.com/words?page=2&group=0'
-	let gameWords = []
+	let checkMarks = []
 	const falseArray = []
 	const [answerCount, setAnswerCount] = useState(0)
 	const [isCorrect, setFlag] = useState(true)
@@ -83,7 +96,11 @@ const MainGame = () => {
 	const [currentWords, setData] = useState(null)
 	const [falseWords, setFalseWords] = useState(0)
 	const [score, setScore] = useState(0)
+	const [bonus, setBonus] = useState(1)
+	const [color, setColor] = useState(null)
 	const [textDescription, setTextDescription] = useState(null)
+
+
 
 	const makeWordField = () => {
 		const rand = Math.floor(Math.random() * 2)
@@ -100,109 +117,101 @@ const MainGame = () => {
 		}
 	}
 
-	const addChekedBonus = count => {
-		switch (count) {
-			case 1:
-				return <DoneOutlineIcon />
-				break
-
-			case 2:
-				return (
-					<div>
-						<DoneOutlineIcon /> <DoneOutlineIcon />
-					</div>
-				)
-				break
-			case 3:
-				return (
-					<div>
-						<DoneOutlineIcon /> <DoneOutlineIcon /> <DoneOutlineIcon />
-					</div>
-				)
-				break
-			default:
-				break
+	const bonusCounter = count => {
+		if (count === 3) {
+			setAnswerCount(1)
+			setBonus(bonus * 2)
 		}
 	}
 
-	const checkCount = count => {
-		if (count == 3) {
-			setAnswerCount(0)
-			checkCount(answerCount)
+	const gettingScore = count => {
+		switch (count) {
+			case 1:
+				setScore(score + 10)
+				break
+			case 2:
+				setScore(score + 20)
+				break
+			case 3:
+				setScore(score + 30)
+				break
+			case 4:
+				setScore(score + 40)
+				break
+
+			default:
+				break
 		}
 	}
 
 	const checkBtnTrue = () => {
 		if (isCorrect) {
 			setAnswerCount(answerCount + 1)
+			bonusCounter(answerCount)
+
 			setValue(value + 1)
 			setTextDescription('Верно')
-			console.log(answerCount)
+
 			makeWordField()
-			setScore(score + 10)
+			gettingScore(bonus)
+			setColor('green')
 		} else {
 			setTextDescription('Ошибка')
 			setValue(value + 1)
+			setBonus(1)
 			setAnswerCount(0)
-			console.log(answerCount)
 			makeWordField()
+			setColor('red')
 		}
 	}
 
 	const checkBtnFalse = () => {
 		if (!isCorrect) {
 			setAnswerCount(answerCount + 1)
-
-			setScore(score + 10)
+			bonusCounter(answerCount)
+			gettingScore(bonus)
+			bonusCounter(answerCount)
 			setTextDescription('Верно')
 			console.log(answerCount)
 			setValue(value + 1)
 			makeWordField()
+			setColor('green')
 		} else {
 			setTextDescription('Ошибка')
 			setValue(value + 1)
+			setBonus(1)
 			setAnswerCount(0)
 			console.log(answerCount)
 			makeWordField()
+			setColor('red')
 		}
 	}
 
 	useEffect(() => {
-		fetch('https://rs-lang-app.herokuapp.com/words?page=2&group=0')
-			.then(response => response.json())
-			.then(data => {
-				data.forEach(item => {
-					falseArray.push(item.wordTranslate)
-				})
-				setFalseWords(falseArray)
-				setData(randomArray(data))
-				setWord(data[value].word)
-				setTraslate(data[value].wordTranslate)
-				setValue(value + 1)
-			})
-
-		console.log(document.getElementsByClassName('trueCheck'))
+		console.log(props.wordsData)
+		props.wordsData.forEach(item => {
+			falseArray.push(item.wordTranslate)
+		})
+		setFalseWords(falseArray)
+		setData(randomArray(props.wordsData))
+		setWord(props.wordsData[value].word)
+		setTraslate(props.wordsData[value].wordTranslate)
+		setValue(value + 1)
 	}, [])
-
-	useEffect(() => {
-		console.log('This is ', answerCount)
-	}, [answerCount])
 
 	return (
 		<div className={classes.SprintRoot}>
-			<Score score={score} />
-			<div className={classes.wordContainer}>
+			<Score score={score} bonus={bonus} />
+			<div
+				className={classes.wordContainer}
+				style={{ backgroundColor: `${color}` }}>
 				<div className={classes.currentWord}>
 					<span>{word}</span>
 				</div>
 				<div className={classes.currentTranslate}>
 					<span>{translate}</span>
 				</div>
-				<div>{addChekedBonus(answerCount)}</div>
-			</div>
-
-			<div id='icons' className={classes.trueCheck}>
-				2
+				<TrueMarks marksCount={answerCount} />
 			</div>
 			<div className={classes.buttonBlock}>
 				<div
