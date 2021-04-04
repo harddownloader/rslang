@@ -1,4 +1,4 @@
-  
+// if has NEXT(server rendering)
 const cloudinary = require("cloudinary").v2;
 
 export default async (_req, res) => {
