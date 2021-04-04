@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react'
-import { useStyles } from '@/components/savannah/Game'
+import { makeStyles } from '@material-ui/core/styles'
 import Timer from '@/components/savannah/Timer'
 import Attempts from '@/components/savannah/Attempts'
 import Button from '@material-ui/core/Button'
 import Result from '@/components/savannah/Result'
 import GameResult from '@/components/savannah/GameResult'
+import { yellow } from '@material-ui/core/colors'
 
 const initialStat = {
 	strick: 0,
@@ -13,6 +14,50 @@ const initialStat = {
 	correct: [],
 	incorrect: [],
 }
+
+const useStyles = makeStyles({
+	gameStatus: {
+		display: 'flex',
+		width: '55%',
+		flexDirection: 'row',
+		justifyContent: 'space-between',
+		alignItems: 'center',
+		alignSelf: 'flex-end',
+	},
+	timer: {
+		marginLeft: '7%',
+		fontSize: '3rem',
+		fontWeight: 'bold',
+	},
+	attempts: {
+		margin: '3rem',
+		alignSelf: 'flex-end',
+		fontSize: '4rem',
+	},
+	taskWord: {
+		color: 'Black',
+		fontWeight: 'bold',
+		fontSize: '8rem',
+		margin: '2rem',
+	},
+	variableOptions: {
+		width: '70%',
+		display: 'flex',
+		flexWrap: 'wrap',
+		flexDirection: 'row',
+		alignItems: 'center',
+		justifyContent: 'space-between',
+		marginTop: '4rem',
+	},
+	option: {
+		width: 'available',
+		margin: '1rem auto 3rem auto',
+		fontSize: '2.5rem',
+		color: 'black',
+		border: 'solid 2px yellow',
+		borderRadius: '0',
+	},
+})
 
 function getOptions(correct, words) {
 	const set = new Set()

@@ -11,43 +11,6 @@ const useStyles = makeStyles({
 		height: '100%',
 		alignItems: 'center',
 	},
-	gameStatus: {
-		display: 'flex',
-		width: '55%',
-		flexDirection: 'row',
-		justifyContent: 'space-between',
-		alignItems: 'center',
-		alignSelf: 'flex-end',
-	},
-	taskWord: {
-		color: 'Black',
-		fontWeight: 'bold',
-		fontSize: '8rem',
-		margin: '2rem',
-	},
-	timer: {
-		marginLeft: '6%',
-		fontSize: '2.5rem',
-	},
-	attempts: {
-		margin: '3rem',
-		alignSelf: 'flex-end',
-		fontSize: '4rem',
-	},
-	variableOptions: {
-		width: '70%',
-		display: 'flex',
-		flexWrap: 'wrap',
-		flexDirection: 'row',
-		alignItems: 'center',
-		justifyContent: 'space-between',
-		marginTop: '4rem',
-	},
-	option: {
-		width: 'available',
-		margin: '1rem auto 3rem auto',
-		fontSize: '2.5rem',
-	},
 	error: {
 		display: 'flex',
 		flexDirection: 'column',

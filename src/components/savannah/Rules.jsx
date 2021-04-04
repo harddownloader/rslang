@@ -33,7 +33,6 @@ const useStyles = makeStyles(theme => ({
 	rules__square: {
 		width: '5rem',
 		height: '5rem',
-		borderRadius: '5px',
 		display: 'block',
 		border: 'solid .2rem #f8ee3a',
 		marginRight: '1rem',
@@ -51,6 +50,9 @@ const useStyles = makeStyles(theme => ({
 		justifySelf: 'center',
 		marginTop: '5rem',
 		fontSize: '2rem',
+		border: '2px solid yellow',
+		borderRadius: '0',
+		color: 'black',
 	},
 }))
 

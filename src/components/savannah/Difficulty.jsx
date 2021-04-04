@@ -18,7 +18,6 @@ const useStyles = makeStyles(theme => ({
 	grade: {
 		width: '6rem',
 		height: '5rem',
-		borderRadius: '5px',
 		display: 'flex',
 		alignItems: 'center',
 		justifyContent: 'center',
