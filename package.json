@@ -93,6 +93,6 @@
 		"format": "prettier --write \"**/*.+(js|json|yml|yaml|css)\""
 	},
 	"browsersList": ">0.25%, not dead",
-	"author": "Serhii Shevchenko",
+	"author": "harddownloader",
 	"license": "ISC"
 }

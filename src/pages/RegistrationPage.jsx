@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 // @material-ui/core components
 import { makeStyles } from '@material-ui/core/styles'
 import InputAdornment from '@material-ui/core/InputAdornment'
@@ -26,27 +26,25 @@ import image from '@/assets/images/material-kit-img/bg7.jpg'
 const useStyles = makeStyles(styles)
 
 export default function RegistrationPage(properties) {
-
 	const createUser = async user => {
 		const rawResponse = await fetch('https://rs-lang-app.herokuapp.com/users', {
 			method: 'POST',
 			headers: {
-				'Accept': 'application/json',
-				'Content-Type': 'application/json'
+				Accept: 'application/json',
+				'Content-Type': 'application/json',
 			},
-			body: JSON.stringify(user)
-		});
+			body: JSON.stringify(user),
+		})
 
 		if (rawResponse.status === 200) {
 			const content = await rawResponse.json()
-	
-			console.log('loginUser', content)
-			window.location.replace("/");
-		} else {
-			alert("Введите корректные данные")
-		}
-	};
 
+			console.log('loginUser', content)
+			window.location.replace('/')
+		} else {
+			alert('Введите корректные данные')
+		}
+	}
 
 	const [cardAnimaton, setCardAnimation] = useState('cardHidden')
 	const [name, setName] = useState('')
@@ -63,27 +61,27 @@ export default function RegistrationPage(properties) {
 	const handleSubmit = () => {
 		console.log('submit event')
 		if (login.length > 4 && password.length > 4 && name.length > 1) {
-			createUser({ "email": login, "password": password })
+			createUser({ email: login, password })
 		} else {
 			console.error('small login or password')
-			alert("вы заполнили не все поля")
+			alert('вы заполнили не все поля')
 		}
 	}
 
 	// при изменении полей
-	const handleChangeName = (val) => {
+	const handleChangeName = value => {
 		// console.log('been changed' + val)
-		setName(val)
+		setName(value)
 	}
 
-	const handleChangeLogin = (val) => {
+	const handleChangeLogin = value => {
 		// console.log('been changed' + val)
-		setLogin(val)
+		setLogin(value)
 	}
 
-	const handleChangePassword = (val) => {
+	const handleChangePassword = value => {
 		// console.log('been changed' + val)
-		setPassword(val)
+		setPassword(value)
 	}
 
 	const { ...rest } = properties
@@ -161,7 +159,10 @@ export default function RegistrationPage(properties) {
 										/>
 									</CardBody>
 									<CardFooter className={classes.cardFooterRegistration}>
-										<Button color='secondary' size='lg' onClick={event => handleSubmit()}>
+										<Button
+											color='secondary'
+											size='lg'
+											onClick={event => handleSubmit()}>
 											Создать аккаунт
 										</Button>
 									</CardFooter>
