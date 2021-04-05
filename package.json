@@ -6,6 +6,7 @@
 	"dependencies": {
 		"@material-ui/core": "^4.11.3",
 		"@material-ui/icons": "^4.11.2",
+		"@material-ui/lab": "^4.0.0-alpha.57",
 		"axios": "^0.21.1",
 		"classnames": "^2.2.6",
 		"cloudinary": "^1.25.1",
@@ -22,7 +23,8 @@
 		"react-dropzone": "^11.3.2",
 		"react-redux": "^7.2.3",
 		"react-router-dom": "^5.2.0",
-    "react-use-form-state": "^0.13.2",
+		"react-use-form-state": "^0.13.2",
+		"swiper": "^6.5.4"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.13.8",
