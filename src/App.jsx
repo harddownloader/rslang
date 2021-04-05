@@ -1,7 +1,6 @@
 import React from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import CssBaseline from '@material-ui/core/CssBaseline'
-// import Container from '@material-ui/core/Container'
 import { makeStyles } from '@material-ui/core/styles'
 
 import RouterList from './RouterList'
@@ -15,7 +14,6 @@ const useStyles = makeStyles(theme => ({
 		[theme.breakpoints.up('md')]: {
 			paddingTop: '0',
 			paddingLeft: '6rem',
-			minHeight: '100vh',
 		},
 	},
 }))
