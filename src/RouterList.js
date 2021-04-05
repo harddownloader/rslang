@@ -3,12 +3,13 @@ import React from 'react'
 // import Home from '@/pages/Home'
 import ContainerHome from '@/ContainerHome'
 import GamesPage from '@/pages/GamesPage'
-import Statistics from '@/pages/Statistics'
+import StatisticsPage from '@/pages/StatisticsPage'
 import SettingsPage from '@/pages/SettingsPage'
 import RegistrationPage from '@/pages/RegistrationPage'
 import LoginPage from '@/pages/LoginPage'
 // import TestComponentForGames from '@/pages/testForGames'
 import Vocabulary from '@/pages/Vocabulary'
+import AbouTeam from '@/pages/AboutTeam'
 
 export default [
 	{
@@ -22,7 +23,7 @@ export default [
 	},
 	{
 		path: '/statistics',
-		component: <Statistics />,
+		component: <StatisticsPage />,
 	},
 	{
 		path: '/vocabulary',
@@ -40,6 +41,10 @@ export default [
 		path: '/registration',
 		component: <RegistrationPage />,
 	},
+	{
+		path: '/about-team',
+		component: <AbouTeam />
+	}
 	// {
 	// 	path: '/test',
 	// 	component: <TestComponentForGames />,

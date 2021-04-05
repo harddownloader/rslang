@@ -4,17 +4,15 @@
 	"description": "",
 	"private": true,
 	"dependencies": {
-    "@bit/grommet.grommet.chart": "^2.11.1",
+		"@bit/grommet.grommet.chart": "^2.11.1",
 		"@bit/kendopunk.charts.grouped-bar-chart": "^0.0.2",
 		"@bit/recharts.recharts.area-chart": "^1.6.2",
 		"@bit/recharts.recharts.cartesian-grid": "^1.6.2",
-    "bit-bin": "^14.8.8",
-    "react-calendar": "^3.3.1",
-    "react-scroll": "^1.8.2",
 		"@material-ui/core": "^4.11.3",
 		"@material-ui/icons": "^4.11.2",
 		"@material-ui/lab": "^4.0.0-alpha.57",
 		"axios": "^0.21.1",
+		"bit-bin": "^14.8.8",
 		"classnames": "^2.2.6",
 		"cloudinary": "^1.25.1",
 		"cloudinary-react": "^1.7.0",
@@ -25,11 +23,13 @@
 		"postcss-import": "^14.0.0",
 		"prop-types": "^15.7.2",
 		"react": "^17.0.1",
+		"react-calendar": "^3.3.1",
 		"react-clamp-lines": "^3.0.2",
 		"react-dom": "^17.0.1",
 		"react-dropzone": "^11.3.2",
 		"react-redux": "^7.2.3",
 		"react-router-dom": "^5.2.0",
+		"react-scroll": "^1.8.2",
 		"react-use-form-state": "^0.13.2",
 		"swiper": "^6.5.4"
 	},
@@ -103,6 +103,6 @@
 		"format": "prettier --write \"**/*.+(js|json|yml|yaml|css)\""
 	},
 	"browsersList": ">0.25%, not dead",
-	"author": "harddownloader",
+	"author": "team37",
 	"license": "ISC"
 }

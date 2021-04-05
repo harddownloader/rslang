@@ -3,14 +3,19 @@ import React from 'react'
 // import Container from '@material-ui/core/Container'
 // import { makeStyles } from '@material-ui/core/styles'
 // import Header from '@/components/header'
+import Statistics from '@/components/Stats/Stats'
+import Header from '@/components/header'
+import Footer from '@/components/Footer/Footer'
 
-const Statistics = () => {
+const StatisticsPage = () => {
 	// const classes = useStyles()
 	return (
 		<>
-			<p>Statistics</p>
+			<Header />
+			<Statistics />
+			<Footer whiteFont />
 		</>
 	)
 }
 
-export default Statistics
+export default StatisticsPage
