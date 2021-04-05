@@ -13,19 +13,19 @@ const useStyles = makeStyles(theme => ({
 		transition: 'all 1s ease-in',
 		zIndex: 10,
 		minWidth: '0',
-		transform: styleProps =>
-			!styleProps.isOpenPrompt
-				? `translate(${styleProps.transform[0]},${styleProps.transform[1]})`
+		transform: styleProperties =>
+			!styleProperties.isOpenPrompt
+				? `translate(${styleProperties.transform[0]},${styleProperties.transform[1]})`
 				: 'translate(0)',
 	},
 }))
 
 const Snackbar = ({ message, transform, isOpenPrompt }) => {
-	const styleProps = {
+	const styleProperties = {
 		transform,
 		isOpenPrompt,
 	}
-	const classes = useStyles(styleProps)
+	const classes = useStyles(styleProperties)
 
 	return (
 		<SnackbarContent className={classes.SnackbarContent} message={message} />

@@ -1,24 +1,24 @@
-import { connect } from "react-redux";
+import { connect } from 'react-redux'
 import Home from '@/pages/Home'
 
-const mapStateToProps = (state) => {
-  console.log('ConatainerApp state', state)
-  return {
-    name: state.auth.name
-  }
+const mapStateToProperties = state => {
+	console.log('ConatainerApp state', state)
+	return {
+		name: state.auth.name,
+	}
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    addName: (name) => {
-      dispatch({type: 'ALL', name})
-    }
-  }
+const mapDispatchToProperties = dispatch => {
+	return {
+		addName: name => {
+			dispatch({ type: 'ALL', name })
+		},
+	}
 }
 
 const ContainerHome = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Home);
+	mapStateToProperties,
+	mapDispatchToProperties,
+)(Home)
 
-export default ContainerHome;
+export default ContainerHome

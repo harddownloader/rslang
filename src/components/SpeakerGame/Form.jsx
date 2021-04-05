@@ -11,8 +11,8 @@ import MuiAlert from '@material-ui/lab/Alert'
 import { useFormState } from 'react-use-form-state'
 //----------------------------------------
 
-function Alert(props) {
-	return <MuiAlert elevation={6} variant='filled' {...props} />
+function Alert(properties) {
+	return <MuiAlert elevation={6} variant='filled' {...properties} />
 }
 
 const useStyles = makeStyles(theme => ({
@@ -36,10 +36,11 @@ const useStyles = makeStyles(theme => ({
 			outline: 'none',
 			width: '80%',
 			margin: '1rem 0',
-			border: propsStyle => {
-				if (propsStyle.isChecked) {
-					return `2px solid ${propsStyle.isErrors ? 'red' : 'green'}`
-				} else return `none`
+			border: propertiesStyle => {
+				if (propertiesStyle.isChecked) {
+					return `2px solid ${propertiesStyle.isErrors ? 'red' : 'green'}`
+				}
+				return 'none'
 			},
 			borderRadius: 5,
 			padding: '2px 4px',
@@ -53,9 +54,9 @@ const Form = ({ data, setIsOpenPrompt }) => {
 	const [isErrors, setIsErrors] = useState(false)
 	const [isChecked, setIsChecked] = useState(false)
 	const [open, setOpen] = useState(false)
-	const classes = useStyles(propsStyle)
+	const classes = useStyles(propertiesStyle)
 
-	const propsStyle = {
+	const propertiesStyle = {
 		isErrors,
 		isChecked,
 	}

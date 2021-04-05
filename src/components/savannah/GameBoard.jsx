@@ -140,7 +140,7 @@ export default function GameBoard(properties) {
 			</div>
 			<h2 className={classes.taskWord}>{word.word.toUpperCase()}</h2>
 			<div className={classes.variableOptions}>
-				{options.map(function opts(option, index) {
+				{options.map(function options_(option, index) {
 					return (
 						<Button
 							variant='outlined'

@@ -47,7 +47,7 @@ export default function Difficulty(properties) {
 		'Extra hard',
 	]
 	function handleClick(event) {
-		const target = event.target
+		const { target } = event
 		if (document.querySelector(`.${classes.grade_active}`))
 			document
 				.querySelector(`.${classes.grade_active}`)

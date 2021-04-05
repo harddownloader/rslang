@@ -162,11 +162,11 @@ export default function LoginPage(properties) {
 										<p className={classes.dividerBottom}>Или</p>
 										{/* <Switch location={location}> */}
 										{/* <Route exact path={path}> */}
-										<Link to="/registration">
+										<Link to='/registration'>
 											<Button simple color='primary' size='lg'>
 												Создать аккаунт
 											</Button>
-										</Link> 
+										</Link>
 										{/* <a href='/registration'>
 											<Button simple color='primary' size='lg'>
 												Создать аккаунт

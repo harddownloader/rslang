@@ -10,8 +10,8 @@ import './index.css'
 import '@/assets/scss/material-kit-react.scss?v=1.9.0'
 
 render(
-  <Provider store={store}>
-    <App/>
-  </Provider>,
-  document.getElementById('root')
+	<Provider store={store}>
+		<App />
+	</Provider>,
+	document.getElementById('root'),
 )

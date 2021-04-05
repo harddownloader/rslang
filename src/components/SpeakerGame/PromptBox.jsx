@@ -25,8 +25,8 @@ const useStyles = makeStyles(theme => ({
 		position: 'absolute',
 		top: '50%',
 		left: '50%',
-		transform: propsStyle =>
-			`scale(${propsStyle.isPrompt ? 0 : 1}) translate(-50%,-50%)`,
+		transform: propertiesStyle =>
+			`scale(${propertiesStyle.isPrompt ? 0 : 1}) translate(-50%,-50%)`,
 		transition: 'all 1s',
 		transformOrigin: '0% 0%',
 	},
@@ -35,7 +35,7 @@ const useStyles = makeStyles(theme => ({
 		width: '100%',
 		objectFit: 'contain',
 		transformOrigin: 'center',
-		transform: propsStyle => `scale(${propsStyle.isPrompt ? 1 : 0})`,
+		transform: propertiesStyle => `scale(${propertiesStyle.isPrompt ? 1 : 0})`,
 		transition: 'all 1s',
 	},
 	promptBox: {
@@ -64,11 +64,11 @@ const useStyles = makeStyles(theme => ({
 
 const PromptBox = ({ data, isOpenPrompt }) => {
 	const [isPrompt, setIsPrompt] = useState(isOpenPrompt)
-	const propsStyle = {
+	const propertiesStyle = {
 		isPrompt,
 		isOpenPrompt,
 	}
-	const classes = useStyles(propsStyle)
+	const classes = useStyles(propertiesStyle)
 
 	const handlerClick = () => {
 		setIsPrompt(!isPrompt)
