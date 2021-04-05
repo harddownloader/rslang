@@ -20,6 +20,7 @@
 		"react-clamp-lines": "^3.0.2",
 		"react-dom": "^17.0.1",
 		"react-dropzone": "^11.3.2",
+		"react-redux": "^7.2.3",
 		"react-router-dom": "^5.2.0",
 		"use-data-api": "^1.0.1"
 	},

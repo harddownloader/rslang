@@ -1,6 +1,7 @@
 import React from 'react'
 
-import Home from '@/pages/Home'
+// import Home from '@/pages/Home'
+import ContainerHome from '@/ContainerHome'
 import GamesPage from '@/pages/GamesPage'
 import Statistics from '@/pages/Statistics'
 import SettingsPage from '@/pages/SettingsPage'
@@ -12,7 +13,8 @@ import Vocabulary from '@/pages/Vocabulary'
 export default [
 	{
 		path: '/',
-		component: <Home />,
+		// component: <Home />,
+		component: <ContainerHome />
 	},
 	{
 		path: '/games',
