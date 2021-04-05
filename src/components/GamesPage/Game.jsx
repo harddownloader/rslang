@@ -97,7 +97,7 @@ const Game = ({ setHoverGame, index, game }) => {
 		<>
 			<Link
 				style={{ textDecoration: 'none' }}
-				to={`${url}/${game.path}?name=all`}
+				to={`${url}/${game.path}?name=0`}
 				className={classes.root}
 				onMouseEnter={HandlerMouse}>
 				<h4 className={classes.title}>{game.title}</h4>

@@ -1,6 +1,7 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
 import PropTypes from 'prop-types'
+import Speaker from '@/components/SpeakerGame'
 
 function StartGame({ name }) {
 	// The <Route> that rendered this component has a
@@ -9,16 +10,14 @@ function StartGame({ name }) {
 	// get from `useParams()`.
 	const { id } = useParams()
 
-	return (
-		<div>
-			<h3
-				style={{
-					height: '100vh',
-					background: 'blue',
-				}}>
-				{id} and {name}
-			</h3>
-		</div>
+	return id === 'savanna' ? (
+		<p>1</p>
+	) : id === 'sprint' ? (
+		<p>2</p>
+	) : id === 'speaker' ? (
+		<Speaker query={name} />
+	) : (
+		<p>4</p>
 	)
 }
 
