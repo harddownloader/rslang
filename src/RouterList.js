@@ -1,17 +1,24 @@
 import React from 'react'
-import Home from '@/pages/Home'
-import Games from '@/pages/Games'
+
+// import Home from '@/pages/Home'
+import ContainerHome from '@/ContainerHome'
+import GamesPage from '@/pages/GamesPage'
 import Statistics from '@/pages/Statistics'
-import Savannah from '@/components/savannah/Savannah'
+import SettingsPage from '@/pages/SettingsPage'
+import RegistrationPage from '@/pages/RegistrationPage'
+import LoginPage from '@/pages/LoginPage'
+// import TestComponentForGames from '@/pages/testForGames'
+import Vocabulary from '@/pages/Vocabulary'
 
 export default [
 	{
 		path: '/',
-		component: <Home />,
+		// component: <Home />,
+		component: <ContainerHome />
 	},
 	{
 		path: '/games',
-		component: <Games />,
+		component: <GamesPage />,
 	},
 	{
 		path: '/statistics',
@@ -19,14 +26,26 @@ export default [
 	},
 	{
 		path: '/vocabulary',
-		component: <div></div>,
+		component: <Vocabulary />,
 	},
 	{
-		path: '/savannah',
-		component: <div></div>,
+		path: '/settings',
+		component: <SettingsPage />,
 	},
 	{
-		path: '*',
-		component: <div></div>,
+		path: '/login',
+		component: <LoginPage />,
 	},
+	{
+		path: '/registration',
+		component: <RegistrationPage />,
+	},
+	// {
+	// 	path: '/test',
+	// 	component: <TestComponentForGames />,
+	// },
+	// {
+	// 	path: '*',
+	// 	component: <div>error</div>,
+	// },
 ]
