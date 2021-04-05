@@ -1,5 +1,3 @@
-import React from 'react'
-
 import colors from '@/utils/colors'
 import savanaImg from '@/assets/images/gamesPage/savana.jpg'
 import sprintImg from '@/assets/images/gamesPage/sprint.jpg'
@@ -13,20 +11,6 @@ export default [
 		title: 'Savanna',
 		subtitle: 'Саванна',
 		img: savanaImg,
-		component: (
-			<div
-				style={{
-					height: 700,
-					width: 700,
-					position: 'absolute',
-					top: '40%',
-					left: '40%',
-					background: 'red',
-					zIndex: 20,
-				}}>
-				4
-			</div>
-		),
 	},
 	{
 		path: 'sprint',
@@ -34,7 +18,6 @@ export default [
 		title: 'Sprint',
 		subtitle: 'Спринт',
 		img: sprintImg,
-		component: <div>3</div>,
 	},
 	{
 		path: 'speaker',
@@ -42,7 +25,6 @@ export default [
 		title: 'Speaker',
 		subtitle: 'Аудиовызов',
 		img: speakerImg,
-		component: <div>2</div>,
 	},
 	{
 		path: 'myGame',
@@ -50,6 +32,5 @@ export default [
 		title: 'My little game',
 		subtitle: 'моя маленькая игра',
 		img: testGame,
-		component: <div>1</div>,
 	},
 ]
