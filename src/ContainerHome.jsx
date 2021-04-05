@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import Home from '@/pages/Home'
+import HomePage from '@/pages/HomePage'
 
 const mapStateToProperties = state => {
 	console.log('ConatainerApp state', state)

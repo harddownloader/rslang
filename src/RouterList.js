@@ -8,8 +8,8 @@ import SettingsPage from '@/pages/SettingsPage'
 import RegistrationPage from '@/pages/RegistrationPage'
 import LoginPage from '@/pages/LoginPage'
 // import TestComponentForGames from '@/pages/testForGames'
-import Vocabulary from '@/pages/Vocabulary'
-import AbouTeam from '@/pages/AboutTeam'
+import VocabularyPage from '@/pages/VocabularyPage'
+import AboutTeamPage from '@/pages/AboutTeamPage'
 
 export default [
 	{
@@ -27,7 +27,7 @@ export default [
 	},
 	{
 		path: '/vocabulary',
-		component: <Vocabulary />,
+		component: <VocabularyPage />,
 	},
 	{
 		path: '/settings',
@@ -43,7 +43,7 @@ export default [
 	},
 	{
 		path: '/about-team',
-		component: <AbouTeam />
+		component: <AboutTeamPage />
 	}
 	// {
 	// 	path: '/test',
