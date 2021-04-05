@@ -2,6 +2,7 @@ import React from 'react'
 import { createBrowserHistory } from 'history'
 import { Router, Route, Switch } from 'react-router-dom'
 import CssBaseline from '@material-ui/core/CssBaseline'
+
 // import Container from '@material-ui/core/Container'
 import {
 	createMuiTheme,

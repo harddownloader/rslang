@@ -19,22 +19,32 @@ const useStyles = makeStyles(theme => ({
 			height: '100vh',
 		},
 	},
+	animation: {
+		overflow: 'hidden',
+		height: 'calc(100vh - 6rem)',
+		[theme.breakpoints.up('md')]: {
+			height: '100vh',
+		},
+	},
 }))
 
+function useQuery() {
+	return new URLSearchParams(useLocation().search)
+}
+
 const Games = () => {
+	const query = useQuery()
 	const location = useLocation()
 	const classes = useStyles()
 	const { path } = useRouteMatch()
 	const [hoverGame, setHoverGame] = useState(0)
 	return (
-		<TransitionGroup>
-			{/*
-            This is no different than other usage of
-            <CSSTransition>, just make sure to pass
-            `location` to `Switch` so it can match
-            the old location as it animates out.
-          */}
-			<CSSTransition key={location.key} classNames='fade' timeout={1000}>
+		<TransitionGroup className={classes.animation}>
+			<CSSTransition
+				key={location.key}
+				classNames='fade'
+				//	mountOnEnter
+				timeout={500}>
 				<Switch location={location}>
 					<Route exact path={path}>
 						<div className={classes.root}>
@@ -50,7 +60,7 @@ const Games = () => {
 						</div>
 					</Route>
 					<Route path={`${path}/:id`}>
-						<StartGame />
+						<StartGame name={query.get('name')} />
 					</Route>
 				</Switch>
 			</CSSTransition>
