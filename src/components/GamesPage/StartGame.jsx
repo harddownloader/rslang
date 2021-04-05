@@ -2,6 +2,7 @@ import React from 'react'
 import { useParams } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import Speaker from '@/components/SpeakerGame'
+import Savannah from '@/components/savannah/Savannah'
 
 function StartGame({ name }) {
 	// The <Route> that rendered this component has a
@@ -11,7 +12,7 @@ function StartGame({ name }) {
 	const { id } = useParams()
 
 	return id === 'savanna' ? (
-		<p>1</p>
+		<Savannah />
 	) : id === 'sprint' ? (
 		<p>2</p>
 	) : id === 'speaker' ? (
