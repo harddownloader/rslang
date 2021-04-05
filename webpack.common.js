@@ -1,5 +1,7 @@
 const path = require('path')
 const ESLintPlugin = require('eslint-webpack-plugin')
+const webpack = require('webpack')
+const dotenv = require('dotenv')
 
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 module.exports = {
@@ -8,6 +10,7 @@ module.exports = {
 		filename: '[name].bundle.js',
 		path: path.join(__dirname, 'dist'),
 		clean: true,
+		publicPath: '/',
 	},
 	resolve: {
 		extensions: ['.ts', '.tsx', '.js', '.jsx'],
@@ -23,6 +26,10 @@ module.exports = {
 	plugins: [
 		new ESLintPlugin({
 			extensions: ['.js', 'jsx'],
+		}),
+
+		new webpack.DefinePlugin({
+			'process.env': JSON.stringify(dotenv.config().parsed) // it will automatically pick up key values from .env file
 		}),
 
 		new HtmlWebpackPlugin({
@@ -65,7 +72,7 @@ module.exports = {
 				// },
 			},
 			{
-				test: /\.(png|jpg|gif|webp)$/,
+				test: /\.(png|jpg|jpeg|gif|webp)$/,
 				type: 'asset/resource',
 				generator: {
 					filename: './assets/images/[hash][ext][query]',
