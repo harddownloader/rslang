@@ -6,6 +6,7 @@
 	"dependencies": {
 		"@material-ui/core": "^4.11.3",
 		"@material-ui/icons": "^4.11.2",
+		"@material-ui/lab": "^4.0.0-alpha.57",
 		"axios": "^0.21.1",
 		"clsx": "^1.1.1",
 		"node-sass": "^5.0.0",
@@ -16,7 +17,11 @@
 		"react-clamp-lines": "^3.0.2",
 		"react-dom": "^17.0.1",
 		"react-router-dom": "^5.2.0",
-		"use-data-api": "^1.0.1"
+		"react-transition-group": "^4.4.1",
+		"react-use-form-state": "^0.13.2",
+		"swiper": "^6.5.2",
+		"use-data-api": "^1.0.1",
+		"use-sound": "^2.0.1"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.13.8",
@@ -83,7 +88,7 @@
 		"start": "webpack serve --config webpack.dev.js",
 		"test": "jest",
 		"lint": "eslint --ext .jsx,.js src/",
-		"lint-fix": "eslint --fix --ext .jsx src/"
+		"lint-fix": "eslint --fix --ext .jsx,.js src/"
 	},
 	"browsersList": ">0.25%, not dead",
 	"author": "Serhii Shevchenko",
