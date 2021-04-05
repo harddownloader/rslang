@@ -1,5 +1,4 @@
 import { useRef } from "react"
-import { createStatement } from "typescript"
 
 const dataFetchReducer = (state, action) => {
 	switch (action.type) {
