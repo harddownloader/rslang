@@ -3,6 +3,8 @@ import { makeStyles } from '@material-ui/core/styles'
 import PropTypes from 'prop-types'
 import EyeImg from '@/assets/images/gamesPage/eye.svg'
 import { moveEye } from './eyeAnimation'
+import { primaryColor } from '@/assets/jss/materialKitReact'
+
 
 const useStyles = makeStyles(theme => ({
 	root: {
@@ -36,8 +38,7 @@ const useStyles = makeStyles(theme => ({
 		width: 30,
 		height: 30,
 		borderRadius: '100%',
-		backgroundColor: '#903816',
-
+		backgroundColor: primaryColor,
 		transformStyle: ' preserve-3d',
 	},
 }))

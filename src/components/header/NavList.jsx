@@ -57,6 +57,7 @@ const useStyles = makeStyles(theme => ({
 	title: {
 		color: colors.textLigth,
 		position: 'relative',
+		fontSize: '2.8rem',
 		'&:before': {
 			content: '""',
 			position: 'absolute',

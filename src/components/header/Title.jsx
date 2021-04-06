@@ -6,19 +6,24 @@ import colors from '@/utils/colors'
 
 const useStyles = makeStyles(theme => ({
 	title: {
-		cursor: 'pointer',
-		'&:hover': {
-			color: colors.borderColor,
-		},
-		[theme.breakpoints.up('md')]: {
-			transform: 'rotate(-90deg)',
-		},
+		// cursor: 'pointer',
+		// '&:hover': {
+		// 	color: colors.borderColor,
+		// },
+		// [theme.breakpoints.up('md')]: {
+		// 	transform: 'rotate(-90deg)',
+		// },
 	},
 }))
 
 const Title = () => {
 	const classes = useStyles()
-	return <h1 className={classes.title}>RssLang</h1>
+	return (
+		<div className="web-slogan">
+			<span className={classes.title}>RsLang</span>
+		</div>	
+		
+	)
 }
 
 export default Title

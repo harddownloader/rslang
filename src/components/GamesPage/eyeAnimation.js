@@ -1,3 +1,5 @@
+import { secondaryColor } from '@/assets/jss/materialKitReact'
+
 export const moveEye = (number, current) => {
 	return number === 0
 		? `translate( -${9 - current}px,-${9 - current}px) scale(${
@@ -18,4 +20,4 @@ export const moveEye = (number, current) => {
 export const setBorder = (firstCard, secondCard, current) =>
 	current === firstCard || current === secondCard
 		? 'none'
-		: '10px solid #e74c2b'
+		: `10px solid ${secondaryColor}`
