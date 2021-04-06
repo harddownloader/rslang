@@ -2,10 +2,11 @@ import React from 'react'
 
 import Header from '@/components/header'
 
-const Home = () => {
+const Home = properties => {
 	return (
 		<>
 			<Header />
+			<button onClick={event => properties.addName('Sera')}>clIck</button>
 		</>
 	)
 }

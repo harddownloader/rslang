@@ -93,7 +93,15 @@ const useStyles = makeStyles(theme => ({
 	},
 }))
 
-const NavList = ({ isActive, style, title, subtitle, image, path }) => {
+const NavList = ({
+	setIsActive,
+	isActive,
+	style,
+	title,
+	subtitle,
+	image,
+	path,
+}) => {
 	const linkStyle = {
 		delay: style.delay,
 		background: style.bg,
@@ -101,13 +109,14 @@ const NavList = ({ isActive, style, title, subtitle, image, path }) => {
 	}
 
 	const classes = useStyles(linkStyle)
+	const mouseHandler = () => setIsActive(false)
 
 	return (
 		<Link
 			to={path}
 			className={classes.router}
 			style={{ textDecoration: 'none' }}>
-			<li className={classes.root}>
+			<li className={classes.root} onMouseDown={mouseHandler}>
 				<div className={classes.titleWrapper}>
 					<h4 className={classes.title}>{title}</h4>
 					<h5 className={classes.subtitle}>{subtitle}</h5>
@@ -127,6 +136,7 @@ NavList.propTypes = {
 	title: PropTypes.string,
 	subtitle: PropTypes.string,
 	image: PropTypes.string,
+	setIsActive: PropTypes.func,
 }
 
 export default NavList
