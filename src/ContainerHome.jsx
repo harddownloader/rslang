@@ -19,6 +19,6 @@ const mapDispatchToProperties = dispatch => {
 const ContainerHome = connect(
 	mapStateToProperties,
 	mapDispatchToProperties,
-)(Home)
+)(HomePage)
 
 export default ContainerHome
