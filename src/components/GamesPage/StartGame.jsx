@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import Speaker from '@/components/SpeakerGame'
 import Savannah from '@/components/savannah/Savannah'
+import Sprint from '@/components/Sprint/Sprint'
 
 function StartGame({ name }) {
 	// The <Route> that rendered this component has a
@@ -14,7 +15,7 @@ function StartGame({ name }) {
 	return id === 'savanna' ? (
 		<Savannah />
 	) : id === 'sprint' ? (
-		<p>2</p>
+		<Sprint />
 	) : id === 'speaker' ? (
 		<Speaker query={name} />
 	) : (
