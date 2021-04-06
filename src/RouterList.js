@@ -7,7 +7,7 @@ import StatisticsPage from '@/pages/StatisticsPage'
 import SettingsPage from '@/pages/SettingsPage'
 import RegistrationPage from '@/pages/RegistrationPage'
 import LoginPage from '@/pages/LoginPage'
-// import TestComponentForGames from '@/pages/testForGames'
+import TestRequest from '@/pages/testRequest'
 import VocabularyPage from '@/pages/VocabularyPage'
 import AboutTeamPage from '@/pages/AboutTeamPage'
 
@@ -44,11 +44,11 @@ export default [
 	{
 		path: '/about-team',
 		component: <AboutTeamPage />
-	}
-	// {
-	// 	path: '/test',
-	// 	component: <TestComponentForGames />,
-	// },
+	},
+	{
+		path: '/test',
+		component: <TestRequest />,
+	},
 	// {
 	// 	path: '*',
 	// 	component: <div>error</div>,
