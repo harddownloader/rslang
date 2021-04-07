@@ -25,6 +25,24 @@ const useStyles = makeStyles(theme => ({
 		[theme.breakpoints.up('md')]: {
 			height: '100vh',
 		},
+		'& .fade-enter': {
+			opacity: '0.5',
+			transition: 'all 0.5s ease-in',
+			transform: 'translateY(100%)'
+		},
+		'& .fade-enter-active': {
+			opacity: 1,
+			transform: 'translateY(0%)',
+		},
+		'& .fade-exit': {
+			opacity: 1,
+			transform: 'translateY(-100%)',
+		},
+		'& .fade-exit-active': {
+			transform: 'translateY(0%)',
+			opacity: '0',
+			transition: 'all 0.5s ease-in'
+		}
 	},
 }))
 
@@ -38,6 +56,7 @@ const Games = () => {
 	const classes = useStyles()
 	const { path } = useRouteMatch()
 	const [hoverGame, setHoverGame] = useState(0)
+	
 	return (
 		<TransitionGroup className={classes.animation}>
 			<CSSTransition

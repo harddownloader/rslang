@@ -6,8 +6,8 @@ import store from '@/redux/store.js'
 // components
 import App from '@/App'
 // styles
-import './index.css'
 import '@/assets/scss/material-kit-react.scss?v=1.9.0'
+import './index.css'
 
 render(
 	<Provider store={store}>
