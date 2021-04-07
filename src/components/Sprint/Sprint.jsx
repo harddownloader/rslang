@@ -15,9 +15,10 @@ const useStyles = makeStyles({
 		display: 'flex',
 		alignItems: 'center',
 		flexDirection: 'column',
+		justifyContent: 'center',
 	},
-	StartSprintRoot:{
-		height: '700px',
+	StartSprintRoot: {
+		height: '100%',
 		justifyContent: 'space-around',
 		display: 'flex',
 		alignItems: 'center',
@@ -147,13 +148,11 @@ const useStyles = makeStyles({
 		alignItems: 'center',
 		justifyContent: 'center',
 	},
+	VisualTimer: {
+		height: '400px',
+		fontSize: '5rem',
+	},
 })
-
-// let makeWords = () => {
-// 	const elements = words().names.map(item => {
-// 		return <li> {item.word} </li>
-// 	})
-// }
 
 const Sprint = () => {
 	const classes = useStyles()
@@ -164,15 +163,6 @@ const Sprint = () => {
 
 	const [seconds, setSeconds] = React.useState(5)
 	const [timerActive, setTimerActive] = useState(false)
-
-	// const Game = props => {
-	// 	if (props.seconds == 0) {
-	// 		setRender(false)
-	// 		return <MainGame />
-	// 	} else {
-	// 		return <div></div>
-	// 	}
-	// }
 
 	useEffect(() => {
 		let timeId
@@ -235,22 +225,23 @@ const Sprint = () => {
 							</div>
 						</div>
 					</div>
-
-					{timerActive && (
-						<div className={classes.visual}>
-							<CountdownCircleTimer
-								style={{ fontSize: '5rem' }}
-								isPlaying
-								duration={5}
-								colors={[
-									['#004777', 0.33],
-									['#F7B801', 0.33],
-									['#A30000', 0.33],
-								]}>
-								{({ remainingTime }) => remainingTime}
-							</CountdownCircleTimer>
-						</div>
-					)}
+					<div className={classes.VisualTimer}>
+						{timerActive && (
+							<div className={classes.VisualTimer}>
+								<CountdownCircleTimer
+									style={{ fontSize: '5rem' }}
+									isPlaying
+									duration={5}
+									colors={[
+										['#004777', 0.33],
+										['#F7B801', 0.33],
+										['#A30000', 0.33],
+									]}>
+									{({ remainingTime }) => remainingTime}
+								</CountdownCircleTimer>
+							</div>
+						)}
+					</div>
 				</div>
 			)}
 

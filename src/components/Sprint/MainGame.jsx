@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
-//import { CountdownCircleTimer } from 'react-countdown-circle-timer'
-import DoneOutlineIcon from '@material-ui/icons/DoneOutline'
+import { CountdownCircleTimer } from 'react-countdown-circle-timer'
 
 import { randomArray } from '@/components/Sprint/words'
 import { makeStyles } from '@material-ui/core/styles'
@@ -13,10 +12,12 @@ import useTimeout from '@/components/Sprint/UseTimeOut'
 const useStyles = makeStyles({
 	SprintRoot: {
 		width: '80%',
+		height: '100%',
 		margin: '0 auto',
 		display: 'flex',
 		alignItems: 'center',
 		flexDirection: 'column',
+		justifyContent: 'center',
 	},
 	wordContainer: {
 		width: '80%',
@@ -69,6 +70,10 @@ const useStyles = makeStyles({
 		borderColor: '#f6ea09',
 		fontSize: '5.5rem',
 	},
+	VisualTimer: {
+		height: '200px',
+		fontSize: '5rem',
+	},
 })
 
 const translateCheck = (wordCheck, badTranslate) => {
@@ -79,7 +84,6 @@ const makeFirstWords = async url => {
 	let arrWodrs = await fetch(url)
 		.then(response => response.json())
 		.then(data => data)
-	console.log(arrWodrs)
 	return arrWodrs
 }
 
@@ -99,8 +103,6 @@ const MainGame = props => {
 	const [bonus, setBonus] = useState(1)
 	const [color, setColor] = useState(null)
 	const [textDescription, setTextDescription] = useState(null)
-
-
 
 	const makeWordField = () => {
 		const rand = Math.floor(Math.random() * 2)
@@ -201,7 +203,21 @@ const MainGame = props => {
 
 	return (
 		<div className={classes.SprintRoot}>
-			<Score score={score} bonus={bonus} />
+			{/* <Timer sec={30} /> */}
+			<div className={classes.VisualTimer}>
+				<CountdownCircleTimer
+					style={{ fontSize: '5rem' }}
+					isPlaying
+					duration={30}
+					colors={[
+						['#004777', 0.33],
+						['#F7B801', 0.33],
+						['#A30000', 0.33],
+					]}>
+					{({ remainingTime }) => remainingTime}
+				</CountdownCircleTimer>
+			</div>
+
 			<div
 				className={classes.wordContainer}
 				style={{ backgroundColor: `${color}` }}>
@@ -211,7 +227,8 @@ const MainGame = props => {
 				<div className={classes.currentTranslate}>
 					<span>{translate}</span>
 				</div>
-				<TrueMarks marksCount={answerCount} />
+				<TrueMarks style={{ fontSize: '3.5rem' }} marksCount={answerCount} />
+				<Description content={textDescription} />
 			</div>
 			<div className={classes.buttonBlock}>
 				<div
@@ -221,7 +238,7 @@ const MainGame = props => {
 					}}>
 					<div>True</div>
 				</div>
-				<Description content={textDescription} />
+
 				<div
 					className={classes.buttonFalse}
 					onClick={() => {
@@ -230,17 +247,7 @@ const MainGame = props => {
 					<div>False</div>
 				</div>
 			</div>
-			<Timer sec={30} />
-			{/* <CountdownCircleTimer
-				isPlaying
-				duration={30}
-				colors={[
-					['#004777', 0.33],
-					['#F7B801', 0.33],
-					['#A30000', 0.33],
-				]}>
-				{({ remainingTime }) => remainingTime}
-			</CountdownCircleTimer> */}
+			<Score score={score} bonus={bonus} />
 		</div>
 	)
 }

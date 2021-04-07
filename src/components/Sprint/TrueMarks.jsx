@@ -3,10 +3,14 @@ import { makeStyles } from '@material-ui/core/styles'
 import DoneOutlineIcon from '@material-ui/icons/DoneOutline'
 
 const useStyles = makeStyles({
-	Score: {
+	Marks: {
+		display: 'flex',
+		alignItems: 'center',
+		justifyContent: 'center',
 		color: 'red',
 		fontSize: '3.5rem',
 		textAlign: 'center',
+		height: '100px',
 	},
 })
 
@@ -17,24 +21,23 @@ const TrueMarks = props => {
 	const addCheckedBonus = count => {
 		switch (count) {
 			case 1:
-				console.log('Good answer 1')
-				return <DoneOutlineIcon />
+				return <DoneOutlineIcon style={{ fontSize: '3.5rem' }} />
 			case 2:
-				console.log('Good answer 2')
 				return (
-					<div>
-						<DoneOutlineIcon /> <DoneOutlineIcon />
+					<div style={{ fontSize: '3.5rem' }}>
+						<DoneOutlineIcon style={{ fontSize: '3.5rem' }} />{' '}
+						<DoneOutlineIcon style={{ fontSize: '3.5rem' }} />
 					</div>
 				)
 			case 3:
-				console.log('Good answer 3')
 				return (
 					<div>
-						<DoneOutlineIcon /> <DoneOutlineIcon /> <DoneOutlineIcon />
+						<DoneOutlineIcon style={{ fontSize: '3.5rem' }} />{' '}
+						<DoneOutlineIcon style={{ fontSize: '3.5rem' }} />{' '}
+						<DoneOutlineIcon style={{ fontSize: '3.5rem' }} />
 					</div>
 				)
 			case 4:
-				console.log('Good answer 4')
 				return <DoneOutlineIcon />
 
 			default:
@@ -46,7 +49,9 @@ const TrueMarks = props => {
 		addCheckedBonus(props.marksCount)
 	}, [props.marksCount])
 
-	return <div>{addCheckedBonus(props.marksCount)}</div>
+	return (
+		<div className={classes.Marks}>{addCheckedBonus(props.marksCount)}</div>
+	)
 }
 
 export default TrueMarks
