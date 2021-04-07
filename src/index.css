@@ -1,7 +1,7 @@
-@import 'normalize.css';
-@import url('https://fonts.googleapis.com/css2?family=Vollkorn:ital,wght@0,479;1,479&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&amp;display=swap');
-@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&amp;display=swap');
+@import "normalize.css";
+@import url("https://fonts.googleapis.com/css2?family=Vollkorn:ital,wght@0,479;1,479&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&amp;display=swap");
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&amp;display=swap");
 
 /* 
 шрифты:
@@ -23,12 +23,13 @@ html {
 	font-family: sans-serif;
 	line-height: 1.15;
 	-webkit-text-size-adjust: 100%;
-	-webkit-tap-highlight-color: rgba(0,0,0,0);
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
 body {
 	margin: 0;
-	font-family: "Open Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+	font-family: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans",
+		sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 	font-size: 1.4rem;
 	font-weight: 400;
 	line-height: 1.57;
@@ -41,45 +42,12 @@ body {
 	min-width: 320px;
 }
 
-.web-slogan {
-	text-transform: uppercase;
-}
-
-.web-slogan {
-	top: 50%;
-	left: 50%;
-	position: absolute;
-}
-
-.web-slogan {
-	width: 5rem;
-	height: 5rem;
-	text-align: center;
-	transform: translate(-50%,-50%);
-	font-family: Montserrat,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
-	font-weight: 700;
-	font-size: 1.65rem;
-	line-height: 1;
-	white-space: nowrap;
-}
-
-.web-slogan, .web-slogan span {
-	top: 50%;
-	left: 50%;
-	position: absolute;
-}
-
-.web-slogan span {
-	transform: translate(-50%,-50%) rotate(-90deg);
-	display: block;
-}
-
 .font-weight-bold {
 	font-weight: 700 !important;
 }
 
 .font-serif {
-	font-family: Vollkorn,"Times New Roman",Times,serif!important;
+	font-family: Vollkorn, "Times New Roman", Times, serif !important;
 }
 
 .front-banner .overlay-text .title {
@@ -91,13 +59,13 @@ body {
 
 @media screen and (min-width: 1200px) {
 	.front-banner .overlay-text .title {
-			font-size:10rem;
-			line-height: 1;
-			margin-bottom: 1.7rem
+		font-size: 10rem;
+		line-height: 1;
+		margin-bottom: 1.7rem;
 	}
 
 	.front-banner .overlay-text .title:before {
-			height: 5px
+		height: 5px;
 	}
 }
 
