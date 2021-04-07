@@ -2,9 +2,10 @@ import React, { useState } from 'react'
 // @material-ui/core components
 import { makeStyles } from '@material-ui/core/styles'
 import InputAdornment from '@material-ui/core/InputAdornment'
-import Icon from '@material-ui/core/Icon'
+// import Icon from '@material-ui/core/Icon'
 // @material-ui/icons
 import Email from '@material-ui/icons/Email'
+import Lock from '@material-ui/icons/Lock'
 // core components
 import Header from '@/components/header'
 import Footer from '@/components/Footer/Footer'
@@ -113,9 +114,9 @@ export default function LoginPage(properties) {
 							<Card className={classes[cardAnimaton]}>
 								<form className={classes.form}>
 									<CardHeader color='primary' className={classes.cardHeader}>
-										<h4>Личный Кабинет</h4>
+										<h4 className={classes.cardHeaderTitle}>Личный Кабинет</h4>
 									</CardHeader>
-									<CardBody>
+									<CardBody className={classes.cardBody}>
 										<CustomInput
 											labelText='Email...'
 											id='email'
@@ -143,9 +144,7 @@ export default function LoginPage(properties) {
 												type: 'password',
 												endAdornment: (
 													<InputAdornment position='end'>
-														<Icon className={classes.inputIconsColor}>
-															lock_outline
-														</Icon>
+														<Lock className={classes.inputIconsColor} />
 													</InputAdornment>
 												),
 												autoComplete: 'off',
@@ -156,14 +155,21 @@ export default function LoginPage(properties) {
 										<Button
 											color='secondary'
 											size='lg'
-											onClick={event => handleSubmit()}>
+											onClick={event => handleSubmit()}
+											className={classes.authBtn}
+										>
 											Войти
 										</Button>
 										<p className={classes.dividerBottom}>Или</p>
 										{/* <Switch location={location}> */}
 										{/* <Route exact path={path}> */}
 										<Link to='/registration'>
-											<Button simple color='primary' size='lg'>
+											<Button
+												simple
+												color='primary'
+												size='lg'
+												className={classes.authBtn}
+											>
 												Создать аккаунт
 											</Button>
 										</Link>

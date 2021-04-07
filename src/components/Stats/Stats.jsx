@@ -84,7 +84,7 @@ const Stats = () => {
 	const classes = useStyles()
 
 	return (
-		<div style={{ background: '#28282a', height: '945px' }}>
+		<div style={{ background: '#28282a'}}>
 			<Container maxWidth='lg' className={classes.wrapper}>
 				<Grid container spacing={2}>
 					<Grid className={classes.wrapperProfiler} item xs={12} xl={3}>

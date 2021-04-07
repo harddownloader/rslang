@@ -2,9 +2,10 @@ import React, { useState } from 'react'
 // @material-ui/core components
 import { makeStyles } from '@material-ui/core/styles'
 import InputAdornment from '@material-ui/core/InputAdornment'
-import Icon from '@material-ui/core/Icon'
+// import Icon from '@material-ui/core/Icon'
 // @material-ui/icons
 import Email from '@material-ui/icons/Email'
+import Lock from '@material-ui/icons/Lock'
 import People from '@material-ui/icons/People'
 // core components
 import Header from '@/components/header'
@@ -102,9 +103,9 @@ export default function RegistrationPage(properties) {
 							<Card className={classes[cardAnimaton]}>
 								<form className={classes.form}>
 									<CardHeader color='primary' className={classes.cardHeader}>
-										<h4>Зарегистрироваться</h4>
+										<h4 className={classes.cardHeaderTitle}>Зарегистрироваться</h4>
 									</CardHeader>
-									<CardBody>
+									<CardBody className={classes.cardBody}>
 										<Dropzone />
 										<CustomInput
 											labelText='Имя...'
@@ -149,9 +150,7 @@ export default function RegistrationPage(properties) {
 												type: 'password',
 												endAdornment: (
 													<InputAdornment position='end'>
-														<Icon className={classes.inputIconsColor}>
-															lock_outline
-														</Icon>
+														<Lock className={classes.inputIconsColor} />
 													</InputAdornment>
 												),
 												autoComplete: 'off',
@@ -162,7 +161,9 @@ export default function RegistrationPage(properties) {
 										<Button
 											color='secondary'
 											size='lg'
-											onClick={event => handleSubmit()}>
+											onClick={event => handleSubmit()}
+											className={classes.authBtn}
+										>
 											Создать аккаунт
 										</Button>
 									</CardFooter>

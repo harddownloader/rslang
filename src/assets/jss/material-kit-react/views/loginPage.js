@@ -56,6 +56,12 @@ const signupPageStyle = {
 		padding: '20px 0',
 		marginBottom: '15px',
 	},
+	cardHeaderTitle: {
+		fontSize: '1.8rem'
+	},
+	cardBody: {
+		padding: '1.9375rem 2.875rem',
+	},
 	socialIcons: {
 		maxWidth: '24px',
 		marginTop: '0',
@@ -77,17 +83,22 @@ const signupPageStyle = {
 		textAlign: 'center',
 	},
 	cardFooterRegistration: {
-		paddingTop: '0rem',
 		border: '0',
 		// borderRadius: '6px',
 		justifyContent: 'center !important',
+		padding: '1.9375rem 2.875rem',
+		paddingTop: '0rem',
 	},
 	cardFooterLogin: {
-		paddingTop: '0rem',
 		border: '0',
 		// borderRadius: '6px',
 		display: 'block',
 		textAlign: 'center',
+		padding: '1.9375rem 2.875rem',
+		paddingTop: '0rem',
+	},
+	authBtn: {
+		fontSize: '1.5rem'
 	},
 	socialLine: {
 		marginTop: '1rem',
@@ -96,6 +107,8 @@ const signupPageStyle = {
 	},
 	inputIconsColor: {
 		color: '#495057',
+		width: '1.5em',
+    height: '1.5em',
 	},
 }
 
