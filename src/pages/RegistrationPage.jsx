@@ -19,6 +19,9 @@ import CardHeader from '@/components/Card/CardHeader'
 import CardFooter from '@/components/Card/CardFooter'
 import CustomInput from '@/components/CustomInput/CustomInput'
 import Dropzone from '@/components/Dropzone'
+// utils
+import {getAggregatedWords} from '@/utils/apiRequests/aggregatedWords'
+import {validateEmail} from '@/utils/validate'
 // styles
 import styles from '@/assets/jss/material-kit-react/views/loginPage'
 // images
@@ -41,7 +44,16 @@ export default function RegistrationPage(properties) {
 			const content = await rawResponse.json()
 
 			console.log('loginUser', content)
-			window.location.replace('/')
+			const newWords = getAggregatedWords(
+				content.userId,
+				content.token,
+				0,
+				false,
+				60,
+				false
+			)
+			console.log('newWords', newWords)
+			// window.location.replace('/')
 		} else {
 			alert('Введите корректные данные')
 		}
@@ -77,7 +89,12 @@ export default function RegistrationPage(properties) {
 
 	const handleChangeLogin = value => {
 		// console.log('been changed' + val)
-		setLogin(value)
+		if(validateEmail(value)) {
+			setLogin(value)
+		} else {
+			setLogin('')
+			console.log('email не валиден')
+		}
 	}
 
 	const handleChangePassword = value => {
