@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 
 import Header from '@/components/header'
 import MainGame from '@/components/Sprint/MainGame'
+import Footer from '@/components/Footer/Footer'
 import { CountdownCircleTimer } from 'react-countdown-circle-timer'
 
 import { makeStyles } from '@material-ui/core/styles'
@@ -247,6 +248,7 @@ const Sprint = () => {
 
 			{/* <Game seconds={seconds} /> */}
 			{!rendering && <MainGame wordsData={wordsData} />}
+			<Footer />
 		</div>
 	)
 }
