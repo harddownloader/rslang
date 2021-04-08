@@ -21,7 +21,7 @@ const useStyles = makeStyles({
 	},
 	wordContainer: {
 		width: '80%',
-		height: '400px',
+		height: '300px',
 		border: '2px solid',
 		borderColor: 'red',
 		display: 'flex',
@@ -36,6 +36,7 @@ const useStyles = makeStyles({
 		alignItems: 'center',
 		justifyContent: 'space-between',
 		width: '80%',
+		paddingTop: '30px',
 	},
 	buttonTrue: {
 		display: 'flex',
