@@ -12,6 +12,21 @@ const useStyles = makeStyles({
 		textAlign: 'center',
 		height: '100px',
 	},
+	MarksBlock: {
+		display: 'flex',
+		alignItems: 'center',
+		justifyContent: 'center',
+		flexDirection: 'row',
+	},
+	BorderMarks: {
+		borderRadius: '50%',
+		backgroundColor: 'white',
+		width: '50px',
+		height: '50px',
+		display: 'flex',
+		alignItems: 'center',
+		justifyContent: 'center',
+	},
 })
 
 const TrueMarks = props => {
@@ -21,24 +36,46 @@ const TrueMarks = props => {
 	const addCheckedBonus = count => {
 		switch (count) {
 			case 1:
-				return <DoneOutlineIcon style={{ fontSize: '3.5rem' }} />
+				return (
+					<div className={classes.MarksBlock} style={{ fontSize: '3.5rem' }}>
+						<div className={classes.BorderMarks}>
+							<DoneOutlineIcon style={{ fontSize: '3.5rem' }} />
+						</div>
+					</div>
+				)
 			case 2:
 				return (
-					<div style={{ fontSize: '3.5rem' }}>
-						<DoneOutlineIcon style={{ fontSize: '3.5rem' }} />{' '}
-						<DoneOutlineIcon style={{ fontSize: '3.5rem' }} />
+					<div className={classes.MarksBlock} style={{ fontSize: '3.5rem' }}>
+						<div className={classes.BorderMarks}>
+							<DoneOutlineIcon style={{ fontSize: '3.5rem' }} />
+						</div>
+						<div className={classes.BorderMarks}>
+							<DoneOutlineIcon style={{ fontSize: '3.5rem' }} />
+						</div>
 					</div>
 				)
 			case 3:
 				return (
-					<div>
-						<DoneOutlineIcon style={{ fontSize: '3.5rem' }} />{' '}
-						<DoneOutlineIcon style={{ fontSize: '3.5rem' }} />{' '}
-						<DoneOutlineIcon style={{ fontSize: '3.5rem' }} />
+					<div className={classes.MarksBlock} style={{ fontSize: '3.5rem' }}>
+						<div className={classes.BorderMarks}>
+							<DoneOutlineIcon style={{ fontSize: '3.5rem' }} />
+						</div>
+						<div className={classes.BorderMarks}>
+							<DoneOutlineIcon style={{ fontSize: '3.5rem' }} />
+						</div>
+						<div className={classes.BorderMarks}>
+							<DoneOutlineIcon style={{ fontSize: '3.5rem' }} />
+						</div>
 					</div>
 				)
 			case 4:
-				return <DoneOutlineIcon />
+				return (
+					<div className={classes.MarksBlock} style={{ fontSize: '3.5rem' }}>
+						<div className={classes.BorderMarks}>
+							<DoneOutlineIcon style={{ fontSize: '3.5rem' }} />
+						</div>
+					</div>
+				)
 
 			default:
 				break
