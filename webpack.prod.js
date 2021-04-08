@@ -34,6 +34,7 @@ module.exports = merge(common, {
 	plugins: [
 		new ImageMinimizerPlugin({
 			severityError: 'warning', // Ignore errors on corrupted images
+			test: /\.(png|jpe?g|gif|webp)$/,
 			deleteOriginalAssets: true,
 			filename: '[path][name].webp',
 			minimizerOptions: {
