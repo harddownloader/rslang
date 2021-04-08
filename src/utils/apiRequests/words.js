@@ -1,12 +1,15 @@
 // Gets a chunk of words
-export async function getWords( token, group, page ) {
+export async function getWords( group, page ) {
+  let url = 'https://rs-lang-app.herokuapp.com/words?'
+  if(group) url += `group=${group}&`
+  if(page) url += `page=${page}`
+
   const rawResponse = await fetch(
-    `https://rs-lang-app.herokuapp.com/words?group=${group}&page=${page}`,
+    url,
     {
       method: 'GET',
       withCredentials: true,
       headers: {
-        Authorization: `Bearer ${token}`,
         Accept: 'application/json',
       },
     },
@@ -18,14 +21,13 @@ export async function getWords( token, group, page ) {
 }
 
 // Gets a word with assets by id
-export async function getWordById( token, wordId ) {
+export async function getWordById( wordId ) {
   const rawResponse = await fetch(
     `https://rs-lang-app.herokuapp.com/words/${wordId}`,
     {
       method: 'GET',
       withCredentials: true,
       headers: {
-        Authorization: `Bearer ${token}`,
         Accept: 'application/json',
       },
     },

@@ -13,7 +13,7 @@ export async function getStatistics(userId, token) {
   )
 
   const getStats = await rawResponseStatsGet.json()
-  console.log('stats', getStats)
+  console.log('getStatistics', getStats)
   return getStats
 }
 
@@ -37,6 +37,6 @@ export async function setStatistics(userId, token, learnedWords, optional) {
   )
 
   const setStats = await rawResponseStatsSet.json()
-  console.log('stats', setStats)
+  console.log('setStatistics', setStats)
   return setStats
 }

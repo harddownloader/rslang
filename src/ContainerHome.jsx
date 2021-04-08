@@ -12,7 +12,7 @@ const mapDispatchToProperties = dispatch => {
 	return {
 		addName: name => {
 			dispatch({ type: 'ALL', name })
-		},
+		}
 	}
 }
 

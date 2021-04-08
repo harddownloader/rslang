@@ -1,8 +1,15 @@
 // Gets all user aggregated words
 export async function getAggregatedWords(userId, token, group, page, wordsPerPage, filter) {
   // console.log('userId token', [userId, token])
+
+  let url = `https://rs-lang-app.herokuapp.com/users/${userId}AggregatedWords?`
+  if(group) url += `group=${group}&`
+  if(page) url += `page=${page}&`
+  if(wordsPerPage) url += `wordsPerPage=${wordsPerPage}&`
+  if(filter) url += `filter=${filter}&`
+
   const rawResponseAggregate = await fetch(
-    `https://rs-lang-app.herokuapp.com/users/${userId}/AggregatedWords?group=${group}&wordsPerPage=${wordsPerPage}&page=${page}&filter=${filter}`,
+    url,
     {
       method: 'GET',
       withCredentials: true,
@@ -14,7 +21,7 @@ export async function getAggregatedWords(userId, token, group, page, wordsPerPag
   )
   const getAggregatedWordsRes = await rawResponseAggregate.json()
 
-  console.log('getNewWordsForUser', getAggregatedWordsRes)
+  console.log('getAggregatedWords', getAggregatedWordsRes)
   return getAggregatedWordsRes
 }
 
