@@ -60,7 +60,6 @@ module.exports = merge(common, {
 	},
 	plugins: [
 		new ImageMinimizerPlugin({
-			test: /\.(png|jpe?g|gif)$/,
 			severityError: 'warning', // Ignore errors on corrupted images
 			deleteOriginalAssets: true,
 			filename: '[path][name].webp',
