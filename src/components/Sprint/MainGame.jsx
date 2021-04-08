@@ -152,18 +152,18 @@ const MainGame = props => {
 			bonusCounter(answerCount)
 
 			setValue(value + 1)
-			setTextDescription('Верно')
+			setTextDescription('RIGHT')
 
 			makeWordField()
 			gettingScore(bonus)
-			setColor('green')
+			setColor('255, 255, 0,')
 		} else {
-			setTextDescription('Ошибка')
+			setTextDescription('WRONG')
 			setValue(value + 1)
 			setBonus(1)
 			setAnswerCount(0)
 			makeWordField()
-			setColor('red')
+			setColor('255, 0, 0,')
 		}
 	}
 
@@ -173,19 +173,19 @@ const MainGame = props => {
 			bonusCounter(answerCount)
 			gettingScore(bonus)
 			bonusCounter(answerCount)
-			setTextDescription('Верно')
+			setTextDescription('RIGHT')
 			console.log(answerCount)
 			setValue(value + 1)
 			makeWordField()
-			setColor('green')
+			setColor('255, 255, 0,')
 		} else {
-			setTextDescription('Ошибка')
+			setTextDescription('WRONG')
 			setValue(value + 1)
 			setBonus(1)
 			setAnswerCount(0)
 			console.log(answerCount)
 			makeWordField()
-			setColor('red')
+			setColor('255, 0, 0,')
 		}
 	}
 
@@ -220,7 +220,7 @@ const MainGame = props => {
 
 			<div
 				className={classes.wordContainer}
-				style={{ backgroundColor: `${color}` }}>
+				style={{ backgroundColor: `rgba(${color} 0.7` }}>
 				<div className={classes.currentWord}>
 					<span>{word}</span>
 				</div>
