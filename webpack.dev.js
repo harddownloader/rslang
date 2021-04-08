@@ -31,6 +31,10 @@ module.exports = merge(common, {
 				test: /\.(sa|sc|c)ss$/,
 				use: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader'],
 			},
+			{
+				test: /\.(png|jpe?g|gif|webp)$/,
+				type: 'asset',
+			},
 		],
 	},
 })
