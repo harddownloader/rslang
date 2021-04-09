@@ -21,6 +21,8 @@ import CustomInput from '@/components/CustomInput/CustomInput'
 import Dropzone from '@/components/Dropzone'
 // utils
 import {getAggregatedWords} from '@/utils/apiRequests/aggregatedWords'
+import {loginUser} from '@/utils/apiRequests/sign'
+import {setUserWords} from '@/utils/apiRequests/userWords'
 import {validateEmail} from '@/utils/validate'
 // styles
 import styles from '@/assets/jss/material-kit-react/views/loginPage'
@@ -44,15 +46,7 @@ export default function RegistrationPage(properties) {
 			const content = await rawResponse.json()
 
 			console.log('loginUser', content)
-			const newWords = getAggregatedWords(
-				content.userId,
-				content.token,
-				0,
-				false,
-				60,
-				false
-			)
-			console.log('newWords', newWords)
+			
 			// window.location.replace('/')
 		} else {
 			alert('Введите корректные данные')
@@ -71,10 +65,36 @@ export default function RegistrationPage(properties) {
 	const classes = useStyles()
 
 	// при отправке
-	const handleSubmit = () => {
+	const handleSubmit = async () => {
 		console.log('submit event')
 		if (login.length > 4 && password.length > 4 && name.length > 1) {
-			createUser({ email: login, password })
+			await createUser({ email: login, password: password })
+
+			const loggedUser = await loginUser({ email: login, password: password })
+			console.log('loggedUser', loggedUser)
+
+			const newWords = await getAggregatedWords(
+				loggedUser.userId,
+				loggedUser.token,
+				0,
+				false,
+				60,
+				false
+			)
+			console.log('newWords', newWords)
+			
+			for(let i = 0; i<newWords[0].paginatedResults.length; i++) {
+				await setUserWords(
+					loggedUser.userId,
+					loggedUser.token,
+					newWords[0].paginatedResults[i],
+					"easy",
+					{
+						
+					}
+				)
+			}
+			
 		} else {
 			console.error('small login or password')
 			alert('вы заполнили не все поля')

@@ -2,7 +2,7 @@
 export async function getAggregatedWords(userId, token, group, page, wordsPerPage, filter) {
   // console.log('userId token', [userId, token])
 
-  let url = `https://rs-lang-app.herokuapp.com/users/${userId}AggregatedWords?`
+  let url = `https://rs-lang-app.herokuapp.com/users/${userId}/AggregatedWords?`
   if(group) url += `group=${group}&`
   if(page) url += `page=${page}&`
   if(wordsPerPage) url += `wordsPerPage=${wordsPerPage}&`
