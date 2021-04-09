@@ -14,13 +14,30 @@ module.exports = merge(common, {
 		mangleWasmImports: true,
 		mangleExports: true,
 		sideEffects: true,
-		runtimeChunk: 'single',
+		runtimeChunk: {
+			name: entrypoint => `runtimechunk~${entrypoint.name}`,
+		},
 		splitChunks: {
+			chunks: 'all',
+			minSize: 20000,
+			minRemainingSize: 0,
+			minChunks: 1,
+			maxAsyncRequests: 30,
+			maxInitialRequests: 30,
+			enforceSizeThreshold: 50000,
 			cacheGroups: {
+				defaultVendors: {
+					reuseExistingChunk: true,
+				},
 				vendor: {
 					test: /[\\/]node_modules[\\/]/,
-					name: 'vendors',
-					chunks: 'all',
+					priority: -10,
+					reuseExistingChunk: true,
+				},
+				default: {
+					minChunks: 2,
+					priority: -20,
+					reuseExistingChunk: true,
 				},
 			},
 		},
@@ -28,18 +45,29 @@ module.exports = merge(common, {
 			new TerserPlugin({
 				extractComments: true,
 			}),
-			new CssMinimizerPlugin(),
+			new CssMinimizerPlugin({
+				parallel: true,
+				minimizerOptions: {
+					preset: [
+						'default',
+						{
+							discardComments: { removeAll: true },
+						},
+					],
+				},
+			}),
 		],
 	},
 	plugins: [
 		new ImageMinimizerPlugin({
-			severityError: 'warning', // Ignore errors on corrupted images
 			test: /\.(png|jpe?g|gif)$/,
+			severityError: 'warning', // Ignore errors on corrupted images
 			deleteOriginalAssets: true,
 			filename: '[path][name].webp',
 			minimizerOptions: {
 				plugins: ['imagemin-webp'],
 			},
+			loader: false,
 		}),
 		new MiniCssExtractPlugin({
 			filename: '[name].[contenthash].css',
