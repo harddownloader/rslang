@@ -23,6 +23,7 @@ import Dropzone from '@/components/Dropzone'
 import {getAggregatedWords} from '@/utils/apiRequests/aggregatedWords'
 import {loginUser} from '@/utils/apiRequests/sign'
 import {setUserWords} from '@/utils/apiRequests/userWords'
+import {setStatistics} from '@/utils/apiRequests/statistics'
 import {validateEmail} from '@/utils/validate'
 // styles
 import styles from '@/assets/jss/material-kit-react/views/loginPage'
@@ -73,6 +74,7 @@ export default function RegistrationPage(properties) {
 			const loggedUser = await loginUser({ email: login, password: password })
 			console.log('loggedUser', loggedUser)
 
+			// берем слова которые поставим в словарь
 			const newWords = await getAggregatedWords(
 				loggedUser.userId,
 				loggedUser.token,
@@ -83,17 +85,42 @@ export default function RegistrationPage(properties) {
 			)
 			console.log('newWords', newWords)
 			
+			// ставим слова в словарь(чтобы быил доступны мини игры)
 			for(let i = 0; i<newWords[0].paginatedResults.length; i++) {
-				await setUserWords(
+				setUserWords(
 					loggedUser.userId,
 					loggedUser.token,
-					newWords[0].paginatedResults[i],
+					newWords[0].paginatedResults[i]._id,
 					"easy",
 					{
-						
+						// сколько раз пользователь правильно ответил на слово в мини играх
+						correct_answers: 0,
+						uncorrect_answers: 0,
+						games: {
+							'savannah': {
+								learned: false
+							},
+							'sprint': {
+								learned: false
+							},
+							'speaker': {
+								learned: false
+							},
+							'my_game': {
+								learned: false
+							}
+						}
 					}
 				)
 			}
+
+			// ставим 0ю статистику
+			await setStatistics(
+				loggedUser.userId,
+				loggedUser.token,
+				0,
+				{}
+			)
 			
 		} else {
 			console.error('small login or password')
@@ -117,9 +144,67 @@ export default function RegistrationPage(properties) {
 		}
 	}
 
-	const handleChangePassword = value => {
-		// console.log('been changed' + val)
-		setPassword(value)
+	const handleChangeValidatePassword = value => {
+		{
+			// Validate lowercase letters
+			const lowerCaseLetters = /[a-z]/g;
+			// if(value.match(lowerCaseLetters)) {
+			// 	console.log('  валиден')
+			// 	// letter.classList.remove("invalid");
+			// 	// letter.classList.add("valid");
+			// } else {
+			// 	console.log('  не валиден')
+			// 	// letter.classList.remove("valid");
+			// 	// letter.classList.add("invalid");
+			// }
+		
+			// Validate capital letters
+			// const upperCaseLetters = /[A-Z]/g;
+			// if(value.match(upperCaseLetters)) {
+			// 	console.log('  валиден')
+			// 	// capital.classList.remove("invalid");
+			// 	// capital.classList.add("valid");
+			// } else {
+			// 	console.log('  не валиден')
+			// 	// capital.classList.remove("valid");
+			// 	// capital.classList.add("invalid");
+			// }
+		
+			// Validate numbers
+			const numbers = /[0-9]/g;
+			// if(value.match(numbers)) {
+			// 	console.log('  валиден')
+			// 	// number.classList.remove("invalid");
+			// 	// number.classList.add("valid");
+			// } else {
+			// 	console.log('  не валиден')
+			// 	// number.classList.remove("valid");
+			// 	// number.classList.add("invalid");
+			// }
+		
+			// // Validate length
+			// if(value.length >= 8) {
+			// 	console.log('  валиден')
+			// 	// length.classList.remove("invalid");
+			// 	// length.classList.add("valid");
+			// } else {
+			// 	console.log('  не валиден')
+			// 	// length.classList.remove("valid");
+			// 	// length.classList.add("invalid");
+			// }
+
+			if(
+				value.match(lowerCaseLetters) &&
+				value.match(numbers) &&
+				value.length >= 8
+			) {
+				console.log('password валиден')
+				setPassword(value)
+			} else {
+				console.log('password не валиден')
+				setPassword('')
+			}
+		}
 	}
 
 	const { ...rest } = properties
@@ -177,9 +262,9 @@ export default function RegistrationPage(properties) {
 											}}
 										/>
 										<CustomInput
-											labelText='Пароль'
+											labelText='Пароль(должен содержать буквы и цифры, и быть более 8 символов)'
 											id='pass'
-											onChangeEvent={handleChangePassword}
+											onChangeEvent={handleChangeValidatePassword}
 											formControlProps={{
 												fullWidth: true,
 											}}
