@@ -9,7 +9,7 @@ import Timer from '@/components/Sprint/Timer'
 import TrueMarks from '@/components/Sprint/TrueMarks'
 import useTimeout from '@/components/Sprint/UseTimeOut'
 
-const useStyles = makeStyles(theme=>({
+const useStyles = makeStyles(theme => ({
 	SprintRoot: {
 		width: '80%',
 		height: '100%',
@@ -18,6 +18,9 @@ const useStyles = makeStyles(theme=>({
 		alignItems: 'center',
 		flexDirection: 'column',
 		justifyContent: 'center',
+		[theme.breakpoints.down('sm')]: {
+			width: '300px',
+		},
 	},
 	wordContainer: {
 		width: '80%',
@@ -30,10 +33,11 @@ const useStyles = makeStyles(theme=>({
 		justifyContent: 'center',
 		fontSize: '3.5rem',
 		color: 'black',
-			[theme.breakpoints.down('sm')]: {
+		[theme.breakpoints.down('sm')]: {
 			fontSize: '2.5rem',
 			width: '270px',
-		  },
+			height: '215px',
+		},
 	},
 	buttonBlock: {
 		display: 'flex',
@@ -55,7 +59,7 @@ const useStyles = makeStyles(theme=>({
 		[theme.breakpoints.down('sm')]: {
 			minWidth: '100px',
 			fontSize: '2.5rem',
-		  },
+		},
 	},
 	buttonFalse: {
 		display: 'flex',
@@ -70,7 +74,7 @@ const useStyles = makeStyles(theme=>({
 		[theme.breakpoints.down('sm')]: {
 			minWidth: '100px',
 			fontSize: '2.5rem',
-		  },
+		},
 	},
 	checkAnswer: {
 		display: 'flex',

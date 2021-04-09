@@ -8,7 +8,7 @@ import { CountdownCircleTimer } from 'react-countdown-circle-timer'
 import { makeStyles } from '@material-ui/core/styles'
 import { SettingsSystemDaydreamTwoTone } from '@material-ui/icons'
 
-const useStyles = makeStyles(theme=>({
+const useStyles = makeStyles(theme => ({
 	SprintRoot: {
 		width: '80%',
 		height: '100%',
@@ -17,6 +17,9 @@ const useStyles = makeStyles(theme=>({
 		alignItems: 'center',
 		flexDirection: 'column',
 		justifyContent: 'center',
+		[theme.breakpoints.down('sm')]: {
+			width: '300px',
+		},
 	},
 	StartSprintRoot: {
 		paddingTop: '30px',
@@ -25,7 +28,9 @@ const useStyles = makeStyles(theme=>({
 		display: 'flex',
 		alignItems: 'center',
 		flexDirection: 'column',
-		
+		[theme.breakpoints.down('sm')]: {
+			width: '300px',
+		},
 	},
 	StartGame: {
 		textAlign: 'center',
@@ -40,11 +45,11 @@ const useStyles = makeStyles(theme=>({
 		borderColor: '#f6ea09',
 		cursor: 'pointer',
 		[theme.breakpoints.down('sm')]: {
-			width: '300px'
-		  },
-		'&:hover':{
-			backgroundColor: 'gray'
-		}
+			width: '300px',
+		},
+		'&:hover': {
+			backgroundColor: 'gray',
+		},
 	},
 	cls: {
 		color: 'red',
@@ -75,7 +80,7 @@ const useStyles = makeStyles(theme=>({
 		flexWrap: 'wrap',
 		[theme.breakpoints.down('sm')]: {
 			width: '230px',
-		  },
+		},
 	},
 	currentLvl_1: {
 		borderRadius: '50%',
@@ -90,9 +95,9 @@ const useStyles = makeStyles(theme=>({
 		border: '2px solid',
 		borderColor: 'red',
 		cursor: 'pointer',
-		'&:hover':{
+		'&:hover': {
 			backgroundColor: 'yellow',
-		}
+		},
 	},
 	currentLvl_2: {
 		borderRadius: '50%',
@@ -107,89 +112,89 @@ const useStyles = makeStyles(theme=>({
 		border: '2px solid',
 		borderColor: 'red',
 		cursor: 'pointer',
-		'&:hover':{
+		'&:hover': {
 			backgroundColor: 'yellow',
-		}
+		},
 	},
 	currentLvl_3: {
-	borderRadius: '50%',
-	backgroundColor: 'white',
-	width: '60px',
-	height: '60px',
-	display: 'flex',
-	alignItems: 'center',
-	justifyContent: 'center',
-	color: 'red',
-	fontSize: '2.5rem',
-	border: '2px solid',
-	borderColor: 'red',
-	cursor: 'pointer',
-	'&:hover':{
-		backgroundColor: 'yellow',
-	}
-},
+		borderRadius: '50%',
+		backgroundColor: 'white',
+		width: '60px',
+		height: '60px',
+		display: 'flex',
+		alignItems: 'center',
+		justifyContent: 'center',
+		color: 'red',
+		fontSize: '2.5rem',
+		border: '2px solid',
+		borderColor: 'red',
+		cursor: 'pointer',
+		'&:hover': {
+			backgroundColor: 'yellow',
+		},
+	},
 	currentLvl_4: {
-	borderRadius: '50%',
-	backgroundColor: 'white',
-	width: '70px',
-	height: '70px',
-	display: 'flex',
-	alignItems: 'center',
-	justifyContent: 'center',
-	color: 'red',
-	fontSize: '2.5rem',
-	border: '2px solid',
-	borderColor: 'red',
-	cursor: 'pointer',
-	'&:hover':{
-		backgroundColor: 'yellow',
-	}
-},
+		borderRadius: '50%',
+		backgroundColor: 'white',
+		width: '70px',
+		height: '70px',
+		display: 'flex',
+		alignItems: 'center',
+		justifyContent: 'center',
+		color: 'red',
+		fontSize: '2.5rem',
+		border: '2px solid',
+		borderColor: 'red',
+		cursor: 'pointer',
+		'&:hover': {
+			backgroundColor: 'yellow',
+		},
+	},
 	currentLvl_5: {
-	borderRadius: '50%',
-	backgroundColor: 'white',
-	width: '80px',
-	height: '80px',
-	display: 'flex',
-	alignItems: 'center',
-	justifyContent: 'center',
-	color: 'red',
-	fontSize: '2.5rem',
-	border: '2px solid',
-	borderColor: 'red',
-	cursor: 'pointer',
-	'&:hover':{
-		backgroundColor: 'yellow',
-	}
-},
+		borderRadius: '50%',
+		backgroundColor: 'white',
+		width: '80px',
+		height: '80px',
+		display: 'flex',
+		alignItems: 'center',
+		justifyContent: 'center',
+		color: 'red',
+		fontSize: '2.5rem',
+		border: '2px solid',
+		borderColor: 'red',
+		cursor: 'pointer',
+		'&:hover': {
+			backgroundColor: 'yellow',
+		},
+	},
 
 	currentLvl_6: {
-	borderRadius: '50%',
-	backgroundColor: 'white',
-	width: '90px',
-	height: '90px',
-	display: 'flex',
-	alignItems: 'center',
-	justifyContent: 'center',
-	color: 'red',
-	fontSize: '2.5rem',
-	border: '2px solid',
-	borderColor: 'red',
-	cursor: 'pointer',
-	'&:hover':{
-		backgroundColor: 'yellow',
-	}
-},
+		borderRadius: '50%',
+		backgroundColor: 'white',
+		width: '90px',
+		height: '90px',
+		display: 'flex',
+		alignItems: 'center',
+		justifyContent: 'center',
+		color: 'red',
+		fontSize: '2.5rem',
+		border: '2px solid',
+		borderColor: 'red',
+		cursor: 'pointer',
+		'&:hover': {
+			backgroundColor: 'yellow',
+		},
+	},
 	visual: {
-	fontSize: '5rem',
-	display: 'flex',
-	alignItems: 'center',
-	justifyContent: 'center',
-},
+		fontSize: '5rem',
+		display: 'flex',
+		alignItems: 'center',
+		justifyContent: 'center',
+	},
 	VisualTimer: {
-	height: '400px',
-	fontSize: '5rem',
-},
+		height: '300px',
+		fontSize: '5rem',
+	},
 }))
 
 const Sprint = () => {
@@ -239,7 +244,7 @@ const Sprint = () => {
 					</div>
 					<div className={classes.groupChanger}>
 						<div className={classes.groupDescribe}>
-							<span>Difficulty level: {lvl+1}</span>
+							<span>Difficulty level: {lvl + 1}</span>
 						</div>
 						<div className={classes.Levels}>
 							<div className={classes.currentLvl_1} onClick={() => setLvl(0)}>
