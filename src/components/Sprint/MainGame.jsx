@@ -9,7 +9,7 @@ import Timer from '@/components/Sprint/Timer'
 import TrueMarks from '@/components/Sprint/TrueMarks'
 import useTimeout from '@/components/Sprint/UseTimeOut'
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme=>({
 	SprintRoot: {
 		width: '80%',
 		height: '100%',
@@ -30,6 +30,10 @@ const useStyles = makeStyles({
 		justifyContent: 'center',
 		fontSize: '3.5rem',
 		color: 'black',
+			[theme.breakpoints.down('sm')]: {
+			fontSize: '2.5rem',
+			width: '270px',
+		  },
 	},
 	buttonBlock: {
 		display: 'flex',
@@ -42,23 +46,31 @@ const useStyles = makeStyles({
 		display: 'flex',
 		alignItems: 'center',
 		justifyContent: 'center',
-		minWidth: '200px',
+		minWidth: '150px',
 		height: '60px',
 		color: '#f6ea09',
 		border: '1px solid',
 		borderColor: '#f6ea09',
 		fontSize: '3.5rem',
+		[theme.breakpoints.down('sm')]: {
+			minWidth: '100px',
+			fontSize: '2.5rem',
+		  },
 	},
 	buttonFalse: {
 		display: 'flex',
 		alignItems: 'center',
 		justifyContent: 'center',
-		minWidth: '200px',
+		minWidth: '150px',
 		height: '60px',
 		color: '#f6ea09',
 		border: '1px solid',
 		borderColor: '#f6ea09',
 		fontSize: '3.5rem',
+		[theme.breakpoints.down('sm')]: {
+			minWidth: '100px',
+			fontSize: '2.5rem',
+		  },
 	},
 	checkAnswer: {
 		display: 'flex',
@@ -75,7 +87,7 @@ const useStyles = makeStyles({
 		height: '200px',
 		fontSize: '5rem',
 	},
-})
+}))
 
 const translateCheck = (wordCheck, badTranslate) => {
 	const result = badTranslate.filter(e => e !== wordCheck)
