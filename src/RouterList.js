@@ -5,8 +5,8 @@ import ContainerHome from '@/ContainerHome'
 import GamesPage from '@/pages/GamesPage'
 import StatisticsPage from '@/pages/StatisticsPage'
 import SettingsPage from '@/pages/SettingsPage'
-import RegistrationPage from '@/pages/RegistrationPage'
-import LoginPage from '@/pages/LoginPage'
+import RegistrationPageContainer from '@/pages/RegistrationPageContainer'
+import LoginPageContainer from '@/pages/LoginPageContainer'
 import TestRequest from '@/pages/testRequest'
 import VocabularyPage from '@/pages/VocabularyPage'
 import AboutTeamPage from '@/pages/AboutTeamPage'
@@ -35,11 +35,11 @@ export default [
 	},
 	{
 		path: '/login',
-		component: <LoginPage />,
+		component: <LoginPageContainer />,
 	},
 	{
 		path: '/registration',
-		component: <RegistrationPage />,
+		component: <RegistrationPageContainer />,
 	},
 	{
 		path: '/about-team',

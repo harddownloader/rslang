@@ -94,7 +94,12 @@ export default function LoginPage(properties) {
 			const content = await rawResponse.json()
 
 			console.log('loginUser', content)
-			window.location.replace('/')
+			properties.setUserAuth({
+				userId: content.userId ,
+				token: content.token
+			})
+
+			// window.location.replace('/')
 		} else {
 			alert('Введите корректные данные')
 		}

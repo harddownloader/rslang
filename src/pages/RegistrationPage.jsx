@@ -166,6 +166,12 @@ export default function RegistrationPage(properties) {
 					}
 				}
 			)
+
+			// сохраняем данные в редакс
+			properties.setUserAuth({
+				userId: content.userId ,
+				token: content.token
+			})
 			
 		} else {
 			console.error('small login or password')

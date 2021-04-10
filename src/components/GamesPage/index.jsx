@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import { Route, useRouteMatch, Switch, useLocation } from 'react-router-dom'
 import { TransitionGroup, CSSTransition } from 'react-transition-group'
 
-import StartGame from './StartGame'
+import StartGameContainer from './StartGameContainer'
 import gamesItem from './gamesItem'
 import Game from './Game'
 import Eye from './Eye'
@@ -51,12 +51,18 @@ function useQuery() {
 }
 
 const Games = () => {
+
+	// useEffect(() => {
+
+	// }, [])
+
 	const query = useQuery()
 	const location = useLocation()
 	const classes = useStyles()
 	const { path } = useRouteMatch()
 	const [hoverGame, setHoverGame] = useState(0)
 	
+
 	return (
 		<TransitionGroup className={classes.animation}>
 			<CSSTransition
@@ -79,7 +85,7 @@ const Games = () => {
 						</div>
 					</Route>
 					<Route path={`${path}/:id`}>
-						<StartGame name={query.get('name')} />
+						<StartGameContainer name={query.get('name')} />
 					</Route>
 				</Switch>
 			</CSSTransition>
