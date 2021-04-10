@@ -4,6 +4,7 @@ import React from 'react'
 import Header from '@/components/header'
 import Footer from '@/components/Footer/Footer'
 
+// Electro book
 const Vocabulary = () => {
 	// const getSettings = axios
 	// 	.get('https://rs-lang-app.herokuapp.com/users?id=605e40fd5747abe9af64b685')

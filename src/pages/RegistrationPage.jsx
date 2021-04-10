@@ -65,6 +65,16 @@ export default function RegistrationPage(properties) {
 
 	const classes = useStyles()
 
+	// получить тек. дату
+	const getCurrentDate = () => {
+		const dateObj = new Date()
+		const month = dateObj.getUTCMonth() + 1
+		const day = dateObj.getUTCDate()
+		const year = dateObj.getUTCFullYear()
+		const newdate = year + "-" + month + "-" + day
+		return newdate
+	}
+
 	// при отправке
 	const handleSubmit = async () => {
 		console.log('submit event')
@@ -119,7 +129,42 @@ export default function RegistrationPage(properties) {
 				loggedUser.userId,
 				loggedUser.token,
 				0,
-				{}
+				{
+					level: 2,
+					exp: 50,
+					days: 0,
+					dates: {
+						dateItems: [
+							{
+								date: getCurrentDate(),
+								countWord: 0,
+								answerTrue: 0,
+								games: {
+									savana: {
+										countAnswer: 0,
+										trueAnswer: 0,
+										seriesAnswer: 0
+									},
+									audio: {
+										countAnswer: 0,
+										trueAnswer: 0,
+										seriesAnswer: 0
+									},
+									myGame: {
+										countAnswer: 0,
+										trueAnswer: 0,
+										seriesAnswer: 0
+									},
+									sprint: {
+										countAnswer: 0,
+										trueAnswer: 0,
+										seriesAnswer: 0
+									}
+								}
+							}
+						]
+					}
+				}
 			)
 			
 		} else {
