@@ -130,8 +130,8 @@ export default function RegistrationPage(properties) {
 				loggedUser.token,
 				0,
 				{
-					level: 2,
-					exp: 50,
+					level: 0,
+					exp: 0,
 					days: 0,
 					dates: {
 						dateItems: [
