@@ -39,7 +39,7 @@ useEffect(()=>{
 	return (
 		<div className={classes.Statistic}>
 			<div className={classes.Score}>Score: {props.score}</div>
-			<div className={classes.Bonus}>Bonus: *{props.bonus}</div>
+			<div className={classes.Bonus}>Bonus: +{props.bonus}</div>
 		</div>
 	)
 }
