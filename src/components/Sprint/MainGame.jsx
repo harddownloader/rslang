@@ -56,11 +56,15 @@ const useStyles = makeStyles(theme => ({
 		height: '60px',
 		color: '#f6ea09',
 		border: '1px solid',
+		cursor: 'pointer',
 		borderColor: '#f6ea09',
 		fontSize: '3.5rem',
 		[theme.breakpoints.down('sm')]: {
 			minWidth: '100px',
 			fontSize: '2.5rem',
+		},
+		'&:hover': {
+			backgroundColor: 'gray',
 		},
 	},
 	buttonFalse: {
@@ -73,9 +77,13 @@ const useStyles = makeStyles(theme => ({
 		border: '1px solid',
 		borderColor: '#f6ea09',
 		fontSize: '3.5rem',
+		cursor: 'pointer',
 		[theme.breakpoints.down('sm')]: {
 			minWidth: '100px',
 			fontSize: '2.5rem',
+		},
+		'&:hover': {
+			backgroundColor: 'gray',
 		},
 	},
 	checkAnswer: {
@@ -123,7 +131,7 @@ const MainGame = props => {
 	const [color, setColor] = useState(null)
 	const [textDescription, setTextDescription] = useState(null)
 
-	const [seconds, setSeconds] = React.useState(5)
+	const [seconds, setSeconds] = useState(15)
 	const [isGame, setGame] = useState(true)
 
 	const makeWordField = () => {
