@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
+import { Link } from '@material-ui/core'
 
 const useStyles = makeStyles(theme => ({
 	EndGame: {
@@ -10,6 +11,7 @@ const useStyles = makeStyles(theme => ({
 		textAlign: 'center',
 		fontSize: '3.5rem',
 		display: 'flex',
+
 		alignItems: 'center',
 		justifyContent: 'center',
 		width: '400px',
@@ -18,6 +20,7 @@ const useStyles = makeStyles(theme => ({
 		border: '1px solid',
 		borderColor: '#f6ea09',
 		cursor: 'pointer',
+		textDecoration: 'none',
 		[theme.breakpoints.down('sm')]: {
 			width: '300px',
 		},
@@ -35,13 +38,13 @@ const EndGame = props => {
 	return (
 		<div className={classes.EndGame}>
 			<div>Time is up. Your result:</div>
-			<div
+			<Link
+				underline='none'
+				color='inherit'
 				className={classes.PlayAgainButton}
-				onClick={() => {
-					console.log('kek')
-				}}>
-				Play Again
-			</div>
+				href='/games/sprint?name=0'>
+				<div style={{ color: '#f6ea09' }}>Play Again</div>
+			</Link>
 		</div>
 	)
 }
