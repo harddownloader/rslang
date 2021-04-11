@@ -8,6 +8,7 @@ import Description from '@/components/Sprint/Description'
 import Timer from '@/components/Sprint/Timer'
 import TrueMarks from '@/components/Sprint/TrueMarks'
 import useTimeout from '@/components/Sprint/UseTimeOut'
+import EndGame from '@/components/Sprint/EndGame'
 
 const useStyles = makeStyles(theme => ({
 	SprintRoot: {
@@ -17,6 +18,7 @@ const useStyles = makeStyles(theme => ({
 		display: 'flex',
 		alignItems: 'center',
 		flexDirection: 'column',
+		fontFamily: 'Open Sans',
 		justifyContent: 'center',
 		[theme.breakpoints.down('sm')]: {
 			width: '300px',
@@ -25,7 +27,7 @@ const useStyles = makeStyles(theme => ({
 	wordContainer: {
 		width: '80%',
 		height: '300px',
-		border: '2px solid',
+		fontFamily: 'Open Sans',
 		borderColor: 'red',
 		display: 'flex',
 		alignItems: 'center',
@@ -117,9 +119,12 @@ const MainGame = props => {
 	const [currentWords, setData] = useState(null)
 	const [falseWords, setFalseWords] = useState(0)
 	const [score, setScore] = useState(0)
-	const [bonus, setBonus] = useState(1)
+	const [bonus, setBonus] = useState(0)
 	const [color, setColor] = useState(null)
 	const [textDescription, setTextDescription] = useState(null)
+
+	const [seconds, setSeconds] = React.useState(5)
+	const [isGame, setGame] = useState(true)
 
 	const makeWordField = () => {
 		const rand = Math.floor(Math.random() * 2)
@@ -137,9 +142,12 @@ const MainGame = props => {
 	}
 
 	const bonusCounter = count => {
+		setTextDescription('RIGHT!')
 		if (count === 3) {
 			setAnswerCount(1)
-			setBonus(bonus * 2)
+			setBonus(bonus + 10)
+			setColor('255, 165, 0,')
+			setTextDescription('RIGHT 3! Bonus Score!')
 		}
 	}
 
@@ -147,15 +155,19 @@ const MainGame = props => {
 		switch (count) {
 			case 1:
 				setScore(score + 10)
+
 				break
 			case 2:
 				setScore(score + 20)
+
 				break
 			case 3:
 				setScore(score + 30)
+
 				break
 			case 4:
 				setScore(score + 40)
+
 				break
 
 			default:
@@ -165,44 +177,39 @@ const MainGame = props => {
 
 	const checkBtnTrue = () => {
 		if (isCorrect) {
+			setColor('255, 255, 0,')
 			setAnswerCount(answerCount + 1)
 			bonusCounter(answerCount)
-
 			setValue(value + 1)
-			setTextDescription('RIGHT')
-
 			makeWordField()
 			gettingScore(bonus)
-			setColor('255, 255, 0,')
 		} else {
+			setColor('255, 0, 0,')
 			setTextDescription('WRONG')
 			setValue(value + 1)
 			setBonus(1)
 			setAnswerCount(0)
 			makeWordField()
-			setColor('255, 0, 0,')
 		}
 	}
 
 	const checkBtnFalse = () => {
 		if (!isCorrect) {
+			setColor('255, 255, 0,')
 			setAnswerCount(answerCount + 1)
 			bonusCounter(answerCount)
 			gettingScore(bonus)
 			bonusCounter(answerCount)
-			setTextDescription('RIGHT')
 			console.log(answerCount)
 			setValue(value + 1)
 			makeWordField()
-			setColor('255, 255, 0,')
 		} else {
+			setColor('255, 0, 0,')
 			setTextDescription('WRONG')
 			setValue(value + 1)
 			setBonus(1)
 			setAnswerCount(0)
-			console.log(answerCount)
 			makeWordField()
-			setColor('255, 0, 0,')
 		}
 	}
 
@@ -217,54 +224,73 @@ const MainGame = props => {
 		setTraslate(props.wordsData[value].wordTranslate)
 		setValue(value + 1)
 	}, [])
+	useEffect(() => {
+		let timeId
+		if (seconds > 0) {
+			timeId = setTimeout(setSeconds, 1000, seconds - 1)
+		} else {
+			setGame(false)
+		}
+		return () => {
+			clearTimeout(timeId)
+		}
+	}, [seconds])
 
 	return (
 		<div className={classes.SprintRoot}>
-			{/* <Timer sec={30} /> */}
-			<div className={classes.VisualTimer}>
-				<CountdownCircleTimer
-					style={{ fontSize: '5rem' }}
-					isPlaying
-					duration={30}
-					colors={[
-						['#004777', 0.33],
-						['#F7B801', 0.33],
-						['#A30000', 0.33],
-					]}>
-					{({ remainingTime }) => remainingTime}
-				</CountdownCircleTimer>
-			</div>
+			{isGame ? (
+				<div className={classes.SprintRoot}>
+					<div className={classes.VisualTimer}>
+						<CountdownCircleTimer
+							style={{ fontSize: '5rem' }}
+							isPlaying
+							duration={30}
+							colors={[
+								['#004777', 0.33],
+								['#F7B801', 0.33],
+								['#A30000', 0.33],
+							]}>
+							{({ remainingTime }) => remainingTime}
+						</CountdownCircleTimer>
+					</div>
 
-			<div
-				className={classes.wordContainer}
-				style={{ backgroundColor: `rgba(${color} 0.7` }}>
-				<div className={classes.currentWord}>
-					<span>{word}</span>
-				</div>
-				<div className={classes.currentTranslate}>
-					<span>{translate}</span>
-				</div>
-				<TrueMarks style={{ fontSize: '3.5rem' }} marksCount={answerCount} />
-				<Description content={textDescription} />
-			</div>
-			<div className={classes.buttonBlock}>
-				<div
-					className={classes.buttonTrue}
-					onClick={() => {
-						checkBtnTrue()
-					}}>
-					<div>True</div>
-				</div>
+					<div
+						className={classes.wordContainer}
+						style={{ backgroundColor: `rgba(${color} 0.7` }}>
+						<div className={classes.currentWord}>
+							<span>{word}</span>
+						</div>
+						<div className={classes.currentTranslate}>
+							<span>{translate}</span>
+						</div>
+						<TrueMarks
+							style={{ fontSize: '3.5rem' }}
+							marksCount={answerCount}
+						/>
+						<Description content={textDescription} />
+					</div>
+					<div className={classes.buttonBlock}>
+						<div
+							className={classes.buttonTrue}
+							onClick={() => {
+								checkBtnTrue()
+							}}>
+							<div>True</div>
+						</div>
 
-				<div
-					className={classes.buttonFalse}
-					onClick={() => {
-						checkBtnFalse()
-					}}>
-					<div>False</div>
+						<div
+							className={classes.buttonFalse}
+							onClick={() => {
+								checkBtnFalse()
+							}}>
+							<div>False</div>
+						</div>
+					</div>
+					<Score score={score} bonus={bonus} />
 				</div>
-			</div>
-			<Score score={score} bonus={bonus} />
+			) : (
+				<EndGame />
+			)}
 		</div>
 	)
 }
