@@ -39,7 +39,6 @@ const useStyles = makeStyles(theme => ({
 		transition: 'all 1s',
 	},
 	promptBox: {
-		position: 'relative',
 		[theme.breakpoints.up('md')]: { height: '100%', width: '40%' },
 		position: 'relative',
 		width: '100%',

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 
 // material
@@ -49,18 +49,17 @@ const useStyles = makeStyles(theme => ({
 	},
 }))
 
-const Form = ({ data, setIsOpenPrompt }) => {
+const Form = ({ data, setIsOpenPrompt, currentArray }) => {
 	const [formState, { label, text }] = useFormState()
 	const [isErrors, setIsErrors] = useState(false)
 	const [isChecked, setIsChecked] = useState(false)
 	const [open, setOpen] = useState(false)
-	const classes = useStyles(propertiesStyle)
-
 	const propertiesStyle = {
 		isErrors,
 		isChecked,
 	}
-	const handleClose = (event, reason) => {
+	const classes = useStyles(propertiesStyle)
+	const handleClose = reason => {
 		if (reason === 'clickaway') {
 			return
 		}
@@ -80,10 +79,17 @@ const Form = ({ data, setIsOpenPrompt }) => {
 		if (formState.values.word === data.word) {
 			setIsErrors(false)
 			setIsOpenPrompt(true)
+			currentArray.push(1)
 		} else {
+			//!		currentArray
+			currentArray.push(2)
 			setIsErrors(true)
 		}
+		if (currentArray.lenght === 10) {
+			alert(10)
+		}
 		e.target.blur()
+		console.log(currentArray)
 	}
 
 	return (
@@ -117,6 +123,7 @@ const Form = ({ data, setIsOpenPrompt }) => {
 Form.propTypes = {
 	data: PropTypes.object,
 	setIsOpenPrompt: PropTypes.func,
+	currentArray: PropTypes.array,
 }
 
 export default Form
