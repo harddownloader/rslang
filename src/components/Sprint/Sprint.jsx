@@ -52,7 +52,6 @@ const useStyles = makeStyles(theme => ({
 		},
 		'&:hover': {
 			backgroundColor: 'gray',
-	
 		},
 	},
 	cls: {
@@ -108,7 +107,7 @@ const useStyles = makeStyles(theme => ({
 			fontSize: '1.5rem',
 		},
 		'&:hover': {
-			backgroundColor: 'yellow',
+			backgroundColor: 'gray',
 		},
 	},
 	currentLvl_2: {
@@ -130,7 +129,7 @@ const useStyles = makeStyles(theme => ({
 			fontSize: '1.5rem',
 		},
 		'&:hover': {
-			backgroundColor: 'yellow',
+			backgroundColor: 'gray',
 		},
 	},
 	currentLvl_3: {
@@ -152,7 +151,7 @@ const useStyles = makeStyles(theme => ({
 			fontSize: '1.5rem',
 		},
 		'&:hover': {
-			backgroundColor: 'yellow',
+			backgroundColor: 'gray',
 		},
 	},
 	currentLvl_4: {
@@ -174,7 +173,7 @@ const useStyles = makeStyles(theme => ({
 			fontSize: '1.5rem',
 		},
 		'&:hover': {
-			backgroundColor: 'yellow',
+			backgroundColor: 'gray',
 		},
 	},
 	currentLvl_5: {
@@ -196,7 +195,7 @@ const useStyles = makeStyles(theme => ({
 			fontSize: '1.5rem',
 		},
 		'&:hover': {
-			backgroundColor: 'yellow',
+			backgroundColor: 'gray',
 		},
 	},
 
@@ -219,7 +218,7 @@ const useStyles = makeStyles(theme => ({
 			fontSize: '1.5rem',
 		},
 		'&:hover': {
-			backgroundColor: 'yellow',
+			backgroundColor: 'gray',
 		},
 	},
 	visual: {
