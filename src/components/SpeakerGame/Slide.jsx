@@ -6,7 +6,7 @@ import PromptBox from './PromptBox'
 import ContentBox from './ContentBox'
 // ----------------------------------------
 
-const Slide = ({ data, swiper }) => {
+const Slide = ({ data, swiper, currentArray }) => {
 	const [isOpenPrompt, setIsOpenPrompt] = useState(false)
 	return (
 		<>
@@ -19,6 +19,7 @@ const Slide = ({ data, swiper }) => {
 				data={data}
 				swiper={swiper}
 				setIsOpenPrompt={setIsOpenPrompt}
+				currentArray={currentArray}
 			/>
 		</>
 	)
@@ -27,6 +28,7 @@ const Slide = ({ data, swiper }) => {
 Slide.propTypes = {
 	data: PropTypes.object,
 	swiper: PropTypes.object,
+	currentArray: PropTypes.array,
 }
 
 export default Slide

@@ -1,5 +1,6 @@
 import { useEffect, useReducer, useState } from 'react'
 import axios from 'axios'
+import aggregatedWords from '@/utils/apiRequests/aggregatedWords'
 import dataFetchReducer from './dataFetchReducer'
 
 const useDataApi = (initialUrl, initialData) => {
