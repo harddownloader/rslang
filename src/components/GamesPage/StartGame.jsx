@@ -1,14 +1,14 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import { useParams } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import Speaker from '@/components/SpeakerGame'
 import Savannah from '@/components/savannah/Savannah'
 import Sprint from '@/components/Sprint/Sprint'
 
-function StartGame(props) {
-	console.log('start game props', props)
+function StartGame(properties) {
+	console.log('start game props', properties)
 
-	const [name, setName] = useState(props.name) 
+	const [name, setName] = useState(properties.name)
 
 	// The <Route> that rendered this component has a
 	// path of `/topics/:topicId`. The `:topicId` portion
@@ -19,7 +19,10 @@ function StartGame(props) {
 	return id === 'savanna' ? (
 		<Savannah />
 	) : id === 'sprint' ? (
-		<Sprint />
+		<Sprint
+			userToken={properties.userAuth.token}
+			userId={properties.userAuth.userId}
+		/>
 	) : id === 'speaker' ? (
 		<Speaker query={name} />
 	) : (

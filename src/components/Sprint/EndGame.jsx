@@ -30,10 +30,10 @@ const useStyles = makeStyles(theme => ({
 	},
 }))
 
-const EndGame = props => {
+const EndGame = properties => {
 	const classes = useStyles()
 	useEffect(() => {
-		console.log('Bonus', props)
+		console.log('Bonus', properties)
 	}, [])
 	return (
 		<div className={classes.EndGame}>

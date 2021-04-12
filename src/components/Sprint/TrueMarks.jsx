@@ -29,9 +29,9 @@ const useStyles = makeStyles({
 	},
 })
 
-const TrueMarks = props => {
+const TrueMarks = properties => {
 	const classes = useStyles()
-	const [marksCount, setMarksCount] = useState(props.marksCount)
+	const [marksCount, setMarksCount] = useState(properties.marksCount)
 
 	const addCheckedBonus = count => {
 		switch (count) {
@@ -82,12 +82,14 @@ const TrueMarks = props => {
 		}
 	}
 	useEffect(() => {
-		console.log('Marks count', props.marksCount)
-		addCheckedBonus(props.marksCount)
-	}, [props.marksCount])
+		console.log('Marks count', properties.marksCount)
+		addCheckedBonus(properties.marksCount)
+	}, [properties.marksCount])
 
 	return (
-		<div className={classes.Marks}>{addCheckedBonus(props.marksCount)}</div>
+		<div className={classes.Marks}>
+			{addCheckedBonus(properties.marksCount)}
+		</div>
 	)
 }
 

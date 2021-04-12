@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 
-const useStyles = makeStyles(theme=>({
+const useStyles = makeStyles(theme => ({
 	Score: {
 		color: '#f6ea09',
 		fontSize: '3.5rem',
@@ -30,16 +30,15 @@ const useStyles = makeStyles(theme=>({
 	},
 }))
 
-const Score = props => {
+const Score = properties => {
 	const classes = useStyles()
-useEffect(()=>{
-    console.log('Bonus', props.bonus)
-
-}, [props.bonus])
+	useEffect(() => {
+		console.log('Bonus', properties.bonus)
+	}, [properties.bonus])
 	return (
 		<div className={classes.Statistic}>
-			<div className={classes.Score}>Score: {props.score}</div>
-			<div className={classes.Bonus}>Bonus: +{props.bonus}</div>
+			<div className={classes.Score}>Score: {properties.score}</div>
+			<div className={classes.Bonus}>Bonus: +{properties.bonus}</div>
 		</div>
 	)
 }

@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react'
-
-import img from '../../assets/images/gamesPage/sprint.jpg'
+import { Redirect } from 'react-router-dom'
 import MainGame from '@/components/Sprint/MainGame'
 import Footer from '@/components/Footer/Footer'
 import { CountdownCircleTimer } from 'react-countdown-circle-timer'
 
 import { makeStyles } from '@material-ui/core/styles'
 import { SettingsSystemDaydreamTwoTone } from '@material-ui/icons'
+import img from '../../assets/images/gamesPage/sprint.jpg'
+import useDataApi from '@/utils/useDataApi'
+
+import { getAggregatedWords } from '@/utils/apiRequests/aggregatedWords'
 
 const useStyles = makeStyles(theme => ({
 	SprintRoot: {
@@ -233,7 +236,11 @@ const useStyles = makeStyles(theme => ({
 	},
 }))
 
-const Sprint = () => {
+const Sprint = ({ userId, userToken }) => {
+	if (!userId) {
+		return <Redirect to='/login' />
+	}
+
 	const classes = useStyles()
 	const [rendering, setRender] = useState(true)
 	const [isButtonClick, setIsButtonClick] = useState(false)
@@ -260,11 +267,53 @@ const Sprint = () => {
 		}
 	}, [isButtonClick, timerActive])
 
+	const [
+		{ data, isLoading, isError },
+		doFetch, // eslint-disable-line no-unused-vars
+	] = useDataApi(
+		getAggregatedWords,
+		{ userId, userToken, group: lvl, initialWords: 60 },
+		[],
+	)
 	useEffect(() => {
-		fetch(`https://rs-lang-app.herokuapp.com/words?page=2&group=${lvl}`)
-			.then(response => response.json())
-			.then(data => setWords(data))
-	}, [lvl])
+		doFetch(
+			getAggregatedWords,
+			{ userId, userToken, group: lvl, initialWords: 60 },
+			[],
+		)
+	}, [lvl, setLvl])
+
+	// useEffect(() => {
+	// 	fetch(`https://rs-lang-app.herokuapp.com/words?page=2&group=${lvl}`)
+	// 		.then(response => response.json())
+	// 		.then(data => setWords(data))
+	// }, [lvl])
+
+	if (!userId) {
+		return <Redirect to='/login' />
+	}
+
+	if (isError) {
+		return <div>Something went wrong ...</div>
+	}
+	if (isLoading) {
+		return (
+			<div className={classes.loader}>
+				<CountdownCircleTimer
+					style={{ fontSize: '5rem' }}
+					isPlaying
+					size={120}
+					duration={5}
+					colors={[
+						['#004777', 0.33],
+						['#F7B801', 0.33],
+						['#A30000', 0.33],
+					]}>
+					{({ remainingTime }) => remainingTime}
+				</CountdownCircleTimer>
+			</div>
+		)
+	}
 
 	return (
 		<div className={classes.SprintRoot}>
@@ -325,7 +374,7 @@ const Sprint = () => {
 			)}
 
 			{/* <Game seconds={seconds} /> */}
-			{!rendering && <MainGame wordsData={wordsData} />}
+			{!rendering && <MainGame wordsData={data} />}
 			<Footer />
 		</div>
 	)

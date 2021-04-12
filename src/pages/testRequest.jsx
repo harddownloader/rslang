@@ -1,20 +1,14 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react'
 
-import {loginUser} from '@/utils/apiRequests/words'
+import { loginUser } from '@/utils/apiRequests/words'
 
+function TestRequest(properties) {
+	useEffect(() => {
+		const login = loginUser({ email: 'john@gmail.com', password: 'qwerty1111' })
+		console.log(login)
+	}, [])
 
-function TestRequest(props) {
-
-  useEffect(() => {
-    const login = loginUser({'email': 'john@gmail.com', 'password': 'qwerty1111'})
-    console.log(login)
-  }, [])
-
-  return (
-    <>
-      test
-    </>
-  )
+	return <>test</>
 }
 
 export default TestRequest

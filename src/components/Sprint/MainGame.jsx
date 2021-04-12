@@ -118,16 +118,16 @@ const translateCheck = (wordCheck, badTranslate) => {
 	return result
 }
 const makeFirstWords = async url => {
-	let arrWodrs = await fetch(url)
+	const arrayWodrs = await fetch(url)
 		.then(response => response.json())
 		.then(data => data)
-	return arrWodrs
+	return arrayWodrs
 }
 
-const MainGame = props => {
+const MainGame = properties => {
 	const classes = useStyles()
 	const url = 'https://rs-lang-app.herokuapp.com/words?page=2&group=0'
-	let checkMarks = []
+	const checkMarks = []
 	const falseArray = []
 	const [answerCount, setAnswerCount] = useState(0)
 	const [isCorrect, setFlag] = useState(true)
@@ -193,7 +193,7 @@ const MainGame = props => {
 		}
 	}
 
-	const checkBtnTrue = () => {
+	const checkButtonTrue = () => {
 		if (isCorrect) {
 			setColor('255, 255, 0,')
 			setAnswerCount(answerCount + 1)
@@ -201,7 +201,6 @@ const MainGame = props => {
 			gettingScore(bonus)
 			setValue(value + 1)
 			makeWordField()
-
 		} else {
 			setColor('255, 0, 0,')
 			setTextDescription('WRONG')
@@ -212,7 +211,7 @@ const MainGame = props => {
 		}
 	}
 
-	const checkBtnFalse = () => {
+	const checkButtonFalse = () => {
 		if (!isCorrect) {
 			setColor('255, 255, 0,')
 			setAnswerCount(answerCount + 1)
@@ -231,14 +230,14 @@ const MainGame = props => {
 	}
 
 	useEffect(() => {
-		console.log(props.wordsData)
-		props.wordsData.forEach(item => {
+		console.log(properties.wordsData)
+		for (const item of properties.wordsData) {
 			falseArray.push(item.wordTranslate)
-		})
+		}
 		setFalseWords(falseArray)
-		setData(randomArray(props.wordsData))
-		setWord(props.wordsData[value].word)
-		setTraslate(props.wordsData[value].wordTranslate)
+		setData(randomArray(properties.wordsData))
+		setWord(properties.wordsData[value].word)
+		setTraslate(properties.wordsData[value].wordTranslate)
 		setValue(value + 1)
 	}, [])
 	useEffect(() => {
@@ -291,7 +290,7 @@ const MainGame = props => {
 						<div
 							className={classes.buttonTrue}
 							onClick={() => {
-								checkBtnTrue()
+								checkButtonTrue()
 							}}>
 							<div>True</div>
 						</div>
@@ -299,12 +298,12 @@ const MainGame = props => {
 						<div
 							className={classes.buttonFalse}
 							onClick={() => {
-								checkBtnFalse()
+								checkButtonFalse()
 							}}>
 							<div>False</div>
 						</div>
 					</div>
-					<Score score={score} bonus={bonus-1} />
+					<Score score={score} bonus={bonus - 1} />
 				</div>
 			) : (
 				<EndGame />

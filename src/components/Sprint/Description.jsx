@@ -14,11 +14,11 @@ const useStyles = makeStyles(theme => ({
 	},
 }))
 
-const Description = props => {
+const Description = properties => {
 	const classes = useStyles()
 	return (
 		<div>
-			<div className={classes.Description}>{props.content}</div>
+			<div className={classes.Description}>{properties.content}</div>
 		</div>
 	)
 }

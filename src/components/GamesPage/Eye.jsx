@@ -2,9 +2,8 @@ import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import PropTypes from 'prop-types'
 import EyeImg from '@/assets/images/gamesPage/eye.svg'
-import { moveEye } from './eyeAnimation'
 import { primaryColor } from '@/assets/jss/materialKitReact'
-
+import { moveEye } from './eyeAnimation'
 
 const useStyles = makeStyles(theme => ({
 	root: {
