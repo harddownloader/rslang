@@ -28,9 +28,10 @@ const useStyles = makeStyles(theme => ({
 		width: '80%',
 		height: '300px',
 		fontFamily: 'Open Sans',
-		borderColor: 'red',
+		borderColor: '#f6ea09',
 		display: 'flex',
 		alignItems: 'center',
+		border: '2px solid yellow ',
 		flexDirection: 'column',
 		justifyContent: 'center',
 		fontSize: '3.5rem',
@@ -47,6 +48,9 @@ const useStyles = makeStyles(theme => ({
 		justifyContent: 'space-between',
 		width: '80%',
 		paddingTop: '30px',
+		[theme.breakpoints.down('sm')]: {
+			paddingTop: '0px',
+		},
 	},
 	buttonTrue: {
 		display: 'flex',
@@ -62,6 +66,7 @@ const useStyles = makeStyles(theme => ({
 		[theme.breakpoints.down('sm')]: {
 			minWidth: '100px',
 			fontSize: '2.5rem',
+			height: '30px',
 		},
 		'&:hover': {
 			backgroundColor: 'gray',
@@ -80,6 +85,7 @@ const useStyles = makeStyles(theme => ({
 		cursor: 'pointer',
 		[theme.breakpoints.down('sm')]: {
 			minWidth: '100px',
+			height: '30px',
 			fontSize: '2.5rem',
 		},
 		'&:hover': {
@@ -99,7 +105,11 @@ const useStyles = makeStyles(theme => ({
 	},
 	VisualTimer: {
 		height: '200px',
-		fontSize: '5rem',
+		fontSize: '4rem',
+		[theme.breakpoints.down('sm')]: {
+			height: '100px',
+			fontSize: '2.5rem',
+		},
 	},
 }))
 
@@ -127,11 +137,11 @@ const MainGame = props => {
 	const [currentWords, setData] = useState(null)
 	const [falseWords, setFalseWords] = useState(0)
 	const [score, setScore] = useState(0)
-	const [bonus, setBonus] = useState(0)
+	const [bonus, setBonus] = useState(1)
 	const [color, setColor] = useState(null)
 	const [textDescription, setTextDescription] = useState(null)
 
-	const [seconds, setSeconds] = useState(15)
+	const [seconds, setSeconds] = useState(30)
 	const [isGame, setGame] = useState(true)
 
 	const makeWordField = () => {
@@ -153,7 +163,7 @@ const MainGame = props => {
 		setTextDescription('RIGHT!')
 		if (count === 3) {
 			setAnswerCount(1)
-			setBonus(bonus + 10)
+			setBonus(bonus + 1)
 			setColor('255, 165, 0,')
 			setTextDescription('RIGHT 3! Bonus Score!')
 		}
@@ -188,9 +198,10 @@ const MainGame = props => {
 			setColor('255, 255, 0,')
 			setAnswerCount(answerCount + 1)
 			bonusCounter(answerCount)
+			gettingScore(bonus)
 			setValue(value + 1)
 			makeWordField()
-			gettingScore(bonus)
+
 		} else {
 			setColor('255, 0, 0,')
 			setTextDescription('WRONG')
@@ -207,8 +218,6 @@ const MainGame = props => {
 			setAnswerCount(answerCount + 1)
 			bonusCounter(answerCount)
 			gettingScore(bonus)
-			bonusCounter(answerCount)
-			console.log(answerCount)
 			setValue(value + 1)
 			makeWordField()
 		} else {
@@ -252,6 +261,7 @@ const MainGame = props => {
 						<CountdownCircleTimer
 							style={{ fontSize: '5rem' }}
 							isPlaying
+							size={90}
 							duration={30}
 							colors={[
 								['#004777', 0.33],
@@ -294,7 +304,7 @@ const MainGame = props => {
 							<div>False</div>
 						</div>
 					</div>
-					<Score score={score} bonus={bonus} />
+					<Score score={score} bonus={bonus-1} />
 				</div>
 			) : (
 				<EndGame />

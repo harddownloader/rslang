@@ -5,7 +5,7 @@ import { Link } from '@material-ui/core'
 const useStyles = makeStyles(theme => ({
 	EndGame: {
 		fontSize: '3.5rem',
-		color: 'red',
+		color: '#f6ea09',
 	},
 	PlayAgainButton: {
 		textAlign: 'center',

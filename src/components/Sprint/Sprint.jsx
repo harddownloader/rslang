@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 
-import Header from '@/components/header'
+import img from '../../assets/images/gamesPage/sprint.jpg'
 import MainGame from '@/components/Sprint/MainGame'
 import Footer from '@/components/Footer/Footer'
 import { CountdownCircleTimer } from 'react-countdown-circle-timer'
@@ -17,12 +17,13 @@ const useStyles = makeStyles(theme => ({
 		alignItems: 'center',
 		flexDirection: 'column',
 		justifyContent: 'center',
+		background: `${img}`,
 		[theme.breakpoints.down('sm')]: {
 			width: '300px',
 		},
 	},
 	StartSprintRoot: {
-		paddingTop: '30px',
+		paddingTop: '10px',
 		height: '100%',
 		justifyContent: 'space-around',
 		display: 'flex',
@@ -46,9 +47,12 @@ const useStyles = makeStyles(theme => ({
 		cursor: 'pointer',
 		[theme.breakpoints.down('sm')]: {
 			width: '300px',
+			height: '50px',
+			fontSize: '2.5rem',
 		},
 		'&:hover': {
 			backgroundColor: 'gray',
+	
 		},
 	},
 	cls: {
@@ -68,6 +72,9 @@ const useStyles = makeStyles(theme => ({
 		justifyContent: 'center',
 		color: '#f6ea09',
 		fontSize: '3.5rem',
+		[theme.breakpoints.down('sm')]: {
+			fontSize: '2.5rem',
+		},
 	},
 	Levels: {
 		width: '100%',
@@ -90,11 +97,16 @@ const useStyles = makeStyles(theme => ({
 		display: 'flex',
 		alignItems: 'center',
 		justifyContent: 'center',
-		color: 'red',
+		color: '#f6ea09',
 		fontSize: '2.5rem',
 		border: '2px solid',
-		borderColor: 'red',
+		borderColor: '#f6ea09',
 		cursor: 'pointer',
+		[theme.breakpoints.down('sm')]: {
+			width: '30px',
+			height: '30px',
+			fontSize: '1.5rem',
+		},
 		'&:hover': {
 			backgroundColor: 'yellow',
 		},
@@ -107,11 +119,16 @@ const useStyles = makeStyles(theme => ({
 		display: 'flex',
 		alignItems: 'center',
 		justifyContent: 'center',
-		color: 'red',
+		color: '#f6ea09',
 		fontSize: '2.5rem',
 		border: '2px solid',
-		borderColor: 'red',
+		borderColor: '#f6ea09',
 		cursor: 'pointer',
+		[theme.breakpoints.down('sm')]: {
+			width: '40px',
+			height: '40px',
+			fontSize: '1.5rem',
+		},
 		'&:hover': {
 			backgroundColor: 'yellow',
 		},
@@ -124,11 +141,16 @@ const useStyles = makeStyles(theme => ({
 		display: 'flex',
 		alignItems: 'center',
 		justifyContent: 'center',
-		color: 'red',
+		color: '#f6ea09',
 		fontSize: '2.5rem',
 		border: '2px solid',
-		borderColor: 'red',
+		borderColor: '#f6ea09',
 		cursor: 'pointer',
+		[theme.breakpoints.down('sm')]: {
+			width: '50px',
+			height: '50px',
+			fontSize: '1.5rem',
+		},
 		'&:hover': {
 			backgroundColor: 'yellow',
 		},
@@ -141,11 +163,16 @@ const useStyles = makeStyles(theme => ({
 		display: 'flex',
 		alignItems: 'center',
 		justifyContent: 'center',
-		color: 'red',
+		color: '#f6ea09',
 		fontSize: '2.5rem',
 		border: '2px solid',
-		borderColor: 'red',
+		borderColor: '#f6ea09',
 		cursor: 'pointer',
+		[theme.breakpoints.down('sm')]: {
+			width: '60px',
+			height: '60px',
+			fontSize: '1.5rem',
+		},
 		'&:hover': {
 			backgroundColor: 'yellow',
 		},
@@ -158,11 +185,16 @@ const useStyles = makeStyles(theme => ({
 		display: 'flex',
 		alignItems: 'center',
 		justifyContent: 'center',
-		color: 'red',
+		color: '#f6ea09',
 		fontSize: '2.5rem',
 		border: '2px solid',
-		borderColor: 'red',
+		borderColor: '#f6ea09',
 		cursor: 'pointer',
+		[theme.breakpoints.down('sm')]: {
+			width: '70px',
+			height: '70px',
+			fontSize: '1.5rem',
+		},
 		'&:hover': {
 			backgroundColor: 'yellow',
 		},
@@ -176,11 +208,16 @@ const useStyles = makeStyles(theme => ({
 		display: 'flex',
 		alignItems: 'center',
 		justifyContent: 'center',
-		color: 'red',
+		color: '#f6ea09',
 		fontSize: '2.5rem',
 		border: '2px solid',
-		borderColor: 'red',
+		borderColor: '#f6ea09',
 		cursor: 'pointer',
+		[theme.breakpoints.down('sm')]: {
+			width: '80px',
+			height: '80px',
+			fontSize: '1.5rem',
+		},
 		'&:hover': {
 			backgroundColor: 'yellow',
 		},
@@ -192,7 +229,7 @@ const useStyles = makeStyles(theme => ({
 		justifyContent: 'center',
 	},
 	VisualTimer: {
-		height: '300px',
+		height: '120px',
 		fontSize: '5rem',
 	},
 }))
@@ -273,6 +310,7 @@ const Sprint = () => {
 								<CountdownCircleTimer
 									style={{ fontSize: '5rem' }}
 									isPlaying
+									size={120}
 									duration={5}
 									colors={[
 										['#004777', 0.33],
