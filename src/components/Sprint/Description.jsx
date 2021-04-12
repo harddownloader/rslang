@@ -14,11 +14,19 @@ const useStyles = makeStyles(theme => ({
 	},
 }))
 
+<<<<<<< HEAD
 const Description = properties => {
 	const classes = useStyles()
 	return (
 		<div>
 			<div className={classes.Description}>{properties.content}</div>
+=======
+const Description = props => {
+	const classes = useStyles()
+	return (
+		<div>
+			<div className={classes.Description}>{props.content}</div>
+>>>>>>> 40b2a11c7684076e5a57f071de72367b384adf32
 		</div>
 	)
 }

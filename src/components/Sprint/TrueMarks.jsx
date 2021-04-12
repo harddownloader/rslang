@@ -87,9 +87,13 @@ const TrueMarks = properties => {
 	}, [properties.marksCount])
 
 	return (
+<<<<<<< HEAD
 		<div className={classes.Marks}>
 			{addCheckedBonus(properties.marksCount)}
 		</div>
+=======
+		<div className={classes.Marks}>{addCheckedBonus(props.marksCount)}</div>
+>>>>>>> 40b2a11c7684076e5a57f071de72367b384adf32
 	)
 }
 

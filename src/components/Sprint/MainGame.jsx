@@ -121,7 +121,11 @@ const makeFirstWords = async url => {
 	const arrayWodrs = await fetch(url)
 		.then(response => response.json())
 		.then(data => data)
+<<<<<<< HEAD
 	return arrayWodrs
+=======
+	return arrWodrs
+>>>>>>> 40b2a11c7684076e5a57f071de72367b384adf32
 }
 
 const MainGame = properties => {
@@ -201,6 +205,10 @@ const MainGame = properties => {
 			gettingScore(bonus)
 			setValue(value + 1)
 			makeWordField()
+<<<<<<< HEAD
+=======
+
+>>>>>>> 40b2a11c7684076e5a57f071de72367b384adf32
 		} else {
 			setColor('255, 0, 0,')
 			setTextDescription('WRONG')
@@ -290,7 +298,11 @@ const MainGame = properties => {
 						<div
 							className={classes.buttonTrue}
 							onClick={() => {
+<<<<<<< HEAD
 								checkButtonTrue()
+=======
+								checkBtnTrue()
+>>>>>>> 40b2a11c7684076e5a57f071de72367b384adf32
 							}}>
 							<div>True</div>
 						</div>
@@ -298,12 +310,20 @@ const MainGame = properties => {
 						<div
 							className={classes.buttonFalse}
 							onClick={() => {
+<<<<<<< HEAD
 								checkButtonFalse()
+=======
+								checkBtnFalse()
+>>>>>>> 40b2a11c7684076e5a57f071de72367b384adf32
 							}}>
 							<div>False</div>
 						</div>
 					</div>
+<<<<<<< HEAD
 					<Score score={score} bonus={bonus - 1} />
+=======
+					<Score score={score} bonus={bonus-1} />
+>>>>>>> 40b2a11c7684076e5a57f071de72367b384adf32
 				</div>
 			) : (
 				<EndGame />

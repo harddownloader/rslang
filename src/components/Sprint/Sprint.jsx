@@ -1,5 +1,10 @@
 import React, { useState, useEffect } from 'react'
+<<<<<<< HEAD
 import { Redirect } from 'react-router-dom'
+=======
+
+import img from '../../assets/images/gamesPage/sprint.jpg'
+>>>>>>> 40b2a11c7684076e5a57f071de72367b384adf32
 import MainGame from '@/components/Sprint/MainGame'
 import Footer from '@/components/Footer/Footer'
 import { CountdownCircleTimer } from 'react-countdown-circle-timer'
@@ -235,11 +240,14 @@ const useStyles = makeStyles(theme => ({
 		fontSize: '5rem',
 	},
 }))
+<<<<<<< HEAD
 
 const Sprint = ({ userId, userToken }) => {
 	if (!userId) {
 		return <Redirect to='/login' />
 	}
+=======
+>>>>>>> 40b2a11c7684076e5a57f071de72367b384adf32
 
 	const classes = useStyles()
 	const [rendering, setRender] = useState(true)
@@ -276,6 +284,7 @@ const Sprint = ({ userId, userToken }) => {
 		[],
 	)
 	useEffect(() => {
+<<<<<<< HEAD
 		doFetch(
 			getAggregatedWords,
 			{ userId, userToken, group: lvl, initialWords: 60 },
@@ -314,6 +323,12 @@ const Sprint = ({ userId, userToken }) => {
 			</div>
 		)
 	}
+=======
+		fetch(`https://rs-lang-app.herokuapp.com/words?page=2&group=${lvl}`)
+			.then(response => response.json())
+			.then(data => setWords(data))
+	}, [lvl])
+>>>>>>> 40b2a11c7684076e5a57f071de72367b384adf32
 
 	return (
 		<div className={classes.SprintRoot}>
@@ -374,7 +389,11 @@ const Sprint = ({ userId, userToken }) => {
 			)}
 
 			{/* <Game seconds={seconds} /> */}
+<<<<<<< HEAD
 			{!rendering && <MainGame wordsData={data} />}
+=======
+			{!rendering && <MainGame wordsData={wordsData} />}
+>>>>>>> 40b2a11c7684076e5a57f071de72367b384adf32
 			<Footer />
 		</div>
 	)
