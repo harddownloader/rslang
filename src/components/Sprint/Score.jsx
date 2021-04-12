@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles'
 
 const useStyles = makeStyles(theme=>({
 	Score: {
-		color: 'red',
+		color: '#f6ea09',
 		fontSize: '3.5rem',
 		textAlign: 'center',
 		[theme.breakpoints.down('sm')]: {
@@ -21,7 +21,7 @@ const useStyles = makeStyles(theme=>({
 		},
 	},
 	Bonus: {
-		color: 'red',
+		color: '#f6ea09',
 		fontSize: '3.5rem',
 		textAlign: 'center',
 		[theme.breakpoints.down('sm')]: {
