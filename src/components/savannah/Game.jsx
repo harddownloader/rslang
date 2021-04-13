@@ -61,7 +61,7 @@ export default function Game(properties) {
 	return (
 		<div className={classes.savannahGame}>
 			{isLoaded && !isError ? (
-				<GameBoard words={words} newGame={setNewGame} />
+				<GameBoard words={words.sort((a, b) => (Math.random() - 0.5))} newGame={setNewGame} />
 			) : (
 				<Loader />
 			)}
