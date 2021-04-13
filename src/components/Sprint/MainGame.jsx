@@ -117,20 +117,19 @@ const translateCheck = (wordCheck, badTranslate) => {
 	const result = badTranslate.filter(e => e !== wordCheck)
 	return result
 }
-const makeFirstWords = async url => {
-	const arrayWodrs = await fetch(url)
-		.then(response => response.json())
-		.then(data => data)
-	return arrayWodrs
-}
+const trueWords = []
+const falsesWords = []
 
 const MainGame = properties => {
 	const classes = useStyles()
+
+	const [answerTrue, setTrueAnswer] = useState(0)
+	const [answerFalse, setFalseAnswer] = useState(0)
 	const falseArray = []
 	const [answerCount, setAnswerCount] = useState(0)
 	const [isCorrect, setFlag] = useState(true)
 	const [word, setWord] = useState(null)
-	const [translate, setTraslate] = useState(null)
+	const [translate, setTranslate] = useState(null)
 	const [value, setValue] = useState(0)
 	const [currentWords, setData] = useState(null)
 	const [falseWords, setFalseWords] = useState(0)
@@ -138,7 +137,6 @@ const MainGame = properties => {
 	const [bonus, setBonus] = useState(1)
 	const [color, setColor] = useState(null)
 	const [textDescription, setTextDescription] = useState(null)
-
 	const [seconds, setSeconds] = useState(30)
 	const [isGame, setGame] = useState(true)
 
@@ -147,11 +145,11 @@ const MainGame = properties => {
 		if (rand) {
 			setFlag(true)
 			setWord(currentWords[value].word)
-			setTraslate(currentWords[value].wordTranslate)
+			setTranslate(currentWords[value].wordTranslate)
 		} else {
 			setFlag(false)
 			setWord(currentWords[value].word)
-			setTraslate(
+			setTranslate(
 				translateCheck(currentWords[value].wordTranslate, falseWords)[value],
 			)
 		}
@@ -171,21 +169,16 @@ const MainGame = properties => {
 		switch (count) {
 			case 1:
 				setScore(score + 10)
-
 				break
 			case 2:
 				setScore(score + 20)
-
 				break
 			case 3:
 				setScore(score + 30)
-
 				break
 			case 4:
 				setScore(score + 40)
-
 				break
-
 			default:
 				break
 		}
@@ -197,11 +190,17 @@ const MainGame = properties => {
 			setAnswerCount(answerCount + 1)
 			bonusCounter(answerCount)
 			gettingScore(bonus)
+			trueWords.push(currentWords[value])
+			console.log(trueWords)
+			setTrueAnswer(answerTrue + 1)
 			setValue(value + 1)
 			makeWordField()
 		} else {
 			setColor('255, 0, 0,')
 			setTextDescription('WRONG')
+			falsesWords.push(currentWords[value])
+			console.log(falsesWords)
+			setFalseAnswer(answerFalse + 1)
 			setValue(value + 1)
 			setBonus(1)
 			setAnswerCount(0)
@@ -215,11 +214,17 @@ const MainGame = properties => {
 			setAnswerCount(answerCount + 1)
 			bonusCounter(answerCount)
 			gettingScore(bonus)
+			trueWords.push(currentWords[value])
+			console.log(trueWords)
+			setTrueAnswer(answerTrue + 1)
 			setValue(value + 1)
 			makeWordField()
 		} else {
 			setColor('255, 0, 0,')
 			setTextDescription('WRONG')
+			falsesWords.push(currentWords[value])
+			console.log(falsesWords)
+			setFalseAnswer(answerFalse + 1)
 			setValue(value + 1)
 			setBonus(1)
 			setAnswerCount(0)
@@ -235,9 +240,10 @@ const MainGame = properties => {
 		setFalseWords(falseArray)
 		setData(randomArray(properties.wordsData))
 		setWord(properties.wordsData[value].word)
-		setTraslate(properties.wordsData[value].wordTranslate)
+		setTranslate(properties.wordsData[value].wordTranslate)
 		setValue(value + 1)
 	}, [])
+
 	useEffect(() => {
 		let timeId
 		if (seconds > 0) {
@@ -301,10 +307,15 @@ const MainGame = properties => {
 							<div>False</div>
 						</div>
 					</div>
-					<Score score={score} bonus={bonus - 1} currentScore={gettingScore(bonus)} />
+					<Score score={score} bonus={bonus - 1} currentScore={bonus} />
 				</div>
 			) : (
-				<EndGame />
+				<EndGame
+					trueWords={trueWords}
+					falsesWords={falsesWords}
+					answerTrue={answerTrue}
+					answerFalse={answerFalse}
+				/>
 			)}
 		</div>
 	)

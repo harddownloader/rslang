@@ -30,11 +30,14 @@ const useStyles = makeStyles(theme => ({
 	},
 }))
 
-const EndGame = properties => {
+const EndGame = ({ trueWords, falsesWords, answerTrue, answerFalse }) => {
 	const classes = useStyles()
 	useEffect(() => {
-		console.log('Bonus', properties)
-	}, [])
+		console.log(trueWords)
+		console.log(falsesWords)
+		console.log(answerTrue)
+		console.log(answerFalse)
+	}, [trueWords, falsesWords, answerTrue, answerFalse])
 	return (
 		<div className={classes.EndGame}>
 			<div>Time is up. Your result:</div>

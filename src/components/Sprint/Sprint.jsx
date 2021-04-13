@@ -5,8 +5,6 @@ import Footer from '@/components/Footer/Footer'
 import { CountdownCircleTimer } from 'react-countdown-circle-timer'
 
 import { makeStyles } from '@material-ui/core/styles'
-import { SettingsSystemDaydreamTwoTone } from '@material-ui/icons'
-import img from '../../assets/images/gamesPage/sprint.jpg'
 import useDataApi from '@/utils/useDataApi'
 
 import { getAggregatedWords } from '@/utils/apiRequests/aggregatedWords'
@@ -20,7 +18,6 @@ const useStyles = makeStyles(theme => ({
 		alignItems: 'center',
 		flexDirection: 'column',
 		justifyContent: 'center',
-		background: `${img}`,
 		[theme.breakpoints.down('sm')]: {
 			width: '300px',
 		},
@@ -267,21 +264,10 @@ const Sprint = ({ userId, userToken }) => {
 		}
 	}, [isButtonClick, timerActive])
 
-	// const [
-	// 	{ data, isLoading, isError },
-	// 	doFetch, // eslint-disable-line no-unused-vars
-	// ] = useDataApi(
-	// 	getAggregatedWords,
-	// 	{ userId, userToken, group: lvl, initialWords: 60 },
-	// 	[],
-	// )
-
-
 	const [
 		{ data, isLoading, isError },
 		doFetch, // eslint-disable-line no-unused-vars
-	] = useDataApi(getAggregatedWords, [userId, userToken, lvl, false , 60], [])
-
+	] = useDataApi(getAggregatedWords, [userId, userToken, lvl, false, 60], [])
 
 	useEffect(() => {
 		doFetch(
@@ -290,12 +276,6 @@ const Sprint = ({ userId, userToken }) => {
 			[],
 		)
 	}, [lvl, setLvl])
-
-	// useEffect(() => {
-	// 	fetch(`https://rs-lang-app.herokuapp.com/words?page=2&group=${lvl}`)
-	// 		.then(response => response.json())
-	// 		.then(data => setWords(data))
-	// }, [lvl])
 
 	if (!userId) {
 		return <Redirect to='/login' />
