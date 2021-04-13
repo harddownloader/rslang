@@ -1,10 +1,5 @@
 import React, { useState, useEffect } from 'react'
-<<<<<<< HEAD
 import { Redirect } from 'react-router-dom'
-=======
-
-import img from '../../assets/images/gamesPage/sprint.jpg'
->>>>>>> 40b2a11c7684076e5a57f071de72367b384adf32
 import MainGame from '@/components/Sprint/MainGame'
 import Footer from '@/components/Footer/Footer'
 import { CountdownCircleTimer } from 'react-countdown-circle-timer'
@@ -272,14 +267,22 @@ const Sprint = ({ userId, userToken }) => {
 		}
 	}, [isButtonClick, timerActive])
 
+	// const [
+	// 	{ data, isLoading, isError },
+	// 	doFetch, // eslint-disable-line no-unused-vars
+	// ] = useDataApi(
+	// 	getAggregatedWords,
+	// 	{ userId, userToken, group: lvl, initialWords: 60 },
+	// 	[],
+	// )
+
+
 	const [
 		{ data, isLoading, isError },
 		doFetch, // eslint-disable-line no-unused-vars
-	] = useDataApi(
-		getAggregatedWords,
-		{ userId, userToken, group: lvl, initialWords: 60 },
-		[],
-	)
+	] = useDataApi(getAggregatedWords, [userId, userToken, lvl, false , 60], [])
+
+
 	useEffect(() => {
 		doFetch(
 			getAggregatedWords,
@@ -303,7 +306,7 @@ const Sprint = ({ userId, userToken }) => {
 	}
 	if (isLoading) {
 		return (
-			<div className={classes.loader}>
+			<div className={classes.SprintRoot}>
 				<CountdownCircleTimer
 					style={{ fontSize: '5rem' }}
 					isPlaying
