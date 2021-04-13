@@ -10,6 +10,7 @@ import LoginPage from '@/pages/LoginPage'
 import TestRequest from '@/pages/testRequest'
 import VocabularyPage from '@/pages/VocabularyPage'
 import AboutTeamPage from '@/pages/AboutTeamPage'
+import Promo from './pages/Promo'
 
 export default [
 	{
@@ -43,7 +44,7 @@ export default [
 	},
 	{
 		path: '/about-team',
-		component: <AboutTeamPage />
+		component: <Promo />
 	},
 	{
 		path: '/test',

@@ -13,9 +13,12 @@ const useStyles = makeStyles({
 })
 
 function Calend() {
+
 	const classes = useStyles()
 
 	const [value, onChange] = useState(new Date())
+
+	console.log("calendar", value.getMonth() + 1)
 
 	return (
 		<>
