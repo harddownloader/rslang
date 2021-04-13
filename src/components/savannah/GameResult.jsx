@@ -22,7 +22,7 @@ const useStyles = makeStyles(theme => ({
 		position: 'absolute',
 		top: '0',
 		left: '0',
-		backgroundColor: 'black',
+		backgroundColor: '#363538',
 		color: 'yellow',
 	},
 	result__title: {

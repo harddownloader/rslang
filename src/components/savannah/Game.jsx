@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react'
+import useDataApi from '@/utils/useDataApi'
+import { getAggregatedWords } from '@/utils/apiRequests/aggregatedWords'
 import { makeStyles } from '@material-ui/core/styles'
 import Loader from '@/components/savannah/Loader'
 import GameBoard from '@/components/savannah/GameBoard'
+
 
 const useStyles = makeStyles({
 	savannahGame: {

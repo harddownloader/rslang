@@ -35,7 +35,7 @@ const useStyles = makeStyles({
 		fontSize: '4rem',
 	},
 	taskWord: {
-		color: 'Black',
+		color: '#363538',
 		fontWeight: 'bold',
 		fontSize: '8rem',
 		margin: '2rem',
@@ -53,7 +53,7 @@ const useStyles = makeStyles({
 		width: 'available',
 		margin: '1rem auto 3rem auto',
 		fontSize: '2.5rem',
-		color: 'black',
+		color: '#363538',
 		border: 'solid 2px yellow',
 		borderRadius: '0',
 	},
