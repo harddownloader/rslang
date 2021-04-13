@@ -37,6 +37,7 @@ export default function Game(properties) {
 	const [isLoaded, setIsLoaded] = useState(false)
 	const [newGame, setNewGame] = useState(false)
 	const [page, setPage] = useState(0)
+	// const [{ setWords, setIsLoaded, setError }] = useDataApi(getAggregatedWords, [userId, userToken, properties.difficulty], [])
 	useEffect(() => {
 		if (newGame) {
 			setPage(page + 1)
