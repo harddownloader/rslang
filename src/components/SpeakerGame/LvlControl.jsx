@@ -52,5 +52,5 @@ export default function NativeSelects({ setLvl, lvl }) {
 
 NativeSelects.propTypes = {
 	setLvl: PropTypes.func,
-	lvl: PropTypes.number,
+	lvl: PropTypes.string,
 }

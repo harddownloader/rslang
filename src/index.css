@@ -41,7 +41,9 @@ body {
 body {
 	min-width: 320px;
 }
-
+div {
+	box-sizing: border-box;
+}
 /* Выставляем основные настройки по-умолчанию для body */
 body {
 	min-height: 100vh;

@@ -46,7 +46,7 @@ const useStyles = makeStyles(theme => ({
 	},
 }))
 
-const ContentBox = ({ data, swiper, setIsOpenPrompt, currentArray }) => {
+const ContentBox = ({ data, swiper, setIsOpenPrompt }) => {
 	const volume = new Audio(`https://rs-lang-app.herokuapp.com/${data.audio}`)
 	const classes = useStyles()
 
@@ -55,11 +55,7 @@ const ContentBox = ({ data, swiper, setIsOpenPrompt, currentArray }) => {
 			<div className={classes.imgMegaphoneBox} onClick={() => volume.play()}>
 				<img className={classes.img} src={imgMegaphone} alt='imgMegaphone' />
 			</div>
-			<Form
-				data={data}
-				setIsOpenPrompt={setIsOpenPrompt}
-				currentArray={currentArray}
-			/>
+			<Form data={data} setIsOpenPrompt={setIsOpenPrompt} />
 			<div className={classes.navBox}>
 				<Button
 					onClick={() => swiper.slidePrev()}
@@ -86,7 +82,6 @@ ContentBox.propTypes = {
 	data: PropTypes.object,
 	swiper: PropTypes.object,
 	setIsOpenPrompt: PropTypes.func,
-	currentArray: PropTypes.array,
 }
 
 export default ContentBox

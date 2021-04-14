@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useContext, useReducer } from 'react'
 import PropTypes from 'prop-types'
 
 // material
@@ -9,6 +9,13 @@ import MuiAlert from '@material-ui/lab/Alert'
 
 // castom hooks
 import { useFormState } from 'react-use-form-state'
+import {
+	getUserWords,
+	setUserWords,
+	updateUserWordsById,
+	getUserWordsById,
+} from '@/utils/apiRequests/userWords'
+import { Context } from './Context.jsx'
 //----------------------------------------
 
 function Alert(properties) {
@@ -49,47 +56,61 @@ const useStyles = makeStyles(theme => ({
 	},
 }))
 
-const Form = ({ data, setIsOpenPrompt, currentArray }) => {
-	const [formState, { label, text }] = useFormState()
-	const [isErrors, setIsErrors] = useState(false)
-	const [isChecked, setIsChecked] = useState(false)
-	const [open, setOpen] = useState(false)
-	const propertiesStyle = {
-		isErrors,
-		isChecked,
+const openFormReducer = (state, action) => {
+	switch (action.type) {
+		case 'OPEN_OLL':
+			return {
+				...state,
+				isChecked: true,
+				open: true,
+			}
+		case 'SET_ERROR':
+			return {
+				...state,
+				isErrors: true,
+			}
+		case 'SET_CLOSE':
+			return {
+				...state,
+				open: false,
+			}
+		default:
+			throw new Error('err')
 	}
-	const classes = useStyles(propertiesStyle)
+}
+
+const Form = ({ data, setIsOpenPrompt }) => {
+	const { contextStatistic } = useContext(Context)
+	const [statistic, dispatchStatistic] = contextStatistic
+	console.log(statistic)
+	const [formState, { label, text }] = useFormState()
+	const [state, dispatch] = useReducer(openFormReducer, {
+		isErrors: false,
+		isChecked: false,
+		open: false,
+	})
+	const { isErrors, isChecked, open } = state
+	const classes = useStyles({ isErrors, isChecked })
 	const handleClose = reason => {
 		if (reason === 'clickaway') {
 			return
 		}
-
-		setOpen(false)
-	}
-	const handleChange = () => {
-		setIsChecked(false)
-		setIsErrors(false)
-		setOpen(false)
+		dispatch({ type: 'SET_CLOSE' })
 	}
 
-	function handleSubmit(e) {
+	const handleSubmit = e => {
 		e.preventDefault()
-		setOpen(true)
-		setIsChecked(true)
 		if (formState.values.word === data.word) {
-			setIsErrors(false)
-			setIsOpenPrompt(true)
-			currentArray.push(1)
+			dispatchStatistic({ type: 'DECREMENT_CORRECT' })
+			statistic.series > statistic.bestSeries &&
+				dispatchStatistic({ type: 'BEST_SERIES' })
 		} else {
-			//!		currentArray
-			currentArray.push(2)
-			setIsErrors(true)
+			dispatchStatistic({ type: 'DECREMENT_ERRORS' })
+			dispatch({ type: 'SET_ERROR' })
 		}
-		if (currentArray.lenght === 10) {
-			alert(10)
-		}
+		dispatch({ type: 'OPEN_OLL' })
+		setIsOpenPrompt(true)
 		e.target.blur()
-		console.log(currentArray)
 	}
 
 	return (
@@ -99,12 +120,15 @@ const Form = ({ data, setIsOpenPrompt, currentArray }) => {
 				<input
 					{...text({
 						name: 'word',
-						onChange: e => handleChange(e),
 					})}
 					required
 				/>
 			</div>
-			<Button type='submit' variant='contained' color='secondary'>
+			<Button
+				type='submit'
+				variant='contained'
+				disabled={isChecked}
+				color='secondary'>
 				Check
 			</Button>
 			<Snackbar
@@ -113,7 +137,7 @@ const Form = ({ data, setIsOpenPrompt, currentArray }) => {
 				autoHideDuration={6000}
 				onClose={handleClose}>
 				<Alert onClose={handleClose} severity={isErrors ? 'error' : 'success'}>
-					{isErrors && isChecked ? 'error' : 'O_o'}
+					{isErrors && isChecked ? `error, current answer ${data.word}` : 'O_o'}
 				</Alert>
 			</Snackbar>
 		</form>
@@ -124,6 +148,8 @@ Form.propTypes = {
 	data: PropTypes.object,
 	setIsOpenPrompt: PropTypes.func,
 	currentArray: PropTypes.array,
+	userId: PropTypes.string,
+	userToken: PropTypes.string,
 }
 
 export default Form

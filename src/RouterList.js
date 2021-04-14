@@ -1,6 +1,6 @@
 import React from 'react'
 
-// import Home from '@/pages/Home'
+import Home from '@/pages/HomePage'
 //import ContainerHome from '@/ContainerHome'
 import GamesPage from '@/pages/GamesPage'
 import StatisticsPage from '@/pages/StatisticsPage'
@@ -14,9 +14,8 @@ import AboutTeamPage from '@/pages/AboutTeamPage'
 export default [
 	{
 		path: '/',
-		// component: <Home />,
+		component: <Home />,
 		//	component: <ContainerHome />
-		component: <GamesPage />,
 	},
 	{
 		path: '/games',

@@ -1,6 +1,4 @@
 import { useEffect, useReducer, useState } from 'react'
-import axios from 'axios'
-import aggregatedWords from '@/utils/apiRequests/aggregatedWords'
 import dataFetchReducer from './dataFetchReducer'
 
 const useDataApi = (startFunc, initialValues, initialData) => {
@@ -19,13 +17,7 @@ const useDataApi = (startFunc, initialValues, initialData) => {
 			dispatch({ type: 'FETCH_INIT' })
 
 			try {
-				const { userId, userToken, group } = { ...initialValues }
-				console.log(userId)
-				const result = await startFunc(
-					initialValues.userId,
-					initialValues.userToken,
-					group,
-				)
+				const result = await startFunc(...initialValues)
 
 				console.log(result[0].paginatedResults)
 
