@@ -60,7 +60,8 @@ const useStyles = makeStyles(theme => ({
 	},
 }))
 
-const Speaker = ({ query }) => {
+const Speaker = ({ query, userAuth }) => {
+	console.log('userAuth', {token: userAuth.token, userId: userAuth.userId})
 	const [swiper, setSwiper] = useState(null)
 	const [lvl, setLvl] = useState(query)
 
