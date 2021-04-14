@@ -83,12 +83,22 @@ const Speaker = ({ query, userToken, userId }) => {
 
 	const [{ data, isLoading, isError }, doFetch] = useDataApi(
 		getAggregatedWords,
-		[userId, userToken, lvl, false, 10],
+		[
+			userId,
+			userToken,
+			lvl,
+			false,
+			10,
+			// false
+			true
+		],
 		[],
 	)
+
 	useEffect(() => {
 		doFetch(getAggregatedWords, [userId, userToken, lvl], [])
 	}, [lvl, setLvl])
+
 	const [statistic, dispatchStatistic] = useReducer(StatisticReducer, {
 		currentAnswer: 0,
 		errorAnswer: 0,
@@ -97,12 +107,15 @@ const Speaker = ({ query, userToken, userId }) => {
 		exp: 0,
 		answer: 0,
 	})
+
 	if (!userId) {
 		return <Redirect to='/login' />
 	}
+
 	if (isError) {
 		return <div>Something went wrong ...</div>
 	}
+
 	if (isLoading) {
 		return (
 			<div className={classes.loader}>
@@ -110,6 +123,7 @@ const Speaker = ({ query, userToken, userId }) => {
 			</div>
 		)
 	}
+
 	return (
 		<Context.Provider
 			value={{

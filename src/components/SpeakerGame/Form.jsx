@@ -58,7 +58,7 @@ const useStyles = makeStyles(theme => ({
 
 const openFormReducer = (state, action) => {
 	switch (action.type) {
-		case 'OPEN_OLL':
+		case 'OPEN_ALL':
 			return {
 				...state,
 				isChecked: true,
@@ -81,6 +81,9 @@ const openFormReducer = (state, action) => {
 
 const Form = ({ data, setIsOpenPrompt }) => {
 	const { contextStatistic } = useContext(Context)
+	const { userToken } = useContext(Context)
+  const { userId } = useContext(Context)
+
 	const [statistic, dispatchStatistic] = contextStatistic
 	console.log(statistic)
 	const [formState, { label, text }] = useFormState()
@@ -104,11 +107,72 @@ const Form = ({ data, setIsOpenPrompt }) => {
 			dispatchStatistic({ type: 'DECREMENT_CORRECT' })
 			statistic.series > statistic.bestSeries &&
 				dispatchStatistic({ type: 'BEST_SERIES' })
+			
+				// updateUserWordsById(
+				// 	userId,
+				// 	userToken,
+				// 	data._id,
+				// 	data.userWord.difficulty,
+				// 	{
+				// 		// // сколько раз пользователь правильно ответил на слово в мини играх
+				// 		// correct_answers: (data.userWords.optional.correct_answers + 1),
+				// 		// uncorrect_answers: 0,
+				// 		// games: {
+				// 		// 	'savannah': {
+				// 		// 		learned: false
+				// 		// 	},
+				// 		// 	'sprint': {
+				// 		// 		learned: false
+				// 		// 	},
+				// 		// 	'speaker': {
+				// 		// 		learned: false
+				// 		// 	},
+				// 		// 	'my_game': {
+				// 		// 		learned: false
+				// 		// 	}
+				// 		// }
+				// 		...data,
+				// 		correct_answers: data.userWords.optional.correct_answers + 1,
+				// 			...games = {
+				// 				...speaker = {
+				// 					learned: true
+				// 				}
+				// 			},
+				// 	}
+				// )
+				console.log('data', data)
+				console.log('update true answer', {
+					// // сколько раз пользователь правильно ответил на слово в мини играх
+					// correct_answers: (data.userWord.optional.correct_answers + 1),
+					// uncorrect_answers: 0,
+					// games: {
+					// 	'savannah': {
+					// 		learned: false
+					// 	},
+					// 	'sprint': {
+					// 		learned: false
+					// 	},
+					// 	'speaker': {
+					// 		learned: false
+					// 	},
+					// 	'my_game': {
+					// 		learned: false
+					// 	}
+					// }
+					...data.userWord.optional,
+					correct_answers: data.userWord.optional.correct_answers + 1,
+					games: {
+						...data.userWord.optional.games,
+						speaker: {
+							learned: true
+						}
+					},
+				})
 		} else {
 			dispatchStatistic({ type: 'DECREMENT_ERRORS' })
 			dispatch({ type: 'SET_ERROR' })
 		}
-		dispatch({ type: 'OPEN_OLL' })
+		dispatch({ type: 'OPEN_ALL' })
 		setIsOpenPrompt(true)
 		e.target.blur()
 	}

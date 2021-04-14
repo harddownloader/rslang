@@ -10,9 +10,9 @@ module.exports = merge(common, {
 	mode: 'development',
 	devtool: 'inline-source-map',
 	//	new ForkTsCheckerWebpackPlugin({ async: false }),
-	optimization: {
-		runtimeChunk: true,
-	},
+	// optimization: {
+	// 	runtimeChunk: true,
+	// },
 	devServer: {
 		contentBase: path.join(__dirname, 'dist'),
 		historyApiFallback: true,

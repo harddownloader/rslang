@@ -58,6 +58,9 @@ export default function RegistrationPage(properties) {
 	const [name, setName] = useState('')
 	const [login, setLogin] = useState('')
 	const [password, setPassword] = useState('')
+	
+	const history = useHistory()
+	// console.log('history', history)
 
 	setTimeout(function () {
 		setCardAnimation('')
@@ -168,10 +171,12 @@ export default function RegistrationPage(properties) {
 			)
 
 			// сохраняем данные в редакс
-			properties.setUserAuth({
+			await properties.setUserAuth({
 				userId: content.userId ,
 				token: content.token
 			})
+
+			await history.push("/")
 			
 		} else {
 			console.error('small login or password')
