@@ -85,7 +85,8 @@ export default function RegistrationPage(properties) {
 			console.log('loggedUser', loggedUser)
 
 			// берем слова которые поставим в словарь
-			const newWords = await getAggregatedWords(
+			// 0 difficulty
+			const newEasy0Words = await getAggregatedWords(
 				loggedUser.userId,
 				loggedUser.token,
 				0,
@@ -93,7 +94,67 @@ export default function RegistrationPage(properties) {
 				60,
 				false
 			)
-			console.log('newWords', newWords)
+			console.log('newEasy0Words', newEasy0Words)
+			// 1 difficulty
+			const newEasy1Words = await getAggregatedWords(
+				loggedUser.userId,
+				loggedUser.token,
+				1,
+				false,
+				60,
+				false
+			)
+			console.log('newEasy1Words', newEasy1Words)
+			// 2 difficulty
+			const newMedium0Words = await getAggregatedWords(
+				loggedUser.userId,
+				loggedUser.token,
+				2,
+				false,
+				60,
+				false
+			)
+			console.log('newMedium0Words', newMedium0Words)
+			// 3 difficulty
+			const newMedium1Words = await getAggregatedWords(
+				loggedUser.userId,
+				loggedUser.token,
+				3,
+				false,
+				60,
+				false
+			)
+			console.log('newMedium1Words', newMedium1Words)
+			// 4 difficulty
+			const newHard0Words = await getAggregatedWords(
+				loggedUser.userId,
+				loggedUser.token,
+				4,
+				false,
+				60,
+				false
+			)
+			console.log('newHard0Words', newHard0Words)
+			// 5 difficulty
+			const newHard1Words = await getAggregatedWords(
+				loggedUser.userId,
+				loggedUser.token,
+				5,
+				false,
+				60,
+				false
+			)
+			console.log('newHard1Words', newHard1Words)
+
+			// words requests is aggregating to one words list
+			const newWords =  newEasy0Words[0].paginatedResults.concat(
+				newEasy1Words[0].paginatedResults,
+				newMedium0Words[0].paginatedResults,
+				newMedium1Words[0].paginatedResults,
+				newHard0Words[0].paginatedResults,
+				newHard1Words[0].paginatedResults
+			)
+
 			
 			// ставим слова в словарь(чтобы быил доступны мини игры)
 			for(let i = 0; i<newWords[0].paginatedResults.length; i++) {
