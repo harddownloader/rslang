@@ -10,20 +10,20 @@ import { curveCardinal } from 'd3-shape'
 
 const cardinal = curveCardinal.tension(0.2)
 
-const RechartsProgress = ({ stats}) => {
+const RechartsProgress = ({ stats }) => {
 	console.log('recharts', stats)
 
 	const data = [
 		{
 			name: 'start',
-			uv: 0,
+			learnedWords: 0,
 		},
 	]
 
 	stats.map((item) => {
 		const add = {
 			name: item.dateTime,
-			uv: item.games.audio.trueAnswer + item.games.myGame.trueAnswer + item.games.savana.trueAnswer + item.games.sprint.trueAnswer
+			learnedWords: item.games.audio.trueAnswer + item.games.myGame.trueAnswer + item.games.savana.trueAnswer + item.games.sprint.trueAnswer
 		}
 		data.push(add)
 	})
@@ -47,14 +47,14 @@ const RechartsProgress = ({ stats}) => {
 				<Tooltip />
 				<Area
 					type='monotone'
-					dataKey='uv'
+					dataKey='learnedWords'
 					stroke='#8884d8'
 					fill='#8884d8'
 					fillOpacity={0.3}
 				/>
 				<Area
 					type={cardinal}
-					dataKey='uv'
+					dataKey='learnedWords'
 					stroke='#82ca9d'
 					fill='#82ca9d'
 					fillOpacity={0.3}

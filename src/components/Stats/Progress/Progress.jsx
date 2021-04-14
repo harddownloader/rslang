@@ -28,7 +28,11 @@ const Progress = (props) => {
 
 	console.log('progres', props)
 
-	const result = Math.round(props.stats.trueAnswer * 100 / props.stats.countAnswer)
+	let result = 0
+
+	if (props.stats.countAnswer !== 0) {
+		result = Math.round(props.stats.trueAnswer * 100 / props.stats.countAnswer)
+	}
 
 	const classes = useStyles()
 

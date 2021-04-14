@@ -75,8 +75,8 @@ const other = [
     { id: 2, name: 'Настройки', description: 'Настройка это важная часть сайта, ты сможешь настраивать фишечки под себя.', src: settings }
 ]
 
-const Promo = () => {
 
+const Promo = () => {
 
     const classes = useStyles()
 
@@ -125,6 +125,7 @@ const Promo = () => {
                         </p>
                     </div>
                 </Grid>
+                <Grid item xs={12}><div style={{ width: '483px', height: '350px', marginLeft: 'calc(50% - 241.5px)' }}><Video /></div></Grid>
                 <Grid container item xs={6} className={classes.games} >
                     <Grid className={classes.head} item xs={12}><Typography className={classes.gameTypo} align='center' variant='h2'>Наши игры</Typography></Grid>
                     {getGames}
@@ -133,7 +134,6 @@ const Promo = () => {
                     <Grid className={classes.head} item xs={12}><Typography className={classes.otherTypo} align='center' variant='h2'>Другое</Typography></Grid>
                     {getOher}
                 </Grid>
-                <div style={{ width: '300px' }}><Video /></div>
             </Grid>
 
         </>

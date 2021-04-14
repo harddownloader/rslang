@@ -44,7 +44,7 @@ export default [
 	},
 	{
 		path: '/about-team',
-		component: <Promo />
+		component: <AboutTeamPage />
 	},
 	{
 		path: '/test',

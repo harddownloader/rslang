@@ -8,7 +8,6 @@ import DisplayStats from './DisplayStats/DisplayStats'
 import Progress from './Progress/Progress'
 import Recharts from './diagram/Recharts'
 import RechartsProgress from './diagram/RechartsProgress'
-import Calendar from './Calendar/Calendar'
 import Select from './Select/Select'
 import MetaTag from '../MetaTag/MetaTag'
 
@@ -276,7 +275,6 @@ const Stats = () => {
 						) : (
 							<>
 								<Select setStats={setStats} />
-								<Calendar />
 							</>
 						)}
 					</Grid>
@@ -297,11 +295,6 @@ const Stats = () => {
 							<Grid item lg={12} xs={12}>
 								<Button size='large' className={classes.button} onClick={() => setButton(3)}>
 									Спринт
-								</Button>
-							</Grid>
-							<Grid item lg={12} xs={12}>
-								<Button size='large' className={classes.button}>
-									Default
 								</Button>
 							</Grid>
 						</Grid>

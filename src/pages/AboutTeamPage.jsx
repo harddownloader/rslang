@@ -90,17 +90,17 @@ const text = [
 const about = [
 	{
 		id: 1,
-		impact: 'Вклад : макет, игра, дизайн сайта',
-		name: 'Серафим Олегович',
+		impact: 'Вклад : Redux-React, Registration, Backend,Vocabulary',
+		name: 'Круцкевич Серафим',
 		description:
 			'Do nostrud dolor culpa tempor tempor pariatur tempor minim irure ex.Consequat voluptateasdadasdad. ',
 	},
 	{
 		id: 2,
-		impact: 'Вклад : макет, игра, дизайн сайта',
-		name: 'Серафим Будько',
+		impact: 'Вклад : React-Redux,AboutTeam,Promo,Statistics',
+		name: 'Маскаленчик Влас',
 		description:
-			'Do nostrud dolor culpa tempor tempor pariatur tempor minim irure ex.Consequat voluptateasdadasdad.  ',
+			'Do nostrud dolor culpa tempor tempor pariatur tempor minim irure ex.Consequat voluptateasdadasdad.',
 	},
 	{
 		id: 3,
@@ -133,7 +133,7 @@ const about = [
 ]
 
 const AboutTeam = () => {
-	
+
 	const classes = useStyles()
 
 	const getText = text.map(item => {
