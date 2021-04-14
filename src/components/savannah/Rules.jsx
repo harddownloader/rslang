@@ -34,7 +34,7 @@ const useStyles = makeStyles(theme => ({
 		width: '5rem',
 		height: '5rem',
 		display: 'block',
-		border: 'solid .2rem #f8ee3a',
+		border: 'solid 0.2rem #f8ee3a',
 		marginRight: '1rem',
 		color: '#f8ee3a',
 		textAlign: 'center',
@@ -50,9 +50,13 @@ const useStyles = makeStyles(theme => ({
 		justifySelf: 'center',
 		marginTop: '5rem',
 		fontSize: '2rem',
-		border: '2px solid yellow',
+		border: '2px solid #f8ee3a',
 		borderRadius: '0',
-		color: 'black',
+		color: '#363538',
+		'&:hover': {
+			border: 'solid 1px yellow',
+			backgroundColor: '#fffbad',
+		},
 	},
 }))
 

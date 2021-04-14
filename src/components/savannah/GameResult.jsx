@@ -23,23 +23,52 @@ const useStyles = makeStyles(theme => ({
 		top: '0',
 		left: '0',
 		backgroundColor: '#363538',
-		color: 'yellow',
+		color: '#fafa68',
+		textShadow: '2px 2px 10px #fff875',
+		fontSize: '3rem',
 	},
 	result__title: {
-		fontSize: '8rem',
+		fontSize: '9rem',
 		margin: '2rem',
 	},
 	result__btns: {
-		width: '30%',
+		height: '15%',
 		display: 'flex',
-		flexDirection: 'row',
+		flexDirection: 'column',
 		alignItems: 'center',
 		justifyContent: 'space-between',
 		margin: '2rem',
 	},
 	result__btn: {
 		textDecoration: 'none',
-		color: 'yellow',
+		color: '#fafa68',
+		border: 'solid 2px #fff875',
+		fontSize: '1.5rem',
+		'&:hover': {
+			border: 'solid 1px yellow',
+			backgroundColor: '#fffbad',
+			color: '#363538'
+		},
+		'& a': {
+			color: 'inherit',
+			textDecoration: 'none',
+		},
+	},
+
+	words: {
+		width: '70%',
+		display: 'flex',
+		flexDirection: 'row',
+		flexWrap: 'wrap',
+		alignItems: 'center',
+		justifyContent: 'space-between',
+		margin: '2rem auto 3rem',
+	},
+	word: {
+		fontWeight: 'bold',
+		margin: '0.2rem',
+		fontSize: '22px',
+		fontSize: '4rem',
 	},
 }))
 
@@ -53,9 +82,11 @@ export default function GameResult(properties) {
 					Pay attention to this word
 					{properties.stat.incorrect.length > 1 ? 's' : ''}:
 				</p>
-				{properties.stat.incorrect.map(function result(item, index) {
-					return <p key={index}>{item.word.toUpperCase()}</p>
-				})}
+				<div className={classes.words}>
+					{properties.stat.incorrect.map(function result(item, index) {
+						return <p key={index} className={classes.word}>{item.word.toUpperCase()}</p>
+					})}
+				</div>
 			</>
 		)
 	}
@@ -72,14 +103,12 @@ export default function GameResult(properties) {
 			) : undefined}
 			<div className={classes.result__btns}>
 				<Button
-					variant='contained'
 					color='secondary'
 					className={classes.result__btn}
 					onClick={() => restartGame(true)}>
 					New game
 				</Button>
 				<Button
-					variant='contained'
 					color='secondary'
 					className={classes.result__btn}>
 					<Link to='/'>Back to main page</Link>

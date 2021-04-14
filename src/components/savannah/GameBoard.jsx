@@ -56,6 +56,10 @@ const useStyles = makeStyles({
 		color: '#363538',
 		border: 'solid 2px yellow',
 		borderRadius: '0',
+		'&:hover': {
+			border: 'solid 1px yellow',
+			backgroundColor: '#fffbad',
+		},
 	},
 })
 
