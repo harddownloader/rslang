@@ -5,7 +5,6 @@ import Attempts from '@/components/savannah/Attempts'
 import Button from '@material-ui/core/Button'
 import Result from '@/components/savannah/Result'
 import GameResult from '@/components/savannah/GameResult'
-import { yellow } from '@material-ui/core/colors'
 
 const initialStat = {
 	strick: 0,
@@ -18,14 +17,14 @@ const initialStat = {
 const useStyles = makeStyles({
 	gameStatus: {
 		display: 'flex',
-		width: '55%',
-		flexDirection: 'row',
-		justifyContent: 'space-between',
+		width: '80%',
+		flexDirection: 'column',
+		justifyContent: 'center',
 		alignItems: 'center',
-		alignSelf: 'flex-end',
+		margin: '2rem auto',
 	},
 	attempts: {
-		margin: '3rem',
+
 		alignSelf: 'flex-end',
 		fontSize: '4rem',
 	},
@@ -71,7 +70,6 @@ export default function GameBoard(properties) {
 	const classes = useStyles()
 	const [level, setLevel] = useState(0)
 	const [word, setWord] = useState(properties.words[level])
-	// const options = getOptions(word.wordTranslate, properties.words)
 	const [options, setOptions] = useState(getOptions(word.wordTranslate, properties.words))
 	const [gameStat, setGameStat] = useState(initialStat)
 	const [attempts, setAttempts] = useState(5)

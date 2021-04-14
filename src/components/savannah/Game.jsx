@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import useDataApi from '@/utils/useDataApi'
 import { getAggregatedWords } from '@/utils/apiRequests/aggregatedWords'
 import { makeStyles } from '@material-ui/core/styles'
 import Loader from '@/components/savannah/Loader'
@@ -33,38 +32,57 @@ function ErrorMessage(properties) {
 export default function Game(properties) {
 	console.dir(properties.userAuth)
 	const userID = properties.userAuth.userId
-	const token = properties.userAuth.token
+	const userToken = properties.userAuth.token
 	const classes = useStyles()
 	const [words, setWords] = useState()
 	const [isError, setError] = useState()
 	const [isLoaded, setIsLoaded] = useState(false)
 	const [newGame, setNewGame] = useState(false)
 	const [page, setPage] = useState(0)
-	// const [{ setWords, setIsLoaded, setError }] = useDataApi(getAggregatedWords, [userID, token, properties.difficulty], [])
 	useEffect(() => {
 		if (newGame) {
 			setPage(page + 1)
 			setNewGame(false)
 			setIsLoaded(false)
 		}
-		fetch(
-			`https://rs-lang-app.herokuapp.com/words?group=${properties.difficulty}&page=${page}`,
-		)
-			.then(response => response.json())
-			.then(
-				result => {
-					setWords(result)
-					setIsLoaded(true)
-				},
-				error => {
-					setError(error)
-					setIsLoaded(true)
-				},
-			)
+		try {
+			const responce = getAggregatedWords(userID, userToken, properties.difficulty, page, 20)
+				.then(response => {
+					console.dir(responce)
+					setWords(response[0].paginatedResults)
+					console.log(response[0].paginatedResults)
+				})
+				.then(() => setIsLoaded(true))
+		}
+		catch (error) {
+			setError(error)
+		}
+
 	}, [newGame])
+	// useEffect(() => {
+	// 	if (newGame) {
+	// 		setPage(page + 1)
+	// 		setNewGame(false)
+	// 		setIsLoaded(false)
+	// 	}
+	// 	fetch(
+	// 		`https://rs-lang-app.herokuapp.com/words?group=${properties.difficulty}&page=${page}`,
+	// 	)
+	// 		.then(response => response.json())
+	// 		.then(
+	// 			result => {
+	// 				setWords(result)
+	// 				setIsLoaded(true)
+	// 			},
+	// 			error => {
+	// 				setError(error)
+	// 				setIsLoaded(true)
+	// 			},
+	// 		)
+	// }, [newGame])
 	return (
 		<div className={classes.savannahGame}>
-			{isLoaded && !isError ? (
+			{(isLoaded & !isError) ? (
 				<GameBoard words={words.sort((a, b) => (Math.random() - 0.5))} newGame={setNewGame} />
 			) : (
 				<Loader />

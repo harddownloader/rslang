@@ -21,20 +21,20 @@ export default function Savannah(props) {
 	const classes = useStyles()
 	const [isGame, setGame] = useState(false)
 	const [difficulty, setDifficulty] = useState(0)
-	// if (props.userAuth.token === 'tokeN') return <Redirect to='/login' />
-	return (
-		<div className={classes.savannah}>
-			{isGame ? (
-				<Game difficulty={difficulty} userAuth={props.userAuth} setGame={setGame} />
-			) : (
-				<Rules
-					start={setGame}
-					setDifficulty={setDifficulty}
-					difficulty={difficulty}
-				/>
-			)}
-		</div>
-	)
+	return (!props.userAuth.token) ? <Redirect to='/login' /> :
+		(
+			<div className={classes.savannah}>
+				{isGame ? (
+					<Game difficulty={difficulty} userAuth={props.userAuth} setGame={setGame} />
+				) : (
+					<Rules
+						start={setGame}
+						setDifficulty={setDifficulty}
+						difficulty={difficulty}
+					/>
+				)}
+			</div>
+		)
 }
 
 Rules.propTypes = {

@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import CircularProgress from '@material-ui/core/CircularProgress'
-import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
+import Typography from '@material-ui/core/Typography'
+import Box from '@material-ui/core/Box'
+import { secondaryColor } from '@/assets/jss/materialKitReact'
 
 const useStyles = makeStyles({
 	timer: {
