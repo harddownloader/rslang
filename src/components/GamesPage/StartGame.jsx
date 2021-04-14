@@ -6,7 +6,7 @@ import Savannah from '@/components/savannah/Savannah'
 import Sprint from '@/components/Sprint/Sprint'
 
 function StartGame(props) {
-	console.log('start game props', props)
+	// console.log('start game props', props)
 
 	const [name, setName] = useState(props.name) 
 

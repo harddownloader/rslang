@@ -2,12 +2,12 @@ import React, {useState, useEffect} from 'react';
 import NavPills from '@/components/NavPills/NavPills'
 import {getUserWords} from '@/utils/apiRequests/userWords'
 
-function Vocabulary() {
+function Vocabulary(props) {
 
-  // useEffect(async ()=> {
-  //   const userWords = await getUserWords(userId, token)
-  //   console.log('userWords', userWords)
-  // }, [])
+  useEffect(async ()=> {
+    const userWords = await getUserWords(props.userAuth.userId, props.userAuth.token)
+    console.log('userWords', userWords)
+  }, [])
 
   return(
     <>
