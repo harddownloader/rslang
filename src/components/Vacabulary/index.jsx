@@ -1,13 +1,14 @@
 import React, {useState, useEffect} from 'react';
 import NavPills from '@/components/NavPills/NavPills'
-import {getUserWords} from '@@/utils/apiRequests/getUserWords'
+import {getUserWords} from '@/utils/apiRequests/userWords'
 
 function Vocabulary() {
 
-  useEffect(async ()=> {
-    const userWords = await getUserWords(userId, token)
-    console.log('userWords', userWords)
-  }, [])
+  // useEffect(async ()=> {
+  //   const userWords = await getUserWords(userId, token)
+  //   console.log('userWords', userWords)
+  // }, [])
+
   return(
     <>
       <div className="vocabulary">
