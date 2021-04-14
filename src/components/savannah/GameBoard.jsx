@@ -24,11 +24,6 @@ const useStyles = makeStyles({
 		alignItems: 'center',
 		alignSelf: 'flex-end',
 	},
-	timer: {
-		marginLeft: '7%',
-		fontSize: '3rem',
-		fontWeight: 'bold',
-	},
 	attempts: {
 		margin: '3rem',
 		alignSelf: 'flex-end',
@@ -141,7 +136,7 @@ export default function GameBoard(properties) {
 			) : undefined}
 			<div className={classes.gameStatus}>
 				{isGame ? (
-					<Timer cls={classes.timer} sec={5} lose={round} />
+					<Timer sec={5} lose={round} />
 				) : (
 					<Result result={isLose} />
 				)}
