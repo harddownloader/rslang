@@ -90,7 +90,7 @@ const Speaker = ({ query, userToken, userId }) => {
 			false,
 			10,
 			// false
-			true
+			true,
 		],
 		[],
 	)

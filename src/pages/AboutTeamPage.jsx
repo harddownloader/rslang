@@ -86,17 +86,17 @@ const text = [
 const about = [
 	{
 		id: 1,
-		impact: 'макет, игра, дизайн сайта',
-		name: 'Серафим Олегович',
+		impact: 'Вклад : Redux-React, Registration, Backend,Vocabulary',
+		name: 'Круцкевич Серафим',
 		description:
 			'Do nostrud dolor culpa tempor tempor pariatur tempor minim irure ex.Consequat voluptateasdadasdad. ',
 	},
 	{
 		id: 2,
-		impact: 'макет, игра, дизайн сайта',
-		name: 'Серафим Будько',
+		impact: 'Вклад : React-Redux,AboutTeam,Promo,Statistics',
+		name: 'Маскаленчик Влас',
 		description:
-			'Do nostrud dolor culpa tempor tempor pariatur tempor minim irure ex.Consequat voluptateasdadasdad.  ',
+			'Do nostrud dolor culpa tempor tempor pariatur tempor minim irure ex.Consequat voluptateasdadasdad.',
 	},
 	{
 		id: 3,

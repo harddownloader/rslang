@@ -74,6 +74,13 @@ const openFormReducer = (state, action) => {
 				...state,
 				open: false,
 			}
+		case 'END_GAME':
+			return {
+				...state,
+				isChecked: true,
+				open: true,
+				isEndGame: true,
+			}
 		default:
 			throw new Error('err')
 	}
@@ -82,7 +89,7 @@ const openFormReducer = (state, action) => {
 const Form = ({ data, setIsOpenPrompt }) => {
 	const { contextStatistic } = useContext(Context)
 	const { userToken } = useContext(Context)
-  const { userId } = useContext(Context)
+	const { userId } = useContext(Context)
 
 	const [statistic, dispatchStatistic] = contextStatistic
 	console.log(statistic)
@@ -91,6 +98,7 @@ const Form = ({ data, setIsOpenPrompt }) => {
 		isErrors: false,
 		isChecked: false,
 		open: false,
+		isEndGame: false,
 	})
 	const { isErrors, isChecked, open } = state
 	const classes = useStyles({ isErrors, isChecked })
@@ -105,75 +113,43 @@ const Form = ({ data, setIsOpenPrompt }) => {
 		e.preventDefault()
 		if (formState.values.word === data.word) {
 			dispatchStatistic({ type: 'DECREMENT_CORRECT' })
-			statistic.series > statistic.bestSeries &&
+			statistic.series >= statistic.bestSeries &&
 				dispatchStatistic({ type: 'BEST_SERIES' })
-			
-				// updateUserWordsById(
-				// 	userId,
-				// 	userToken,
-				// 	data._id,
-				// 	data.userWord.difficulty,
-				// 	{
-				// 		// // сколько раз пользователь правильно ответил на слово в мини играх
-				// 		// correct_answers: (data.userWords.optional.correct_answers + 1),
-				// 		// uncorrect_answers: 0,
-				// 		// games: {
-				// 		// 	'savannah': {
-				// 		// 		learned: false
-				// 		// 	},
-				// 		// 	'sprint': {
-				// 		// 		learned: false
-				// 		// 	},
-				// 		// 	'speaker': {
-				// 		// 		learned: false
-				// 		// 	},
-				// 		// 	'my_game': {
-				// 		// 		learned: false
-				// 		// 	}
-				// 		// }
-				// 		...data,
-				// 		correct_answers: data.userWords.optional.correct_answers + 1,
-				// 			...games = {
-				// 				...speaker = {
-				// 					learned: true
-				// 				}
-				// 			},
-				// 	}
-				// )
-				console.log('data', data)
-				console.log('update true answer', {
-					// // сколько раз пользователь правильно ответил на слово в мини играх
-					// correct_answers: (data.userWord.optional.correct_answers + 1),
-					// uncorrect_answers: 0,
-					// games: {
-					// 	'savannah': {
-					// 		learned: false
-					// 	},
-					// 	'sprint': {
-					// 		learned: false
-					// 	},
-					// 	'speaker': {
-					// 		learned: false
-					// 	},
-					// 	'my_game': {
-					// 		learned: false
-					// 	}
-					// }
+			updateUserWordsById(
+				userId,
+				userToken,
+				data._id,
+				data.userWord.difficulty,
+				{
 					...data.userWord.optional,
 					correct_answers: data.userWord.optional.correct_answers + 1,
 					games: {
 						...data.userWord.optional.games,
 						speaker: {
-							learned: true
-						}
+							learned: true,
+						},
 					},
-				})
+				},
+			)
 		} else {
 			dispatchStatistic({ type: 'DECREMENT_ERRORS' })
 			dispatch({ type: 'SET_ERROR' })
+			updateUserWordsById(
+				userId,
+				userToken,
+				data._id,
+				data.userWord.difficulty,
+				{
+					...data.userWord.optional,
+					uncorrect_answers: data.userWord.optional.uncorrect_answers + 1,
+				},
+			)
 		}
+
 		dispatch({ type: 'OPEN_ALL' })
 		setIsOpenPrompt(true)
+		if (statistic.answer === 10) {
+		}
 		e.target.blur()
 	}
 

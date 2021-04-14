@@ -21,8 +21,8 @@ const useStyles = makeStyles({
 	p: {
 		color: '#0eb37d',
 		fontWeight: '700',
-		fontSize: '25px',
 		letterSpacing: '2px',
+		fontSize: '20px',
 	},
 	span: {
 		color: '#7e919f',
@@ -30,7 +30,27 @@ const useStyles = makeStyles({
 	},
 })
 
-const DisplayStats = () => {
+const DisplayStats = ({ dates }) => {
+	console.log('display', dates)
+
+	const countAnswer =
+		dates[0].games.audio.countAnswer +
+		dates[0].games.myGame.countAnswer +
+		dates[0].games.savana.countAnswer +
+		dates[0].games.sprint.countAnswer
+
+	const answerTrue =
+		dates[0].games.audio.trueAnswer +
+		dates[0].games.myGame.trueAnswer +
+		dates[0].games.savana.trueAnswer +
+		dates[0].games.sprint.trueAnswer
+
+	let result = 0
+
+	if (countAnswer !== 0) {
+		result = Math.round((answerTrue * 100) / countAnswer)
+	}
+
 	const classes = useStyles()
 
 	return (
