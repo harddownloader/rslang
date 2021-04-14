@@ -3,28 +3,17 @@ import React from 'react'
 // core components
 import Header from '@/components/header'
 import Footer from '@/components/Footer/Footer'
+import Vacabulary from '@/components/Vacabulary'
 
 // Electro book
-const Vocabulary = () => {
-	// const getSettings = axios
-	// 	.get('https://rs-lang-app.herokuapp.com/users?id=605e40fd5747abe9af64b685')
-	// 	.then(function (response) {
-	// 		// handle success
-	// 		console.log(response)
-	// 	})
-	// 	.catch(function (error) {
-	// 		// handle error
-	// 		console.log(error)
-	// 	})
-	// 	.then(function () {
-	// 		// always executed
-	// 	})
+const Electrobook = () => {
 
 	return (
 		<>
 			<Header />
-			<div className='vacablurary'>
+			<div className='electrobook'>
 				<h5>Электронный учебник</h5>
+				<Vacabulary/>
 				<p>страницы и разделы учебника</p>
 				<p>настройки</p>
 				<p>список слов</p>
@@ -40,4 +29,4 @@ const Vocabulary = () => {
 	)
 }
 
-export default Vocabulary
+export default Electrobook

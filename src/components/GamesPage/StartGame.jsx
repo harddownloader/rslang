@@ -17,11 +17,11 @@ function StartGame(props) {
 	const { id } = useParams()
 
 	return id === 'savanna' ? (
-		<Savannah />
+		<Savannah userAuth={{token: props.userAuth.token, userId: props.userAuth.userId}}/>
 	) : id === 'sprint' ? (
-		<Sprint />
+		<Sprint userAuth={{token: props.userAuth.token, userId: props.userAuth.userId}}/>
 	) : id === 'speaker' ? (
-		<Speaker query={name} />
+		<Speaker query={name} userAuth={{token: props.userAuth.token, userId: props.userAuth.userId}}/>
 	) : (
 		<p>4</p>
 	)
