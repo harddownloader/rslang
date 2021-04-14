@@ -24,6 +24,7 @@ import {getAggregatedWords} from '@/utils/apiRequests/aggregatedWords'
 import {loginUser} from '@/utils/apiRequests/sign'
 import {setUserWords} from '@/utils/apiRequests/userWords'
 import {setStatistics} from '@/utils/apiRequests/statistics'
+import {setSettings} from '@/utils/apiRequests/settings'
 import {validateEmail} from '@/utils/validate'
 // styles
 import styles from '@/assets/jss/material-kit-react/views/loginPage'
@@ -83,6 +84,12 @@ export default function RegistrationPage(properties) {
 
 			const loggedUser = await loginUser({ email: login, password: password })
 			console.log('loggedUser', loggedUser)
+
+			// сохраняем данные в редакс
+			properties.setUserAuth({
+				userId: loggedUser.userId ,
+				token: loggedUser.token
+			})
 
 			// берем слова которые поставим в словарь
 			// 0 difficulty
@@ -154,14 +161,15 @@ export default function RegistrationPage(properties) {
 				newHard0Words[0].paginatedResults,
 				newHard1Words[0].paginatedResults
 			)
+			console.log('newWords', newWords)
 
 			
 			// ставим слова в словарь(чтобы быил доступны мини игры)
-			for(let i = 0; i<newWords[0].paginatedResults.length; i++) {
+			for(let i = 0; i<newWords.length; i++) {
 				setUserWords(
 					loggedUser.userId,
 					loggedUser.token,
-					newWords[0].paginatedResults[i]._id,
+					newWords[i]._id,
 					"easy",
 					{
 						// сколько раз пользователь правильно ответил на слово в мини играх
@@ -228,11 +236,15 @@ export default function RegistrationPage(properties) {
 				}
 			)
 
-			// сохраняем данные в редакс
-			properties.setUserAuth({
-				userId: content.userId ,
-				token: content.token
-			})
+			// ставим нулевые настройки словаря
+			await setSettings(
+				loggedUser.userId,
+				loggedUser.token,
+				0,
+				{
+					currect_difficulty: 0
+				}
+			)
 			
 		} else {
 			console.error('small login or password')
