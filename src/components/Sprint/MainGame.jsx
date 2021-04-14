@@ -9,6 +9,7 @@ import Timer from '@/components/Sprint/Timer'
 import TrueMarks from '@/components/Sprint/TrueMarks'
 import useTimeout from '@/components/Sprint/UseTimeOut'
 import EndGame from '@/components/Sprint/EndGame'
+import { ArrowLeft } from '@material-ui/icons'
 
 const useStyles = makeStyles(theme => ({
 	SprintRoot: {
@@ -139,6 +140,7 @@ const MainGame = properties => {
 	const [textDescription, setTextDescription] = useState(null)
 	const [seconds, setSeconds] = useState(30)
 	const [isGame, setGame] = useState(true)
+	const [buttonColor, setButtonColor] = useState(null)
 
 	const makeWordField = () => {
 		const rand = Math.floor(Math.random() * 2)
@@ -191,7 +193,6 @@ const MainGame = properties => {
 			bonusCounter(answerCount)
 			gettingScore(bonus)
 			trueWords.push(currentWords[value])
-			console.log(trueWords)
 			setTrueAnswer(answerTrue + 1)
 			setValue(value + 1)
 			makeWordField()
@@ -199,7 +200,6 @@ const MainGame = properties => {
 			setColor('255, 0, 0,')
 			setTextDescription('WRONG')
 			falsesWords.push(currentWords[value])
-			console.log(falsesWords)
 			setFalseAnswer(answerFalse + 1)
 			setValue(value + 1)
 			setBonus(1)
@@ -215,7 +215,6 @@ const MainGame = properties => {
 			bonusCounter(answerCount)
 			gettingScore(bonus)
 			trueWords.push(currentWords[value])
-			console.log(trueWords)
 			setTrueAnswer(answerTrue + 1)
 			setValue(value + 1)
 			makeWordField()
@@ -223,7 +222,6 @@ const MainGame = properties => {
 			setColor('255, 0, 0,')
 			setTextDescription('WRONG')
 			falsesWords.push(currentWords[value])
-			console.log(falsesWords)
 			setFalseAnswer(answerFalse + 1)
 			setValue(value + 1)
 			setBonus(1)
@@ -233,7 +231,6 @@ const MainGame = properties => {
 	}
 
 	useEffect(() => {
-		console.log(properties.wordsData)
 		for (const item of properties.wordsData) {
 			falseArray.push(item.wordTranslate)
 		}
@@ -255,6 +252,22 @@ const MainGame = properties => {
 			clearTimeout(timeId)
 		}
 	}, [seconds])
+
+	const handleKey = e => {
+		if (isGame) {
+			if (e.key === 'ArrowLeft') {
+				checkButtonTrue()
+			} else if (e.key === 'ArrowRight') {
+				checkButtonFalse()
+			}
+		}
+		e.preventDefault()
+	}
+
+	useEffect(() => {
+		if (isGame) window.addEventListener('keyup', handleKey)
+		return () => window.removeEventListener('keyup', handleKey)
+	})
 
 	return (
 		<div className={classes.SprintRoot}>
@@ -292,6 +305,7 @@ const MainGame = properties => {
 					</div>
 					<div className={classes.buttonBlock}>
 						<div
+							style={{ backgroundColor: `${buttonColor}` }}
 							className={classes.buttonTrue}
 							onClick={() => {
 								checkButtonTrue()
@@ -300,6 +314,7 @@ const MainGame = properties => {
 						</div>
 
 						<div
+							style={{ backgroundColor: `${buttonColor}` }}
 							className={classes.buttonFalse}
 							onClick={() => {
 								checkButtonFalse()
@@ -311,7 +326,7 @@ const MainGame = properties => {
 				</div>
 			) : (
 				<EndGame
-				    score={score}
+					score={score}
 					trueWords={trueWords}
 					falsesWords={falsesWords}
 					answerTrue={answerTrue}

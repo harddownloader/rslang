@@ -23,6 +23,8 @@ const useStyles = makeStyles(theme => ({
 		textDecoration: 'none',
 		[theme.breakpoints.down('sm')]: {
 			width: '300px',
+			height: '30px',
+			fontSize: '2.5rem',
 		},
 		'&:hover': {
 			backgroundColor: 'gray',
@@ -30,70 +32,114 @@ const useStyles = makeStyles(theme => ({
 	},
 	resultBlock: {
 		textAlign: 'center',
-		fontSize: '2.5rem',
+		fontSize: '2.1rem',
 		display: 'flex',
 		alignItems: 'center',
 		justifyContent: 'center',
 		flexDirection: 'raw',
-		justifyContent: 'space-around',
-		width: '400px',
-		height: '70px',
+		width: '80%px',
+		height: '100px',
 		color: '#f6ea09',
 		[theme.breakpoints.down('sm')]: {
 			width: '300px',
+			fontSize: '1.5rem',
+			height: '50px',
 		},
 	},
-	LearnedWords:{
+	resultHead: {
+		textAlign: 'center',
+		fontSize: '2.1rem',
+		display: 'flex',
+		alignItems: 'center',
+		justifyContent: 'center',
+		[theme.breakpoints.down('sm')]: {
+			fontSize: '1.5rem',
+		},
+	},
+	resultWord: {
+		textAlign: 'center',
+		fontSize: '2.1rem',
+		display: 'flex',
+		alignItems: 'center',
+		justifyContent: 'space-around',
+		color: 'red',
+		[theme.breakpoints.down('sm')]: {
+			fontSize: '1rem',
+			width: '300px',
+		},
+	},
+	LearnedWords: {
 		textAlign: 'center',
 		fontSize: '1.5rem',
 		display: 'flex',
 		alignItems: 'center',
-		justifyContent: 'center',
-		flexDirection: 'raq',
-	    width: '100%',
+		justifyContent: 'space-between',
+		flexDirection: 'raw',
+		width: '100%',
 		overFlow: 'scroll',
 		[theme.breakpoints.down('sm')]: {
 			width: '300px',
+			fontSize: '1rem',
 		},
-
 	},
-	TrueWords:{
+	TrueWords: {
+		height: '500px',
+		overflow: 'auto',
 		textAlign: 'left',
 		fontSize: '1.5rem',
 		display: 'flex',
 		alignItems: 'left',
 		justifyContent: 'top',
-		flexDirection: 'column',	
-		color: 'yellow',
-	},
-	FalseWords:{
-		textAlign: 'left',
-		fontSize: '1.5rem',
-		display: 'flex',
-		alignItems: 'left',
-		justifyContent: 'top',
-		flexDirection: 'column',	
+		flexDirection: 'column',
 		color: 'red',
-	}
-
-
-
+		[theme.breakpoints.down('sm')]: {
+			height: '250px',
+			fontSize: '1rem',
+		},
+	},
+	FalseWords: {
+		overflow: 'auto',
+		overFlow: 'scroll',
+		textAlign: 'left',
+		fontSize: '1.5rem',
+		display: 'flex',
+		alignItems: 'left',
+		justifyContent: 'top',
+		flexDirection: 'column',
+		color: 'red',
+		height: '500px',
+		[theme.breakpoints.down('sm')]: {
+			height: '250px',
+			fontSize: '1rem',
+		},
+	},
 }))
 
-const EndGame = ({ score, trueWords, falsesWords, answerTrue, answerFalse }) => {
+const EndGame = ({
+	score,
+	trueWords,
+	falsesWords,
+	answerTrue,
+	answerFalse,
+}) => {
 	const classes = useStyles()
-	let trueWordList = trueWords.map((item)=>{
-	return (	<div>{item.word} - {item.wordTranslate}</div>)
+	let trueWordList = trueWords.map(item => {
+		return (
+			<div>
+				{item.word} - {item.wordTranslate}
+			</div>
+		)
 	})
-	let falseWordList = falsesWords.map((item)=>{
-		return (	<div>{item.word} - {item.wordTranslate}</div>)
-		})
+	let falseWordList = falsesWords.map(item => {
+		return (
+			<div>
+				{item.word} - {item.wordTranslate}
+			</div>
+		)
+	})
 
-	useEffect(() => {
-console.log( trueWordList)
-	}, [trueWords, falsesWords, answerTrue, answerFalse])
 	return (
-		< div className={classes.EndGame}>
+		<div className={classes.EndGame}>
 			<Link
 				underline='none'
 				color='inherit'
@@ -101,19 +147,21 @@ console.log( trueWordList)
 				href='/games/sprint?name=0'>
 				<div style={{ color: '#f6ea09' }}>Play Again</div>
 			</Link>
-			<div>Time is up. Your result:</div>
+			<div className={classes.resultHead}>Time is up. Your result:</div>
 			<div className={classes.resultBlock}>
-				<div className={classes.resultScore}>Score:  {score}</div>
+				<div className={classes.resultScore}>Score: {score}</div>
 				<div className={classes.resultAnswer}>Good answer: {answerTrue}</div>
-				<div className={classes.resultError} >Bad answer: {answerFalse}</div>
+				<div className={classes.resultError}>Bad answer: {answerFalse}</div>
 			</div>
-		<div className={classes.LearnedWords}>
-			<div className={classes.TrueWords}> {trueWordList}</div>
-			<div className={classes.FalseWords}>{falseWordList}</div>
-
+			<div className={classes.resultWord}>
+				<div>Good Answer:</div>
+				<div>Bad Answer:</div>
+			</div>
+			<div className={classes.LearnedWords}>
+				<div className={classes.TrueWords}> {trueWordList}</div>
+				<div className={classes.FalseWords}>{falseWordList}</div>
+			</div>
 		</div>
-
-		</div >
 	)
 }
 

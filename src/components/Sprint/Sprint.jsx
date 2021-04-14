@@ -267,7 +267,7 @@ const Sprint = ({ userId, userToken }) => {
 	const [
 		{ data, isLoading, isError },
 		doFetch, // eslint-disable-line no-unused-vars
-	] = useDataApi(getAggregatedWords, [userId, userToken, lvl, false, 60], [])
+	] = useDataApi(getAggregatedWords, [userId, userToken, lvl, false, 100], [])
 
 	useEffect(() => {
 		doFetch(

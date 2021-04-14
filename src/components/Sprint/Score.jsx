@@ -41,12 +41,10 @@ const useStyles = makeStyles(theme => ({
 const Score = ({score, bonus, currentScore}) => {
 	const classes = useStyles()
 	useEffect(() => {
-		console.log('Bonus', bonus)
 	}, [bonus])
 	return (
 		<div className={classes.Statistic}>
 			<div className={classes.Score}>Score: {score}</div>
-			<div className={classes.CurrentScore}> +{currentScore}</div>
 			<div className={classes.Bonus}>Bonus: X{bonus}</div>
 		</div>
 	)
