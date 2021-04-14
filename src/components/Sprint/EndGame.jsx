@@ -15,7 +15,7 @@ const useStyles = makeStyles(theme => ({
 		alignItems: 'center',
 		justifyContent: 'center',
 		width: '400px',
-		height: '100px',
+		height: '50px',
 		color: '#f6ea09',
 		border: '1px solid',
 		borderColor: '#f6ea09',
@@ -28,19 +28,72 @@ const useStyles = makeStyles(theme => ({
 			backgroundColor: 'gray',
 		},
 	},
+	resultBlock: {
+		textAlign: 'center',
+		fontSize: '2.5rem',
+		display: 'flex',
+		alignItems: 'center',
+		justifyContent: 'center',
+		flexDirection: 'raw',
+		justifyContent: 'space-around',
+		width: '400px',
+		height: '70px',
+		color: '#f6ea09',
+		[theme.breakpoints.down('sm')]: {
+			width: '300px',
+		},
+	},
+	LearnedWords:{
+		textAlign: 'center',
+		fontSize: '1.5rem',
+		display: 'flex',
+		alignItems: 'center',
+		justifyContent: 'center',
+		flexDirection: 'raq',
+	    width: '100%',
+		overFlow: 'scroll',
+		[theme.breakpoints.down('sm')]: {
+			width: '300px',
+		},
+
+	},
+	TrueWords:{
+		textAlign: 'left',
+		fontSize: '1.5rem',
+		display: 'flex',
+		alignItems: 'left',
+		justifyContent: 'top',
+		flexDirection: 'column',	
+		color: 'yellow',
+	},
+	FalseWords:{
+		textAlign: 'left',
+		fontSize: '1.5rem',
+		display: 'flex',
+		alignItems: 'left',
+		justifyContent: 'top',
+		flexDirection: 'column',	
+		color: 'red',
+	}
+
+
+
 }))
 
-const EndGame = ({ trueWords, falsesWords, answerTrue, answerFalse }) => {
+const EndGame = ({ score, trueWords, falsesWords, answerTrue, answerFalse }) => {
 	const classes = useStyles()
+	let trueWordList = trueWords.map((item)=>{
+	return (	<div>{item.word} - {item.wordTranslate}</div>)
+	})
+	let falseWordList = falsesWords.map((item)=>{
+		return (	<div>{item.word} - {item.wordTranslate}</div>)
+		})
+
 	useEffect(() => {
-		console.log(trueWords)
-		console.log(falsesWords)
-		console.log(answerTrue)
-		console.log(answerFalse)
+console.log( trueWordList)
 	}, [trueWords, falsesWords, answerTrue, answerFalse])
 	return (
-		<div className={classes.EndGame}>
-			<div>Time is up. Your result:</div>
+		< div className={classes.EndGame}>
 			<Link
 				underline='none'
 				color='inherit'
@@ -48,7 +101,19 @@ const EndGame = ({ trueWords, falsesWords, answerTrue, answerFalse }) => {
 				href='/games/sprint?name=0'>
 				<div style={{ color: '#f6ea09' }}>Play Again</div>
 			</Link>
+			<div>Time is up. Your result:</div>
+			<div className={classes.resultBlock}>
+				<div className={classes.resultScore}>Score:  {score}</div>
+				<div className={classes.resultAnswer}>Good answer: {answerTrue}</div>
+				<div className={classes.resultError} >Bad answer: {answerFalse}</div>
+			</div>
+		<div className={classes.LearnedWords}>
+			<div className={classes.TrueWords}> {trueWordList}</div>
+			<div className={classes.FalseWords}>{falseWordList}</div>
+
 		</div>
+
+		</div >
 	)
 }
 

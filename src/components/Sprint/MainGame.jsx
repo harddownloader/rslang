@@ -311,6 +311,7 @@ const MainGame = properties => {
 				</div>
 			) : (
 				<EndGame
+				    score={score}
 					trueWords={trueWords}
 					falsesWords={falsesWords}
 					answerTrue={answerTrue}
