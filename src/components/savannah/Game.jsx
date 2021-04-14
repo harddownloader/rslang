@@ -31,13 +31,16 @@ function ErrorMessage(properties) {
 	)
 }
 export default function Game(properties) {
+	console.dir(properties.userAuth)
+	const userID = properties.userAuth.userId
+	const token = properties.userAuth.token
 	const classes = useStyles()
 	const [words, setWords] = useState()
 	const [isError, setError] = useState()
 	const [isLoaded, setIsLoaded] = useState(false)
 	const [newGame, setNewGame] = useState(false)
 	const [page, setPage] = useState(0)
-	// const [{ setWords, setIsLoaded, setError }] = useDataApi(getAggregatedWords, [userId, userToken, properties.difficulty], [])
+	// const [{ setWords, setIsLoaded, setError }] = useDataApi(getAggregatedWords, [userID, token, properties.difficulty], [])
 	useEffect(() => {
 		if (newGame) {
 			setPage(page + 1)

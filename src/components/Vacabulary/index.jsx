@@ -1,17 +1,17 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import NavPills from '@/components/NavPills/NavPills'
-import {getUserWords} from '@@/utils/apiRequests/getUserWords'
+import { getUserWords } from '@@/utils/apiRequests/getUserWords'
 
 function Vocabulary() {
 
-  useEffect(async ()=> {
+  useEffect(async () => {
     const userWords = await getUserWords(userId, token)
     console.log('userWords', userWords)
   }, [])
-  return(
+  return (
     <>
       <div className="vocabulary">
-        <p>vocabulary</p> 
+        <p>vocabulary</p>
         <NavPills
           color="primary"
           tabs={[

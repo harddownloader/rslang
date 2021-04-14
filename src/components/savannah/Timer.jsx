@@ -19,7 +19,7 @@ function CircularProgressWithLabel(props) {
 	const classes = useStyles()
 	return (
 		<Box position='relative' display='inline-flex'>
-			<CircularProgress variant='determinate' value={props.value * 20} size='100px' className={classes.progress} color='#fffbad' />
+			<CircularProgress variant='determinate' value={props.value * 20} size='100px' className={classes.progress} color='secondary' />
 			<Box
 				top={0}
 				left={0}

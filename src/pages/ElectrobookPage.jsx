@@ -3,7 +3,7 @@ import React from 'react'
 // core components
 import Header from '@/components/header'
 import Footer from '@/components/Footer/Footer'
-import Vacabulary from '@/components/Vacabulary'
+// import Vacabulary from '@/components/Vacabulary'
 
 // Electro book
 const Electrobook = () => {
@@ -13,7 +13,7 @@ const Electrobook = () => {
 			<Header />
 			<div className='electrobook'>
 				<h5>Электронный учебник</h5>
-				<Vacabulary/>
+				{/* <Vacabulary/> */}
 				<p>страницы и разделы учебника</p>
 				<p>настройки</p>
 				<p>список слов</p>
