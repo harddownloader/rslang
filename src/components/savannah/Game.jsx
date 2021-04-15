@@ -46,7 +46,7 @@ export default function Game(properties) {
 			setIsLoaded(false)
 		}
 		try {
-			getAggregatedWords(userID, userToken, properties.difficulty, page, 20)
+			getAggregatedWords(userID, userToken, properties.difficulty, page, 20, '{"userWord.optional.games.savana.learned": false}')
 				.then(res => {
 					setWords(res[0].paginatedResults)
 				})

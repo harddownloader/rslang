@@ -5,6 +5,7 @@ import Attempts from '@/components/savannah/Attempts'
 import Button from '@material-ui/core/Button'
 import Result from '@/components/savannah/Result'
 import GameResult from '@/components/savannah/GameResult'
+import { updateUserWordsById } from '@/utils/apiRequests/userWords'
 
 const useStyles = makeStyles({
 	gameStatus: {
@@ -115,6 +116,22 @@ export default function GameBoard(properties) {
 						}
 					}
 				})
+				updateUserWordsById(
+					properties.userAuth.userId,
+					properties.userAuth.token,
+					word.id,
+					word.difficulty,
+					{
+						...word.optional,
+						correct_answers: word.userWord.optional.correct_answers + 1,
+						games: {
+							...word.userWord.optional.games,
+							savana: {
+								learned: true,
+							},
+						},
+					},
+				)
 				break
 			case 'lose':
 				setIsGame(false)
@@ -138,6 +155,16 @@ export default function GameBoard(properties) {
 						},
 					}
 				})
+				updateUserWordsById(
+					properties.userAuth.userId,
+					properties.userAuth.token,
+					word.id,
+					word.difficulty,
+					{
+						...word.userWord.optional,
+						uncorrect_answers: word.userWord.optional.uncorrect_answers + 1,
+					},
+				)
 				break
 			default:
 				setGameStat({ ...gameStat })

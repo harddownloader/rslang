@@ -74,8 +74,6 @@ const useStyles = makeStyles(theme => ({
 }))
 
 export default function GameResult(properties) {
-	console.log('STAT EBANIY')
-	console.dir(properties.gameStat)
 	const finalStat = {
 		...properties.gameStat.origin,
 		optional: {
@@ -85,8 +83,8 @@ export default function GameResult(properties) {
 			}
 		}
 	}
-
 	setStatistics(properties.userAuth.userId, properties.userAuth.token, 0, finalStat)
+
 	const classes = useStyles()
 	const restartGame = properties.newGame
 	function ShouldLearn() {
