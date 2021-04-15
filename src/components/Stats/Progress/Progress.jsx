@@ -12,7 +12,7 @@ const useStyles = makeStyles({
 		borderRadius: '20px',
 		width: '250px',
 		backgroundColor: '#f4f4f4',
-		fontWeight: '600',
+		fontWeight: '800',
 		color: '#7e919f;',
 	},
 	p: {
@@ -41,19 +41,19 @@ const Progress = (props) => {
 			<Grid item lg={4} xs={12} className={classes.wrapperProgress}>
 				<div className={classes.div}>
 					<p>Изученных слов</p>
-					<p className={classes.p}>0</p>
+					<p className={classes.p}>{props.stats.trueAnswer}</p>
 				</div>
 			</Grid>
 			<Grid item lg={4} xs={12} className={classes.wrapperProgress}>
 				<div className={classes.div}>
 					<p>Правильных ответов</p>
-					<p className={classes.p}>0</p>
+					<p className={classes.p}>{result}%</p>
 				</div>
 			</Grid>
 			<Grid item lg={4} xs={12} className={classes.wrapperProgress}>
 				<div className={classes.div}>
 					<p>Серия правильных ответов</p>
-					<p className={classes.p}>0</p>
+					<p className={classes.p}>{props.stats.seriesAnswer}</p>
 				</div>
 			</Grid>
 		</Grid>

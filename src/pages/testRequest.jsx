@@ -23,15 +23,16 @@ function TestRequest(props) {
     
 
 
-    // const newWords = await getAggregatedWords(
-    //   login.userId,
-    //   login.token,
-    //   0,
-    //   false,
-    //   1,
-    //   false
-    // )
-    // console.log('newWords', newWords)
+    const newWords = await getAggregatedWords(
+      login.userId,
+      login.token,
+      0,
+      false,
+      60,
+      // '{"userWord.difficulty":"easy"}'
+      '{"userWord.optional.games.speaker.learned": false}',
+    )
+    console.log('newWords', newWords)
     
     // // ставим слова в словарь(чтобы быил доступны мини игры)
     // for(let i = 0; i<newWords[0].paginatedResults.length; i++) {
@@ -97,15 +98,15 @@ function TestRequest(props) {
     // await console.log('userWords', userWords)
 
 
-    const newWords = await getAggregatedWords(
-      login.userId,
-      login.token,
-      0,
-      false,
-      1,
-      '"userWord.optional.games.speaker.learned": true'
-    )
-    console.log('newWords', newWords)
+    // const newWords = await getAggregatedWords(
+    //   login.userId,
+    //   login.token,
+    //   0,
+    //   false,
+    //   1,
+    //   '"userWord.optional.games.speaker.learned": true'
+    // )
+    // console.log('newWords', newWords)
 
   }, [])
 

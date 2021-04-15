@@ -1,6 +1,6 @@
 const initialState = {
-	userId: null,
-	token: null ,
+  userId: null,
+  token: null
 }
 
 export function getUserAuth(state = initialState, action) {

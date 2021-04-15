@@ -6,7 +6,7 @@ import Savannah from '@/components/savannah/Savannah'
 import Sprint from '@/components/Sprint/Sprint'
 
 function StartGame(props) {
-	console.log('start game props', props)
+	// console.log('start game props', props)
 
 	const [name, setName] = useState(props.name)
 
@@ -17,9 +17,9 @@ function StartGame(props) {
 	const { id } = useParams()
 
 	return id === 'savanna' ? (
-		<Savannah />
+		<Savannah userAuth={{token: props.userAuth.token, userId: props.userAuth.userId}}/>
 	) : id === 'sprint' ? (
-		<Sprint />
+		<Sprint userAuth={{token: props.userAuth.token, userId: props.userAuth.userId}}/>
 	) : id === 'speaker' ? (
 		<Speaker
 			query={name}

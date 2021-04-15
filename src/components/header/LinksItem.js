@@ -13,10 +13,10 @@ export default [
 		img: mainIco,
 	},
 	{
-		path: '/vocabulary',
+		path: '/electro-book',
 		bg: colors.boxB,
 		title: 'Vocabulary',
-		subtitle: 'Cловарь',
+		subtitle: 'Электронный учебник',
 		img: vocIco,
 	},
 	{
