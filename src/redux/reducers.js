@@ -1,6 +1,6 @@
 const initialState = {
-  userId: 'userID',
-  token: 'tokeN'
+  userId: "605e409e5747abe9af64b684",
+  token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwNWU0MDllNTc0N2FiZTlhZjY0YjY4NCIsImlhdCI6MTYxODQ5MDAzOCwiZXhwIjoxNjE4NTA0NDM4fQ.cLskjFnO9mHMuZmiyv9_UPnwoNqrWHK0AiugkoQXGSU"
 }
 
 export function getUserAuth(state = initialState, action) {

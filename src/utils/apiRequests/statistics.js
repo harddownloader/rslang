@@ -1,6 +1,6 @@
 // Gets statistics
 export async function getStatistics(userId, token) {
-  const rawResponseStats = await fetch(
+  const rawResponseStatsGet = await fetch(
     `https://rs-lang-app.herokuapp.com/users/${userId}/statistics`,
     {
       method: 'GET',

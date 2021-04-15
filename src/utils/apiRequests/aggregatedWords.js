@@ -6,7 +6,7 @@ export async function getAggregatedWords(userId, token, group, page, wordsPerPag
   if(group) url += `group=${group}&`
   if(page) url += `page=${page}&`
   if(wordsPerPage) url += `wordsPerPage=${wordsPerPage}&`
-  if(filter) url += `filter=${filter}&`
+  if(filter) url += `filter=${filter}`
 
   const rawResponseAggregate = await fetch(
     url,
