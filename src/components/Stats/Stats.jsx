@@ -12,51 +12,51 @@ import Select from './Select/Select'
 import MetaTag from '../MetaTag/MetaTag'
 import returnDate from '@/utils/returnDate'
 
-const loginUser = async user => {
-	const rawResponse = await fetch(
-		'https://rs-lang-app.herokuapp.com/signin',
-		{
-			method: 'POST',
-			headers: {
-				Accept: 'application/json',
-				'Content-Type': 'application/json',
-			},
-			body: JSON.stringify(user),
-		},
-	)
-	console.log('rawResponse', rawResponse)
+// const loginUser = async user => {
+// 	const rawResponse = await fetch(
+// 		'https://rs-lang-app.herokuapp.com/signin',
+// 		{
+// 			method: 'POST',
+// 			headers: {
+// 				Accept: 'application/json',
+// 				'Content-Type': 'application/json',
+// 			},
+// 			body: JSON.stringify(user),
+// 		},
+// 	)
+// 	console.log('rawResponse', rawResponse)
 
-	if (rawResponse.status === 200) {
-		const content = await rawResponse.json()
-		console.log('loginUser', content)
-		return content
-	} else {
-		alert('Введите корректные данные')
-	}
-}
+// 	if (rawResponse.status === 200) {
+// 		const content = await rawResponse.json()
+// 		console.log('loginUser', content)
+// 		return content
+// 	} else {
+// 		alert('Введите корректные данные')
+// 	}
+// }
 
-export async function setStatistics(userId, token, learnedWords, optional) {
-	const rawResponseStatsSet = await fetch(
-		`https://rs-lang-app.herokuapp.com/users/${userId}/statistics`,
-		{
-			method: 'PUT',
-			withCredentials: true,
-			headers: {
-				Authorization: `Bearer ${token}`,
-				Accept: 'application/json',
-				'Content-Type': 'application/json',
-			},
-			body: JSON.stringify({
-				learnedWords: learnedWords,
-				optional: optional
-			}),
-		},
-	)
+// export async function setStatistics(userId, token, learnedWords, optional) {
+// 	const rawResponseStatsSet = await fetch(
+// 		`https://rs-lang-app.herokuapp.com/users/${userId}/statistics`,
+// 		{
+// 			method: 'PUT',
+// 			withCredentials: true,
+// 			headers: {
+// 				Authorization: `Bearer ${token}`,
+// 				Accept: 'application/json',
+// 				'Content-Type': 'application/json',
+// 			},
+// 			body: JSON.stringify({
+// 				learnedWords: learnedWords,
+// 				optional: optional
+// 			}),
+// 		},
+// 	)
 
-	const setStats = await rawResponseStatsSet.json()
-	console.log('setStatistics', setStats)
-	return setStats
-}
+// 	const setStats = await rawResponseStatsSet.json()
+// 	console.log('setStatistics', setStats)
+// 	return setStats
+// }
 
 export async function getStatistics(userId, token) {
 	const rawResponseStatsGet = await fetch(
@@ -147,76 +147,76 @@ const Stats = () => {
 	const [date, setDate] = useState(null)
 
 	useEffect(async () => {
-		const logedUser = await loginUser({ email: "john@gmail.com", password: "qwerty1111" })
-		console.log("loged", logedUser)
-		const settingDate = await setStatistics(logedUser.userId, logedUser.token, 1, {
-			level: 2,
-			exp: 50,
-			days: 2,
-			dates: {
-				dateItems: [
-					{
-						dateTime: newdate,
-						countAnswer: 0,
-						answerTrue: 0,
-						seriesAnswer: 0,
-						games: {
-							savana: {
-								countAnswer: 8,
-								trueAnswer: 3,
-								seriesAnswer: 5
-							},
-							audio: {
-								countAnswer: 2,
-								trueAnswer: 1,
-								seriesAnswer: 7
-							},
-							myGame: {
-								countAnswer: 6,
-								trueAnswer: 1,
-								seriesAnswer: 2
-							},
-							sprint: {
-								countAnswer: 3,
-								trueAnswer: 2,
-								seriesAnswer: 1
-							}
-						}
-					},
-					{
-						dateTime: '2021-4-12',
-						countAnswer: 0,
-						answerTrue: 0,
-						seriesAnswer: 0,
-						games: {
-							savana: {
-								countAnswer: 8,
-								trueAnswer: 6,
-								seriesAnswer: 5
-							},
-							audio: {
-								countAnswer: 2,
-								trueAnswer: 7,
-								seriesAnswer: 7
-							},
-							myGame: {
-								countAnswer: 6,
-								trueAnswer: 4,
-								seriesAnswer: 2
-							},
-							sprint: {
-								countAnswer: 3,
-								trueAnswer: 9,
-								seriesAnswer: 1
-							}
-						}
-					}
-				]
-			}
-		})
+		// const logedUser = await loginUser({ email: "john@gmail.com", password: "qwerty1111" })
+		// console.log("loged", logedUser)
+		// const settingDate = await setStatistics(logedUser.userId, logedUser.token, 1, {
+		// 	level: 2,
+		// 	exp: 50,
+		// 	days: 2,
+		// 	dates: {
+		// 		dateItems: [
+		// 			{
+		// 				dateTime: newdate,
+		// 				countAnswer: 0,
+		// 				answerTrue: 0,
+		// 				seriesAnswer: 0,
+		// 				games: {
+		// 					savana: {
+		// 						countAnswer: 8,
+		// 						trueAnswer: 3,
+		// 						seriesAnswer: 5
+		// 					},
+		// 					audio: {
+		// 						countAnswer: 2,
+		// 						trueAnswer: 1,
+		// 						seriesAnswer: 7
+		// 					},
+		// 					myGame: {
+		// 						countAnswer: 6,
+		// 						trueAnswer: 1,
+		// 						seriesAnswer: 2
+		// 					},
+		// 					sprint: {
+		// 						countAnswer: 3,
+		// 						trueAnswer: 2,
+		// 						seriesAnswer: 1
+		// 					}
+		// 				}
+		// 			},
+		// 			{
+		// 				dateTime: '2021-4-12',
+		// 				countAnswer: 0,
+		// 				answerTrue: 0,
+		// 				seriesAnswer: 0,
+		// 				games: {
+		// 					savana: {
+		// 						countAnswer: 8,
+		// 						trueAnswer: 6,
+		// 						seriesAnswer: 5
+		// 					},
+		// 					audio: {
+		// 						countAnswer: 2,
+		// 						trueAnswer: 7,
+		// 						seriesAnswer: 7
+		// 					},
+		// 					myGame: {
+		// 						countAnswer: 6,
+		// 						trueAnswer: 4,
+		// 						seriesAnswer: 2
+		// 					},
+		// 					sprint: {
+		// 						countAnswer: 3,
+		// 						trueAnswer: 9,
+		// 						seriesAnswer: 1
+		// 					}
+		// 				}
+		// 			}
+		// 		]
+		// 	}
+		// })
 
 
-		console.log(settingDate)
+		// console.log(settingDate)
 		const gettingStatistics = await getStatistics(logedUser.userId, logedUser.token)
 		console.log('gettingStatistics', gettingStatistics)
 		setDate(gettingStatistics.optional)
