@@ -31,6 +31,7 @@
 		"react-redux": "^7.2.3",
 		"react-router-dom": "^5.2.0",
 		"react-scroll": "^1.8.2",
+		"react-swipeable-views": "^0.13.9",
 		"react-use-form-state": "^0.13.2",
 		"redux": "^4.0.5",
 		"swiper": "^6.5.4",

@@ -17,6 +17,8 @@ import CardBody from '@/components/Card/CardBody'
 import CardHeader from '@/components/Card/CardHeader'
 import CardFooter from '@/components/Card/CardFooter'
 import CustomInput from '@/components/CustomInput/CustomInput'
+// utils
+// import {loginUser} from '@/utils/apiRequests/sing'
 
 // router
 import {
@@ -52,10 +54,10 @@ export default function LoginPage(properties) {
 	const classes = useStyles()
 
 	// при отправке
-	const handleSubmit = () => {
+	const handleSubmit = async () => {
 		console.log('submit event')
 		if (login.length > 4 && password.length > 4) {
-			loginUser({ email: login, password })
+			await loginUser({ email: login, password })
 		} else {
 			console.error('small login or password')
 		}
@@ -92,7 +94,12 @@ export default function LoginPage(properties) {
 			const content = await rawResponse.json()
 
 			console.log('loginUser', content)
-			window.location.replace('/')
+			properties.setUserAuth({
+				userId: content.userId ,
+				token: content.token
+			})
+
+			// window.location.replace('/')
 		} else {
 			alert('Введите корректные данные')
 		}

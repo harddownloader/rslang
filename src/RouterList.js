@@ -1,22 +1,20 @@
 import React from 'react'
 
-// import Home from '@/pages/Home'
-import ContainerHome from '@/ContainerHome'
+import HomePage from '@/pages/HomePage'
 import GamesPage from '@/pages/GamesPage'
 import StatisticsPage from '@/pages/StatisticsPage'
 import SettingsPage from '@/pages/SettingsPage'
-import RegistrationPage from '@/pages/RegistrationPage'
-import LoginPage from '@/pages/LoginPage'
+import RegistrationPageContainer from '@/pages/RegistrationPageContainer'
+import LoginPageContainer from '@/pages/LoginPageContainer'
 import TestRequest from '@/pages/testRequest'
-import VocabularyPage from '@/pages/VocabularyPage'
+import ElectrobookPage from '@/pages/ElectrobookPage'
 import AboutTeamPage from '@/pages/AboutTeamPage'
 import Promo from './pages/Promo'
 
 export default [
 	{
 		path: '/',
-		// component: <Home />,
-		component: <ContainerHome />
+		component: <HomePage />,
 	},
 	{
 		path: '/games',
@@ -27,8 +25,8 @@ export default [
 		component: <StatisticsPage />,
 	},
 	{
-		path: '/vocabulary',
-		component: <VocabularyPage />,
+		path: '/electro-book',
+		component: <ElectrobookPage />,
 	},
 	{
 		path: '/settings',
@@ -36,11 +34,11 @@ export default [
 	},
 	{
 		path: '/login',
-		component: <LoginPage />,
+		component: <LoginPageContainer />,
 	},
 	{
 		path: '/registration',
-		component: <RegistrationPage />,
+		component: <RegistrationPageContainer />,
 	},
 	{
 		path: '/about-team',
