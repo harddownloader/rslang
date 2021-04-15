@@ -14,10 +14,10 @@ export default function Timer(properties) {
 	const [time, setTime] = useState(properties.sec)
 	useEffect(() => {
 		function counter(time) {
-			if (time == 0) return undefined
+			if (time == 0) return
 			setTime(time - 1)
 		}
-		let timer = setInterval(() => {
+		const timer = setInterval(() => {
 			counter(time)
 		}, 1000)
 		return () => {
