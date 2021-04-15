@@ -46,11 +46,9 @@ export default function Game(properties) {
 			setIsLoaded(false)
 		}
 		try {
-			const responce = getAggregatedWords(userID, userToken, properties.difficulty, page, 20)
-				.then(response => {
-					console.dir(responce)
-					setWords(response[0].paginatedResults)
-					console.log(response[0].paginatedResults)
+			getAggregatedWords(userID, userToken, properties.difficulty, page, 20)
+				.then(res => {
+					setWords(res[0].paginatedResults)
 				})
 				.then(() => setIsLoaded(true))
 		}
@@ -59,31 +57,10 @@ export default function Game(properties) {
 		}
 
 	}, [newGame])
-	// useEffect(() => {
-	// 	if (newGame) {
-	// 		setPage(page + 1)
-	// 		setNewGame(false)
-	// 		setIsLoaded(false)
-	// 	}
-	// 	fetch(
-	// 		`https://rs-lang-app.herokuapp.com/words?group=${properties.difficulty}&page=${page}`,
-	// 	)
-	// 		.then(response => response.json())
-	// 		.then(
-	// 			result => {
-	// 				setWords(result)
-	// 				setIsLoaded(true)
-	// 			},
-	// 			error => {
-	// 				setError(error)
-	// 				setIsLoaded(true)
-	// 			},
-	// 		)
-	// }, [newGame])
 	return (
 		<div className={classes.savannahGame}>
 			{(isLoaded & !isError) ? (
-				<GameBoard words={words.sort((a, b) => (Math.random() - 0.5))} newGame={setNewGame} />
+				<GameBoard words={words.sort((a, b) => (Math.random() - 0.5))} newGame={setNewGame} stat={properties.stat} userAuth={properties.userAuth} />
 			) : (
 				<Loader />
 			)}

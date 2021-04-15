@@ -2,6 +2,7 @@ import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import Button from '@material-ui/core/Button'
 import { Link } from 'react-router-dom'
+import { setStatistics } from '@/utils/apiRequests/statistics'
 
 const useStyles = makeStyles(theme => ({
 	root: {
@@ -56,23 +57,36 @@ const useStyles = makeStyles(theme => ({
 	},
 
 	words: {
-		width: '70%',
+		maxWidth: '70%',
 		display: 'flex',
 		flexDirection: 'row',
 		flexWrap: 'wrap',
 		alignItems: 'center',
-		justifyContent: 'space-between',
+		justifyContent: 'center',
 		margin: '2rem auto 3rem',
 	},
 	word: {
 		fontWeight: 'bold',
-		margin: '0.2rem',
+		margin: '0.2rem 2rem',
 		fontSize: '22px',
 		fontSize: '4rem',
 	},
 }))
 
 export default function GameResult(properties) {
+	console.log('STAT EBANIY')
+	console.dir(properties.gameStat)
+	const finalStat = {
+		...properties.gameStat.origin,
+		optional: {
+			...properties.gameStat.origin.optional,
+			dates: {
+				dateItems: [...properties.gameStat.origin.optional.dates.dateItems, { ...properties.gameStat.item }]
+			}
+		}
+	}
+
+	setStatistics(properties.userAuth.userId, properties.userAuth.token, 0, finalStat)
 	const classes = useStyles()
 	const restartGame = properties.newGame
 	function ShouldLearn() {
@@ -80,10 +94,10 @@ export default function GameResult(properties) {
 			<>
 				<p>
 					Pay attention to this word
-					{properties.stat.incorrect.length > 1 ? 's' : ''}:
+					{properties.sessionStat.incorrect.length > 1 ? 's' : ''}:
 				</p>
 				<div className={classes.words}>
-					{properties.stat.incorrect.map(function result(item, index) {
+					{properties.sessionStat.incorrect.map(function result(item, index) {
 						return <p key={index} className={classes.word}>{item.word.toUpperCase()}</p>
 					})}
 				</div>
@@ -93,13 +107,12 @@ export default function GameResult(properties) {
 	return (
 		<div className={classes.result}>
 			<h2 className={classes.result__title}>Game over</h2>
-			<p>Your best strick of correct answers: {properties.stat.bestStrick}</p>
+			<p>Your best strick of correct answers: {properties.sessionStat.bestStrick}</p>
 			<p>
-				Correctly answer{properties.stat.correct.length > 1 ? 's' : ''}:{' '}
-				{properties.stat.correct.length}
+				Correctly answer{properties.sessionStat.correct > 1 ? 's' : ''}:{` `} {properties.sessionStat.correct}
 			</p>
-			{properties.stat.incorrect.length > 0 ? (
-				<ShouldLearn incorrect={properties.stat.incorrect} />
+			{properties.sessionStat.incorrect.length > 0 ? (
+				<ShouldLearn />
 			) : undefined}
 			<div className={classes.result__btns}>
 				<Button
