@@ -18,7 +18,7 @@ const Select = ({ setStats }) => {
 							setStats()
 						}}>
 						<option disabled>Выберите опцию</option>
-						<option selected value='true'>
+						<option defaultValue="true">
 							Сегодня
 						</option>
 						<option value='false'>За все время</option>

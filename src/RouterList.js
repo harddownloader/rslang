@@ -9,6 +9,7 @@ import LoginPageContainer from '@/pages/LoginPageContainer'
 import TestRequest from '@/pages/testRequest'
 import ElectrobookPage from '@/pages/ElectrobookPage'
 import AboutTeamPage from '@/pages/AboutTeamPage'
+import Promo from './pages/Promo'
 
 export default [
 	{
