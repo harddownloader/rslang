@@ -1,4 +1,4 @@
-import React, { useState, useContext, useReducer } from 'react'
+import React, { useEffect, useContext, useReducer } from 'react'
 import PropTypes from 'prop-types'
 
 // material
@@ -9,13 +9,20 @@ import MuiAlert from '@material-ui/lab/Alert'
 
 // castom hooks
 import { useFormState } from 'react-use-form-state'
+
+// castom Api
 import {
 	getUserWords,
 	setUserWords,
 	updateUserWordsById,
 	getUserWordsById,
 } from '@/utils/apiRequests/userWords'
+
+// components
 import { Context } from './Context.jsx'
+import EndGamePopup from './EndGamePopup'
+import openFormReducer from './openFormReducer'
+
 //----------------------------------------
 
 function Alert(properties) {
@@ -56,36 +63,6 @@ const useStyles = makeStyles(theme => ({
 	},
 }))
 
-const openFormReducer = (state, action) => {
-	switch (action.type) {
-		case 'OPEN_ALL':
-			return {
-				...state,
-				isChecked: true,
-				open: true,
-			}
-		case 'SET_ERROR':
-			return {
-				...state,
-				isErrors: true,
-			}
-		case 'SET_CLOSE':
-			return {
-				...state,
-				open: false,
-			}
-		case 'END_GAME':
-			return {
-				...state,
-				isChecked: true,
-				open: true,
-				isEndGame: true,
-			}
-		default:
-			throw new Error('err')
-	}
-}
-
 const Form = ({ data, setIsOpenPrompt }) => {
 	const { contextStatistic } = useContext(Context)
 	const { userToken } = useContext(Context)
@@ -102,6 +79,13 @@ const Form = ({ data, setIsOpenPrompt }) => {
 	})
 	const { isErrors, isChecked, open } = state
 	const classes = useStyles({ isErrors, isChecked })
+
+	useEffect(() => {
+		if (statistic.answer === 10) {
+			dispatch({ type: 'END_GAME' })
+		}
+	}, [handleSubmit, statistic])
+
 	const handleClose = reason => {
 		if (reason === 'clickaway') {
 			return
@@ -148,39 +132,45 @@ const Form = ({ data, setIsOpenPrompt }) => {
 
 		dispatch({ type: 'OPEN_ALL' })
 		setIsOpenPrompt(true)
-		if (statistic.answer === 10) {
-		}
+
 		e.target.blur()
 	}
 
 	return (
-		<form onSubmit={handleSubmit} className={classes.formBox}>
-			<div className={classes.inputBox}>
-				<label {...label('word')}>your answer</label>
-				<input
-					{...text({
-						name: 'word',
-					})}
-					required
-				/>
-			</div>
-			<Button
-				type='submit'
-				variant='contained'
-				disabled={isChecked}
-				color='secondary'>
-				Check
-			</Button>
-			<Snackbar
-				anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-				open={open}
-				autoHideDuration={6000}
-				onClose={handleClose}>
-				<Alert onClose={handleClose} severity={isErrors ? 'error' : 'success'}>
-					{isErrors && isChecked ? `error, current answer ${data.word}` : 'O_o'}
-				</Alert>
-			</Snackbar>
-		</form>
+		<>
+			<form onSubmit={handleSubmit} className={classes.formBox}>
+				<div className={classes.inputBox}>
+					<label {...label('word')}>your answer</label>
+					<input
+						{...text({
+							name: 'word',
+						})}
+						required
+					/>
+				</div>
+				<Button
+					type='submit'
+					variant='contained'
+					disabled={isChecked}
+					color='secondary'>
+					Check
+				</Button>
+				<Snackbar
+					anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+					open={open}
+					autoHideDuration={6000}
+					onClose={handleClose}>
+					<Alert
+						onClose={handleClose}
+						severity={isErrors ? 'error' : 'success'}>
+						{isErrors && isChecked
+							? `error, current answer ${data.word}`
+							: 'O_o'}
+					</Alert>
+				</Snackbar>
+			</form>
+			<EndGamePopup statistic={statistic} isEndGame={state.isEndGame} />
+		</>
 	)
 }
 
