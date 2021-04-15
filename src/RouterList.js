@@ -2,18 +2,20 @@ import React from 'react'
 
 import HomePage from '@/pages/HomePage'
 import GamesPage from '@/pages/GamesPage'
-import StatisticsPage from '@/pages/StatisticsPage'
+import StatisticsPageContainer from '@/pages/containerStats'
 import SettingsPage from '@/pages/SettingsPage'
 import RegistrationPageContainer from '@/pages/RegistrationPageContainer'
 import LoginPageContainer from '@/pages/LoginPageContainer'
 import TestRequest from '@/pages/testRequest'
 import ElectrobookPage from '@/pages/ElectrobookPage'
 import AboutTeamPage from '@/pages/AboutTeamPage'
+import Promo from './pages/Promo'
 
 export default [
 	{
 		path: '/',
-		component: <HomePage />,
+		// component: <HomePage />,
+		component: <Promo />
 	},
 	{
 		path: '/games',
@@ -21,7 +23,7 @@ export default [
 	},
 	{
 		path: '/statistics',
-		component: <StatisticsPage />,
+		component: <StatisticsPageContainer />,
 	},
 	{
 		path: '/electro-book',
@@ -41,7 +43,7 @@ export default [
 	},
 	{
 		path: '/about-team',
-		component: <AboutTeamPage />
+		component: <AboutTeamPage />,
 	},
 	{
 		path: '/test',

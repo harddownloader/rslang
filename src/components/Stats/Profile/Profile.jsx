@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import './profile.scss'
+import { PinDropSharp } from '@material-ui/icons'
 
 const useStyles = makeStyles({
 	icon: {
@@ -25,6 +26,7 @@ const useStyles = makeStyles({
 		boxShadow: 'inset 0px 0.5px 3px',
 	},
 	p: {
+		marginTop: '10px',
 		color: 'yellow',
 		fontSize: '18px',
 		letterSpacing: '1px',
@@ -34,33 +36,21 @@ const useStyles = makeStyles({
 		fontWeight: '700',
 		color: 'black',
 		position: 'relative',
-		top: '22px',
+		top: '24px',
+		fontSize: '16px'
 	},
 	week: {
 		marginTop: '30px',
 		color: '#7e919f',
-		letterSpacing: '2px',
+		letterSpacing: '3px',
 	},
 })
 
-const Profile = () => {
+const Profile = ({ level, exp, days }) => {
+
 	const classes = useStyles()
 
-	let [level, setLevel] = useState(0)
-
-	let [scale, setScale] = useState(0)
-
-	let [exp, setExp] = useState(100)
-
-	const upLevel = () => {
-		if (scale === 90) {
-			setLevel((level += 1))
-			setScale((scale = -10))
-			setExp((exp += 100))
-		}
-		setScale((scale += 10))
-		setExp(exp - 10)
-	}
+	let [scale, setScale] = useState(100-exp)
 
 	return (
 		<>
@@ -79,7 +69,7 @@ const Profile = () => {
 					До следующего уровня вам осталось{' '}
 					<span style={{ fontWeight: '700' }}>{exp} xp</span>.
 				</p>
-				<p className={classes.week}>ВЫ ЗАНИМАЛИСЬ ДНЕЙ ПОДРЯД 0 / 7</p>
+				<p className={classes.week}>ВЫ ЗАНИМАЛИСЬ ДНЕЙ ПОДРЯД {days} / 7</p>
 				{/* <button onClick={upLevel}>click</button> */}
 			</div>
 		</>

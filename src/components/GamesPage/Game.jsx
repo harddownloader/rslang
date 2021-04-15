@@ -93,6 +93,7 @@ const Game = ({ setHoverGame, index, game }) => {
 	const HandlerMouse = () => {
 		setHoverGame(index)
 	}
+	
 	return (
 		<>
 			<Link

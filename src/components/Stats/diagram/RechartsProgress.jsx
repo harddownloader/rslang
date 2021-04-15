@@ -7,40 +7,28 @@ import CartesianGrid from '@bit/recharts.recharts.cartesian-grid'
 import Tooltip from '@bit/recharts.recharts.tooltip'
 import { curveCardinal } from 'd3-shape'
 
-const data = [
-	{
-		name: 'Mon',
-		uv: 26,
-	},
-	{
-		name: 'Tue',
-		uv: 34,
-	},
-	{
-		name: 'Wed',
-		uv: 39,
-	},
-	{
-		name: 'Thu',
-		uv: 52,
-	},
-	{
-		name: 'Fri',
-		uv: 102,
-	},
-	{
-		name: 'Sat',
-		uv: 64,
-	},
-	{
-		name: 'Sun',
-		uv: 64,
-	},
-]
 
 const cardinal = curveCardinal.tension(0.2)
 
-const RechartsProgress = () => {
+const RechartsProgress = ({ stats }) => {
+	console.log('recharts', stats)
+
+	const data = [
+		{
+			name: 'start',
+			learnedWords: 0,
+		},
+	]
+
+	stats.map((item) => {
+		const add = {
+			name: item.dateTime,
+			learnedWords: item.games.audio.trueAnswer + item.games.myGame.trueAnswer + item.games.savana.trueAnswer + item.games.sprint.trueAnswer
+		}
+		data.push(add)
+	})
+
+
 	return (
 		<>
 			<AreaChart
@@ -59,14 +47,14 @@ const RechartsProgress = () => {
 				<Tooltip />
 				<Area
 					type='monotone'
-					dataKey='uv'
+					dataKey='learnedWords'
 					stroke='#8884d8'
 					fill='#8884d8'
 					fillOpacity={0.3}
 				/>
 				<Area
 					type={cardinal}
-					dataKey='uv'
+					dataKey='learnedWords'
 					stroke='#82ca9d'
 					fill='#82ca9d'
 					fillOpacity={0.3}

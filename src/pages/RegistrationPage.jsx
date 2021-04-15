@@ -24,6 +24,7 @@ import {getAggregatedWords} from '@/utils/apiRequests/aggregatedWords'
 import {loginUser} from '@/utils/apiRequests/sign'
 import {setUserWords} from '@/utils/apiRequests/userWords'
 import {setStatistics} from '@/utils/apiRequests/statistics'
+import {setSettings} from '@/utils/apiRequests/settings'
 import {validateEmail} from '@/utils/validate'
 // styles
 import styles from '@/assets/jss/material-kit-react/views/loginPage'
@@ -58,6 +59,9 @@ export default function RegistrationPage(properties) {
 	const [name, setName] = useState('')
 	const [login, setLogin] = useState('')
 	const [password, setPassword] = useState('')
+	
+	const history = useHistory()
+	// console.log('history', history)
 
 	setTimeout(function () {
 		setCardAnimation('')
@@ -84,8 +88,15 @@ export default function RegistrationPage(properties) {
 			const loggedUser = await loginUser({ email: login, password: password })
 			console.log('loggedUser', loggedUser)
 
+			// сохраняем данные в редакс
+			properties.setUserAuth({
+				userId: loggedUser.userId ,
+				token: loggedUser.token
+			})
+
 			// берем слова которые поставим в словарь
-			const newWords = await getAggregatedWords(
+			// 0 difficulty
+			const newEasy0Words = await getAggregatedWords(
 				loggedUser.userId,
 				loggedUser.token,
 				0,
@@ -93,14 +104,75 @@ export default function RegistrationPage(properties) {
 				60,
 				false
 			)
+			console.log('newEasy0Words', newEasy0Words)
+			// 1 difficulty
+			const newEasy1Words = await getAggregatedWords(
+				loggedUser.userId,
+				loggedUser.token,
+				1,
+				false,
+				60,
+				false
+			)
+			console.log('newEasy1Words', newEasy1Words)
+			// 2 difficulty
+			const newMedium0Words = await getAggregatedWords(
+				loggedUser.userId,
+				loggedUser.token,
+				2,
+				false,
+				60,
+				false
+			)
+			console.log('newMedium0Words', newMedium0Words)
+			// 3 difficulty
+			const newMedium1Words = await getAggregatedWords(
+				loggedUser.userId,
+				loggedUser.token,
+				3,
+				false,
+				60,
+				false
+			)
+			console.log('newMedium1Words', newMedium1Words)
+			// 4 difficulty
+			const newHard0Words = await getAggregatedWords(
+				loggedUser.userId,
+				loggedUser.token,
+				4,
+				false,
+				60,
+				false
+			)
+			console.log('newHard0Words', newHard0Words)
+			// 5 difficulty
+			const newHard1Words = await getAggregatedWords(
+				loggedUser.userId,
+				loggedUser.token,
+				5,
+				false,
+				60,
+				false
+			)
+			console.log('newHard1Words', newHard1Words)
+
+			// words requests is aggregating to one words list
+			const newWords =  newEasy0Words[0].paginatedResults.concat(
+				newEasy1Words[0].paginatedResults,
+				newMedium0Words[0].paginatedResults,
+				newMedium1Words[0].paginatedResults,
+				newHard0Words[0].paginatedResults,
+				newHard1Words[0].paginatedResults
+			)
 			console.log('newWords', newWords)
+
 			
 			// ставим слова в словарь(чтобы быил доступны мини игры)
-			for(let i = 0; i<newWords[0].paginatedResults.length; i++) {
+			for(let i = 0; i<newWords.length; i++) {
 				setUserWords(
 					loggedUser.userId,
 					loggedUser.token,
-					newWords[0].paginatedResults[i]._id,
+					newWords[i]._id,
 					"easy",
 					{
 						// сколько раз пользователь правильно ответил на слово в мини играх
@@ -167,11 +239,15 @@ export default function RegistrationPage(properties) {
 				}
 			)
 
-			// сохраняем данные в редакс
-			properties.setUserAuth({
-				userId: content.userId ,
-				token: content.token
-			})
+			// ставим нулевые настройки словаря
+			await setSettings(
+				loggedUser.userId,
+				loggedUser.token,
+				0,
+				{
+					currect_difficulty: 0
+				}
+			)
 			
 		} else {
 			console.error('small login or password')

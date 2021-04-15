@@ -1,5 +1,3 @@
-import { useRef } from 'react'
-
 const dataFetchReducer = (state, action) => {
 	switch (action.type) {
 		case 'FETCH_INIT':
