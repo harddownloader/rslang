@@ -10,6 +10,7 @@ import Recharts from './diagram/Recharts'
 import RechartsProgress from './diagram/RechartsProgress'
 import Select from './Select/Select'
 import MetaTag from '../MetaTag/MetaTag'
+import returnDate from '@/utils/returnDate'
 
 const loginUser = async user => {
 	const rawResponse = await fetch(
@@ -137,11 +138,9 @@ const useStyles = makeStyles({
 	},
 })
 
-const dateObj = new Date();
-const month = dateObj.getUTCMonth() + 1;
-const day = dateObj.getUTCDate();
-const year = dateObj.getUTCFullYear();
-const newdate = year + "-" + month + "-" + day;
+const newdate = returnDate()
+
+console.log('newdate', newdate)
 
 const Stats = () => {
 
