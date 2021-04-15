@@ -11,12 +11,7 @@ import MuiAlert from '@material-ui/lab/Alert'
 import { useFormState } from 'react-use-form-state'
 
 // castom Api
-import {
-	getUserWords,
-	setUserWords,
-	updateUserWordsById,
-	getUserWordsById,
-} from '@/utils/apiRequests/userWords'
+import { updateUserWordsById } from '@/utils/apiRequests/userWords'
 
 // components
 import { Context } from './Context.jsx'
@@ -69,7 +64,6 @@ const Form = ({ data, setIsOpenPrompt }) => {
 	const { userId } = useContext(Context)
 
 	const [statistic, dispatchStatistic] = contextStatistic
-	console.log(statistic)
 	const [formState, { label, text }] = useFormState()
 	const [state, dispatch] = useReducer(openFormReducer, {
 		isErrors: false,
