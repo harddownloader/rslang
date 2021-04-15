@@ -142,7 +142,7 @@ const newdate = returnDate()
 
 console.log('newdate', newdate)
 
-const Stats = () => {
+const Stats = (props) => {
 
 	const [date, setDate] = useState(null)
 
@@ -217,7 +217,7 @@ const Stats = () => {
 
 
 		// console.log(settingDate)
-		const gettingStatistics = await getStatistics(logedUser.userId, logedUser.token)
+		const gettingStatistics = await getStatistics(props.userAuth.userId, props.userAuth.token)
 		console.log('gettingStatistics', gettingStatistics)
 		setDate(gettingStatistics.optional)
 		console.log(date)
