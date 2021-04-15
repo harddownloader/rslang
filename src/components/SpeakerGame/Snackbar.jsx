@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 
 // material
@@ -7,7 +7,7 @@ import SnackbarContent from '@material-ui/core/SnackbarContent'
 
 //----------------------------------------
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles(() => ({
 	SnackbarContent: {
 		margin: 5,
 		transition: 'all 1s ease-in',

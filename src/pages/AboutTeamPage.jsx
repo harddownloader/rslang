@@ -6,11 +6,18 @@ import Paper from '@material-ui/core/Paper'
 import Divider from '@material-ui/core/Divider'
 import { Link } from 'react-scroll'
 import '@/assets/scss/AboutTeam.scss'
+import backAbout from '../assets/images/AboutTeam.png'
+import MetaTag from '../components/MetaTag/MetaTag'
+import sereja from '@/assets/images/profile/sereja.jpg'
+import dima from '@/assets/images/profile/dima.jpg'
+import serafim from '@/assets/images/profile/serafim.jpg'
+import vlas from '@/assets/images/profile/vlas.jpg'
+import misha from '@/assets/images/profile/misha.jpg'
 
 const useStyles = makeStyles({
 	wrapperBackground: {
 		backgroundImage:
-			'url(https://i.pinimg.com/originals/14/65/e5/1465e5626b03eb86ab9bfce56a1b0ca0.png)',
+			`url(${backAbout})`,
 		height: '937px',
 		background: 'grey',
 		fontFamily: 'Open Sans,Helvetica,Arial,sans-serif',
@@ -24,41 +31,45 @@ const useStyles = makeStyles({
 	},
 	paper: {
 		background: '#80808052',
-		margin: '110px 40px',
-		width: '300px',
+		margin: '7px 40px',
+		width: '500px',
 		borderBottom: 'solid',
 		borderBottomColor: 'yellow',
 		boxShadow: 'none',
 		borderRadius: '20px',
 	},
 	peperText: {
+		marginTop:'20px',
 		color: 'white',
-		fontSize: '20px',
+		fontSize: '19px',
 	},
 	profileDiv: {
 		width: '400px',
-		marginTop: '130px',
+		marginTop: '230px',
 		textAlign: 'center',
 	},
 	pImpact: {
+		marginTop: '15px',
 		fontWeight: '800',
-		fontSize: '25px',
+		fontSize: '22px',
 		color: '#a0a0a0',
 	},
 	pText: {
+		marginTop: '25px',
 		fontWeight: '800',
-		fontSize: '25px',
+		fontSize: '20px',
 		color: '#b1b132ab',
 	},
 	Typography: {
-		fontWeight: '900',
+		fontWeight: '800',
 		letterSpacing: '2px',
+		textShadow: '1px 1px 2px black',
 	},
 	devider: {
 		width: '2px',
 		background: 'yellow',
 		height: '120px',
-		margin: '50px 50%',
+		margin: '40px 50%',
 	},
 })
 
@@ -66,76 +77,63 @@ const text = [
 	{
 		id: 1,
 		text:
-			'Ea sunt elit tempor aliquip duis sint cillum excepteur eiusmod laboris duis do culpa. Mollit et aliqua ut proident boris. Excepteur consectetur Lorem officia enim dolore in occaecat laboris id mollit sint. Et in pariatur ipsum eiusmod excepteur laborum pariatur sunt.',
-		title: 'Nostrud sunt id fugiat.',
-	},
-	{
-		id: 2,
-		text:
-			'`Voluptate minim et voluptate commodo minim eiusmod ut consectetur irure veniam labore. Veniam veniam in et esse culpa excepteur qui enim aute veniam laboris culpa officia. Nostrud ullamco aliqua proident nulla sunt in enim veniam nostrud. Eiusmod quis id duis aliquip quis aliqua aliquip duis sit Lorem dolore. Esse irure magna nostrud culpa veniam id ut qui laborum.',
-		title: 'Non exercitation ut laboris.',
-	},
-	{
-		id: 3,
-		text:
-			'Nulla adipisicing consequat officia excepteur. Lorem reprehenderit reprehenderit ex Lorem eu deserunt aliqua sit quis ad. Ex nisi eu aliqua id amet ipsum veniam.',
-		title: 'Non aliquip commodo.',
+			'Рады представить вам членов нашей команды frontend разработчиков, принимавших участие в создании данного проекта. В нашей команде состоит 5 перспективных начинающих IT специалистов, заинтересованных в постоянном саморазвитии в выбранной сфере деятельности. Каждый из нас, работая в группе, проявлет немалое уважение к своим коллегам, старается прислушиваться к мнению каждого, выполняя при этом, взятые на себя обязанности.Мы готовы к постоянному профессиональному росту и покорению новых вершин!  ',
+		title: 'Welcome!'
 	},
 ]
 
 const about = [
 	{
 		id: 1,
-		impact: 'макет, игра, дизайн сайта',
-		name: 'Серафим Олегович',
+		impact: 'Вклад : Redux-React, Registration, Backend,Vocabulary,Footer',
+		src: serafim,
+		name: 'Круцкевич Серафим',
 		description:
 			'Do nostrud dolor culpa tempor tempor pariatur tempor minim irure ex.Consequat voluptateasdadasdad. ',
 	},
 	{
 		id: 2,
-		impact: 'макет, игра, дизайн сайта',
-		name: 'Серафим Будько',
+		impact: 'Вклад : React-Redux,AboutTeam,Promo,Statistics',
+		src: vlas,
+		name: 'Маскаленчик Влас',
 		description:
-			'Do nostrud dolor culpa tempor tempor pariatur tempor minim irure ex.Consequat voluptateasdadasdad.  ',
+			'Do nostrud dolor culpa tempor tempor pariatur tempor minim irure ex.Consequat voluptateasdadasdad.',
 	},
 	{
 		id: 3,
-		impact: 'макет, игра, дизайн сайта',
-		name: 'Серафим Суикат',
+		impact: 'Вклад : Саванна',
+		src: dima,
+		name: 'Дмитрий Долгопол',
 		description:
-			'Do nostrud dolor culpa tempor tempor pariatur tempor minim irure ex.Consequat voluptateasdadasdad.  ',
+			'Саванна',
 	},
 	{
 		id: 4,
-		impact: 'макет, игра, дизайн сайта',
-		name: 'Серафим Обама',
+		impact: 'Вклад : Router,Speaker,Menu,Webpack,Eye',
+		src: sereja,
+		name: 'Сергей Шевченко',
 		description:
-			'Vi har skabt et ekadasdasdasd da das adas af af  afdsfdsfasdadada dadsd adadadadadadasdasdadadadasd ',
+			'Router,Speaker,Menu,Webpack,Eye',
 	},
 	{
 		id: 5,
-		impact: 'макет, игра, дизайн сайта',
-		name: 'Серафим Лукашенко',
+		impact: 'Вклад : Sprint',
+		src: misha,
+		name: 'Миша',
 		description:
-			'Vi har skabt et ekadasdasdasd da das adas af af  afdsfdsfasdadada dadsd adadadadadadasdasdadadadasd ',
-	},
-	{
-		id: 6,
-		impact: 'макет, игра, дизайн сайта',
-		name: 'Серафим Путин',
-		description:
-			'Vi har skabt et ekadasdasdasd da das adas af af  afdsfdsfasdadada dadsd adadadadadadasdasdadadadasd ',
+			'Sprint',
 	},
 ]
 
 const AboutTeam = () => {
+
 	const classes = useStyles()
 
 	const getText = text.map(item => {
 		return (
-			<Grid item key={item.id}>
+			<Grid item  key={item.id} style={{ marginTop: '90px' }}>
 				<Paper square className={classes.paper}>
-					<Typography variant='h5' className={classes.Typography}>
+					<Typography variant='h3' className={classes.Typography}>
 						{item.title}
 					</Typography>
 					<Typography className={classes.peperText}>{item.text}</Typography>
@@ -149,17 +147,16 @@ const AboutTeam = () => {
 			<Grid container justify='center' key={item.id}>
 				<Grid item>
 					<div className={classes.profileDiv}>
-						<Typography variant='h5' className={classes.Typography}>
+						<Typography variant='h3' className={classes.Typography}>
 							{item.name}
 						</Typography>
 						<p className={classes.pText}>{item.description}</p>
 						<p className={classes.pImpact}>{item.impact}</p>
 					</div>
 				</Grid>
-				<Grid>
-					{' '}
-					<img
-						src='https://lifeglobe.net/x/entry/296/blackandwhite_3.jpg'
+				<Grid >
+					<img style={{ width: '700px', height: '700px' }}
+						src={item.src}
 						alt='personPhoto'
 					/>
 				</Grid>
@@ -170,6 +167,7 @@ const AboutTeam = () => {
 
 	return (
 		<>
+			<MetaTag text='AboutTeam' />
 			<div className={classes.wrapperBackground}>
 				<Typography variant='h3' align='center' className={classes.heading}>
 					О команде

@@ -5,10 +5,10 @@ import Speaker from '@/components/SpeakerGame'
 import Savannah from '@/components/savannah/Savannah'
 import Sprint from '@/components/Sprint/Sprint'
 
-function StartGame(properties) {
-	console.log('start game props', properties)
+function StartGame(props) {
+	// console.log('start game props', props)
 
-	const [name, setName] = useState(properties.name)
+	const [name, setName] = useState(props.name)
 
 	// The <Route> that rendered this component has a
 	// path of `/topics/:topicId`. The `:topicId` portion
@@ -17,14 +17,18 @@ function StartGame(properties) {
 	const { id } = useParams()
 
 	return id === 'savanna' ? (
-		<Savannah />
+		<Savannah userAuth={{token: props.userAuth.token, userId: props.userAuth.userId}}/>
 	) : id === 'sprint' ? (
 		<Sprint
 			userToken={properties.userAuth.token}
 			userId={properties.userAuth.userId}
 		/>
 	) : id === 'speaker' ? (
-		<Speaker query={name} />
+		<Speaker
+			query={name}
+			userToken={props.userAuth.token}
+			userId={props.userAuth.userId}
+		/>
 	) : (
 		<p>4</p>
 	)

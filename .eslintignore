@@ -1,0 +1,10 @@
+src/components/*
+src/utils/*
+src/redux/*
+src/pages/*
+src/assets/*
+src/AboutTeam/*
+src/*.js
+src/*.jsx
+!src/components/SpeakerGame/
+

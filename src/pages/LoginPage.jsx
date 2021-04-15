@@ -28,6 +28,7 @@ import {
 	Link,
 	useRouteMatch,
 	useLocation,
+	useHistory
 } from 'react-router-dom'
 
 // styles
@@ -36,15 +37,13 @@ import styles from '@/assets/jss/material-kit-react/views/loginPage'
 import image from '@/assets/images/material-kit-img/bg7.jpg'
 
 const useStyles = makeStyles(styles)
-// const useStyles = makeStyles(theme => ({
-// 	...theme,
-// 	...styles
-// }))
 
 export default function LoginPage(properties) {
 	const [cardAnimaton, setCardAnimation] = useState('cardHidden')
 	const [login, setLogin] = useState('')
 	const [password, setPassword] = useState('')
+	const history = useHistory()
+	// console.log('history', history)
 
 	// анимация появления окна
 	setTimeout(function () {
@@ -56,8 +55,10 @@ export default function LoginPage(properties) {
 	// при отправке
 	const handleSubmit = async () => {
 		console.log('submit event')
+		
 		if (login.length > 4 && password.length > 4) {
 			await loginUser({ email: login, password })
+			await history.push("/")
 		} else {
 			console.error('small login or password')
 		}
@@ -99,7 +100,6 @@ export default function LoginPage(properties) {
 				token: content.token,
 			})
 
-			// window.location.replace('/')
 		} else {
 			alert('Введите корректные данные')
 		}

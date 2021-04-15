@@ -47,6 +47,7 @@ const Eye = ({ hoverGame }) => {
 		hoverGame,
 	}
 	const classes = useStyles(propertiesStyle)
+	
 	return (
 		<div className={classes.root}>
 			<div className={classes.iris}>

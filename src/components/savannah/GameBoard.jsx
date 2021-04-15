@@ -5,37 +5,24 @@ import Attempts from '@/components/savannah/Attempts'
 import Button from '@material-ui/core/Button'
 import Result from '@/components/savannah/Result'
 import GameResult from '@/components/savannah/GameResult'
-import { yellow } from '@material-ui/core/colors'
-
-const initialStat = {
-	strick: 0,
-	bestStrick: 0,
-	date: Date.now(),
-	correct: [],
-	incorrect: [],
-}
+import { updateUserWordsById } from '@/utils/apiRequests/userWords'
 
 const useStyles = makeStyles({
 	gameStatus: {
 		display: 'flex',
-		width: '55%',
-		flexDirection: 'row',
-		justifyContent: 'space-between',
+		width: '80%',
+		flexDirection: 'column',
+		justifyContent: 'center',
 		alignItems: 'center',
-		alignSelf: 'flex-end',
-	},
-	timer: {
-		marginLeft: '7%',
-		fontSize: '3rem',
-		fontWeight: 'bold',
+		margin: '2rem auto',
 	},
 	attempts: {
-		margin: '3rem',
+
 		alignSelf: 'flex-end',
 		fontSize: '4rem',
 	},
 	taskWord: {
-		color: 'Black',
+		color: '#363538',
 		fontWeight: 'bold',
 		fontSize: '8rem',
 		margin: '2rem',
@@ -53,9 +40,13 @@ const useStyles = makeStyles({
 		width: 'available',
 		margin: '1rem auto 3rem auto',
 		fontSize: '2.5rem',
-		color: 'black',
+		color: '#363538',
 		border: 'solid 2px yellow',
 		borderRadius: '0',
+		'&:hover': {
+			border: 'solid 1px yellow',
+			backgroundColor: '#fffbad',
+		},
 	},
 })
 
@@ -71,18 +62,29 @@ function getOptions(correct, words) {
 export default function GameBoard(properties) {
 	const classes = useStyles()
 	const [level, setLevel] = useState(0)
-	const word = properties.words[level]
-	const options = getOptions(word.wordTranslate, properties.words)
-	const [gameStat, setGameStat] = useState(initialStat)
+	const [word, setWord] = useState(properties.words[level])
+	const [options, setOptions] = useState(getOptions(word.wordTranslate, properties.words))
+	const [gameStat, setGameStat] = useState(properties.stat)
 	const [attempts, setAttempts] = useState(5)
 	const [isGame, setIsGame] = useState(true)
 	const [isLose, setIsLose] = useState(false)
 	const [isEndGame, setEndGame] = useState(false)
-
+	const [sessionStat, setSessionStat] = useState({
+		incorrect: [],
+		bestStrick: 0,
+		currentStrick: 0,
+		correct: 0,
+	})
+	console.log(gameStat)
 	useEffect(() => {
 		setIsLose(false)
-		setIsGame(true)
+		setWord(properties.words[level])
+		setOptions(getOptions(word.wordTranslate, properties.words))
 	}, [level])
+	useEffect(() => {
+		setOptions(getOptions(word.wordTranslate, properties.words))
+		setIsGame(true)
+	}, [word])
 	useEffect(() => {
 		if (attempts === 0) setEndGame(gameStat)
 	}, [attempts])
@@ -91,22 +93,78 @@ export default function GameBoard(properties) {
 		switch (result) {
 			case 'win':
 				setIsGame(false)
+				setSessionStat({
+					...sessionStat,
+					currentStrick: ++sessionStat.currentStrick,
+					bestStrick: Math.max(sessionStat.bestStrick, ++sessionStat.currentStrick),
+					correct: ++sessionStat.correct,
+				})
 				setGameStat({
 					...gameStat,
-					correct: [word, ...gameStat.correct],
-					strick: gameStat.strick + 1,
-					bestStrick: Math.max(gameStat.strick + 1, gameStat.bestStrick),
+					item: {
+						...gameStat.item,
+						answerTrue: ++gameStat.item.answerTrue,
+						countWord: ++gameStat.item.countWord,
+						games: {
+							...gameStat.item.games,
+							savana: {
+								...gameStat.item.games.savana,
+								countAnswer: ++gameStat.item.games.savana.countAnswer,
+								trueAnswer: ++gameStat.item.games.savana.trueAnswer,
+								seriesAnswer: Math.max(gameStat.item.games.savana.seriesAnswer, sessionStat.bestStrick),
+							},
+						}
+					}
 				})
+				updateUserWordsById(
+					properties.userAuth.userId,
+					properties.userAuth.token,
+					word.id,
+					word.difficulty,
+					{
+						...word.optional,
+						correct_answers: word.userWord.optional.correct_answers + 1,
+						games: {
+							...word.userWord.optional.games,
+							savana: {
+								learned: true,
+							},
+						},
+					},
+				)
 				break
 			case 'lose':
 				setIsGame(false)
 				setAttempts(attempts - 1)
 				setIsLose(true)
+				setSessionStat({
+					...sessionStat,
+					incorrect: [word, ...sessionStat.incorrect],
+					currentStrick: 0,
+				})
 				setGameStat({
 					...gameStat,
-					incorrect: [word, ...gameStat.incorrect],
-					strick: 0,
+					item: {
+						...gameStat.item,
+						games: {
+							...gameStat.item.games,
+							savana: {
+								...gameStat.item.games.savana,
+								countAnswer: ++gameStat.item.games.savana.countAnswer,
+							},
+						},
+					}
 				})
+				updateUserWordsById(
+					properties.userAuth.userId,
+					properties.userAuth.token,
+					word.id,
+					word.difficulty,
+					{
+						...word.userWord.optional,
+						uncorrect_answers: word.userWord.optional.uncorrect_answers + 1,
+					},
+				)
 				break
 			default:
 				setGameStat({ ...gameStat })
@@ -126,11 +184,11 @@ export default function GameBoard(properties) {
 	return (
 		<>
 			{isEndGame ? (
-				<GameResult stat={isEndGame} newGame={properties.newGame} />
+				<GameResult stat={isEndGame} sessionStat={sessionStat} gameStat={gameStat} newGame={properties.newGame} userAuth={properties.userAuth} />
 			) : undefined}
 			<div className={classes.gameStatus}>
 				{isGame ? (
-					<Timer cls={classes.timer} sec={5} lose={round} />
+					<Timer sec={5} lose={round} />
 				) : (
 					<Result result={isLose} />
 				)}

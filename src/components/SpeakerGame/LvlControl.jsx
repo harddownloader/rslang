@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 
 // material
@@ -22,7 +22,6 @@ export default function NativeSelects({ setLvl, lvl }) {
 	const classes = useStyles()
 
 	const handleChange = event => {
-		console.log(event.target.value)
 		setLvl(event.target.value)
 	}
 
@@ -53,5 +52,5 @@ export default function NativeSelects({ setLvl, lvl }) {
 
 NativeSelects.propTypes = {
 	setLvl: PropTypes.func,
-	lvl: PropTypes.number,
+	lvl: PropTypes.string,
 }
