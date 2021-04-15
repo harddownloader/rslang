@@ -76,6 +76,7 @@ const useStyles = makeStyles(theme => ({
 	},
 }))
 
+
 const Speaker = ({ query, userToken, userId }) => {
 	const [swiper, setSwiper] = useState(null) // eslint-disable-line  unicorn/no-null
 	const [lvl, setLvl] = useState(query)

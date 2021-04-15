@@ -11,9 +11,9 @@ const useStyles = makeStyles(theme => ({
 		display: 'flex',
 		flexDirection: 'row',
 		alignItems: 'center',
-		justifyContent: 'space-between',
+		justifyContent: 'center',
 		listStyle: 'none',
-		width: '50%',
+		maxWidth: '50%',
 	},
 	grade: {
 		width: '6rem',
@@ -32,8 +32,8 @@ const useStyles = makeStyles(theme => ({
 		},
 	},
 	grade_active: {
-		color: 'black',
-		backgroundColor: 'yellow',
+		color: '#363538',
+		backgroundColor: '#fffbad',
 	},
 }))
 export default function Difficulty(properties) {
