@@ -42,7 +42,7 @@ export default [
 	},
 	{
 		path: '/about-team',
-		component: <AboutTeamPage />
+		component: <AboutTeamPage />,
 	},
 	{
 		path: '/test',
