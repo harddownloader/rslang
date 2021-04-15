@@ -86,17 +86,27 @@ const Speaker = ({ query, userToken, userId }) => {
 		[
 			userId,
 			userToken,
-			lvl,
+			0,
 			false,
 			10,
-			// false
-			true
+			'{"userWord.optional.games.speaker.learned": false}',
 		],
 		[],
 	)
 
 	useEffect(() => {
-		doFetch(getAggregatedWords, [userId, userToken, lvl], [])
+		doFetch(
+			getAggregatedWords,
+			[
+				userId,
+				userToken,
+				lvl,
+				false,
+				10,
+				'"userWord.optional.games.speaker.learned": false',
+			],
+			[],
+		)
 	}, [lvl, setLvl])
 
 	const [statistic, dispatchStatistic] = useReducer(StatisticReducer, {
