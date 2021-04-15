@@ -9,6 +9,7 @@ import stats from '../assets/images/stats.png'
 import headphones from '../assets/images/headphones.png'
 import Video from '../components/PromoVideo/Video'
 import MetaTag from '../components/MetaTag/MetaTag'
+import Header from '@/components/header'
 
 
 const useStyles = makeStyles({
@@ -113,6 +114,7 @@ const Promo = () => {
 
     return (
         <>
+            <Header />
             <Grid container className={classes.wrapper}>
                 <Grid item xs={12} >
                     <Typography className={classes.header} variant='h2'>Приветствуем тебя на нашем сайте</Typography>

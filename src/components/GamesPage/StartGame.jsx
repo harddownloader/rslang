@@ -20,8 +20,8 @@ function StartGame(props) {
 		<Savannah userAuth={{token: props.userAuth.token, userId: props.userAuth.userId}}/>
 	) : id === 'sprint' ? (
 		<Sprint
-			userToken={properties.userAuth.token}
-			userId={properties.userAuth.userId}
+			userToken={props.userAuth.token}
+			userId={props.userAuth.userId}
 		/>
 	) : id === 'speaker' ? (
 		<Speaker

@@ -2,7 +2,7 @@ import React from 'react'
 
 import HomePage from '@/pages/HomePage'
 import GamesPage from '@/pages/GamesPage'
-import StatisticsPageContainer from '@/pages/containerStats'
+import StatisticsPageContainer from '@/components/Stats/containerStats'
 import SettingsPage from '@/pages/SettingsPage'
 import RegistrationPageContainer from '@/pages/RegistrationPageContainer'
 import LoginPageContainer from '@/pages/LoginPageContainer'
