@@ -11,6 +11,7 @@ import RechartsProgress from './diagram/RechartsProgress'
 import Select from './Select/Select'
 import MetaTag from '../MetaTag/MetaTag'
 import returnDate from '@/utils/returnDate'
+import Header from '@/components/header'
 
 // const loginUser = async user => {
 // 	const rawResponse = await fetch(
@@ -122,6 +123,29 @@ const useStyles = makeStyles({
 			transform: 'translateY(-7px)',
 		},
 	},
+	buttonArray: {
+		border: 'none',
+		textDecoration: 'none',
+		display: 'inline-block',
+		width: '90px',
+		height: '90px',
+		borderRadius: '90px',
+		margin: '10px 20px',
+		fontFamily: "'Montserrat', sans-serif",
+		fontSize: '11px',
+		textAlign: 'center',
+		fontWeight: '900',
+		color: '#524f4e',
+		background: '#2EE59D',
+		boxShadow: '0 8px 15px rgba(0, 0, 0, .1)',
+		transition: '.3s',
+		'&:hover': {
+			background: 'white',
+			boxShadow: '0 15px 20px rgba(46, 229, 157, .4)',
+			color: 'white',
+			transform: 'translateY(-7px)',
+		},
+	},
 	recharts: {
 		fontFamily: 'Open Sans,Helvetica,Arial,sans-serif',
 		background: 'rgb(12, 179, 232)',
@@ -143,6 +167,8 @@ const newdate = returnDate()
 console.log('newdate', newdate)
 
 const Stats = (props) => {
+
+	console.log('stats', props)
 
 	const [date, setDate] = useState(null)
 
@@ -242,6 +268,26 @@ const Stats = (props) => {
 
 	const [progress, setProgress] = useState(<Progress stats={{ countAnswer: 0, trueAnswer: 0, seriesAnswer: 0 }} />)
 
+	const [but, setBut] = useState([
+		{ id: 1, name: 'Саванна', bool: false },
+		{ id: 2, name: 'Аудио-вызов', bool: false },
+		{ id: 3, name: 'Спринт', bool: false },
+	])
+	const setbut = (id) => {
+		setBut(
+			but.map((item) => {
+				debugger
+				if (item.id == id) {
+					item.bool = true
+					return item
+				} else {
+					item.bool = false
+				}
+				return item
+			})
+		)
+	}
+
 	const setButton = (type) => {
 		switch (type) {
 			case 1:
@@ -256,8 +302,25 @@ const Stats = (props) => {
 		}
 	}
 
+
+	const getbut = but.map((item) => {
+		debugger
+		return (
+			<Grid item lg={12} xs={12} key={item.id}>
+
+				<Button size='large' className={item.bool ? classes.buttonArray : classes.button} onClick={() => {
+					setbut(item.id)
+					// setButton(item.id)
+				}}>
+					{item.name}
+				</Button>
+			</Grid >
+		)
+	})
+
 	return (
 		<div style={{ background: '#28282a' }} >
+			<Header />
 			<MetaTag text='Statistics' />
 			<Container maxWidth='lg' className={classes.wrapper}>
 				<Grid container spacing={2}>
@@ -281,21 +344,7 @@ const Stats = (props) => {
 				{isStats ? (
 					<Grid container className={classes.recharts} spacing={2}>
 						<Grid container item xs={3}>
-							<Grid item lg={12} xs={12}>
-								<Button size='large' className={classes.button} onClick={() => setButton(1)}>
-									Саванна
-								</Button>
-							</Grid>
-							<Grid item lg={12} xs={12}>
-								<Button size='large' className={classes.button} onClick={() => setButton(2)}>
-									Аудио-вызов
-								</Button>
-							</Grid>
-							<Grid item lg={12} xs={12}>
-								<Button size='large' className={classes.button} onClick={() => setButton(3)}>
-									Спринт
-								</Button>
-							</Grid>
+							{getbut}
 						</Grid>
 						<Grid item xs={9}>
 							{progress}
