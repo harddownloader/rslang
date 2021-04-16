@@ -135,6 +135,14 @@ const Speaker = ({ query, userToken, userId }) => {
 			</div>
 		)
 	}
+	if (data.length < 5 && data.length != 0) {
+		return (
+			<div className={classes.loader}>
+				На этом уровне сложности у человека мало слов, человек должен добавить
+				себе слова изучая учебник чтобы сыграть в эту супер игру
+			</div>
+		)
+	}
 
 	return (
 		<Context.Provider
