@@ -30,7 +30,6 @@ function ErrorMessage(properties) {
 	)
 }
 export default function Game(properties) {
-	console.dir(properties.userAuth)
 	const userID = properties.userAuth.userId
 	const userToken = properties.userAuth.token
 	const classes = useStyles()

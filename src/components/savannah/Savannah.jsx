@@ -20,10 +20,9 @@ const useStyles = makeStyles({
 export default function Savannah(props) {
 	const classes = useStyles()
 	const [isGame, setGame] = useState(false)
-	const [difficulty, setDifficulty] = useState(0)
+	const [difficulty, setDifficulty] = useState('0')
 	const [stat, setStat] = useState(null)
 	const userAuth = props.userAuth
-
 	useEffect(() => {
 		try {
 			getStatistics(userAuth.userId, userAuth.token)
