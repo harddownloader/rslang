@@ -1,4 +1,4 @@
-import React, { useState, useContext, useReducer } from 'react'
+import React, { useEffect, useContext, useReducer } from 'react'
 import PropTypes from 'prop-types'
 
 // material
@@ -9,13 +9,15 @@ import MuiAlert from '@material-ui/lab/Alert'
 
 // castom hooks
 import { useFormState } from 'react-use-form-state'
-import {
-	getUserWords,
-	setUserWords,
-	updateUserWordsById,
-	getUserWordsById,
-} from '@/utils/apiRequests/userWords'
+
+// castom Api
+import { updateUserWordsById } from '@/utils/apiRequests/userWords'
+
+// components
 import { Context } from './Context.jsx'
+import EndGamePopup from './EndGamePopup'
+import openFormReducer from './openFormReducer'
+
 //----------------------------------------
 
 function Alert(properties) {
@@ -56,44 +58,28 @@ const useStyles = makeStyles(theme => ({
 	},
 }))
 
-const openFormReducer = (state, action) => {
-	switch (action.type) {
-		case 'OPEN_ALL':
-			return {
-				...state,
-				isChecked: true,
-				open: true,
-			}
-		case 'SET_ERROR':
-			return {
-				...state,
-				isErrors: true,
-			}
-		case 'SET_CLOSE':
-			return {
-				...state,
-				open: false,
-			}
-		default:
-			throw new Error('err')
-	}
-}
-
 const Form = ({ data, setIsOpenPrompt }) => {
 	const { contextStatistic } = useContext(Context)
 	const { userToken } = useContext(Context)
-  const { userId } = useContext(Context)
+	const { userId } = useContext(Context)
 
 	const [statistic, dispatchStatistic] = contextStatistic
-	console.log(statistic)
 	const [formState, { label, text }] = useFormState()
 	const [state, dispatch] = useReducer(openFormReducer, {
 		isErrors: false,
 		isChecked: false,
 		open: false,
+		isEndGame: false,
 	})
 	const { isErrors, isChecked, open } = state
 	const classes = useStyles({ isErrors, isChecked })
+
+	useEffect(() => {
+		if (statistic.answer === 10) {
+			dispatch({ type: 'END_GAME' })
+		}
+	}, [handleSubmit, statistic])
+
 	const handleClose = reason => {
 		if (reason === 'clickaway') {
 			return
@@ -105,106 +91,80 @@ const Form = ({ data, setIsOpenPrompt }) => {
 		e.preventDefault()
 		if (formState.values.word === data.word) {
 			dispatchStatistic({ type: 'DECREMENT_CORRECT' })
-			statistic.series > statistic.bestSeries &&
+			statistic.series >= statistic.bestSeries &&
 				dispatchStatistic({ type: 'BEST_SERIES' })
-			
-				// updateUserWordsById(
-				// 	userId,
-				// 	userToken,
-				// 	data._id,
-				// 	data.userWord.difficulty,
-				// 	{
-				// 		// // сколько раз пользователь правильно ответил на слово в мини играх
-				// 		// correct_answers: (data.userWords.optional.correct_answers + 1),
-				// 		// uncorrect_answers: 0,
-				// 		// games: {
-				// 		// 	'savannah': {
-				// 		// 		learned: false
-				// 		// 	},
-				// 		// 	'sprint': {
-				// 		// 		learned: false
-				// 		// 	},
-				// 		// 	'speaker': {
-				// 		// 		learned: false
-				// 		// 	},
-				// 		// 	'my_game': {
-				// 		// 		learned: false
-				// 		// 	}
-				// 		// }
-				// 		...data,
-				// 		correct_answers: data.userWords.optional.correct_answers + 1,
-				// 			...games = {
-				// 				...speaker = {
-				// 					learned: true
-				// 				}
-				// 			},
-				// 	}
-				// )
-				console.log('data', data)
-				console.log('update true answer', {
-					// // сколько раз пользователь правильно ответил на слово в мини играх
-					// correct_answers: (data.userWord.optional.correct_answers + 1),
-					// uncorrect_answers: 0,
-					// games: {
-					// 	'savannah': {
-					// 		learned: false
-					// 	},
-					// 	'sprint': {
-					// 		learned: false
-					// 	},
-					// 	'speaker': {
-					// 		learned: false
-					// 	},
-					// 	'my_game': {
-					// 		learned: false
-					// 	}
-					// }
+			updateUserWordsById(
+				userId,
+				userToken,
+				data._id,
+				data.userWord.difficulty,
+				{
 					...data.userWord.optional,
 					correct_answers: data.userWord.optional.correct_answers + 1,
 					games: {
 						...data.userWord.optional.games,
 						speaker: {
-							learned: true
-						}
+							learned: true,
+						},
 					},
-				})
+				},
+			)
 		} else {
 			dispatchStatistic({ type: 'DECREMENT_ERRORS' })
 			dispatch({ type: 'SET_ERROR' })
+			updateUserWordsById(
+				userId,
+				userToken,
+				data._id,
+				data.userWord.difficulty,
+				{
+					...data.userWord.optional,
+					uncorrect_answers: data.userWord.optional.uncorrect_answers + 1,
+				},
+			)
 		}
+
 		dispatch({ type: 'OPEN_ALL' })
 		setIsOpenPrompt(true)
+
 		e.target.blur()
 	}
 
 	return (
-		<form onSubmit={handleSubmit} className={classes.formBox}>
-			<div className={classes.inputBox}>
-				<label {...label('word')}>your answer</label>
-				<input
-					{...text({
-						name: 'word',
-					})}
-					required
-				/>
-			</div>
-			<Button
-				type='submit'
-				variant='contained'
-				disabled={isChecked}
-				color='secondary'>
-				Check
-			</Button>
-			<Snackbar
-				anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-				open={open}
-				autoHideDuration={6000}
-				onClose={handleClose}>
-				<Alert onClose={handleClose} severity={isErrors ? 'error' : 'success'}>
-					{isErrors && isChecked ? `error, current answer ${data.word}` : 'O_o'}
-				</Alert>
-			</Snackbar>
-		</form>
+		<>
+			<form onSubmit={handleSubmit} className={classes.formBox}>
+				<div className={classes.inputBox}>
+					<label {...label('word')}>your answer</label>
+					<input
+						{...text({
+							name: 'word',
+						})}
+						required
+					/>
+				</div>
+				<Button
+					type='submit'
+					variant='contained'
+					disabled={isChecked}
+					color='secondary'>
+					Check
+				</Button>
+				<Snackbar
+					anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+					open={open}
+					autoHideDuration={6000}
+					onClose={handleClose}>
+					<Alert
+						onClose={handleClose}
+						severity={isErrors ? 'error' : 'success'}>
+						{isErrors && isChecked
+							? `error, current answer ${data.word}`
+							: 'O_o'}
+					</Alert>
+				</Snackbar>
+			</form>
+			<EndGamePopup statistic={statistic} isEndGame={state.isEndGame} />
+		</>
 	)
 }
 

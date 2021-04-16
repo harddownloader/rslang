@@ -48,7 +48,7 @@ export default function RegistrationPage(properties) {
 			const content = await rawResponse.json()
 
 			console.log('loginUser', content)
-			
+
 			// window.location.replace('/')
 		} else {
 			alert('Введите корректные данные')
@@ -71,11 +71,11 @@ export default function RegistrationPage(properties) {
 
 	// получить тек. дату
 	const getCurrentDate = () => {
-		const dateObj = new Date()
-		const month = dateObj.getUTCMonth() + 1
-		const day = dateObj.getUTCDate()
-		const year = dateObj.getUTCFullYear()
-		const newdate = year + "-" + month + "-" + day
+		const dateObject = new Date()
+		const month = dateObject.getUTCMonth() + 1
+		const day = dateObject.getUTCDate()
+		const year = dateObject.getUTCFullYear()
+		const newdate = `${year}-${month}-${day}`
 		return newdate
 	}
 
@@ -83,9 +83,9 @@ export default function RegistrationPage(properties) {
 	const handleSubmit = async () => {
 		console.log('submit event')
 		if (login.length > 4 && password.length > 4 && name.length > 1) {
-			await createUser({ email: login, password: password })
+			await createUser({ email: login, password })
 
-			const loggedUser = await loginUser({ email: login, password: password })
+			const loggedUser = await loginUser({ email: login, password })
 			console.log('loggedUser', loggedUser)
 
 			// сохраняем данные в редакс
@@ -102,7 +102,7 @@ export default function RegistrationPage(properties) {
 				0,
 				false,
 				60,
-				false
+				false,
 			)
 			console.log('newEasy0Words', newEasy0Words)
 			// 1 difficulty
@@ -179,65 +179,60 @@ export default function RegistrationPage(properties) {
 						correct_answers: 0,
 						uncorrect_answers: 0,
 						games: {
-							'savannah': {
-								learned: false
+							savannah: {
+								learned: false,
 							},
-							'sprint': {
-								learned: false
+							sprint: {
+								learned: false,
 							},
-							'speaker': {
-								learned: false
+							speaker: {
+								learned: false,
 							},
-							'my_game': {
-								learned: false
-							}
-						}
-					}
+							my_game: {
+								learned: false,
+							},
+						},
+					},
 				)
 			}
 
 			// ставим 0ю статистику
-			await setStatistics(
-				loggedUser.userId,
-				loggedUser.token,
-				0,
-				{
-					level: 0,
-					exp: 0,
-					days: 0,
-					dates: {
-						dateItems: [
-							{
-								date: getCurrentDate(),
-								countWord: 0,
-								answerTrue: 0,
-								games: {
-									savana: {
-										countAnswer: 0,
-										trueAnswer: 0,
-										seriesAnswer: 0
-									},
-									audio: {
-										countAnswer: 0,
-										trueAnswer: 0,
-										seriesAnswer: 0
-									},
-									myGame: {
-										countAnswer: 0,
-										trueAnswer: 0,
-										seriesAnswer: 0
-									},
-									sprint: {
-										countAnswer: 0,
-										trueAnswer: 0,
-										seriesAnswer: 0
-									}
-								}
-							}
-						]
-					}
-				}
-			)
+			await setStatistics(loggedUser.userId, loggedUser.token, 0, {
+				level: 0,
+				exp: 0,
+				days: 0,
+				dates: {
+					dateItems: [
+						{
+							date: getCurrentDate(),
+							countWord: 0,
+							answerTrue: 0,
+							games: {
+								savana: {
+									countAnswer: 0,
+									trueAnswer: 0,
+									seriesAnswer: 0,
+								},
+								audio: {
+									countAnswer: 0,
+									trueAnswer: 0,
+									seriesAnswer: 0,
+								},
+								myGame: {
+									countAnswer: 0,
+									trueAnswer: 0,
+									seriesAnswer: 0,
+								},
+								sprint: {
+									countAnswer: 0,
+									trueAnswer: 0,
+									seriesAnswer: 0,
+								},
+							},
+						},
+					],
+				},
+			})
 
 			// ставим нулевые настройки словаря
 			await setSettings(
@@ -263,7 +258,7 @@ export default function RegistrationPage(properties) {
 
 	const handleChangeLogin = value => {
 		// console.log('been changed' + val)
-		if(validateEmail(value)) {
+		if (validateEmail(value)) {
 			setLogin(value)
 		} else {
 			setLogin('')
@@ -274,7 +269,7 @@ export default function RegistrationPage(properties) {
 	const handleChangeValidatePassword = value => {
 		{
 			// Validate lowercase letters
-			const lowerCaseLetters = /[a-z]/g;
+			const lowerCaseLetters = /[a-z]/g
 			// if(value.match(lowerCaseLetters)) {
 			// 	console.log('  валиден')
 			// 	// letter.classList.remove("invalid");
@@ -284,7 +279,7 @@ export default function RegistrationPage(properties) {
 			// 	// letter.classList.remove("valid");
 			// 	// letter.classList.add("invalid");
 			// }
-		
+
 			// Validate capital letters
 			// const upperCaseLetters = /[A-Z]/g;
 			// if(value.match(upperCaseLetters)) {
@@ -296,9 +291,9 @@ export default function RegistrationPage(properties) {
 			// 	// capital.classList.remove("valid");
 			// 	// capital.classList.add("invalid");
 			// }
-		
+
 			// Validate numbers
-			const numbers = /[0-9]/g;
+			const numbers = /\d/g
 			// if(value.match(numbers)) {
 			// 	console.log('  валиден')
 			// 	// number.classList.remove("invalid");
@@ -308,7 +303,7 @@ export default function RegistrationPage(properties) {
 			// 	// number.classList.remove("valid");
 			// 	// number.classList.add("invalid");
 			// }
-		
+
 			// // Validate length
 			// if(value.length >= 8) {
 			// 	console.log('  валиден')
@@ -320,9 +315,9 @@ export default function RegistrationPage(properties) {
 			// 	// length.classList.add("invalid");
 			// }
 
-			if(
-				value.match(lowerCaseLetters) &&
-				value.match(numbers) &&
+			if (
+				lowerCaseLetters.test(value) &&
+				numbers.test(value) &&
 				value.length >= 8
 			) {
 				console.log('password валиден')
@@ -352,7 +347,9 @@ export default function RegistrationPage(properties) {
 							<Card className={classes[cardAnimaton]}>
 								<form className={classes.form}>
 									<CardHeader color='primary' className={classes.cardHeader}>
-										<h4 className={classes.cardHeaderTitle}>Зарегистрироваться</h4>
+										<h4 className={classes.cardHeaderTitle}>
+											Зарегистрироваться
+										</h4>
 									</CardHeader>
 									<CardBody className={classes.cardBody}>
 										<Dropzone />
@@ -411,8 +408,7 @@ export default function RegistrationPage(properties) {
 											color='secondary'
 											size='lg'
 											onClick={event => handleSubmit()}
-											className={classes.authBtn}
-										>
+											className={classes.authBtn}>
 											Создать аккаунт
 										</Button>
 									</CardFooter>

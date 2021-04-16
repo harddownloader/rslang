@@ -96,8 +96,8 @@ export default function LoginPage(properties) {
 
 			console.log('loginUser', content)
 			properties.setUserAuth({
-				userId: content.userId ,
-				token: content.token
+				userId: content.userId,
+				token: content.token,
 			})
 
 		} else {
@@ -163,8 +163,7 @@ export default function LoginPage(properties) {
 											color='secondary'
 											size='lg'
 											onClick={event => handleSubmit()}
-											className={classes.authBtn}
-										>
+											className={classes.authBtn}>
 											Войти
 										</Button>
 										<p className={classes.dividerBottom}>Или</p>
@@ -175,8 +174,7 @@ export default function LoginPage(properties) {
 												simple
 												color='primary'
 												size='lg'
-												className={classes.authBtn}
-											>
+												className={classes.authBtn}>
 												Создать аккаунт
 											</Button>
 										</Link>

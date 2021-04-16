@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react'
 
 import {loginUser} from '@/utils/apiRequests/sign'
 import {getAggregatedWords} from '@/utils/apiRequests/aggregatedWords'

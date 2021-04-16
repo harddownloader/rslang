@@ -19,7 +19,10 @@ function StartGame(props) {
 	return id === 'savanna' ? (
 		<Savannah userAuth={{token: props.userAuth.token, userId: props.userAuth.userId}}/>
 	) : id === 'sprint' ? (
-		<Sprint userAuth={{token: props.userAuth.token, userId: props.userAuth.userId}}/>
+		<Sprint
+			userToken={props.userAuth.token}
+			userId={props.userAuth.userId}
+		/>
 	) : id === 'speaker' ? (
 		<Speaker
 			query={name}

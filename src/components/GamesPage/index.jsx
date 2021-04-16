@@ -28,7 +28,7 @@ const useStyles = makeStyles(theme => ({
 		'& .fade-enter': {
 			opacity: '0.5',
 			transition: 'all 0.5s ease-in',
-			transform: 'translateY(100%)'
+			transform: 'translateY(100%)',
 		},
 		'& .fade-enter-active': {
 			opacity: 1,
@@ -41,8 +41,8 @@ const useStyles = makeStyles(theme => ({
 		'& .fade-exit-active': {
 			transform: 'translateY(0%)',
 			opacity: '0',
-			transition: 'all 0.5s ease-in'
-		}
+			transition: 'all 0.5s ease-in',
+		},
 	},
 }))
 
@@ -51,7 +51,6 @@ function useQuery() {
 }
 
 const Games = () => {
-
 	// useEffect(() => {
 
 	// }, [])
@@ -61,7 +60,6 @@ const Games = () => {
 	const classes = useStyles()
 	const { path } = useRouteMatch()
 	const [hoverGame, setHoverGame] = useState(0)
-	
 
 	return (
 		<TransitionGroup className={classes.animation}>

@@ -15,8 +15,6 @@ export async function getAggregatedWords(
   if(wordsPerPage) url += `wordsPerPage=${wordsPerPage}&`
   if(filter) url += `filter=${filter}`
 
-	console.log('getAggregatedWords url', url)
-
 	const rawResponseAggregate = await fetch(url, {
 		method: 'GET',
 		withCredentials: true,
@@ -25,7 +23,6 @@ export async function getAggregatedWords(
 			Accept: 'application/json',
 		},
 	})
-
 	const getAggregatedWordsRes = await rawResponseAggregate.json()
 
 	console.log('getAggregatedWords', getAggregatedWordsRes)

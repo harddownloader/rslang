@@ -31,6 +31,7 @@ import Slide from './Slide'
 import LvlControl from './LvlControl'
 import { Context } from './Context'
 import StatisticReducer from './StatisticReducer'
+import MetaTag from '../MetaTag/MetaTag'
 //----------------------------------------
 
 SwiperCore.use([Navigation, Pagination, Scrollbar, EffectCube, A11y])
@@ -86,17 +87,27 @@ const Speaker = ({ query, userToken, userId }) => {
 		[
 			userId,
 			userToken,
-			lvl,
+			0,
 			false,
 			10,
-			// false
-			true
+			'{"userWord.optional.games.speaker.learned": false}',
 		],
 		[],
 	)
 
 	useEffect(() => {
-		doFetch(getAggregatedWords, [userId, userToken, lvl], [])
+		doFetch(
+			getAggregatedWords,
+			[
+				userId,
+				userToken,
+				lvl,
+				false,
+				10,
+				'"userWord.optional.games.speaker.learned": false',
+			],
+			[],
+		)
 	}, [lvl, setLvl])
 
 	const [statistic, dispatchStatistic] = useReducer(StatisticReducer, {
@@ -131,6 +142,7 @@ const Speaker = ({ query, userToken, userId }) => {
 				userToken,
 				contextStatistic: [statistic, dispatchStatistic],
 			}}>
+			<MetaTag text='viiiuuu' />
 			<div className={classes.root}>
 				<LvlControl setLvl={setLvl} lvl={lvl} />
 				<Swiper

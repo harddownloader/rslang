@@ -3,50 +3,94 @@ import { makeStyles } from '@material-ui/core/styles'
 import DoneOutlineIcon from '@material-ui/icons/DoneOutline'
 
 const useStyles = makeStyles({
-	Score: {
+	Marks: {
+		display: 'flex',
+		alignItems: 'center',
+		justifyContent: 'center',
 		color: 'red',
 		fontSize: '3.5rem',
 		textAlign: 'center',
+		height: '100px',
+	},
+	MarksBlock: {
+		display: 'flex',
+		alignItems: 'center',
+		justifyContent: 'center',
+		flexDirection: 'row',
+	},
+	BorderMarks: {
+		borderRadius: '50%',
+		backgroundColor: 'white',
+		width: '50px',
+		height: '50px',
+		display: 'flex',
+		alignItems: 'center',
+		justifyContent: 'center',
 	},
 })
 
-const TrueMarks = props => {
+const TrueMarks = properties => {
 	const classes = useStyles()
-	const [marksCount, setMarksCount] = useState(props.marksCount)
+	const [marksCount, setMarksCount] = useState(properties.marksCount)
 
 	const addCheckedBonus = count => {
 		switch (count) {
 			case 1:
-				console.log('Good answer 1')
-				return <DoneOutlineIcon />
-			case 2:
-				console.log('Good answer 2')
 				return (
-					<div>
-						<DoneOutlineIcon /> <DoneOutlineIcon />
+					<div className={classes.MarksBlock} style={{ fontSize: '3.5rem' }}>
+						<div className={classes.BorderMarks}>
+							<DoneOutlineIcon style={{ fontSize: '3.5rem' }} />
+						</div>
+					</div>
+				)
+			case 2:
+				return (
+					<div className={classes.MarksBlock} style={{ fontSize: '3.5rem' }}>
+						<div className={classes.BorderMarks}>
+							<DoneOutlineIcon style={{ fontSize: '3.5rem' }} />
+						</div>
+						<div className={classes.BorderMarks}>
+							<DoneOutlineIcon style={{ fontSize: '3.5rem' }} />
+						</div>
 					</div>
 				)
 			case 3:
-				console.log('Good answer 3')
 				return (
-					<div>
-						<DoneOutlineIcon /> <DoneOutlineIcon /> <DoneOutlineIcon />
+					<div className={classes.MarksBlock} style={{ fontSize: '3.5rem' }}>
+						<div className={classes.BorderMarks}>
+							<DoneOutlineIcon style={{ fontSize: '3.5rem' }} />
+						</div>
+						<div className={classes.BorderMarks}>
+							<DoneOutlineIcon style={{ fontSize: '3.5rem' }} />
+						</div>
+						<div className={classes.BorderMarks}>
+							<DoneOutlineIcon style={{ fontSize: '3.5rem' }} />
+						</div>
 					</div>
 				)
 			case 4:
-				console.log('Good answer 4')
-				return <DoneOutlineIcon />
+				return (
+					<div className={classes.MarksBlock} style={{ fontSize: '3.5rem' }}>
+						<div className={classes.BorderMarks}>
+							<DoneOutlineIcon style={{ fontSize: '3.5rem' }} />
+						</div>
+					</div>
+				)
 
 			default:
 				break
 		}
 	}
 	useEffect(() => {
-		console.log('Marks count', props.marksCount)
-		addCheckedBonus(props.marksCount)
-	}, [props.marksCount])
+		console.log('Marks count', properties.marksCount)
+		addCheckedBonus(properties.marksCount)
+	}, [properties.marksCount])
 
-	return <div>{addCheckedBonus(props.marksCount)}</div>
+	return (
+		<div className={classes.Marks}>
+			{addCheckedBonus(properties.marksCount)}
+		</div>
+	)
 }
 
 export default TrueMarks

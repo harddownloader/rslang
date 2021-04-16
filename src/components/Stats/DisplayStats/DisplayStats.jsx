@@ -37,11 +37,10 @@ const DisplayStats = ({ dates }) => {
 
 	const answerTrue = dates[0].games.audio.trueAnswer + dates[0].games.myGame.trueAnswer + dates[0].games.savana.trueAnswer + dates[0].games.sprint.trueAnswer
 
-
 	let result = 0
 
 	if (countAnswer !== 0) {
-		result = Math.round(answerTrue * 100 / countAnswer)
+		result = Math.round((answerTrue * 100) / countAnswer)
 	}
 
 	const classes = useStyles()
