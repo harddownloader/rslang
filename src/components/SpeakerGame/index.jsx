@@ -32,6 +32,7 @@ import LvlControl from './LvlControl'
 import { Context } from './Context'
 import StatisticReducer from './StatisticReducer'
 import MetaTag from '../MetaTag/MetaTag'
+import EndGamePopup from './EndGamePopup'
 //----------------------------------------
 
 SwiperCore.use([Navigation, Pagination, Scrollbar, EffectCube, A11y])
@@ -163,6 +164,11 @@ const Speaker = ({ query, userToken, userId }) => {
 						</SwiperSlide>
 					))}
 				</Swiper>
+				<EndGamePopup
+					statistic={statistic}
+					userToken={userToken}
+					userId={userId}
+				/>
 			</div>
 		</Context.Provider>
 	)

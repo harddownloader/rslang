@@ -10,13 +10,10 @@ import MuiAlert from '@material-ui/lab/Alert'
 // castom hooks
 import { useFormState } from 'react-use-form-state'
 
-// castom Api
-import { updateUserWordsById } from '@/utils/apiRequests/userWords'
-
 // components
 import { Context } from './Context.jsx'
-import EndGamePopup from './EndGamePopup'
 import openFormReducer from './openFormReducer'
+import updateWord from './updateWord'
 
 //----------------------------------------
 
@@ -74,12 +71,6 @@ const Form = ({ data, setIsOpenPrompt }) => {
 	const { isErrors, isChecked, open } = state
 	const classes = useStyles({ isErrors, isChecked })
 
-	useEffect(() => {
-		if (statistic.answer === 10) {
-			dispatch({ type: 'END_GAME' })
-		}
-	}, [handleSubmit, statistic])
-
 	const handleClose = reason => {
 		if (reason === 'clickaway') {
 			return
@@ -89,44 +80,17 @@ const Form = ({ data, setIsOpenPrompt }) => {
 
 	const handleSubmit = e => {
 		e.preventDefault()
-		if (formState.values.word === data.word) {
-			dispatchStatistic({ type: 'DECREMENT_CORRECT' })
-			statistic.series >= statistic.bestSeries &&
-				dispatchStatistic({ type: 'BEST_SERIES' })
-			updateUserWordsById(
-				userId,
-				userToken,
-				data._id,
-				data.userWord.difficulty,
-				{
-					...data.userWord.optional,
-					correct_answers: data.userWord.optional.correct_answers + 1,
-					games: {
-						...data.userWord.optional.games,
-						speaker: {
-							learned: true,
-						},
-					},
-				},
-			)
-		} else {
-			dispatchStatistic({ type: 'DECREMENT_ERRORS' })
-			dispatch({ type: 'SET_ERROR' })
-			updateUserWordsById(
-				userId,
-				userToken,
-				data._id,
-				data.userWord.difficulty,
-				{
-					...data.userWord.optional,
-					uncorrect_answers: data.userWord.optional.uncorrect_answers + 1,
-				},
-			)
-		}
-
+		updateWord(
+			userId,
+			userToken,
+			formState,
+			data,
+			statistic,
+			dispatchStatistic,
+			dispatch,
+		)
 		dispatch({ type: 'OPEN_ALL' })
 		setIsOpenPrompt(true)
-
 		e.target.blur()
 	}
 
@@ -163,7 +127,6 @@ const Form = ({ data, setIsOpenPrompt }) => {
 					</Alert>
 				</Snackbar>
 			</form>
-			<EndGamePopup statistic={statistic} isEndGame={state.isEndGame} />
 		</>
 	)
 }

@@ -142,8 +142,7 @@ const newdate = returnDate()
 
 console.log('newdate', newdate)
 
-const Stats = (props) => {
-
+const Stats = props => {
 	const [date, setDate] = useState(null)
 
 	useEffect(async () => {
@@ -152,14 +151,10 @@ const Stats = (props) => {
 		// const settingDate = await setStatistics(logedUser.userId, logedUser.token, 1, {
 		// 	level: 2,
 		// 	exp: 50,
-		// 	days: 2,
 		// 	dates: {
 		// 		dateItems: [
 		// 			{
 		// 				dateTime: newdate,
-		// 				countAnswer: 0,
-		// 				answerTrue: 0,
-		// 				seriesAnswer: 0,
 		// 				games: {
 		// 					savana: {
 		// 						countAnswer: 8,
@@ -214,16 +209,17 @@ const Stats = (props) => {
 		// 		]
 		// 	}
 		// })
-
-
 		// console.log(settingDate)
-		const gettingStatistics = await getStatistics(props.userAuth.userId, props.userAuth.token)
+		const gettingStatistics = await getStatistics(
+			props.userAuth.userId,
+			props.userAuth.token,
+		)
 		console.log('gettingStatistics', gettingStatistics)
 		setDate(gettingStatistics.optional)
 		console.log(date)
 	}, [])
 
-	console.log("date", date)
+	console.log('date', date)
 
 	const [isStats, setIsStats] = useState(true)
 
@@ -233,36 +229,42 @@ const Stats = (props) => {
 
 	const classes = useStyles()
 
-	const progressDate = date ? date.dates.dateItems.map((item) => {
-		debugger
-		if (item.dateTime == newdate) {
-			return item
-		}
-	}) : null
+	const progressDate = date
+		? date.dates.dateItems.map(item => {
+				debugger
+				if (item.dateTime == newdate) {
+					return item
+				}
+		  })
+		: null
 
-	const [progress, setProgress] = useState(<Progress stats={{ countAnswer: 0, trueAnswer: 0, seriesAnswer: 0 }} />)
+	const [progress, setProgress] = useState(
+		<Progress stats={{ countAnswer: 0, trueAnswer: 0, seriesAnswer: 0 }} />,
+	)
 
-	const setButton = (type) => {
+	const setButton = type => {
 		switch (type) {
 			case 1:
 				setProgress(<Progress stats={progressDate[0].games.savana} />)
-				break;
+				break
 			case 2:
 				setProgress(<Progress stats={progressDate[0].games.audio} />)
-				break;
+				break
 			case 3:
 				setProgress(<Progress stats={progressDate[0].games.sprint} />)
-				break;
+				break
 		}
 	}
 
 	return (
-		<div style={{ background: '#28282a' }} >
+		<div style={{ background: '#28282a' }}>
 			<MetaTag text='Statistics' />
 			<Container maxWidth='lg' className={classes.wrapper}>
 				<Grid container spacing={2}>
 					<Grid className={classes.wrapperProfiler} item xs={12} xl={3}>
-						{date && <Profile level={date.level} exp={date.exp} days={date.days} />}
+						{date && (
+							<Profile level={date.level} exp={date.exp} days={date.days} />
+						)}
 					</Grid>
 					<Grid item xs={1}></Grid>
 					<Grid className={classes.wrapperStats} item xs={12} xl={8}>
@@ -282,17 +284,26 @@ const Stats = (props) => {
 					<Grid container className={classes.recharts} spacing={2}>
 						<Grid container item xs={3}>
 							<Grid item lg={12} xs={12}>
-								<Button size='large' className={classes.button} onClick={() => setButton(1)}>
+								<Button
+									size='large'
+									className={classes.button}
+									onClick={() => setButton(1)}>
 									Саванна
 								</Button>
 							</Grid>
 							<Grid item lg={12} xs={12}>
-								<Button size='large' className={classes.button} onClick={() => setButton(2)}>
+								<Button
+									size='large'
+									className={classes.button}
+									onClick={() => setButton(2)}>
 									Аудио-вызов
 								</Button>
 							</Grid>
 							<Grid item lg={12} xs={12}>
-								<Button size='large' className={classes.button} onClick={() => setButton(3)}>
+								<Button
+									size='large'
+									className={classes.button}
+									onClick={() => setButton(3)}>
 									Спринт
 								</Button>
 							</Grid>
@@ -307,12 +318,13 @@ const Stats = (props) => {
 							{date && <Recharts stats={date.dates.dateItems} date={newdate} />}
 						</Grid>
 						<Grid item md={6} xs={12}>
-							{date && <RechartsProgress stats={date.dates.dateItems} date={newdate} />}
+							{date && (
+								<RechartsProgress stats={date.dates.dateItems} date={newdate} />
+							)}
 						</Grid>
 					</Grid>
 				)}
 			</Container>
-
 		</div>
 	)
 }

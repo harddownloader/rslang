@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
 
 // matirial
@@ -11,6 +11,9 @@ import ButtonGroup from '@material-ui/core/ButtonGroup'
 
 // router
 import { Link } from 'react-router-dom'
+
+// components
+import updateStatistic from './updateStatistic'
 // ----------------------------------------------
 
 const useStyles = makeStyles(theme => ({
@@ -35,21 +38,27 @@ const useStyles = makeStyles(theme => ({
 	},
 }))
 
-export default function TransitionsModal({ isEndGame, statistic }) {
+export default function TransitionsModal({ statistic, userId, userToken }) {
 	const classes = useStyles()
+	useEffect(() => {
+		if (statistic.answer === 10) {
+			updateStatistic(userId, userToken)
+		}
+	}, [statistic])
+
 	return (
 		<Modal
 			aria-labelledby='transition-modal-title'
 			aria-describedby='transition-modal-description'
 			className={classes.modal}
-			open={isEndGame}
+			open={statistic.answer === 10}
 			//	onClose={handleClose}
 			closeAfterTransition
 			BackdropComponent={Backdrop}
 			BackdropProps={{
 				timeout: 500,
 			}}>
-			<Fade in={isEndGame}>
+			<Fade in={statistic.answer === 10}>
 				<div className={classes.paper}>
 					<h2 id='transition-modal-title'>End Game</h2>
 					<p id='transition-modal-description'>
