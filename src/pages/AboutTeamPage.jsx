@@ -9,10 +9,11 @@ import '@/assets/scss/AboutTeam.scss'
 import backAbout from '../assets/images/AboutTeam.png'
 import MetaTag from '../components/MetaTag/MetaTag'
 import sereja from '@/assets/images/profile/sereja.jpg'
-import dima from '@/assets/images/profile/dima.jpg'
+import dima from '@/assets/images/profile/dima.png'
 import serafim from '@/assets/images/profile/serafim.jpg'
 import vlas from '@/assets/images/profile/vlas.jpg'
 import misha from '@/assets/images/profile/misha.jpg'
+import Header from '@/components/header'
 
 const useStyles = makeStyles({
 	wrapperBackground: {
@@ -39,13 +40,13 @@ const useStyles = makeStyles({
 		borderRadius: '20px',
 	},
 	peperText: {
-		marginTop:'20px',
+		marginTop: '20px',
 		color: 'white',
 		fontSize: '19px',
 	},
 	profileDiv: {
 		width: '400px',
-		marginTop: '230px',
+		marginTop: '130px',
 		textAlign: 'center',
 	},
 	pImpact: {
@@ -89,7 +90,7 @@ const about = [
 		src: serafim,
 		name: 'Круцкевич Серафим',
 		description:
-			'Do nostrud dolor culpa tempor tempor pariatur tempor minim irure ex.Consequat voluptateasdadasdad. ',
+			'Основатель команды нашего проекта. Ответственный и отзывчивый человек, способный граммотно организовать рабочий процесс.  ',
 	},
 	{
 		id: 2,
@@ -97,7 +98,7 @@ const about = [
 		src: vlas,
 		name: 'Маскаленчик Влас',
 		description:
-			'Do nostrud dolor culpa tempor tempor pariatur tempor minim irure ex.Consequat voluptateasdadasdad.',
+			'Один из основателей команды проекта. Надежный напарник и коммуникабельный человек, открыт к познанию нового. ',
 	},
 	{
 		id: 3,
@@ -105,7 +106,7 @@ const about = [
 		src: dima,
 		name: 'Дмитрий Долгопол',
 		description:
-			'Саванна',
+			'Позитивный и энергичный член команды. Упорно идет к своей мечте, переступая через любые препятствия.',
 	},
 	{
 		id: 4,
@@ -113,7 +114,7 @@ const about = [
 		src: sereja,
 		name: 'Сергей Шевченко',
 		description:
-			'Router,Speaker,Menu,Webpack,Eye',
+			'Внимательный и трудолюбивый напарник. Добросевестно выполняет взятые на себя обязанности.',
 	},
 	{
 		id: 5,
@@ -121,7 +122,7 @@ const about = [
 		src: misha,
 		name: 'Миша',
 		description:
-			'Sprint',
+			'Эрудированный и разносторонный коллега, деликатный в общении и старательный в работе.',
 	},
 ]
 
@@ -131,7 +132,7 @@ const AboutTeam = () => {
 
 	const getText = text.map(item => {
 		return (
-			<Grid item  key={item.id} style={{ marginTop: '90px' }}>
+			<Grid item key={item.id} style={{ marginTop: '90px' }}>
 				<Paper square className={classes.paper}>
 					<Typography variant='h3' className={classes.Typography}>
 						{item.title}
@@ -155,7 +156,7 @@ const AboutTeam = () => {
 					</div>
 				</Grid>
 				<Grid >
-					<img style={{ width: '700px', height: '700px' }}
+					<img style={{ width: '500px', height: '500px' }}
 						src={item.src}
 						alt='personPhoto'
 					/>
@@ -167,6 +168,7 @@ const AboutTeam = () => {
 
 	return (
 		<>
+			<Header />
 			<MetaTag text='AboutTeam' />
 			<div className={classes.wrapperBackground}>
 				<Typography variant='h3' align='center' className={classes.heading}>
