@@ -17,7 +17,7 @@ export default function Loader() {
 	const classes = useStyles()
 	return (
 		<div className={classes.root}>
-			<LinearProgress color={secondaryColor} />
+			<LinearProgress color='secondary' />
 		</div>
 	)
 }

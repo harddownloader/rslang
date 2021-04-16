@@ -17,6 +17,7 @@ const useStyles = makeStyles({
 		display: 'flex',
 		flexDirection: 'column',
 		alignItems: 'center',
+		margin: 'auto',
 	},
 })
 
@@ -45,11 +46,18 @@ export default function Game(properties) {
 			setIsLoaded(false)
 		}
 		try {
-			getAggregatedWords(userID, userToken, properties.difficulty, page, 20, '{"userWord.optional.games.savana.learned": false}')
+			getAggregatedWords(userID, userToken, 0, page, 20, '{"userWord.optional.games.savannah.learned": false}')
 				.then(res => {
 					setWords(res[0].paginatedResults)
+					return res[0].paginatedResults
 				})
-				.then(() => setIsLoaded(true))
+				.then((words) => {
+					if (words.length === 20) {
+						setIsLoaded(true)
+						return words
+					}
+					setError({ message: 'Sorry.. You should learn more words before next game' })
+				})
 		}
 		catch (error) {
 			setError(error)

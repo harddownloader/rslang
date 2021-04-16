@@ -75,14 +75,12 @@ const useStyles = makeStyles(theme => ({
 
 export default function GameResult(properties) {
 	const finalStat = {
-		...properties.gameStat.origin,
-		optional: {
-			...properties.gameStat.origin.optional,
-			dates: {
-				dateItems: [...properties.gameStat.origin.optional.dates.dateItems, { ...properties.gameStat.item }]
-			}
+		...properties.gameStat.origin.optional,
+		dates: {
+			dateItems: [...properties.gameStat.origin.optional.dates.dateItems, { ...properties.gameStat.item }]
 		}
 	}
+	console.dir(finalStat)
 	setStatistics(properties.userAuth.userId, properties.userAuth.token, 0, finalStat)
 
 	const classes = useStyles()
