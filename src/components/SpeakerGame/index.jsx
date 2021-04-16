@@ -88,7 +88,7 @@ const Speaker = ({ query, userToken, userId }) => {
 		[
 			userId,
 			userToken,
-			0,
+			lvl,
 			false,
 			10,
 			'{"userWord.optional.games.speaker.learned": false}',
