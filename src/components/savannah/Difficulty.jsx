@@ -59,7 +59,7 @@ export default function Difficulty(properties) {
 		<>
 			<ul className={classes.gradesList}>
 				{grades.map((item, index) => {
-					if (index === properties.grade) {
+					if (+index === +properties.grade) {
 						return (
 							<li
 								key={`${index} level`}
