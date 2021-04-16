@@ -31,6 +31,7 @@ import Slide from './Slide'
 import LvlControl from './LvlControl'
 import { Context } from './Context'
 import StatisticReducer from './StatisticReducer'
+import MetaTag from '../MetaTag/MetaTag'
 //----------------------------------------
 
 SwiperCore.use([Navigation, Pagination, Scrollbar, EffectCube, A11y])
@@ -75,7 +76,6 @@ const useStyles = makeStyles(theme => ({
 		zIndex: 10,
 	},
 }))
-
 
 const Speaker = ({ query, userToken, userId }) => {
 	const [swiper, setSwiper] = useState(null) // eslint-disable-line  unicorn/no-null
@@ -142,6 +142,7 @@ const Speaker = ({ query, userToken, userId }) => {
 				userToken,
 				contextStatistic: [statistic, dispatchStatistic],
 			}}>
+			<MetaTag text='viiiuuu' />
 			<div className={classes.root}>
 				<LvlControl setLvl={setLvl} lvl={lvl} />
 				<Swiper
