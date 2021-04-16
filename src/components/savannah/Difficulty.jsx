@@ -53,7 +53,7 @@ export default function Difficulty(properties) {
 				.querySelector(`.${classes.grade_active}`)
 				.classList.toggle(classes.grade_active)
 		target.classList.toggle(classes.grade_active)
-		properties.change(+target.dataset.level)
+		properties.change(target.dataset.level)
 	}
 	return (
 		<>

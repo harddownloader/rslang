@@ -65,6 +65,7 @@ export default function GameBoard(properties) {
 	const [word, setWord] = useState(properties.words[level])
 	const [options, setOptions] = useState(getOptions(word.wordTranslate, properties.words))
 	const [gameStat, setGameStat] = useState(properties.stat)
+	console.dir(gameStat)
 	const [attempts, setAttempts] = useState(5)
 	const [isGame, setIsGame] = useState(true)
 	const [isLose, setIsLose] = useState(false)
@@ -76,6 +77,7 @@ export default function GameBoard(properties) {
 		correct: 0,
 	})
 	console.log(gameStat)
+	console.log('word', word)
 	useEffect(() => {
 		setIsLose(false)
 		setWord(properties.words[level])
@@ -119,14 +121,14 @@ export default function GameBoard(properties) {
 				updateUserWordsById(
 					properties.userAuth.userId,
 					properties.userAuth.token,
-					word.id,
+					word._id,
 					word.difficulty,
 					{
 						...word.optional,
 						correct_answers: word.userWord.optional.correct_answers + 1,
 						games: {
 							...word.userWord.optional.games,
-							savana: {
+							savannah: {
 								learned: true,
 							},
 						},
@@ -158,7 +160,7 @@ export default function GameBoard(properties) {
 				updateUserWordsById(
 					properties.userAuth.userId,
 					properties.userAuth.token,
-					word.id,
+					word._id,
 					word.difficulty,
 					{
 						...word.userWord.optional,
