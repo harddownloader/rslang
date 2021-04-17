@@ -42,7 +42,7 @@ export default function AlignItemsList({word}) {
   }
 
   return (
-    <List className={classes.root}>
+      <>
       <ListItem alignItems="flex-start">
         <ListItemAvatar>
           <Avatar alt="Remy Sharp" src={'https://rs-lang-app.herokuapp.com/' + word.image} />
@@ -99,6 +99,6 @@ export default function AlignItemsList({word}) {
         </ListItemSecondaryAction>
       </ListItem>
       <Divider variant="inset" component="li" />
-    </List>
+    </>
   );
 }

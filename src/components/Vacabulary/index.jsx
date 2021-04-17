@@ -1,11 +1,30 @@
 import React, {useState, useEffect} from 'react';
 import NavPills from '@/components/NavPills/NavPills'
+import { List, ListItem, makeStyles, Divider, Box } from "@material-ui/core";
+import Pagination from '@material-ui/lab/Pagination';
 // import {getUserWords} from '@/utils/apiRequests/userWords'
 import {getAggregatedWords} from '@/utils/apiRequests/aggregatedWords'
 
 import AlignItemsList from '@/components/Vacabulary/WordItem'
 
+const useStyles = makeStyles(theme => ({
+  root: {
+    width: "100%",
+    backgroundColor: theme.palette.background.paper
+  },
+  item: {
+    padding: theme.spacing(1.2)
+  },
+  avatar: { marginRight: theme.spacing(5) },
+  paginator: {
+    justifyContent: "center",
+    padding: "10px"
+  }
+}));
+
 function Vocabulary(props) {
+  const classes = useStyles();
+
 
   const [words, setWords] = useState([])
   useEffect(async () => {
@@ -20,7 +39,18 @@ function Vocabulary(props) {
     )
     console.log('userWords', userWords[0].paginatedResults)
     setWords(userWords[0].paginatedResults)
+    setNoOfPages(Math.ceil(userWords[0].paginatedResults.length / itemsPerPage))
   }, [])
+
+  const itemsPerPage = 10;
+  const [page, setPage] = useState(1);
+  const [noOfPages, setNoOfPages] = useState(
+    // Math.ceil(words.length / itemsPerPage)
+  );
+
+  const handleChange = (event, value) => {
+    setPage(value);
+  };
 
   // const wordItem = <AlignItemsList />
 
@@ -34,26 +64,33 @@ function Vocabulary(props) {
             {
               tabButton: "Изучаемые слова",
               tabContent: (
-                <span>
-                  {/* {wordItem} */}
-                  
-                  {words.map((word) => {
-                    return (
+                <>
+                  <List className={classes.root}>
+                      {/* {wordItem} */}
                       
-                      // <p key={word._id}>
-                      //   <img src={'https://rs-lang-app.herokuapp.com/' + word.image} alt={'english word' + word.word} width="50px"/>
-                      //   <span>{word.word}</span>
-                      //   <span>&nbsp;{word.transcription}</span>
-                      //   <span>&nbsp;{word.wordTranslate}</span>
-                      //   {/* иконкуа аудио - слово, предлдожение, предложения с примером его использования */}
-                      //   {/* кнопки для "Сложные слова" и "Удалённые слова" */}
-                      //   {/* результат в мини-играх */}
-                      //   {/* индификатор, если слово принадлежит к "Сложные слова" */}
-                      // </p>
-                      <AlignItemsList word={word} key={word._id} />
-                    )
-                  })}
-                </span>
+                      {words.slice((page - 1) * itemsPerPage, page * itemsPerPage).map((word) => {
+                        const labelId = `list-secondary-label-${word._id}`;
+                        return (
+                          <AlignItemsList word={word} key={word._id} />
+                        )
+                      })}
+                    </List>
+                    <Box component="span">
+                      <Pagination
+                        count={noOfPages}
+                        page={page}
+                        onChange={handleChange}
+                        defaultPage={1}
+                        color="primary"
+                        size="large"
+                        showFirstButton
+                        showLastButton
+                        classes={{ ul: classes.paginator }}
+                        variant="outlined"
+                        shape="rounded"
+                      />
+                    </Box>
+                </>
               )
             },
             {
