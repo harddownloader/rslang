@@ -7,7 +7,7 @@ import SettingsPage from '@/pages/SettingsPage'
 import RegistrationPageContainer from '@/pages/RegistrationPageContainer'
 import LoginPageContainer from '@/pages/LoginPageContainer'
 import TestRequest from '@/pages/testRequest'
-import ElectrobookPage from '@/pages/ElectrobookPage'
+import ElectrobookPageContainer from '@/pages/ElectrobookPageContainer'
 import AboutTeamPage from '@/pages/AboutTeamPage'
 import Promo from './pages/Promo'
 
@@ -27,7 +27,7 @@ export default [
 	},
 	{
 		path: '/electro-book',
-		component: <ElectrobookPage />,
+		component: <ElectrobookPageContainer />,
 	},
 	{
 		path: '/settings',

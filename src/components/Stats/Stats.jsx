@@ -12,6 +12,7 @@ import Select from './Select/Select'
 import MetaTag from '../MetaTag/MetaTag'
 import returnDate from '@/utils/returnDate'
 import Header from '@/components/header'
+import { Redirect } from 'react-router-dom'
 
 // const loginUser = async user => {
 // 	const rawResponse = await fetch(
@@ -258,8 +259,7 @@ const Stats = (props) => {
 
 	const progressDate = date
 		? date.dates.dateItems.map(item => {
-				debugger
-				if (item.dateTime == newdate) {
+				if (item.date == newdate) {
 					return item
 				}
 		  })
@@ -277,7 +277,7 @@ const Stats = (props) => {
 	const setbut = (id) => {
 		setBut(
 			but.map((item) => {
-				debugger
+				
 				if (item.id == id) {
 					item.bool = true
 					return item
@@ -305,13 +305,13 @@ const Stats = (props) => {
 
 
 	const getbut = but.map((item) => {
-		debugger
+		
 		return (
 			<Grid item lg={12} xs={12} key={item.id}>
 
 				<Button size='large' className={item.bool ? classes.buttonArray : classes.button} onClick={() => {
 					setbut(item.id)
-					// setButton(item.id)
+					setButton(item.id)
 				}}>
 					{item.name}
 				</Button>
@@ -319,55 +319,56 @@ const Stats = (props) => {
 		)
 	})
 
-	return (
-		<div style={{ background: '#28282a' }} >
-			<Header />
-			<MetaTag text='Statistics' />
-			<Container maxWidth='lg' className={classes.wrapper}>
-				<Grid container spacing={2}>
-					<Grid className={classes.wrapperProfiler} item xs={12} xl={3}>
-						{date && (
-							<Profile level={date.level} exp={date.exp} days={date.days} />
-						)}
-					</Grid>
-					<Grid item xs={1}></Grid>
-					<Grid className={classes.wrapperStats} item xs={12} xl={8}>
-						{isStats ? (
-							<>
-								<Select setStats={setStats} />
-								{date && <DisplayStats dates={progressDate} />}
-							</>
-						) : (
-							<>
-								<Select setStats={setStats} />
-							</>
-						)}
-					</Grid>
-				</Grid>
-				{isStats ? (
-					<Grid container className={classes.recharts} spacing={2}>
-						<Grid container item xs={3}>
-							{getbut}
-						</Grid>
-						<Grid item xs={9}>
-							{progress}
-						</Grid>
-					</Grid>
-				) : (
-					<Grid container className={classes.recharts}>
-						<Grid item md={6} xs={12}>
-							{date && <Recharts stats={date.dates.dateItems} date={newdate} />}
-						</Grid>
-						<Grid item md={6} xs={12}>
+	return (!props.userAuth.token) ? <Redirect to='/login' /> :
+		(
+			<div style={{ background: '#28282a' }} >
+				<Header />
+				<MetaTag text='Statistics' />
+				<Container maxWidth='lg' className={classes.wrapper}>
+					<Grid container spacing={2}>
+						<Grid className={classes.wrapperProfiler} item xs={12} xl={3}>
 							{date && (
-								<RechartsProgress stats={date.dates.dateItems} date={newdate} />
+								<Profile level={date.level} exp={date.exp} days={date.days} />
+							)}
+						</Grid>
+						<Grid item xs={1}></Grid>
+						<Grid className={classes.wrapperStats} item xs={12} xl={8}>
+							{isStats ? (
+								<>
+									<Select setStats={setStats} />
+									{date && <DisplayStats dates={progressDate} />}
+								</>
+							) : (
+								<>
+									<Select setStats={setStats} />
+								</>
 							)}
 						</Grid>
 					</Grid>
-				)}
-			</Container>
-		</div>
-	)
+					{isStats ? (
+						<Grid container className={classes.recharts} spacing={2}>
+							<Grid container item xs={3}>
+								{getbut}
+							</Grid>
+							<Grid item xs={9}>
+								{progress}
+							</Grid>
+						</Grid>
+					) : (
+						<Grid container className={classes.recharts}>
+							<Grid item md={6} xs={12}>
+								{date && <Recharts stats={date.dates.dateItems} date={newdate} />}
+							</Grid>
+							<Grid item md={6} xs={12}>
+								{date && (
+									<RechartsProgress stats={date.dates.dateItems} date={newdate} />
+								)}
+							</Grid>
+						</Grid>
+					)}
+				</Container>
+			</div>
+		)
 }
 
 export default Stats

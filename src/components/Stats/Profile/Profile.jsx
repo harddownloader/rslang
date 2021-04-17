@@ -47,6 +47,7 @@ const useStyles = makeStyles({
 })
 
 const Profile = ({ level, exp, days }) => {
+	console.log('exp',exp)
 
 	const classes = useStyles()
 

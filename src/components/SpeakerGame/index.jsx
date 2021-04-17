@@ -6,6 +6,7 @@ import { Redirect } from 'react-router-dom'
 
 // material
 import { makeStyles } from '@material-ui/core/styles'
+import { Typography } from '@material-ui/core'
 
 // dataApihook
 import useDataApi from '@/utils/useDataApi'
@@ -76,6 +77,10 @@ const useStyles = makeStyles(theme => ({
 		left: '0',
 		zIndex: 10,
 	},
+	fewWords: {
+		padding: theme.spacing(2),
+		textAlign: 'center',
+	},
 }))
 
 const Speaker = ({ query, userToken, userId }) => {
@@ -88,7 +93,7 @@ const Speaker = ({ query, userToken, userId }) => {
 		[
 			userId,
 			userToken,
-			0,
+			lvl,
 			false,
 			10,
 			'{"userWord.optional.games.speaker.learned": false}',
@@ -132,6 +137,17 @@ const Speaker = ({ query, userToken, userId }) => {
 		return (
 			<div className={classes.loader}>
 				<Loader />
+			</div>
+		)
+	}
+	if (data.length < 5) {
+		return (
+			<div className={classes.root}>
+				<LvlControl setLvl={setLvl} lvl={lvl} />
+				<Typography variant='h3' className={classes.fewWords}>
+					На этом уровне сложности у человека мало слов, человек должен добавить
+					себе слова изучая учебник чтобы сыграть в эту супер игру
+				</Typography>
 			</div>
 		)
 	}

@@ -244,7 +244,8 @@ export default function RegistrationPage(properties) {
 					currect_difficulty: 0
 				}
 			)
-
+			await history.push("/")
+			
 		} else {
 			console.error('small login or password')
 			alert('вы заполнили не все поля')

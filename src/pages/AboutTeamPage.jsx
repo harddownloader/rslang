@@ -86,15 +86,15 @@ const text = [
 const about = [
 	{
 		id: 1,
-		impact: 'Вклад : Redux-React, Registration, Backend,Vocabulary,Footer',
+		impact: 'Вклад : Redux-React, Registration, Login, Backend, Vocabulary, Footer',
 		src: serafim,
 		name: 'Круцкевич Серафим',
 		description:
-			'Основатель команды нашего проекта. Ответственный и отзывчивый человек, способный граммотно организовать рабочий процесс.  ',
+			'Основатель команды нашего проекта. Ответственный и отзывчивый человек, способный граммотно организовать рабочий процесс.',
 	},
 	{
 		id: 2,
-		impact: 'Вклад : React-Redux,AboutTeam,Promo,Statistics',
+		impact: 'Вклад : React-Redux, AboutTeam, Promo, Statistics',
 		src: vlas,
 		name: 'Маскаленчик Влас',
 		description:
@@ -110,7 +110,7 @@ const about = [
 	},
 	{
 		id: 4,
-		impact: 'Вклад : Router,Speaker,Menu,Webpack,Eye',
+		impact: 'Вклад : Router, Speaker, Menu, Webpack, Eye',
 		src: sereja,
 		name: 'Сергей Шевченко',
 		description:

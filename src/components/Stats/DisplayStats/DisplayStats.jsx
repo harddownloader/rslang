@@ -35,6 +35,8 @@ const DisplayStats = ({ dates }) => {
 
 	const countAnswer = dates[0].games.audio.countAnswer + dates[0].games.myGame.countAnswer + dates[0].games.savana.countAnswer + dates[0].games.sprint.countAnswer
 
+	console.log(countAnswer,"countAnswer")
+
 	const answerTrue = dates[0].games.audio.trueAnswer + dates[0].games.myGame.trueAnswer + dates[0].games.savana.trueAnswer + dates[0].games.sprint.trueAnswer
 
 	let result = 0

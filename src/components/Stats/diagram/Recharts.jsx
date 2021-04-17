@@ -11,7 +11,7 @@ const Diagrama = ({ stats }) => {
 	stats.map((item) => {
 		debugger
 		const add = {
-			time: item.dateTime,
+			time: item.date,
 			table: 'word',
 			value: item.games.audio.trueAnswer + item.games.myGame.trueAnswer + item.games.savana.trueAnswer + item.games.sprint.trueAnswer,
 			color: '#fc3',
