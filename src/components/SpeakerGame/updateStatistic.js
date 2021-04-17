@@ -13,19 +13,19 @@ const updateTodayStatistic = (
 		answerTrue: 0,
 		countWord: 0,
 		games: {
-			...games,
+			...newDataObj.games,
 			audio: {
-				countAnswer: isNewDate
+				countAnswer: !isNewDate
 					? statistic.answer
 					: statistic.answer + newDataObj.games.audio.countAnswer,
-				trueAnswer: isNewDate
+				trueAnswer: !isNewDate
 					? statistic.currentAnswer
 					: statistic.currentAnswer + newDataObj.games.audio.trueAnswer,
-				seriesAnswer: isNewDate
+				seriesAnswer: !isNewDate
 					? statistic.bestSeries
 					: statistic.bestSeries > newDataObj.games.audio.seriesAnswer
-					? statistic.bestSeries
-					: newDataObj.games.audio.seriesAnswer,
+						? statistic.bestSeries
+						: newDataObj.games.audio.seriesAnswer,
 			},
 		},
 	}
@@ -43,23 +43,18 @@ const updateStatistic = async (userId, userToken, statistic) => {
 	const games = statData.optional.dates.dateItems.games
 	const oldDataArr = dateItems.filter(elem => elem.date !== today) // массив за прошлые дни
 	const newDataObj = dateItems.find(elem => elem.date === today) // стат за сегодняшний день
-	const isNewDate = dateItems.includes(elem => elem.date === today) // gпроверка на наличие даты
-
-	console.log('oldDataArr', oldDataArr)
-	console.log('newDataObj', newDataObj)
-	console.log('isNewDate', isNewDate)
-	const tudayStatistic = updateTodayStatistic(
+	const isNewDate = dateItems.filter(elem => elem.date === today).length > 0 // gпроверка на наличие даты
+	const todayStatistic = updateTodayStatistic(
 		statistic,
 		today,
-		games,
+		dateItems,
 		newDataObj,
 		isNewDate,
 	)
+	console.log(todayStatistic)
 	const newCountLernedWords = statData.learnedWords + statistic.currentAnswer
-	//	statData.optional.dates.dateItems = ['hyi']
-	console.log('statData', statData)
-	console.log('tudayStatistic', tudayStatistic)
-
+	statData.optional.dates.dateItems = [...oldDataArr, todayStatistic,]
+	statData.exp = !isNewDate ? statData.exp + statistic.exp : statistic.exp
 	// const newData = {
 	// 	...statData,
 	// 	optional: {
@@ -70,8 +65,7 @@ const updateStatistic = async (userId, userToken, statistic) => {
 	// 		},
 	// 	},
 	// }
-
-	// setStatistics(userId, userToken, newCountLernedWords)
+	setStatistics(userId, userToken, statData.exp, statData.optional)
 }
 
 export default updateStatistic

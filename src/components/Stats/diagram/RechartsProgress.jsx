@@ -22,7 +22,7 @@ const RechartsProgress = ({ stats }) => {
 
 	stats.map((item) => {
 		const add = {
-			name: item.dateTime,
+			name: item.date,
 			learnedWords: item.games.audio.trueAnswer + item.games.myGame.trueAnswer + item.games.savana.trueAnswer + item.games.sprint.trueAnswer
 		}
 		data.push(add)

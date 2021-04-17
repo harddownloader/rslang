@@ -141,7 +141,7 @@ const useStyles = makeStyles({
 		boxShadow: '0 8px 15px rgba(0, 0, 0, .1)',
 		transition: '.3s',
 		'&:hover': {
-			background: 'white',
+			background: '#2EE59D',
 			boxShadow: '0 15px 20px rgba(46, 229, 157, .4)',
 			color: 'black',
 			transform: 'translateY(-7px)',
@@ -259,7 +259,7 @@ const Stats = (props) => {
 
 	const progressDate = date
 		? date.dates.dateItems.map(item => {
-				if (item.dateTime == newdate) {
+				if (item.date == newdate) {
 					return item
 				}
 		  })
@@ -311,7 +311,7 @@ const Stats = (props) => {
 
 				<Button size='large' className={item.bool ? classes.buttonArray : classes.button} onClick={() => {
 					setbut(item.id)
-					// setButton(item.id)
+					setButton(item.id)
 				}}>
 					{item.name}
 				</Button>
