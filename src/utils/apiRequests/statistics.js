@@ -30,7 +30,7 @@ export async function setStatistics(userId, token, learnedWords, optional) {
 				'Content-Type': 'application/json',
 			},
 			body: JSON.stringify({
-				exp: learnedWords,
+				learnedWords: learnedWords,
 				optional: optional,
 			}),
 		},
