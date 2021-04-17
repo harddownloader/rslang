@@ -19,13 +19,14 @@ import CardHeader from '@/components/Card/CardHeader'
 import CardFooter from '@/components/Card/CardFooter'
 import CustomInput from '@/components/CustomInput/CustomInput'
 import Dropzone from '@/components/Dropzone'
+import { useHistory } from 'react-router-dom'
 // utils
-import {getAggregatedWords} from '@/utils/apiRequests/aggregatedWords'
-import {loginUser} from '@/utils/apiRequests/sign'
-import {setUserWords} from '@/utils/apiRequests/userWords'
-import {setStatistics} from '@/utils/apiRequests/statistics'
-import {setSettings} from '@/utils/apiRequests/settings'
-import {validateEmail} from '@/utils/validate'
+import { getAggregatedWords } from '@/utils/apiRequests/aggregatedWords'
+import { loginUser } from '@/utils/apiRequests/sign'
+import { setUserWords } from '@/utils/apiRequests/userWords'
+import { setStatistics } from '@/utils/apiRequests/statistics'
+import { setSettings } from '@/utils/apiRequests/settings'
+import { validateEmail } from '@/utils/validate'
 // styles
 import styles from '@/assets/jss/material-kit-react/views/loginPage'
 // images
@@ -59,7 +60,7 @@ export default function RegistrationPage(properties) {
 	const [name, setName] = useState('')
 	const [login, setLogin] = useState('')
 	const [password, setPassword] = useState('')
-	
+
 	const history = useHistory()
 	// console.log('history', history)
 
@@ -90,7 +91,7 @@ export default function RegistrationPage(properties) {
 
 			// сохраняем данные в редакс
 			properties.setUserAuth({
-				userId: loggedUser.userId ,
+				userId: loggedUser.userId,
 				token: loggedUser.token
 			})
 
@@ -157,7 +158,7 @@ export default function RegistrationPage(properties) {
 			console.log('newHard1Words', newHard1Words)
 
 			// words requests is aggregating to one words list
-			const newWords =  newEasy0Words[0].paginatedResults.concat(
+			const newWords = newEasy0Words[0].paginatedResults.concat(
 				newEasy1Words[0].paginatedResults,
 				newMedium0Words[0].paginatedResults,
 				newMedium1Words[0].paginatedResults,
@@ -166,9 +167,9 @@ export default function RegistrationPage(properties) {
 			)
 			console.log('newWords', newWords)
 
-			
+
 			// ставим слова в словарь(чтобы быил доступны мини игры)
-			for(let i = 0; i<newWords.length; i++) {
+			for (let i = 0; i < newWords.length; i++) {
 				setUserWords(
 					loggedUser.userId,
 					loggedUser.token,
@@ -243,7 +244,7 @@ export default function RegistrationPage(properties) {
 					currect_difficulty: 0
 				}
 			)
-			
+
 		} else {
 			console.error('small login or password')
 			alert('вы заполнили не все поля')

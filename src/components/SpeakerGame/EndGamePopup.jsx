@@ -41,7 +41,7 @@ const useStyles = makeStyles(theme => ({
 export default function TransitionsModal({ statistic, userId, userToken }) {
 	const classes = useStyles()
 	useEffect(() => {
-		if (statistic.answer === 10) {
+		if (statistic.answer === 1) {
 			updateStatistic(userId, userToken)
 		}
 	}, [statistic])

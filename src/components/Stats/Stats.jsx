@@ -140,7 +140,7 @@ const useStyles = makeStyles({
 		boxShadow: '0 8px 15px rgba(0, 0, 0, .1)',
 		transition: '.3s',
 		'&:hover': {
-			background: 'white',
+			background: '#2EE59D',
 			boxShadow: '0 15px 20px rgba(46, 229, 157, .4)',
 			color: 'black',
 			transform: 'translateY(-7px)',
