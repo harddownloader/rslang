@@ -7,6 +7,10 @@ import ListItemText from '@material-ui/core/ListItemText';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
+import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
+import IconButton from '@material-ui/core/IconButton';
+import DeleteIcon from '@material-ui/icons/Delete';
+import AudiotrackIcon from '@material-ui/icons/Audiotrack';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -18,76 +22,46 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function AlignItemsList() {
+export default function AlignItemsList({word}) {
   const classes = useStyles();
+
+  const hadlerAudio = () => {
+    console.log('handlerAudio')
+  }
 
   return (
     <List className={classes.root}>
       <ListItem alignItems="flex-start">
         <ListItemAvatar>
-          <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+          <Avatar alt="Remy Sharp" src={'https://rs-lang-app.herokuapp.com/' + word.image} />
         </ListItemAvatar>
         <ListItemText
-          primary="Brunch this weekend?"
+          primary={word.word + ' [' + word.transcription + '] ' + word.wordTranslate}
           secondary={
             <React.Fragment>
+              <IconButton edge="end" aria-label="audio" onClick={e => hadlerAudio()}>
+                <AudiotrackIcon />
+              </IconButton>
+              
               <Typography
                 component="span"
                 variant="body2"
                 className={classes.inline}
                 color="textPrimary"
               >
-                Ali Connors
+                {word.textExample}
               </Typography>
-              {" — I'll be in your neighborhood doing errands this…"}
+              {word.textExampleTranslate}
             </React.Fragment>
           }
         />
+        <ListItemSecondaryAction>
+          <IconButton edge="end" aria-label="delete">
+            <DeleteIcon />
+          </IconButton>
+        </ListItemSecondaryAction>
       </ListItem>
       <Divider variant="inset" component="li" />
-      <ListItem alignItems="flex-start">
-        <ListItemAvatar>
-          <Avatar alt="Travis Howard" src="/static/images/avatar/2.jpg" />
-        </ListItemAvatar>
-        <ListItemText
-          primary="Summer BBQ"
-          secondary={
-            <React.Fragment>
-              <Typography
-                component="span"
-                variant="body2"
-                className={classes.inline}
-                color="textPrimary"
-              >
-                to Scott, Alex, Jennifer
-              </Typography>
-              {" — Wish I could come, but I'm out of town this…"}
-            </React.Fragment>
-          }
-        />
-      </ListItem>
-      <Divider variant="inset" component="li" />
-      <ListItem alignItems="flex-start">
-        <ListItemAvatar>
-          <Avatar alt="Cindy Baker" src="/static/images/avatar/3.jpg" />
-        </ListItemAvatar>
-        <ListItemText
-          primary="Oui Oui"
-          secondary={
-            <React.Fragment>
-              <Typography
-                component="span"
-                variant="body2"
-                className={classes.inline}
-                color="textPrimary"
-              >
-                Sandra Adams
-              </Typography>
-              {' — Do you have Paris recommendations? Have you ever…'}
-            </React.Fragment>
-          }
-        />
-      </ListItem>
     </List>
   );
 }

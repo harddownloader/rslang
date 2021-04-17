@@ -166,36 +166,6 @@ export default function RegistrationPage(properties) {
 			)
 			console.log('newWords', newWords)
 
-			
-			// ставим слова в словарь(чтобы быил доступны мини игры)
-			for(let i = 0; i<newWords.length; i++) {
-				setUserWords(
-					loggedUser.userId,
-					loggedUser.token,
-					newWords[i]._id,
-					"easy",
-					{
-						// сколько раз пользователь правильно ответил на слово в мини играх
-						correct_answers: 0,
-						uncorrect_answers: 0,
-						games: {
-							savannah: {
-								learned: false,
-							},
-							sprint: {
-								learned: false,
-							},
-							speaker: {
-								learned: false,
-							},
-							my_game: {
-								learned: false,
-							},
-						},
-					},
-				)
-			}
-
 			// ставим 0ю статистику
 			await setStatistics(loggedUser.userId, loggedUser.token, 0, {
 				level: 0,
@@ -243,7 +213,39 @@ export default function RegistrationPage(properties) {
 					currect_difficulty: 0
 				}
 			)
-			await history.push("/")
+
+			
+			// ставим слова в словарь(чтобы быил доступны мини игры)
+			for(let i = 0; i<newWords.length; i++) {
+				setUserWords(
+					loggedUser.userId,
+					loggedUser.token,
+					newWords[i]._id,
+					"easy",
+					{
+						// сколько раз пользователь правильно ответил на слово в мини играх
+						correct_answers: 0,
+						uncorrect_answers: 0,
+						games: {
+							savannah: {
+								learned: false,
+							},
+							sprint: {
+								learned: false,
+							},
+							speaker: {
+								learned: false,
+							},
+							my_game: {
+								learned: false,
+							},
+						},
+					},
+				)
+			}
+
+			
+			history.push("/")
 			
 		} else {
 			console.error('small login or password')
