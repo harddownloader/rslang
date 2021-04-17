@@ -186,7 +186,7 @@ export default function GameBoard(properties) {
 	return (
 		<>
 			{isEndGame ? (
-				<GameResult stat={isEndGame} sessionStat={sessionStat} gameStat={gameStat} newGame={properties.newGame} userAuth={properties.userAuth} />
+				<GameResult stat={isEndGame} sessionStat={sessionStat} gameStat={gameStat} newGame={properties.newGame} userAuth={properties.userAuth} exp={sessionStat.correct} />
 			) : undefined}
 			<div className={classes.gameStatus}>
 				{isGame ? (
