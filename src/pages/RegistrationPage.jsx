@@ -209,7 +209,7 @@ export default function RegistrationPage(properties) {
 			await setSettings(
 				loggedUser.userId,
 				loggedUser.token,
-				0,
+				1,
 				{
 					currect_difficulty: 0
 				}
