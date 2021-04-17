@@ -13,6 +13,7 @@ import MetaTag from '../MetaTag/MetaTag'
 import returnDate from '@/utils/returnDate'
 import Header from '@/components/header'
 import { Redirect } from 'react-router-dom'
+import Footer from '../Footer/Footer'
 
 // const loginUser = async user => {
 // 	const rawResponse = await fetch(
@@ -259,10 +260,10 @@ const Stats = (props) => {
 
 	const progressDate = date
 		? date.dates.dateItems.map(item => {
-				if (item.date == newdate) {
-					return item
-				}
-		  })
+			if (item.date == newdate) {
+				return item
+			}
+		})
 		: null
 
 	const [progress, setProgress] = useState(
@@ -277,7 +278,7 @@ const Stats = (props) => {
 	const setbut = (id) => {
 		setBut(
 			but.map((item) => {
-				
+
 				if (item.id == id) {
 					item.bool = true
 					return item
@@ -305,7 +306,7 @@ const Stats = (props) => {
 
 
 	const getbut = but.map((item) => {
-		
+
 		return (
 			<Grid item lg={12} xs={12} key={item.id}>
 
@@ -328,7 +329,7 @@ const Stats = (props) => {
 					<Grid container spacing={2}>
 						<Grid className={classes.wrapperProfiler} item xs={12} xl={3}>
 							{date && (
-								<Profile level={date.level} exp={date.exp} days={date.days} />
+								<Profile exp={date.exp} />
 							)}
 						</Grid>
 						<Grid item xs={1}></Grid>
@@ -367,6 +368,7 @@ const Stats = (props) => {
 						</Grid>
 					)}
 				</Container>
+				<Footer whiteFont />
 			</div>
 		)
 }

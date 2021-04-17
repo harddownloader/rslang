@@ -57,6 +57,15 @@ const useStyles = makeStyles({
     otherTypo: {
         color: 'yellow',
         fontWeight: '800'
+    },
+    a: {
+        fontSize: '25px',
+        textDecoration: 'underline',
+        color: 'black',
+        fontWeight: '800',
+        '&:hover': {
+            color: 'red'
+        }
     }
 })
 
@@ -125,6 +134,7 @@ const Promo = () => {
                             Благодаря использованию приложения и его аудиальным возможностям, вы сможете запоминать информацию на слух а также употребять слова и выражения в свободной речи.
                             Встроенная статистика позволяет отслеживать ваш рост в процессе изучения языка.
                         </p>
+                        <a href='about-team' className={classes.a}>Узнать о нашей команде больше.</a>
                     </div>
                 </Grid>
                 <Grid item xs={12}><div style={{ width: '483px', height: '350px', marginLeft: 'calc(50% - 241.5px)' }}><Video /></div></Grid>

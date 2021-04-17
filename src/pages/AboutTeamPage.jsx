@@ -19,7 +19,7 @@ const useStyles = makeStyles({
 	wrapperBackground: {
 		backgroundImage:
 			`url(${backAbout})`,
-		height: '937px',
+		height: '1020px',
 		background: 'grey',
 		fontFamily: 'Open Sans,Helvetica,Arial,sans-serif',
 		textAlign: 'center',

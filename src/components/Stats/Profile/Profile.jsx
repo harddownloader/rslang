@@ -46,12 +46,19 @@ const useStyles = makeStyles({
 	},
 })
 
-const Profile = ({ level, exp, days }) => {
-	console.log('exp',exp)
+const Profile = ({ exp }) => {
+
+	console.log('exp', exp)
+
+	const [level, setLevel] = useState(0)
+
+	const checkLevel = () => {
+		setLevel(Math.round(exp / 100))
+	}
 
 	const classes = useStyles()
 
-	let [scale, setScale] = useState(100-exp)
+	let [scale, setScale] = useState(100 - exp)
 
 	return (
 		<>
@@ -70,8 +77,6 @@ const Profile = ({ level, exp, days }) => {
 					До следующего уровня вам осталось{' '}
 					<span style={{ fontWeight: '700' }}>{exp} xp</span>.
 				</p>
-				<p className={classes.week}>ВЫ ЗАНИМАЛИСЬ ДНЕЙ ПОДРЯД {days} / 7</p>
-				{/* <button onClick={upLevel}>click</button> */}
 			</div>
 		</>
 	)

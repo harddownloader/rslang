@@ -54,7 +54,7 @@ const updateStatistic = async (userId, userToken, statistic) => {
 	console.log(todayStatistic)
 	const newCountLernedWords = statData.learnedWords + statistic.currentAnswer
 	statData.optional.dates.dateItems = [...oldDataArr, todayStatistic,]
-	statData.exp = !isNewDate ? statData.exp + statistic.exp : statistic.exp
+	statData.optional = { ...statData.optional, exp: !isNewDate ? statData.exp + statistic.exp : statistic.exp }
 	// const newData = {
 	// 	...statData,
 	// 	optional: {
@@ -65,7 +65,7 @@ const updateStatistic = async (userId, userToken, statistic) => {
 	// 		},
 	// 	},
 	// }
-	setStatistics(userId, userToken, statData.exp, statData.optional)
+	setStatistics(userId, userToken, 0, statData.optional)
 }
 
 export default updateStatistic
