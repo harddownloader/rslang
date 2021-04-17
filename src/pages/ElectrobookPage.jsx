@@ -30,14 +30,14 @@ const Electrobook = (props) => {
 	const sections = []
 	for(let i=0; i<6; i++) {
 		sections.push(
-			<Grid item xs={4} md={4} lg={4}>
+			<Grid item xs={4} md={4} lg={4} key={i}>
 				<Paper className={classes.paper}>{i+1}</Paper>
 			</Grid>
 		)
 	}
 
 	return (!props.userAuth.token) ? <Redirect to='/login' /> :
-		(	
+		(
 			<>
 				<Header />
 				<Container>

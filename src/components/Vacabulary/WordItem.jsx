@@ -27,6 +27,18 @@ export default function AlignItemsList({word}) {
 
   const hadlerAudio = () => {
     console.log('handlerAudio')
+    const audio = new Audio('https://rs-lang-app.herokuapp.com/' + word.audio);
+    audio.play();
+  }
+
+  const hadlerAudioExample = () => {
+    const audio = new Audio('https://rs-lang-app.herokuapp.com/' + word.audioExample);
+    audio.play();
+  }
+
+  const hadlerAudioMeaning = () => {
+    const audio = new Audio('https://rs-lang-app.herokuapp.com/' + word.audioMeaning);
+    audio.play();
   }
 
   return (
@@ -35,11 +47,14 @@ export default function AlignItemsList({word}) {
         <ListItemAvatar>
           <Avatar alt="Remy Sharp" src={'https://rs-lang-app.herokuapp.com/' + word.image} />
         </ListItemAvatar>
+        <IconButton edge="end" aria-label="audio" onClick={e => hadlerAudio()}>
+          <AudiotrackIcon />
+        </IconButton>
         <ListItemText
           primary={word.word + ' [' + word.transcription + '] ' + word.wordTranslate}
           secondary={
             <React.Fragment>
-              <IconButton edge="end" aria-label="audio" onClick={e => hadlerAudio()}>
+              <IconButton edge="end" aria-label="audio" onClick={e => hadlerAudioExample()}>
                 <AudiotrackIcon />
               </IconButton>
               
@@ -51,7 +66,29 @@ export default function AlignItemsList({word}) {
               >
                 {word.textExample}
               </Typography>
-              {word.textExampleTranslate}
+
+              <Typography
+                component="span"
+                variant="body2"
+                className={classes.inline}
+                color="textPrimary"
+              >
+                {word.textExampleTranslate}
+              </Typography>
+
+              <Typography
+                component="span"
+                variant="body2"
+                className={classes.inline}
+                color="textPrimary"
+              >
+                <IconButton edge="end" aria-label="audio" onClick={e => hadlerAudioMeaning()}>
+                  <AudiotrackIcon />
+                </IconButton>
+                {word.textMeaning}
+              </Typography>
+              
+              
             </React.Fragment>
           }
         />
