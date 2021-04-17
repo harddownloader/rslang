@@ -38,8 +38,9 @@ export default function Savannah(props) {
 		if (stat) {
 			if (!stat.item) {
 				let currentDate = new Date(Date.now())
-				currentDate = `${currentDate.getFullYear()}-${currentDate.getMonth() + 1}-${currentDate.getDate() + 1}`
+				currentDate = `${currentDate.getFullYear()}-${currentDate.getMonth() + 1}-${currentDate.getDate()}`
 				const dateItem = stat.optional.dates.dateItems.find((dateItem) => dateItem.date === currentDate)
+				console.log(dateItem)
 				dateItem ? setStat({
 					origin: { ...stat },
 					item: { ...dateItem },
