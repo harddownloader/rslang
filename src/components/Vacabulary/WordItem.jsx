@@ -42,7 +42,7 @@ export default function AlignItemsList({word}) {
   }
 
   return (
-    <List className={classes.root}>
+      <>
       <ListItem alignItems="flex-start">
         <ListItemAvatar>
           <Avatar alt="Remy Sharp" src={'https://rs-lang-app.herokuapp.com/' + word.image} />
@@ -77,7 +77,7 @@ export default function AlignItemsList({word}) {
               </Typography>
 
               <Typography
-                component="span"
+                component="p"
                 variant="body2"
                 className={classes.inline}
                 color="textPrimary"
@@ -87,6 +87,15 @@ export default function AlignItemsList({word}) {
                 </IconButton>
                 {word.textMeaning}
               </Typography>
+              <Typography
+                component="p"
+                variant="body2"
+                className={classes.inline}
+                color="textPrimary"
+              >
+                {word.textMeaningTranslate}
+              </Typography>
+              
               
               
             </React.Fragment>
@@ -99,6 +108,6 @@ export default function AlignItemsList({word}) {
         </ListItemSecondaryAction>
       </ListItem>
       <Divider variant="inset" component="li" />
-    </List>
+    </>
   );
 }
