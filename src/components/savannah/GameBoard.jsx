@@ -97,7 +97,7 @@ export default function GameBoard(properties) {
 				setIsGame(false)
 				setSessionStat({
 					...sessionStat,
-					currentStrick: ++sessionStat.currentStrick,
+					currentStrick: sessionStat.currentStrick + 1,
 					bestStrick: Math.max(sessionStat.bestStrick, ++sessionStat.currentStrick),
 					correct: ++sessionStat.correct,
 				})
@@ -106,7 +106,6 @@ export default function GameBoard(properties) {
 					item: {
 						...gameStat.item,
 						answerTrue: ++gameStat.item.answerTrue,
-						countWord: ++gameStat.item.countWord,
 						games: {
 							...gameStat.item.games,
 							savana: {
