@@ -137,7 +137,11 @@ const Promo = () => {
                         <a href='about-team' className={classes.a}>Узнать о нашей команде больше.</a>
                     </div>
                 </Grid>
-                <Grid item xs={12}><div style={{ width: '483px', height: '350px', marginLeft: 'calc(50% - 241.5px)' }}><Video /></div></Grid>
+                <Grid item xs={12}>
+                    <div style={{ width: '483px', height: '350px', marginLeft: 'calc(50% - 241.5px)' }}>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/gQE1bRSwXzg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                </Grid>
                 <Grid container item xs={6} className={classes.games} >
                     <Grid className={classes.head} item xs={12}><Typography className={classes.gameTypo} align='center' variant='h2'>Наши игры</Typography></Grid>
                     {getGames}
