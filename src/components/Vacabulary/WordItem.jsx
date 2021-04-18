@@ -11,6 +11,7 @@ import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import AudiotrackIcon from '@material-ui/icons/Audiotrack';
+import AddIcon from '@material-ui/icons/Add';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -22,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function AlignItemsList({word}) {
+export default function AlignItemsList({word, handleAddToDiffWords}) {
   const classes = useStyles();
 
   const hadlerAudio = () => {
@@ -77,7 +78,7 @@ export default function AlignItemsList({word}) {
               </Typography>
 
               <Typography
-                component="p"
+                component="span"
                 variant="body2"
                 className={classes.inline}
                 color="textPrimary"
@@ -88,23 +89,25 @@ export default function AlignItemsList({word}) {
                 {word.textMeaning}
               </Typography>
               <Typography
-                component="p"
+                component="span"
                 variant="body2"
                 className={classes.inline}
                 color="textPrimary"
               >
                 {word.textMeaningTranslate}
               </Typography>
-              
-              
-              
             </React.Fragment>
           }
         />
         <ListItemSecondaryAction>
+          <IconButton edge="end" aria-label="addToDiffWords" onClick={e => handleAddToDiffWords(word)}>
+            <AddIcon />
+          </IconButton>
+
           <IconButton edge="end" aria-label="delete">
             <DeleteIcon />
           </IconButton>
+          
         </ListItemSecondaryAction>
       </ListItem>
       <Divider variant="inset" component="li" />
