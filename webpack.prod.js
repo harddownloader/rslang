@@ -65,7 +65,7 @@ module.exports = merge(common, {
 			deleteOriginalAssets: true,
 			// filename: '[path][name].webp',
 			minimizerOptions: {
-				// plugins: ['imagemin-webp'],
+				// plugins: ['imagemin-webp'], 
 			},
 			loader: false,
 		}),
