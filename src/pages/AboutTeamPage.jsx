@@ -156,7 +156,7 @@ const AboutTeam = () => {
 					</div>
 				</Grid>
 				<Grid >
-					<img style={{ width: '500px', height: '500px' }}
+					<img style={{ height: '500px' }}
 						src={item.src}
 						alt='personPhoto'
 					/>
