@@ -99,7 +99,7 @@ export default function GameBoard(properties) {
 					...sessionStat,
 					currentStrick: sessionStat.currentStrick + 1,
 					bestStrick: Math.max(sessionStat.bestStrick, ++sessionStat.currentStrick),
-					correct: ++sessionStat.correct,
+					correct: sessionStat.correct+5,
 				})
 				setGameStat({
 					...gameStat,

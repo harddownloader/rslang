@@ -204,9 +204,9 @@ const MainGame = properties => {
 
 			setSessionStat({
 				...sessionStat,
-				currentStrick: sessionStat.currentStrick + 1,
+				currentStrick: sessionStat.currentStrick,
 				bestStrick: Math.max(sessionStat.bestStrick, ++sessionStat.currentStrick),
-				correct: ++sessionStat.correct,
+				correct: sessionStat.correct + 5,
 			})
 
 			setGameStat({
@@ -300,7 +300,7 @@ const MainGame = properties => {
 			setSessionStat({
 				...sessionStat,
 				currentStrick: sessionStat.currentStrick + 1,
-				bestStrick: Math.max(sessionStat.bestStrick, ++sessionStat.currentStrick),
+				bestStrick: Math.max(sessionStat.bestStrick, ++sessionStat.currentStric),
 				correct: ++sessionStat.correct,
 			})
 

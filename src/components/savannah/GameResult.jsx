@@ -78,9 +78,7 @@ export default function GameResult(properties) {
 	const currentExp = +properties.gameStat.origin.optional.exp + +properties.exp
 	currentDate = `${currentDate.getFullYear()}-${currentDate.getMonth() + 1}-${currentDate.getDate()}`
 	let filteredOrigin = properties.gameStat.origin.optional.dates.dateItems
-	console.log('filtered0 ->', filteredOrigin)
 	filteredOrigin = filteredOrigin.filter((item) => item.date !== currentDate)
-	console.log('filtered ->', filteredOrigin)
 	const finalStat = {
 		...properties.gameStat.origin.optional,
 		dates: {
@@ -88,7 +86,6 @@ export default function GameResult(properties) {
 		},
 		exp: currentExp,
 	}
-	console.dir(finalStat)
 	setStatistics(properties.userAuth.userId, properties.userAuth.token, 0, finalStat)
 
 	const classes = useStyles()

@@ -150,9 +150,7 @@ const EndGame = ({
 		currentDate.getMonth() + 1
 	}-${currentDate.getDate()}`
 	let filteredOrigin = gameStat.origin.optional.dates.dateItems
-	console.log('filtered0 ->', filteredOrigin)
 	filteredOrigin = filteredOrigin.filter(item => item.date !== currentDate)
-	console.log('filtered ->', filteredOrigin)
 	const finalStat = {
 		...gameStat.origin.optional,
 		dates: {
@@ -160,7 +158,6 @@ const EndGame = ({
 		},
 		exp: currentExp,
 	}
-	console.dir(finalStat)
 	setStatistics(userId, userToken, 0, finalStat)
 
 	return (
