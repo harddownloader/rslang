@@ -76,8 +76,10 @@ const useStyles = makeStyles(theme => ({
 export default function GameResult(properties) {
 	let currentDate = new Date(Date.now())
 	const currentExp = +properties.gameStat.origin.optional.exp + +properties.exp
-	currentDate = `${currentDate.getFullYear()}-${currentDate.getMonth() + 1}-${currentDate.getDate() + 1}`
-	const filteredOrigin = properties.gameStat.origin.optional.dates.dateItems.filter((item) => item.date !== currentDate)
+	currentDate = `${currentDate.getFullYear()}-${currentDate.getMonth() + 1}-${currentDate.getDate()}`
+	let filteredOrigin = properties.gameStat.origin.optional.dates.dateItems
+	console.log('filtered0 ->', filteredOrigin)
+	filteredOrigin = filteredOrigin.filter((item) => item.date !== currentDate)
 	console.log('filtered ->', filteredOrigin)
 	const finalStat = {
 		...properties.gameStat.origin.optional,

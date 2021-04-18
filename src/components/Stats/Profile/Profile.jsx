@@ -46,7 +46,7 @@ const useStyles = makeStyles({
 	},
 })
 
-const Profile = ({ exp }) => {
+const Profile = ({ exp = 0 }) => {
 
 	console.log('exp', exp)
 
@@ -54,11 +54,18 @@ const Profile = ({ exp }) => {
 
 	const checkLevel = () => {
 		setLevel(Math.round(exp / 100))
+		console.log(ost)
 	}
+	const ost = exp % 100
+
+	useEffect(() => {
+		checkLevel()
+		setScale(100 - ost)
+	}, [])
 
 	const classes = useStyles()
 
-	let [scale, setScale] = useState(100 - exp)
+	let [scale, setScale] = useState(0)
 
 	return (
 		<>
@@ -75,7 +82,7 @@ const Profile = ({ exp }) => {
 					value={scale}></progress>
 				<p className={classes.p}>
 					До следующего уровня вам осталось{' '}
-					<span style={{ fontWeight: '700' }}>{exp} xp</span>.
+					<span style={{ fontWeight: '700' }}>{ost} xp</span>.
 				</p>
 			</div>
 		</>
