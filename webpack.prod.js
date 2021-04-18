@@ -63,9 +63,9 @@ module.exports = merge(common, {
 			test: /\.(png|jpe?g|gif)$/,
 			severityError: 'warning', // Ignore errors on corrupted images
 			deleteOriginalAssets: true,
-			filename: '[path][name].webp',
+			// filename: '[path][name].webp',
 			minimizerOptions: {
-				plugins: ['imagemin-webp'],
+				// plugins: ['imagemin-webp'],
 			},
 			loader: false,
 		}),
