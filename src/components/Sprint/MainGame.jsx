@@ -11,6 +11,8 @@ import useTimeout from '@/components/Sprint/UseTimeOut'
 import EndGame from '@/components/Sprint/EndGame'
 import { ArrowLeft } from '@material-ui/icons'
 
+import { updateUserWordsById } from '@/utils/apiRequests/userWords'
+
 const useStyles = makeStyles(theme => ({
 	SprintRoot: {
 		width: '80%',
@@ -142,6 +144,16 @@ const MainGame = properties => {
 	const [isGame, setGame] = useState(true)
 	const [buttonColor, setButtonColor] = useState(null)
 
+	const [gameStat, setGameStat] = useState(properties.stat)
+
+
+	const [sessionStat, setSessionStat] = useState({
+		incorrect: [],
+		bestStrick: 0,
+		currentStrick: 0,
+		correct: 0,
+	})
+
 	const makeWordField = () => {
 		const rand = Math.floor(Math.random() * 2)
 		if (rand) {
@@ -189,6 +201,49 @@ const MainGame = properties => {
 	const checkButtonTrue = () => {
 		if (isCorrect) {
 			setColor('255, 255, 0,')
+
+			setSessionStat({
+				...sessionStat,
+				currentStrick: sessionStat.currentStrick + 1,
+				bestStrick: Math.max(sessionStat.bestStrick, ++sessionStat.currentStrick),
+				correct: ++sessionStat.correct,
+			})
+
+			setGameStat({
+				...gameStat,
+				item: {
+					...gameStat.item,
+					answerTrue: ++gameStat.item.answerTrue,
+					games: {
+						...gameStat.item.games,
+						sprint: {
+							...gameStat.item.games.sprint,
+							countAnswer: ++gameStat.item.games.sprint.countAnswer,
+							trueAnswer: ++gameStat.item.games.sprint.trueAnswer,
+							seriesAnswer: Math.max(gameStat.item.games.sprint.seriesAnswer, sessionStat.bestStrick),
+						},
+					}
+				}
+			})
+
+			updateUserWordsById(
+				properties.userId,
+				properties.userToken,
+				currentWords[value]._id,
+				currentWords[value].difficulty,
+				{
+					...currentWords[value].optional,
+					correct_answers: currentWords[value].userWord.optional.correct_answers + 1,
+					games: {
+						...currentWords[value].userWord.optional.games,
+						sprint: {
+							learned: true,
+						},
+					},
+				},
+			)
+
+
 			setAnswerCount(answerCount + 1)
 			bonusCounter(answerCount)
 			gettingScore(bonus)
@@ -199,6 +254,36 @@ const MainGame = properties => {
 		} else {
 			setColor('255, 0, 0,')
 			setTextDescription('WRONG')
+
+			setSessionStat({
+				...sessionStat,
+				incorrect: [currentWords[value], ...sessionStat.incorrect],
+				currentStrick: 0,
+			})
+			setGameStat({
+				...gameStat,
+				item: {
+					...gameStat.item,
+					games: {
+						...gameStat.item.games,
+						sprint: {
+							...gameStat.item.games.sprint,
+							countAnswer: ++gameStat.item.games.sprint.countAnswer,
+						},
+					},
+				}
+			})
+			updateUserWordsById(
+				properties.userId,
+				properties.userToken,
+				currentWords[value]._id,
+				currentWords[value].difficulty,
+				{
+					...currentWords[value].userWord.optional,
+					uncorrect_answers: currentWords[value].userWord.optional.uncorrect_answers + 1,
+				},
+			)
+
 			falsesWords.push(currentWords[value])
 			setFalseAnswer(answerFalse + 1)
 			setValue(value + 1)
@@ -211,6 +296,49 @@ const MainGame = properties => {
 	const checkButtonFalse = () => {
 		if (!isCorrect) {
 			setColor('255, 255, 0,')
+
+			setSessionStat({
+				...sessionStat,
+				currentStrick: sessionStat.currentStrick + 1,
+				bestStrick: Math.max(sessionStat.bestStrick, ++sessionStat.currentStrick),
+				correct: ++sessionStat.correct,
+			})
+
+			setGameStat({
+				...gameStat,
+				item: {
+					...gameStat.item,
+					answerTrue: ++gameStat.item.answerTrue,
+					games: {
+						...gameStat.item.games,
+						sprint: {
+							...gameStat.item.games.sprint,
+							countAnswer: ++gameStat.item.games.sprint.countAnswer,
+							trueAnswer: ++gameStat.item.games.sprint.trueAnswer,
+							seriesAnswer: Math.max(gameStat.item.games.sprint.seriesAnswer, sessionStat.bestStrick),
+						},
+					}
+				}
+			})
+
+			updateUserWordsById(
+				properties.userId,
+				properties.userToken,
+				currentWords[value]._id,
+				currentWords[value].difficulty,
+				{
+					...currentWords[value].optional,
+					correct_answers: currentWords[value].userWord.optional.correct_answers + 1,
+					games: {
+						...currentWords[value].userWord.optional.games,
+						sprint: {
+							learned: true,
+						},
+					},
+				},
+			)
+
+
 			setAnswerCount(answerCount + 1)
 			bonusCounter(answerCount)
 			gettingScore(bonus)
@@ -221,6 +349,37 @@ const MainGame = properties => {
 		} else {
 			setColor('255, 0, 0,')
 			setTextDescription('WRONG')
+
+			setSessionStat({
+				...sessionStat,
+				incorrect: [currentWords[value], ...sessionStat.incorrect],
+				currentStrick: 0,
+			})
+			setGameStat({
+				...gameStat,
+				item: {
+					...gameStat.item,
+					games: {
+						...gameStat.item.games,
+						sprint: {
+							...gameStat.item.games.sprint,
+							countAnswer: ++gameStat.item.games.sprint.countAnswer,
+						},
+					},
+				}
+			})
+			updateUserWordsById(
+				properties.userId,
+				properties.userToken,
+				currentWords[value]._id,
+				currentWords[value].difficulty,
+				{
+					...currentWords[value].userWord.optional,
+					uncorrect_answers: currentWords[value].userWord.optional.uncorrect_answers + 1,
+				},
+			)
+
+
 			falsesWords.push(currentWords[value])
 			setFalseAnswer(answerFalse + 1)
 			setValue(value + 1)
@@ -268,6 +427,9 @@ const MainGame = properties => {
 		if (isGame) window.addEventListener('keyup', handleKey)
 		return () => window.removeEventListener('keyup', handleKey)
 	})
+
+
+
 
 	return (
 		<div className={classes.SprintRoot}>
@@ -331,6 +493,11 @@ const MainGame = properties => {
 					falsesWords={falsesWords}
 					answerTrue={answerTrue}
 					answerFalse={answerFalse}
+					userId={properties.userId}
+					userToken={properties.userToken}
+					gameStat={gameStat}
+					sessionStat={sessionStat}
+					exp={sessionStat.correct}
 				/>
 			)}
 		</div>

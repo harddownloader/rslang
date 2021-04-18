@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import { Link } from '@material-ui/core'
+import { setStatistics } from '@/utils/apiRequests/statistics'
 
 const useStyles = makeStyles(theme => ({
 	EndGame: {
@@ -35,7 +36,7 @@ const useStyles = makeStyles(theme => ({
 		fontSize: '2.1rem',
 		display: 'flex',
 		alignItems: 'center',
-		justifyContent: 'center',
+		justifyContent: 'space-around',
 		flexDirection: 'raw',
 		width: '80%px',
 		height: '100px',
@@ -121,22 +122,46 @@ const EndGame = ({
 	falsesWords,
 	answerTrue,
 	answerFalse,
+	userId,
+	userToken,
+	gameStat,
+	sessionStat,
+	exp,
 }) => {
 	const classes = useStyles()
-	let trueWordList = trueWords.map(item => {
+	let trueWordList = trueWords.map((item, index) => {
 		return (
-			<div>
+			<div key={index}>
 				{item.word} - {item.wordTranslate}
 			</div>
 		)
 	})
-	let falseWordList = falsesWords.map(item => {
+	let falseWordList = falsesWords.map((item, index) => {
 		return (
-			<div>
+			<div key={index}>
 				{item.word} - {item.wordTranslate}
 			</div>
 		)
 	})
+
+	let currentDate = new Date(Date.now())
+	const currentExp = +gameStat.origin.optional.exp + +exp
+	currentDate = `${currentDate.getFullYear()}-${
+		currentDate.getMonth() + 1
+	}-${currentDate.getDate()}`
+	let filteredOrigin = gameStat.origin.optional.dates.dateItems
+	console.log('filtered0 ->', filteredOrigin)
+	filteredOrigin = filteredOrigin.filter(item => item.date !== currentDate)
+	console.log('filtered ->', filteredOrigin)
+	const finalStat = {
+		...gameStat.origin.optional,
+		dates: {
+			dateItems: [...filteredOrigin, { ...gameStat.item }],
+		},
+		exp: currentExp,
+	}
+	console.dir(finalStat)
+	setStatistics(userId, userToken, 0, finalStat)
 
 	return (
 		<div className={classes.EndGame}>

@@ -6,8 +6,9 @@ import { CountdownCircleTimer } from 'react-countdown-circle-timer'
 
 import { makeStyles } from '@material-ui/core/styles'
 import useDataApi from '@/utils/useDataApi'
-
+import MetaTag from '../MetaTag/MetaTag'
 import { getAggregatedWords } from '@/utils/apiRequests/aggregatedWords'
+import { getStatistics, setStatistics } from '@/utils/apiRequests/statistics'
 
 const useStyles = makeStyles(theme => ({
 	SprintRoot: {
@@ -243,7 +244,7 @@ const Sprint = ({ userId, userToken }) => {
 	const [isButtonClick, setIsButtonClick] = useState(false)
 	const [wordsData, setWords] = useState(null)
 	const [lvl, setLvl] = useState(0)
-
+	const [stat, setStat] = useState()
 	const [seconds, setSeconds] = React.useState(5)
 	const [timerActive, setTimerActive] = useState(false)
 
@@ -267,7 +268,7 @@ const Sprint = ({ userId, userToken }) => {
 	const [
 		{ data, isLoading, isError },
 		doFetch, // eslint-disable-line no-unused-vars
-	] = useDataApi(getAggregatedWords, [userId, userToken, lvl, false, 100], [])
+	] = useDataApi(getAggregatedWords, [userId, userToken, lvl, false, 100, '{"userWord.optional.games.savannah.learned": false}'  ], [])
 
 	useEffect(() => {
 		doFetch(
@@ -276,6 +277,59 @@ const Sprint = ({ userId, userToken }) => {
 			[],
 		)
 	}, [lvl, setLvl])
+
+	useEffect(() => {
+			getStatistics(userId, userToken)
+				.then(resp => {
+					setStat({ ...resp })
+				})
+	
+	
+	}, [])
+
+	useEffect(() => {
+		if (stat) {
+			if (!stat.item) {
+				let currentDate = new Date(Date.now())
+				currentDate = `${currentDate.getFullYear()}-${currentDate.getMonth() + 1}-${currentDate.getDate()}`
+				const dateItem = stat.optional.dates.dateItems.find((dateItem) => dateItem.date === currentDate)
+				dateItem ? setStat({
+					origin: { ...stat },
+					item: { ...dateItem },
+				})
+					: setStat({
+						origin: { ...stat },
+						item: {
+							date: currentDate,
+							countWord: 0,
+							answerTrue: 0,
+							games: {
+								savana: {
+									countAnswer: 0,
+									trueAnswer: 0,
+									seriesAnswer: 0
+								},
+								audio: {
+									countAnswer: 0,
+									trueAnswer: 0,
+									seriesAnswer: 0
+								},
+								myGame: {
+									countAnswer: 0,
+									trueAnswer: 0,
+									seriesAnswer: 0
+								},
+								sprint: {
+									countAnswer: 0,
+									trueAnswer: 0,
+									seriesAnswer: 0
+								}
+							}
+						},
+					})
+			}
+		}
+	}, [stat])
 
 	if (!userId) {
 		return <Redirect to='/login' />
@@ -305,6 +359,7 @@ const Sprint = ({ userId, userToken }) => {
 
 	return (
 		<div className={classes.SprintRoot}>
+			<MetaTag text='viiiuuu' />
 			{rendering && (
 				<div className={classes.StartSprintRoot}>
 					<div
@@ -362,7 +417,7 @@ const Sprint = ({ userId, userToken }) => {
 			)}
 
 			{/* <Game seconds={seconds} /> */}
-			{!rendering && <MainGame wordsData={data} />}
+			{!rendering && <MainGame wordsData={data} stat={stat} userId={userId} userToken={userToken}  />}
 			<Footer />
 		</div>
 	)
