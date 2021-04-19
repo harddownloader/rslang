@@ -7,10 +7,9 @@ import sprint from '../assets/images/sprint.png'
 import settings from '../assets/images/settings.png'
 import stats from '../assets/images/stats.png'
 import headphones from '../assets/images/headphones.png'
-import Video from '../components/PromoVideo/Video'
 import MetaTag from '../components/MetaTag/MetaTag'
 import Header from '@/components/header'
-
+import { Link } from 'react-router-dom'
 
 const useStyles = makeStyles({
     wrapper: {
@@ -134,7 +133,7 @@ const Promo = () => {
                             Благодаря использованию приложения и его аудиальным возможностям, вы сможете запоминать информацию на слух а также употребять слова и выражения в свободной речи.
                             Встроенная статистика позволяет отслеживать ваш рост в процессе изучения языка.
                         </p>
-                        <a href='about-team' className={classes.a}>Узнать о нашей команде больше.</a>
+                        <Link to="about-team" className={classes.a}>Узнать о нашей команде больше.</Link>
                     </div>
                 </Grid>
                 <Grid item xs={12}>
