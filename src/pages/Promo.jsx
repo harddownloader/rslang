@@ -125,7 +125,7 @@ const Promo = () => {
             <Header />
             <Grid container className={classes.wrapper}>
                 <Grid item xs={12} >
-                    <Typography className={classes.header} variant='h2'>Приветствуем тебя на нашем сайте</Typography>
+                    <Typography className={classes.header} variant='h2'>Добро пожаловать</Typography>
                     <div style={{ margin: '20px 20%' }}>
                         <p className={classes.p}>
                             Игровое приложение, которое поможет вам в изучение английского языка. В основу приложения входят: игры, статистика, настройки, словарь.
@@ -137,20 +137,17 @@ const Promo = () => {
                     </div>
                 </Grid>
                 <Grid item xs={12}>
-                    <div style={{ width: '483px', height: '350px', marginLeft: 'calc(50% - 241.5px)' }}>
-                    <iframe width="560" height="315" src="https://www.youtube.com/embed/gQE1bRSwXzg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    </div>
+                    <iframe width="100%" src="https://www.youtube.com/embed/gQE1bRSwXzg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </Grid>
-                <Grid container item xs={6} className={classes.games} >
+                <Grid container item xs={12} md={6} lg={6} className={classes.games} >
                     <Grid className={classes.head} item xs={12}><Typography className={classes.gameTypo} align='center' variant='h2'>Наши игры</Typography></Grid>
                     {getGames}
                 </Grid>
-                <Grid container item xs={6} className={classes.other}>
+                <Grid container item xs={12} md={6} lg={6} className={classes.other}>
                     <Grid className={classes.head} item xs={12}><Typography className={classes.otherTypo} align='center' variant='h2'>Другое</Typography></Grid>
                     {getOher}
                 </Grid>
             </Grid>
-
         </>
     )
 }
